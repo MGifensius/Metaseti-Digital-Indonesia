@@ -13,93 +13,29 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            min-height: 100%;
+            background: #050510;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: #050510;
             color: #1a1a1a;
             line-height: 1.6;
-            overflow-x: hidden;
             position: relative;
             font-size: 14px;
-        }
-
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #050510;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            padding-top: 150px;
-        }
-
-        .loader-wrapper.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-logo {
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        .loader-logo img {
-            height: 400px;
-            width: auto;
-        }
-
-        .loader-bar-container {
-            width: 300px;
-            height: 2px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 0.8s ease 0.3s forwards;
-        }
-
-        .loader-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
-            background-size: 200% 100%;
-            border-radius: 10px;
-            animation: loadProgress 2s ease-in-out forwards, shimmer 1.5s ease-in-out infinite;
-        }
-
-        @keyframes loadProgress {
-            0% {
-                width: 0%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
         }
 
         .main-content {
+            flex: 1 0 auto;
             opacity: 0;
             transition: opacity 0.8s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .main-content.visible {
@@ -192,6 +128,80 @@
             top: 5%;
             right: 20%;
             opacity: 0.45;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050510;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            padding-top: 150px;
+        }
+
+        .loader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .loader-logo img {
+            height: 400px;
+            width: auto;
+        }
+
+        .loader-bar-container {
+            width: 300px;
+            height: 2px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.3s forwards;
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: loadProgress 2s ease-in-out forwards, shimmer 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loadProgress {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         .logo {
@@ -1195,6 +1205,8 @@
             font-size: 0.775rem;
             position: relative;
             z-index: 1;
+            flex-shrink: 0;
+            background: #050510;
         }
 
         .about-content {
