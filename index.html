@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Metaseti Digital Indonesia</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1306,35 +1306,134 @@
             }
         }
 
-        @media (max-width: 1024px) {
-            .services {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-        }
-
+        /* Mobile Responsive Improvements */
         @media (max-width: 768px) {
-            .services {
+            /* Fix hero section on mobile */
+            .hero {
+                padding: 0 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            /* Improve navigation */
+            header {
+                padding: 0.75rem 1rem;
+            }
+            
+            .logo img {
+                height: 35px;
+            }
+            
+            /* Fix section padding */
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            /* Improve project cards */
+            .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .project-card {
+                margin-bottom: 1rem;
+            }
+            
+            .project-image {
+                height: 220px;
+            }
+            
+            /* Fix services grid */
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .service {
                 padding: 2rem;
             }
             
-            .logo {
-                top: 1rem;
-                left: 1rem;
+            /* Fix contact section */
+            .contact-section {
+                padding: 4rem 1.5rem;
             }
-
-            .logo img {
-                height: 40px;
+            
+            .contact-content {
+                gap: 3rem;
             }
-
-            header {
-                padding: 1rem;
+            
+            /* Fix form layout */
+            .contact-form-container {
+                padding: 1.5rem;
             }
-
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.875rem 1rem 0.875rem 2.5rem;
+            }
+            
+            /* Improve button sizes */
+            .cta-button {
+                padding: 0.875rem 2rem;
+                font-size: 0.875rem;
+            }
+            
+            /* Fix about section */
+            .about-section {
+                margin-bottom: 3rem;
+            }
+            
+            .about-section h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .about-section p {
+                font-size: 0.95rem;
+            }
+            
+            /* Fix core items */
+            .core-item {
+                padding: 2rem;
+            }
+            
+            .core-number {
+                font-size: 2.5rem;
+            }
+            
+            .core-item h4 {
+                font-size: 1.25rem;
+            }
+            
+            /* Fix footer */
+            footer {
+                padding: 3rem 1.5rem;
+                font-size: 0.75rem;
+            }
+            
+            /* Fix portfolio filters */
+            .portfolio-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .filter-btn {
+                flex-shrink: 0;
+            }
+            
+            /* Navigation adjustments */
             .nav-logo {
                 display: block;
             }
@@ -1367,32 +1466,8 @@
                 display: block;
                 z-index: 1000;
             }
-
-            .section {
-                padding: 4rem 2rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
             
-            .portfolio-filters {
-                justify-content: center;
-            }
-            
-            .contact-details {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .contact-section {
-                padding: 4rem 2rem;
-            }
-            
-            .contact-form {
-                padding: 2rem;
-            }
-            
+            /* Gradient adjustments */
             .gradient-1 {
                 filter: blur(60px);
             }
@@ -1413,10 +1488,7 @@
                 filter: blur(100px);
             }
             
-            .cores-grid {
-                grid-template-columns: 1fr;
-            }
-            
+            /* Loader adjustments */
             .loader-logo img {
                 height: 250px;
             }
@@ -1425,9 +1497,73 @@
                 padding-top: 100px;
             }
             
+            /* Hero adjustments */
             .hero h1 {
                 line-height: 0.85;
                 letter-spacing: -0.03em;
+            }
+        }
+
+        /* Medium breakpoint for tablets */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .section {
+                padding: 5rem 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .contact-content {
+                gap: 4rem;
+            }
+            
+            .cores-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: clamp(2rem, 9vw, 3rem);
+            }
+            
+            .section h2 {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.75rem;
+            }
+            
+            .service h3 {
+                font-size: 1.25rem;
+            }
+            
+            .project-info h3 {
+                font-size: 1.125rem;
+            }
+            
+            .contact-info h2 {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+            
+            .contact-form-container h3 {
+                font-size: 1.25rem;
+            }
+            
+            .cores-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1985,28 +2121,48 @@
             }
         });
         
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mainNav = document.getElementById('main-nav');
-        
-        mobileMenuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('active');
-            const icon = mobileMenuToggle.querySelector('i');
-            if (mainNav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mainNav.classList.remove('active');
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            // Toggle mobile menu
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
                 const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = '';
+                }
             });
         });
         
@@ -2143,6 +2299,24 @@
                         formGroup.classList.remove('error');
                     }
                 });
+            });
+            
+            // Improve mobile form experience
+            const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+            formInputs.forEach(input => {
+                // Add focus effect
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+                
+                // Add touch-friendly size for mobile
+                if (window.innerWidth <= 768) {
+                    input.style.fontSize = '16px'; // Prevents zoom on iOS
+                }
             });
         });
     </script>
