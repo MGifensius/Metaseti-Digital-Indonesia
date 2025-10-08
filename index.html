@@ -2,47 +2,166 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metaseti Digital Indonesia</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        accent: '#f5576c',
+                        dark: '#050510',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Custom styles that can't be done with Tailwind */
+        .bg-gradient-1 {
+            background: radial-gradient(circle at 30% 50%, 
+                rgba(102, 126, 234, 0.6) 0%, 
+                rgba(102, 126, 234, 0.4) 25%, 
+                rgba(118, 75, 162, 0.3) 50%, 
+                transparent 100%);
+        }
+        
+        .bg-gradient-2 {
+            background: radial-gradient(circle at 70% 50%, 
+                rgba(118, 75, 162, 0.5) 0%, 
+                rgba(118, 75, 162, 0.3) 25%, 
+                rgba(245, 87, 108, 0.2) 50%, 
+                transparent 100%);
+        }
+        
+        .bg-gradient-3 {
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(245, 87, 108, 0.4) 0%, 
+                rgba(245, 87, 108, 0.2) 25%, 
+                rgba(79, 172, 254, 0.15) 50%, 
+                transparent 100%);
+        }
+        
+        .project-gradient-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .project-gradient-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .project-gradient-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .project-gradient-4 { background: linear-gradient(135deg, #667eea 0%, #f5576c 100%); }
+        .btn-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .loader-gradient { 
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
+            background-size: 200% 100%;
+        }
+        .form-gradient { background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%); }
+        
+        /* Animations */
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .animate-loadProgress {
+            animation: loadProgress 2s ease-in-out forwards;
+        }
+        
+        .animate-shimmer {
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        /* New "coming from under" animations */
+        @keyframes slideFromBottom {
+            0% { 
+                opacity: 0; 
+                transform: translateY(100px) scale(0.8); 
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.05);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        @keyframes slideFromBottomSmooth {
+            0% { 
+                opacity: 0; 
+                transform: translateY(80px); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .animate-slide-from-bottom {
+            animation: slideFromBottom 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-from-bottom-smooth {
+            animation: slideFromBottomSmooth 0.8s ease-out forwards;
         }
 
-        html, body {
-            height: 100%;
-            min-height: 100%;
-            background: #050510;
-            overflow-x: hidden;
+        /* Custom hover effects */
+        .service-hover:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #1a1a1a;
-            line-height: 1.6;
-            position: relative;
-            font-size: 14px;
-            display: flex;
-            flex-direction: column;
+        
+        .project-image:hover .project-thumbnail {
+            transform: scale(1.05);
         }
-
-        .main-content {
-            flex: 1 0 auto;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .main-content.visible {
+        
+        .project-image:hover .project-overlay {
             opacity: 1;
         }
+        
+        .btn-hover:hover::before {
+            transform: translateX(0);
+        }
 
-        .animated-bg {
+        /* Navigation blur effect with rounded corners */
+        .nav-blur {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin: 12px;
+            width: calc(100% - 24px);
+        }
+
+        /* Ensure the header is properly positioned */
+        .nav-container {
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        /* Abstract background dots animation */
+        .abstract-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -50,1698 +169,241 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            overflow: hidden;
             background: #050510;
-        }
-
-        .gradient-layer {
-            position: absolute;
-            border-radius: 50%;
-            transition: transform 0.1s ease-out;
-        }
-
-        .gradient-1 {
-            background: radial-gradient(circle at 30% 50%, 
-                rgba(102, 126, 234, 0.6) 0%, 
-                rgba(102, 126, 234, 0.4) 25%, 
-                rgba(118, 75, 162, 0.3) 50%, 
-                transparent 100%);
-            filter: blur(80px);
-            width: 600px;
-            height: 600px;
-            top: 20%;
-            left: 10%;
-            opacity: 0.8;
-        }
-
-        .gradient-2 {
-            background: radial-gradient(circle at 70% 50%, 
-                rgba(118, 75, 162, 0.5) 0%, 
-                rgba(118, 75, 162, 0.3) 25%, 
-                rgba(245, 87, 108, 0.2) 50%, 
-                transparent 100%);
-            filter: blur(90px);
-            width: 700px;
-            height: 700px;
-            top: 40%;
-            right: 5%;
-            opacity: 0.7;
-        }
-
-        .gradient-3 {
-            background: radial-gradient(circle at 50% 50%, 
-                rgba(245, 87, 108, 0.4) 0%, 
-                rgba(245, 87, 108, 0.2) 25%, 
-                rgba(79, 172, 254, 0.15) 50%, 
-                transparent 100%);
-            filter: blur(100px);
-            width: 800px;
-            height: 800px;
-            bottom: 10%;
-            left: 30%;
-            opacity: 0.6;
-        }
-
-        .gradient-4 {
-            background: radial-gradient(circle at 40% 40%, 
-                rgba(79, 172, 254, 0.5) 0%, 
-                rgba(102, 126, 234, 0.3) 30%, 
-                rgba(118, 75, 162, 0.2) 60%, 
-                transparent 100%);
-            filter: blur(110px);
-            width: 650px;
-            height: 650px;
-            top: 60%;
-            left: 50%;
-            opacity: 0.5;
-        }
-
-        .gradient-5 {
-            background: radial-gradient(circle at 60% 60%, 
-                rgba(118, 75, 162, 0.4) 0%, 
-                rgba(245, 87, 108, 0.25) 35%, 
-                rgba(102, 126, 234, 0.15) 70%, 
-                transparent 100%);
-            filter: blur(120px);
-            width: 750px;
-            height: 750px;
-            top: 5%;
-            right: 20%;
-            opacity: 0.45;
-        }
-
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #050510;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            padding-top: 150px;
-        }
-
-        .loader-wrapper.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-logo {
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        .loader-logo img {
-            height: 400px;
-            width: auto;
-        }
-
-        .loader-bar-container {
-            width: 300px;
-            height: 2px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 0.8s ease 0.3s forwards;
-        }
-
-        .loader-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
-            background-size: 200% 100%;
-            border-radius: 10px;
-            animation: loadProgress 2s ease-in-out forwards, shimmer 1.5s ease-in-out infinite;
-        }
-
-        @keyframes loadProgress {
-            0% {
-                width: 0%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .logo {
-            position: absolute;
-            top: 1.5rem;
-            left: 2rem;
-            z-index: 1001;
-            pointer-events: auto;
-        }
-
-        .logo img {
-            height: 60px;
-            width: auto;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 2rem;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: none;
-        }
-
-        .nav-logo img {
-            height: 40px;
-            width: auto;
-        }
-
-        nav {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            position: relative;
-            padding-bottom: 0.25rem;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ffffff;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.75rem, 8vw, 6.5rem);
-            font-weight: 300;
-            letter-spacing: -0.05em;
-            line-height: 0.65;
-            margin-bottom: 2rem;
-            color: #ffffff;
-        }
-
-        .hero h1 div {
-            margin-bottom: -0.1em;
-        }
-
-        .hero h1 span {
-            display: inline-block;
-            opacity: 0;
-        }
-
-        .letter-from-top {
-            animation: letterFromTop 0.6s ease forwards;
-        }
-
-        .letter-from-bottom {
-            animation: letterFromBottom 0.6s ease forwards;
-        }
-
-        .letter-from-left {
-            animation: letterFromLeft 0.6s ease forwards;
-        }
-
-        .letter-from-right {
-            animation: letterFromRight 0.6s ease forwards;
-        }
-
-        .letter-from-top-left {
-            animation: letterFromTopLeft 0.6s ease forwards;
-        }
-
-        .letter-from-top-right {
-            animation: letterFromTopRight 0.6s ease forwards;
-        }
-
-        .letter-from-bottom-left {
-            animation: letterFromBottomLeft 0.6s ease forwards;
-        }
-
-        .letter-from-bottom-right {
-            animation: letterFromBottomRight 0.6s ease forwards;
-        }
-
-        @keyframes letterFromTop {
-            0% {
-                opacity: 0;
-                transform: translateY(-80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes letterFromBottom {
-            0% {
-                opacity: 0;
-                transform: translateY(80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes letterFromLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes letterFromRight {
-            0% {
-                opacity: 0;
-                transform: translateX(80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes letterFromTopLeft {
-            0% {
-                opacity: 0;
-                transform: translate(-80px, -80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        @keyframes letterFromTopRight {
-            0% {
-                opacity: 0;
-                transform: translate(80px, -80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        @keyframes letterFromBottomLeft {
-            0% {
-                opacity: 0;
-                transform: translate(-80px, 80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        @keyframes letterFromBottomRight {
-            0% {
-                opacity: 0;
-                transform: translate(80px, 80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        .hero p {
-            font-size: 1.075rem;
-            color: #e0e0e0;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.2s forwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #f5f5f5;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.825rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.4s forwards;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: -1;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .cta-button:hover::before {
-            transform: translateX(0);
-        }
-
-        .section {
-            padding: 8rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.25rem, 5vw, 3.75rem);
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-            color: #f5f5f5;
-        }
-
-        .section-intro {
-            font-size: 1.075rem;
-            color: #e0e0e0;
-            max-width: 700px;
-            margin-bottom: 4rem;
-            opacity: 0.9;
-        }
-
-        .portfolio-filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.6rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: #f5f5f5;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            font-size: 0.825rem;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: rgba(102, 126, 234, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 280px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .project-card:nth-child(2) .project-image {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .project-card:nth-child(3) .project-image {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .project-card:nth-child(4) .project-image {
-            background: linear-gradient(135deg, #667eea 0%, #f5576c 100%);
-        }
-
-        .project-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover .project-thumbnail {
-            transform: scale(1.05);
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .view-project {
-            color: white;
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .view-project i {
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .view-project i {
-            transform: translateX(5px);
-        }
-
-        .project-info {
-            padding: 2rem;
-        }
-
-        .project-category {
-            display: inline-block;
-            padding: 0.35rem 1rem;
-            background: rgba(102, 126, 234, 0.15);
-            color: #667eea;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        .project-info h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.375rem;
-            font-weight: 400;
-            margin-bottom: 0.75rem;
-            color: #f5f5f5;
-        }
-
-        .project-info p {
-            color: #b0b0b0;
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
-
-        .project-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            color: #999;
-        }
-
-        .meta-item i {
-            font-size: 0.875rem;
-            color: #667eea;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .service {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 3rem;
-            transition: all 0.4s ease;
-            position: relative;
             overflow: hidden;
         }
 
-        .service::before {
-            content: '';
+        .dot {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            width: 4px;
             height: 4px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .service:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .service-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .service:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-        }
-
-        .service h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: #f5f5f5;
-            margin: 0;
-        }
-
-        .service p {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .service-features li {
-            color: #999;
-            font-size: 0.85rem;
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .contact-section {
-            background: transparent;
-            color: #f5f5f5;
-            padding: 8rem 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .contact-header h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.25rem, 5vw, 3.75rem);
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .contact-info {
-            grid-column: 1;
-        }
-
-        .contact-info h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-            text-align: left;
-            color: #f5f5f5;
-        }
-
-        .contact-info p {
-            font-size: 1.075rem;
-            opacity: 0.8;
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            text-align: left;
-            max-width: 100%;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .contact-item h3 {
-            font-size: 0.875rem;
-            font-weight: 500;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #f5f5f5;
-        }
-
-        .contact-item a,
-        .contact-item p {
-            font-size: 0.875rem;
-            color: #f5f5f5;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            opacity: 0.7;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #f5f5f5;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
             background: rgba(102, 126, 234, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .contact-form-container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            grid-column: 2;
-        }
-
-        .contact-form-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
-        }
-
-        .form-header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .form-header h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.675rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: #f5f5f5;
-        }
-
-        .form-steps {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .step {
-            width: 8px;
-            height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .step.active {
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.7;
+            }
+        }
+
+        /* Form select styling */
+        select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        select:focus option:checked {
             background: #667eea;
-            transform: scale(1.2);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #e0e0e0;
-        }
-
-        .input-container {
-            position: relative;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            font-size: 0.875rem;
-            font-family: 'Poppins', sans-serif;
-            color: #f5f5f5;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: rgba(102, 126, 234, 0.5);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1rem;
-            pointer-events: none;
-        }
-
-        .form-group select {
-            appearance: none;
-            cursor: pointer;
-        }
-
-        .form-group textarea {
-            min-height: 140px;
-            resize: vertical;
-            padding-right: 5rem;
-        }
-
-        .char-counter {
-            position: absolute;
-            right: 1rem;
-            bottom: 1rem;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .checkbox-container input {
-            width: auto;
-            margin-top: 0.25rem;
-            padding: 0;
-        }
-
-        .checkbox-container label {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        .checkbox-container a {
-            color: #667eea;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .checkbox-container a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-
-        .error-message {
-            display: block;
-            font-size: 0.75rem;
-            color: #f5576c;
-            margin-top: 0.5rem;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .form-group.error .error-message {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .form-group.error input,
-        .form-group.error select,
-        .form-group.error textarea {
-            border-color: #f5576c;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #FFFFFF;
-            border: none;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn:hover::before {
-            transform: translateX(0);
-        }
-
-        .btn-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover .btn-icon {
-            transform: translateX(5px);
-        }
-
-        .form-success {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 0;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.5s ease;
-        }
-
-        .form-success.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(102, 126, 234, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .success-icon i {
-            font-size: 2.5rem;
-            color: #667eea;
-        }
-
-        .form-success h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: #f5f5f5;
-        }
-
-        .form-success p {
-            font-size: 1rem;
-            color: #e0e0e0;
-            margin-bottom: 2rem;
-            max-width: 400px;
-        }
-
-        .reset-btn {
-            padding: 0.75rem 2rem;
-            background: transparent;
-            color: #667eea;
-            border: 1px solid #667eea;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .reset-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        footer {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: #e0e0e0;
-            font-size: 0.775rem;
-            position: relative;
-            z-index: 1;
-            flex-shrink: 0;
-            background: #050510;
-        }
-
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .about-section {
-            margin-bottom: 4rem;
-        }
-
-        .about-section h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.875rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            color: #f5f5f5;
-        }
-
-        .about-section p {
-            font-size: 0.975rem;
-            line-height: 1.8;
-            color: #e0e0e0;
-        }
-
-        .values-intro {
-            font-size: 1.075rem;
-            color: #e0e0e0;
-            max-width: 800px;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        .cores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .core-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
-            border-radius: 16px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .core-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.15), transparent);
-            border-radius: 50%;
-            transform: translate(50%, -50%);
-            transition: all 0.4s ease;
-        }
-
-        .core-item:hover::before {
-            transform: translate(50%, -50%) scale(1.5);
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.25), transparent);
-        }
-
-        .core-item:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .core-number {
-            font-size: 3rem;
-            font-weight: 300;
-            color: rgba(102, 126, 234, 0.3);
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        .core-item h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.375rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: #f5f5f5;
-            position: relative;
-        }
-
-        .core-item p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: #b0b0b0;
-            position: relative;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mobile Responsive Improvements */
-        @media (max-width: 768px) {
-            /* Fix hero section on mobile */
-            .hero {
-                padding: 0 1.5rem;
-            }
-            
-            .hero h1 {
-                font-size: clamp(2.5rem, 10vw, 4rem);
-                line-height: 1.1;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-            
-            /* Improve navigation */
-            header {
-                padding: 0.75rem 1rem;
-            }
-            
-            .logo img {
-                height: 35px;
-            }
-            
-            /* Fix section padding */
-            .section {
-                padding: 4rem 1.5rem;
-            }
-            
-            /* Improve project cards */
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .project-card {
-                margin-bottom: 1rem;
-            }
-            
-            .project-image {
-                height: 220px;
-            }
-            
-            /* Fix services grid */
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .service {
-                padding: 2rem;
-            }
-            
-            /* Fix contact section */
-            .contact-section {
-                padding: 4rem 1.5rem;
-            }
-            
-            .contact-content {
-                gap: 3rem;
-            }
-            
-            /* Fix form layout */
-            .contact-form-container {
-                padding: 1.5rem;
-            }
-            
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                padding: 0.875rem 1rem 0.875rem 2.5rem;
-            }
-            
-            /* Improve button sizes */
-            .cta-button {
-                padding: 0.875rem 2rem;
-                font-size: 0.875rem;
-            }
-            
-            /* Fix about section */
-            .about-section {
-                margin-bottom: 3rem;
-            }
-            
-            .about-section h3 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .about-section p {
-                font-size: 0.95rem;
-            }
-            
-            /* Fix core items */
-            .core-item {
-                padding: 2rem;
-            }
-            
-            .core-number {
-                font-size: 2.5rem;
-            }
-            
-            .core-item h4 {
-                font-size: 1.25rem;
-            }
-            
-            /* Fix footer */
-            footer {
-                padding: 3rem 1.5rem;
-                font-size: 0.75rem;
-            }
-            
-            /* Fix portfolio filters */
-            .portfolio-filters {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .filter-btn {
-                flex-shrink: 0;
-            }
-            
-            /* Navigation adjustments */
-            .nav-logo {
-                display: block;
-            }
-
-            .nav-container {
-                justify-content: space-between;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(10, 10, 20, 0.95);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 5rem 2rem 2rem;
-                gap: 1.5rem;
-                transition: right 0.3s ease;
-                z-index: 999;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-                z-index: 1000;
-            }
-            
-            /* Gradient adjustments */
-            .gradient-1 {
-                filter: blur(60px);
-            }
-            
-            .gradient-2 {
-                filter: blur(70px);
-            }
-            
-            .gradient-3 {
-                filter: blur(80px);
-            }
-            
-            .gradient-4 {
-                filter: blur(90px);
-            }
-            
-            .gradient-5 {
-                filter: blur(100px);
-            }
-            
-            /* Loader adjustments */
-            .loader-logo img {
-                height: 250px;
-            }
-            
-            .loader-wrapper {
-                padding-top: 100px;
-            }
-            
-            /* Hero adjustments */
-            .hero h1 {
-                line-height: 0.85;
-                letter-spacing: -0.03em;
-            }
-        }
-
-        /* Medium breakpoint for tablets */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .section {
-                padding: 5rem 2rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .contact-content {
-                gap: 4rem;
-            }
-            
-            .cores-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        /* Small mobile adjustments */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: clamp(2rem, 9vw, 3rem);
-            }
-            
-            .section h2 {
-                font-size: clamp(1.75rem, 6vw, 2.5rem);
-            }
-            
-            .service-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.75rem;
-            }
-            
-            .service h3 {
-                font-size: 1.25rem;
-            }
-            
-            .project-info h3 {
-                font-size: 1.125rem;
-            }
-            
-            .contact-info h2 {
-                font-size: clamp(1.5rem, 5vw, 2rem);
-            }
-            
-            .contact-form-container h3 {
-                font-size: 1.25rem;
-            }
-            
-            .cores-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 968px) {
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .contact-form-container {
-                grid-column: 1;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
+            color: white;
         }
     </style>
 </head>
-<body>
-    <div class="loader-wrapper">
-        <div class="loader-logo">
-            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Metaseti-Logo-Dark.png" alt="Metaseti Digital">
+<body class="font-poppins bg-dark text-white min-h-screen">
+    <!-- Loader -->
+    <div id="loader" class="fixed inset-0 bg-dark flex flex-col justify-center items-center z-50">
+        <div class="loader-logo mb-12 opacity-0 animate-fadeIn">
+            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Metaseti-Logo-Dark.png" alt="Metaseti Digital" class="h-64 md:h-96 w-auto">
         </div>
-        <div class="loader-bar-container">
-            <div class="loader-bar"></div>
+        <div class="loader-bar-container w-72 md:w-80 h-0.5 bg-gray-300 rounded overflow-hidden opacity-0 animate-fadeIn animation-delay-300">
+            <div class="loader-bar h-full loader-gradient rounded animate-loadProgress animate-shimmer"></div>
         </div>
     </div>
 
-    <div class="main-content">
-        <div class="animated-bg">
-            <div class="gradient-layer gradient-1"></div>
-            <div class="gradient-layer gradient-2"></div>
-            <div class="gradient-layer gradient-3"></div>
-            <div class="gradient-layer gradient-4"></div>
-            <div class="gradient-layer gradient-5"></div>
-        </div>
+    <!-- Main Content -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000">
+        <!-- Abstract Background -->
+        <div class="abstract-bg" id="abstractBg"></div>
         
-        <header>
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Metaseti-Logo-Dark.png" alt="Metaseti Digital">
+        <!-- Header with Logo Inside Navigation - Rounded and Larger Logo -->
+        <header class="fixed top-0 left-0 right-0 z-40 nav-container">
+            <div class="nav-blur">
+                <div class="max-w-7xl mx-auto flex justify-between items-center py-3 px-8">
+                    <div class="flex items-center w-full">
+                        <!-- Larger Logo -->
+                        <div class="nav-logo flex-shrink-0 mr-12">
+                            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Metaseti-Logo-Dark.png" alt="Metaseti Digital" class="h-12 w-auto">
+                        </div>
+                        
+                        <!-- Navigation Links with Equal Spacing -->
+                        <nav class="hidden md:flex flex-1 justify-between max-w-2xl">
+                            <a href="#work" class="text-white text-sm font-normal hover:opacity-80 transition-opacity relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full py-2 px-4 text-center flex-1">Portfolio</a>
+                            <a href="#services" class="text-white text-sm font-normal hover:opacity-80 transition-opacity relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full py-2 px-4 text-center flex-1">Services</a>
+                            <a href="#about" class="text-white text-sm font-normal hover:opacity-80 transition-opacity relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full py-2 px-4 text-center flex-1">About</a>
+                            <a href="#contact" class="text-white text-sm font-normal hover:opacity-80 transition-opacity relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full py-2 px-4 text-center flex-1">Contact</a>
+                        </nav>
+                    </div>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle md:hidden bg-transparent border-none text-white text-2xl cursor-pointer">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-                <nav id="main-nav">
-                    <a href="#work">Portfolio</a>
-                    <a href="#services">Services</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </header>
 
-        <section class="hero">
-            <div>
-                <h1 id="animated-title">Metaseti<br>Digital<br>Indonesia</h1>
-                <br><br>
-                <p>Impact Engineered. Advantage Secured.</p>
-                <a href="#contact" class="cta-button">Start a Project</a>
+        <!-- Hero Section - Left Aligned with New Animation -->
+        <section class="min-h-screen flex items-center px-8 md:px-16 lg:px-32 relative z-10 pt-28">
+            <div class="max-w-7xl w-full">
+                <div class="text-left">
+                    <!-- Animated Title Lines -->
+                    <div class="overflow-hidden">
+                        <h1 id="line1" class="font-light tracking-tight leading-tight mb-4 text-4xl md:text-6xl lg:text-7xl opacity-0">
+                            Metaseti
+                        </h1>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h1 id="line2" class="font-light tracking-tight leading-tight mb-4 text-4xl md:text-6xl lg:text-7xl opacity-0">
+                            Digital
+                        </h1>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h1 id="line3" class="font-light tracking-tight leading-tight mb-12 text-4xl md:text-6xl lg:text-7xl opacity-0">
+                            Indonesia
+                        </h1>
+                    </div>
+                    
+                    <!-- Tagline -->
+                    <div class="overflow-hidden">
+                        <p id="tagline" class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl opacity-0">
+                            Impact Engineered. Advantage Secured.
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <div class="overflow-hidden">
+                        <a id="cta-button" href="#contact" class="inline-block py-4 px-10 btn-gradient text-white text-sm no-underline rounded-full opacity-0 hover:shadow-lg transition-all duration-300 relative overflow-hidden btn-hover before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white/20 before:-translate-x-full before:transition-transform before:duration-300">
+                            Start a Project
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="section" id="work">
-            <h2>Our Portfolio</h2>
-            <p class="section-intro">Showcasing our latest work across web development, digital marketing, branding, and data analytics.</p>
+        <!-- Portfolio Section -->
+        <section id="work" class="py-32 px-8 md:px-16 max-w-7xl mx-auto relative z-10">
+            <h2 class="font-light mb-4 text-3xl md:text-5xl lg:text-6xl tracking-tight">Our Portfolio</h2>
+            <p class="text-lg text-gray-300 max-w-3xl mb-16">
+                Showcasing our latest work across web development, digital marketing, branding, and data analytics.
+            </p>
             
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="development">Development</button>
-                <button class="filter-btn" data-filter="marketing">Marketing</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-                <button class="filter-btn" data-filter="analytics">Analytics</button>
+            <div class="flex gap-4 mb-12 flex-wrap">
+                <button class="filter-btn active py-2 px-6 bg-white/5 text-white border border-white/10 rounded-full text-sm cursor-pointer transition-all hover:bg-primary/20 hover:border-primary/50 hover:-translate-y-0.5" data-filter="all">All Projects</button>
+                <button class="filter-btn py-2 px-6 bg-white/5 text-white border border-white/10 rounded-full text-sm cursor-pointer transition-all hover:bg-primary/20 hover:border-primary/50 hover:-translate-y-0.5" data-filter="development">Development</button>
+                <button class="filter-btn py-2 px-6 bg-white/5 text-white border border-white/10 rounded-full text-sm cursor-pointer transition-all hover:bg-primary/20 hover:border-primary/50 hover:-translate-y-0.5" data-filter="marketing">Marketing</button>
+                <button class="filter-btn py-2 px-6 bg-white/5 text-white border border-white/10 rounded-full text-sm cursor-pointer transition-all hover:bg-primary/20 hover:border-primary/50 hover:-translate-y-0.5" data-filter="branding">Branding</button>
+                <button class="filter-btn py-2 px-6 bg-white/5 text-white border border-white/10 rounded-full text-sm cursor-pointer transition-all hover:bg-primary/20 hover:border-primary/50 hover:-translate-y-0.5" data-filter="analytics">Analytics</button>
             </div>
 
-            <div class="projects-grid">
-                <div class="project-card" data-category="development">
-                    <div class="project-image">
-                        <img class="project-thumbnail" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Stock-Custom%20Web.png" alt="Harton Logistics Website">
-                        <div class="project-overlay">
-                            <span class="view-project">View Project <i class="fas fa-arrow-right"></i></span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Development Project -->
+                <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="development">
+                    <div class="project-image w-full h-72 relative overflow-hidden project-gradient-1">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Stock-Custom%20Web.png" alt="Harton Logistics Website">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
+                            <span class="text-white text-sm font-medium flex items-center gap-2">
+                                View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Development</span>
-                        <h3>Harton Logistics</h3>
-                        <p>Custom enterprise website with real-time tracking system and automated logistics management.</p>
-                        <div class="project-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-calendar"></i>
+                    <div class="p-8">
+                        <span class="inline-block py-1 px-4 bg-primary/15 text-primary rounded-full text-xs font-medium uppercase tracking-wider mb-4">Development</span>
+                        <h3 class="text-xl font-normal mb-3">Harton Logistics</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Custom enterprise website with real-time tracking system and automated logistics management.</p>
+                        <div class="flex gap-6 mt-5 pt-5 border-t border-white/5">
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-calendar text-primary text-sm"></i>
                                 <span>2024</span>
                             </div>
-                            <div class="meta-item">
-                                <i class="fas fa-code"></i>
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-code text-primary text-sm"></i>
                                 <span>React, Node.js</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="marketing">
-                    <div class="project-image">
-                        <img class="project-thumbnail" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital Marketing Campaign">
-                        <div class="project-overlay">
-                            <span class="view-project">View Project <i class="fas fa-arrow-right"></i></span>
+                <!-- Marketing Project -->
+                <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="marketing">
+                    <div class="project-image w-full h-72 relative overflow-hidden project-gradient-2">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital Marketing Campaign">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
+                            <span class="text-white text-sm font-medium flex items-center gap-2">
+                                View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Marketing</span>
-                        <h3>E-Commerce Growth Campaign</h3>
-                        <p>Comprehensive digital marketing strategy resulting in 300% increase in online sales.</p>
-                        <div class="project-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-calendar"></i>
+                    <div class="p-8">
+                        <span class="inline-block py-1 px-4 bg-primary/15 text-primary rounded-full text-xs font-medium uppercase tracking-wider mb-4">Marketing</span>
+                        <h3 class="text-xl font-normal mb-3">E-Commerce Growth Campaign</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Comprehensive digital marketing strategy resulting in 300% increase in online sales.</p>
+                        <div class="flex gap-6 mt-5 pt-5 border-t border-white/5">
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-calendar text-primary text-sm"></i>
                                 <span>2024</span>
                             </div>
-                            <div class="meta-item">
-                                <i class="fas fa-chart-line"></i>
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-chart-line text-primary text-sm"></i>
                                 <span>+300% ROI</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="branding">
-                    <div class="project-image">
-                        <img class="project-thumbnail" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Brand Identity Design">
-                        <div class="project-overlay">
-                            <span class="view-project">View Project <i class="fas fa-arrow-right"></i></span>
+                <!-- Branding Project -->
+                <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="branding">
+                    <div class="project-image w-full h-72 relative overflow-hidden project-gradient-3">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Brand Identity Design">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
+                            <span class="text-white text-sm font-medium flex items-center gap-2">
+                                View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Branding</span>
-                        <h3>TechStart Brand Identity</h3>
-                        <p>Complete brand identity system including logo, guidelines, and visual assets for tech startup.</p>
-                        <div class="project-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-calendar"></i>
+                    <div class="p-8">
+                        <span class="inline-block py-1 px-4 bg-primary/15 text-primary rounded-full text-xs font-medium uppercase tracking-wider mb-4">Branding</span>
+                        <h3 class="text-xl font-normal mb-3">TechStart Brand Identity</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Complete brand identity system including logo, guidelines, and visual assets for tech startup.</p>
+                        <div class="flex gap-6 mt-5 pt-5 border-t border-white/5">
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-calendar text-primary text-sm"></i>
                                 <span>2024</span>
                             </div>
-                            <div class="meta-item">
-                                <i class="fas fa-palette"></i>
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-palette text-primary text-sm"></i>
                                 <span>Full Rebrand</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="analytics">
-                    <div class="project-image">
-                        <img class="project-thumbnail" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Stock-Business-Inteliigence.png" alt="Data Analytics Dashboard">
-                        <div class="project-overlay">
-                            <span class="view-project">View Project <i class="fas fa-arrow-right"></i></span>
+                <!-- Analytics Project -->
+                <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="analytics">
+                    <div class="project-image w-full h-72 relative overflow-hidden project-gradient-4">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Stock-Business-Inteliigence.png" alt="Data Analytics Dashboard">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
+                            <span class="text-white text-sm font-medium flex items-center gap-2">
+                                View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Analytics</span>
-                        <h3>Business Intelligence Dashboard</h3>
-                        <p>Custom analytics platform providing real-time insights and predictive analytics for decision making.</p>
-                        <div class="project-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-calendar"></i>
+                    <div class="p-8">
+                        <span class="inline-block py-1 px-4 bg-primary/15 text-primary rounded-full text-xs font-medium uppercase tracking-wider mb-4">Analytics</span>
+                        <h3 class="text-xl font-normal mb-3">Business Intelligence Dashboard</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Custom analytics platform providing real-time insights and predictive analytics for decision making.</p>
+                        <div class="flex gap-6 mt-5 pt-5 border-t border-white/5">
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-calendar text-primary text-sm"></i>
                                 <span>2024</span>
                             </div>
-                            <div class="meta-item">
-                                <i class="fas fa-database"></i>
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-database text-primary text-sm"></i>
                                 <span>Big Data</span>
                             </div>
                         </div>
@@ -1750,519 +412,366 @@
             </div>
         </section>
 
-        <section class="section" id="services">
-            <h2>What We Do</h2>
-            <div class="services-grid">
-                <div class="service">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Custom Development</h3>
-                    <p>Bringing designs to life with clean, maintainable, and scalable code</p>
+        <!-- Services Section -->
+        <section id="services" class="py-32 px-8 md:px-16 max-w-7xl mx-auto relative z-10">
+            <h2 class="font-light mb-4 text-3xl md:text-5xl lg:text-6xl tracking-tight">What We Do</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="service-hover bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient before:scale-x-0 before:origin-left before:transition-transform before:duration-400 hover:before:scale-x-100">
+                    <div class="service-icon w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-all duration-300">⚙️</div>
+                    <h3 class="text-2xl font-medium mb-4">Custom Development</h3>
+                    <p class="text-gray-400 text-base leading-relaxed">Bringing designs to life with clean, maintainable, and scalable code</p>
                 </div>
-                <div class="service">
-                    <div class="service-icon">⚡</div>
-                    <h3>Digital Marketing</h3>
-                    <p>Strategic planning and digital transformation consulting for modern businesses</p>
+                
+                <div class="service-hover bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient before:scale-x-0 before:origin-left before:transition-transform before:duration-400 hover:before:scale-x-100">
+                    <div class="service-icon w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-all duration-300">⚡</div>
+                    <h3 class="text-2xl font-medium mb-4">Digital Marketing</h3>
+                    <p class="text-gray-400 text-base leading-relaxed">Strategic planning and digital transformation consulting for modern businesses</p>
                 </div>
-                <div class="service">
-                    <div class="service-icon">✨</div>
-                    <h3>Branding & Identity</h3>
-                    <p>Creating cohesive visual identities that resonate with your audience</p>
+                
+                <div class="service-hover bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient before:scale-x-0 before:origin-left before:transition-transform before:duration-400 hover:before:scale-x-100">
+                    <div class="service-icon w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-all duration-300">✨</div>
+                    <h3 class="text-2xl font-medium mb-4">Branding & Identity</h3>
+                    <p class="text-gray-400 text-base leading-relaxed">Creating cohesive visual identities that resonate with your audience</p>
                 </div>
-                <div class="service">
-                    <div class="service-icon">📊</div>
-                    <h3>Data Analytics</h3>
-                    <p>Beautiful, functional websites built with user experience at the core</p>
+                
+                <div class="service-hover bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient before:scale-x-0 before:origin-left before:transition-transform before:duration-400 hover:before:scale-x-100">
+                    <div class="service-icon w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-all duration-300">📊</div>
+                    <h3 class="text-2xl font-medium mb-4">Data Analytics</h3>
+                    <p class="text-gray-400 text-base leading-relaxed">Beautiful, functional websites built with user experience at the core</p>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="about">
-            <h2>About Us</h2>
-            <div class="about-content">
-                <div class="about-section">
-                    <h3>Our Story</h3>
-                    <p>Born form a commitment to propel Indonesia's Digital Transformation, Metaseti Digital Indonesia engineer digital solutions and brand strategies that drive competitive advantage, Precision Development, Measurable Growth and Lasting Impact.</p>
+        <!-- About Section -->
+        <section id="about" class="py-32 px-8 md:px-16 max-w-7xl mx-auto relative z-10">
+            <h2 class="font-light mb-4 text-3xl md:text-5xl lg:text-6xl tracking-tight">About Us</h2>
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-16">
+                    <h3 class="text-3xl font-normal mb-6">Our Story</h3>
+                    <p class="text-gray-300 text-base leading-loose">Born form a commitment to propel Indonesia's Digital Transformation, Metaseti Digital Indonesia engineer digital solutions and brand strategies that drive competitive advantage, Precision Development, Measurable Growth and Lasting Impact.</p>
                 </div>
                 
-                <div class="about-section">
-                    <h3>Vision</h3>
-                    <p>To set the benchmark for how technology and branding converge to deliver measurable business dominance.
+                <div class="mb-16">
+                    <h3 class="text-3xl font-normal mb-6">Vision</h3>
+                    <p class="text-gray-300 text-base leading-loose">To set the benchmark for how technology and branding converge to deliver measurable business dominance.
                     <br><br>
                     We redefine the convergence of technology and branding to set new industry standards. Our integrated solutions deliver measurable business dominance through strategic innovation. Partner with us to transform your market position and achieve unparalleled competitive advantage.</p>
                 </div>
                 
-                <div class="about-section">
-                    <h3>Mission</h3>
-                    <p>To engineer integrated digital solutions that give business sustainable competitive advantange.
+                <div class="mb-16">
+                    <h3 class="text-3xl font-normal mb-6">Mission</h3>
+                    <p class="text-gray-300 text-base leading-loose">To engineer integrated digital solutions that give business sustainable competitive advantange.
                     <br><br>
                     We engineer powerful integrated digital solutions designed specifically for your business. Our focus is on creating systems that deliver measurable and sustainable competitive advantage. Partner with us to transform your operations and secure long-term market leadership.</p>
                 </div>
                 
-                <div class="about-section">
-                    <h3>Our Values</h3>
-                    <div class="cores-grid">
-                        <div class="core-item">
-                            <h4>Unified Excellence</h4>
-                            <p>Integrating technology and brand into seamless, high-impact solutions</p>
+                <div>
+                    <h3 class="text-3xl font-normal mb-6">Our Values</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
+                            <h4 class="text-xl font-medium mb-4">Unified Excellence</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Integrating technology and brand into seamless, high-impact solutions</p>
                         </div>
-                        <div class="core-item">
-                            <h4>Precision Craft</h4>
-                            <p>Executing with meticulous attention to detail in code, design and strategy</p>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
+                            <h4 class="text-xl font-medium mb-4">Precision Craft</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Executing with meticulous attention to detail in code, design and strategy</p>
                         </div>
-                        <div class="core-item">
-                            <h4>Measurable Impact</h4>
-                            <p>Driving outcomes that deliver tangible competitive advantage</p>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
+                            <h4 class="text-xl font-medium mb-4">Measurable Impact</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Driving outcomes that deliver tangible competitive advantage</p>
                         </div>
-                        <div class="core-item">
-                            <h4>Principled Evolution</h4>
-                            <p>Scaling with integrity - adapting strategically while upholding ethical standards</p>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
+                            <h4 class="text-xl font-medium mb-4">Principled Evolution</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Scaling with integrity - adapting strategically while upholding ethical standards</p>
                         </div>
-                        <div class="core-item">
-                            <h4>Clarity in Action</h4>
-                            <p>Operating with radical transparency in processes, decisions and results</p>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
+                            <h4 class="text-xl font-medium mb-4">Clarity in Action</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Operating with radical transparency in processes, decisions and results</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="contact-section" id="contact">
-            <div class="contact-container">
-                <div class="contact-header">
-                    <h2>Let's Work Together</h2>
-                    <p>Have a project in mind? We'd love to hear from you. Get in touch and let's create something amazing together.</p>
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 px-8 md:px-16 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-light mb-4 text-3xl md:text-5xl lg:text-6xl tracking-tight">Let's Work Together</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">Have a project in mind? We'd love to hear from you. Get in touch and let's create something amazing together.</p>
                 </div>
                 
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h2>Get In Touch</h2>
-                        <p>Ready to transform your digital presence? Reach out to our team for a consultation.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+                    <div class="lg:col-span-1">
+                        <h2 class="font-light mb-8 text-3xl md:text-4xl lg:text-5xl tracking-tight">Get In Touch</h2>
+                        <p class="text-lg text-gray-300 mb-12 leading-relaxed">Ready to transform your digital presence? Reach out to our team for a consultation.</p>
                         
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <h3>Email</h3>
-                                <a href="mailto:info@metasetidigital.com">info@metasetidigital.com</a>
+                        <div class="flex flex-col gap-8 mt-12">
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-sm font-medium opacity-70 uppercase tracking-wider">Email</h3>
+                                <a href="mailto:info@metasetidigital.com" class="text-sm text-white no-underline hover:opacity-70 transition-opacity">info@metasetidigital.com</a>
                             </div>
-                            <div class="contact-item">
-                                <h3>Phone</h3>
-                                <a href="tel:+6285121227827">+62 85121227827</a>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-sm font-medium opacity-70 uppercase tracking-wider">Phone</h3>
+                                <a href="tel:+6285121227827" class="text-sm text-white no-underline hover:opacity-70 transition-opacity">+62 85121227827</a>
                             </div>
-                            <div class="contact-item">
-                                <h3>Location</h3>
-                                <p>Rukan Gading Batavia<br>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-sm font-medium opacity-70 uppercase tracking-wider">Location</h3>
+                                <p class="text-sm text-white">Rukan Gading Batavia<br>
                                 Jalan Gading Batavia Blok LC 10 No.7, RT 10, RW 7<br>
                                 Kelapa Gading, Jakarta Utara, DKI Jakarta, 14240</p>
                             </div>
                         </div>
                         
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <div class="flex gap-6 mt-12">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary/30 hover:-translate-y-1 transition-all duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary/30 hover:-translate-y-1 transition-all duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary/30 hover:-translate-y-1 transition-all duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
                         </div>
                     </div>
                     
-                    <div class="contact-form-container">
-                        <div class="form-header">
-                            <h3>Send us a message</h3>
-                            <div class="form-steps">
-                                <div class="step active"></div>
-                                <div class="step"></div>
-                                <div class="step"></div>
+                    <div class="lg:col-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-10 shadow-xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient">
+                        <div class="mb-8 text-center">
+                            <h3 class="text-2xl font-normal mb-4">Send us a message</h3>
+                            <div class="flex justify-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                <div class="w-2 h-2 rounded-full bg-white/20"></div>
+                                <div class="w-2 h-2 rounded-full bg-white/20"></div>
                             </div>
                         </div>
                         
                         <form id="contact-form" class="contact-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Your Name</label>
-                                    <div class="input-container">
-                                        <input type="text" id="name" name="name" required>
-                                        <span class="input-icon"><i class="fas fa-user"></i></span>
-                                    </div>
-                                    <span class="error-message">Please enter your name</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mb-6">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
+                                    <input type="text" id="name" name="name" required class="w-full py-4 px-4 bg-white/7 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <div class="input-container">
-                                        <input type="email" id="email" name="email" required>
-                                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <span class="error-message">Please enter a valid email</span>
+                                <div class="mb-6">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email Address</label>
+                                    <input type="email" id="email" name="email" required class="w-full py-4 px-4 bg-white/7 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
                                 </div>
                             </div>
                             
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="company">Company</label>
-                                    <div class="input-container">
-                                        <input type="text" id="company" name="company">
-                                        <span class="input-icon"><i class="fas fa-building"></i></span>
-                                    </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mb-6">
+                                    <label for="company" class="block mb-2 text-sm font-medium text-gray-300">Company</label>
+                                    <input type="text" id="company" name="company" class="w-full py-4 px-4 bg-white/7 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="service">Service Interest</label>
-                                    <div class="input-container">
-                                        <select id="service" name="service">
-                                            <option value="">Select a service</option>
-                                            <option value="development">Custom Development</option>
-                                            <option value="marketing">Digital Marketing</option>
-                                            <option value="branding">Branding & Identity</option>
-                                            <option value="analytics">Data Analytics</option>
-                                            <option value="consultation">General Consultation</option>
-                                        </select>
-                                        <span class="input-icon"><i class="fas fa-chevron-down"></i></span>
-                                    </div>
+                                <div class="mb-6">
+                                    <label for="service" class="block mb-2 text-sm font-medium text-gray-300">Service Interest</label>
+                                    <select id="service" name="service" class="w-full py-4 px-4 bg-white/7 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50 appearance-none bg-[#1a1a2e]">
+                                        <option value="" class="bg-[#1a1a2e] text-white">Select a service</option>
+                                        <option value="development" class="bg-[#1a1a2e] text-white">Custom Development</option>
+                                        <option value="marketing" class="bg-[#1a1a2e] text-white">Digital Marketing</option>
+                                        <option value="branding" class="bg-[#1a1a2e] text-white">Branding & Identity</option>
+                                        <option value="analytics" class="bg-[#1a1a2e] text-white">Data Analytics</option>
+                                        <option value="consultation" class="bg-[#1a1a2e] text-white">General Consultation</option>
+                                    </select>
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="message">Tell us about your project</label>
-                                <div class="input-container">
-                                    <textarea id="message" name="message" required></textarea>
-                                    <span class="char-counter">0/500</span>
-                                </div>
-                                <span class="error-message">Please enter your message</span>
+                            <div class="mb-6">
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Tell us about your project</label>
+                                <textarea id="message" name="message" required class="w-full py-4 px-4 bg-white/7 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50 min-h-36"></textarea>
                             </div>
                             
-                            <div class="form-group">
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="privacy" name="privacy" required>
-                                    <label for="privacy">I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a></label>
+                            <div class="mb-6">
+                                <div class="flex items-start gap-3">
+                                    <input type="checkbox" id="privacy" name="privacy" required class="mt-1">
+                                    <label for="privacy" class="text-xs leading-relaxed">I agree to the <a href="#" class="text-primary no-underline hover:underline">Privacy Policy</a> and <a href="#" class="text-primary no-underline hover:underline">Terms of Service</a></label>
                                 </div>
-                                <span class="error-message">You must agree to the terms</span>
                             </div>
                             
-                            <button type="submit" class="submit-btn">
-                                <span class="btn-text">Send Message</span>
-                                <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                            <button type="submit" class="w-full py-4 px-6 btn-gradient text-white text-sm font-medium border-none rounded-full cursor-pointer transition-all duration-300 hover:shadow-xl">
+                                Send Message
                             </button>
                         </form>
-                        
-                        <div class="form-success hidden">
-                            <div class="success-icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <h3>Message Sent Successfully!</h3>
-                            <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
-                            <button class="reset-btn">Send Another Message</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer>
+        <!-- Footer -->
+        <footer class="text-center py-16 px-8 text-gray-300 text-sm bg-dark">
             <p>© 2025 Metaseti Digital Indonesia. All Rights Reserved.</p>
         </footer>
     </div>
 
     <script>
-        window.addEventListener('load', function() {
+        // Simple loader removal with animation trigger
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting loader sequence');
+            
+            // Create abstract background
+            createAbstractBackground();
+            
+            // Remove loader after 2.2 seconds and trigger animations
             setTimeout(function() {
-                document.querySelector('.loader-wrapper').classList.add('hidden');
-                document.querySelector('.main-content').classList.add('visible');
-                animateTitle();
+                const loader = document.getElementById('loader');
+                const mainContent = document.getElementById('main-content');
+                
+                if (loader) {
+                    loader.style.display = 'none';
+                    console.log('Loader hidden');
+                }
+                
+                if (mainContent) {
+                    mainContent.style.opacity = '1';
+                    console.log('Main content shown');
+                    
+                    // Trigger the hero animations
+                    animateHero();
+                }
             }, 2200);
         });
 
-        function animateTitle() {
-            const title = document.getElementById('animated-title');
-            const text = title.innerHTML;
-            title.innerHTML = '';
-            const lines = text.split('<br>');
+        function createAbstractBackground() {
+            const abstractBg = document.getElementById('abstractBg');
+            const dotsCount = 200;
             
-            lines.forEach((line, lineIndex) => {
-                const lineDiv = document.createElement('div');
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    if (char === ' ') {
-                        span.innerHTML = '&nbsp;';
-                    }
-                    lineDiv.appendChild(span);
-                }
-                title.appendChild(lineDiv);
-                if (lineIndex < lines.length - 1) {
-                    title.appendChild(document.createElement('br'));
-                }
-            });
+            for (let i = 0; i < dotsCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Random animation delay
+                const delay = Math.random() * 6;
+                
+                dot.style.left = `${left}%`;
+                dot.style.top = `${top}%`;
+                dot.style.animationDelay = `${delay}s`;
+                
+                // Random size variation
+                const size = 2 + Math.random() * 4;
+                dot.style.width = `${size}px`;
+                dot.style.height = `${size}px`;
+                
+                // Random opacity
+                const opacity = 0.1 + Math.random() * 0.4;
+                dot.style.opacity = opacity;
+                
+                abstractBg.appendChild(dot);
+            }
             
-            const letters = title.querySelectorAll('span');
-            const animationClasses = [
-                'letter-from-top',
-                'letter-from-bottom',
-                'letter-from-left',
-                'letter-from-right',
-                'letter-from-top-left',
-                'letter-from-top-right',
-                'letter-from-bottom-left',
-                'letter-from-bottom-right'
-            ];
-            
-            letters.forEach((letter, index) => {
-                if (letter.textContent === ' ' || letter.innerHTML === '&nbsp;') {
-                    letter.style.opacity = '1';
-                    return;
-                }
-                const randomAnimation = animationClasses[Math.floor(Math.random() * animationClasses.length)];
-                setTimeout(() => {
-                    letter.classList.add(randomAnimation);
-                }, index * 50);
+            // Add scroll effect to create squares
+            window.addEventListener('scroll', function() {
+                const dots = document.querySelectorAll('.dot');
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                dots.forEach((dot, index) => {
+                    const rect = dot.getBoundingClientRect();
+                    const dotTop = rect.top + scrollY;
+                    const progress = (dotTop - scrollY) / windowHeight;
+                    
+                    // Create square formation effect based on scroll
+                    const gridSize = 50;
+                    const gridX = Math.floor((index % Math.sqrt(dotsCount)) * gridSize);
+                    const gridY = Math.floor((index / Math.sqrt(dotsCount)) * gridSize);
+                    
+                    const targetX = gridX + (Math.sin(scrollY * 0.001 + index) * 20);
+                    const targetY = gridY + (Math.cos(scrollY * 0.001 + index) * 20);
+                    
+                    dot.style.transform = `translate(${targetX}px, ${targetY}px) rotate(${scrollY * 0.01}deg)`;
+                    
+                    // Color change based on scroll
+                    const hue = (scrollY * 0.1 + index * 5) % 360;
+                    dot.style.background = `hsla(${hue}, 70%, 60%, ${opacity})`;
+                });
             });
         }
 
+        function animateHero() {
+            // Get all hero elements
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const line3 = document.getElementById('line3');
+            const tagline = document.getElementById('tagline');
+            const ctaButton = document.getElementById('cta-button');
+            
+            // Animate each element with staggered delays
+            if (line1) {
+                setTimeout(() => {
+                    line1.classList.add('animate-slide-from-bottom');
+                    line1.style.opacity = '1';
+                }, 100);
+            }
+            
+            if (line2) {
+                setTimeout(() => {
+                    line2.classList.add('animate-slide-from-bottom');
+                    line2.style.opacity = '1';
+                }, 300);
+            }
+            
+            if (line3) {
+                setTimeout(() => {
+                    line3.classList.add('animate-slide-from-bottom');
+                    line3.style.opacity = '1';
+                }, 500);
+            }
+            
+            if (tagline) {
+                setTimeout(() => {
+                    tagline.classList.add('animate-slide-from-bottom-smooth');
+                    tagline.style.opacity = '1';
+                }, 800);
+            }
+            
+            if (ctaButton) {
+                setTimeout(() => {
+                    ctaButton.classList.add('animate-slide-from-bottom-smooth');
+                    ctaButton.style.opacity = '1';
+                }, 1100);
+            }
+        }
+        
         // Portfolio filter functionality
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                projectCards.forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                    } else {
-                        if (card.getAttribute('data-category') === filter) {
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
                         }
-                    }
-                });
-            });
-        });
-
-        // Simple parallax effect on scroll
-        const gradient1 = document.querySelector('.gradient-1');
-        const gradient2 = document.querySelector('.gradient-2');
-        const gradient3 = document.querySelector('.gradient-3');
-        const gradient4 = document.querySelector('.gradient-4');
-        const gradient5 = document.querySelector('.gradient-5');
-        
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const speedFactor = 0.5;
-            
-            // Apply parallax effect to each gradient with different speeds
-            gradient1.style.transform = `translateY(${scrollY * 0.1}px)`;
-            gradient2.style.transform = `translateY(${scrollY * 0.15}px)`;
-            gradient3.style.transform = `translateY(${scrollY * 0.2}px)`;
-            gradient4.style.transform = `translateY(${scrollY * 0.25}px)`;
-            gradient5.style.transform = `translateY(${scrollY * 0.3}px)`;
-            
-            // Header scroll effect
-            const header = document.querySelector('header');
-            if (scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Mobile menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const mainNav = document.getElementById('main-nav');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            // Toggle mobile menu
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mainNav.classList.toggle('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                if (mainNav.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                    document.body.style.overflow = ''; // Restore scrolling
-                }
-            });
-            
-            // Close mobile menu when clicking on a link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mainNav.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                    document.body.style.overflow = '';
-                });
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                    mainNav.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
                     });
-                }
+                });
             });
-        });
 
-        // Contact form validation and submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactForm = document.getElementById('contact-form');
-            const formSuccess = document.querySelector('.form-success');
-            const resetBtn = document.querySelector('.reset-btn');
-            const messageTextarea = document.getElementById('message');
-            const charCounter = document.querySelector('.char-counter');
-            
-            // Character counter for message textarea
-            messageTextarea.addEventListener('input', function() {
-                const maxLength = 500;
-                const currentLength = this.value.length;
-                charCounter.textContent = `${currentLength}/${maxLength}`;
-                
-                if (currentLength > maxLength) {
-                    this.value = this.value.substring(0, maxLength);
-                    charCounter.textContent = `${maxLength}/${maxLength}`;
-                }
-            });
-            
-            // Form validation
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                let isValid = true;
-                
-                // Validate name
-                const nameInput = document.getElementById('name');
-                const nameGroup = nameInput.closest('.form-group');
-                if (nameInput.value.trim() === '') {
-                    nameGroup.classList.add('error');
-                    isValid = false;
-                } else {
-                    nameGroup.classList.remove('error');
-                }
-                
-                // Validate email
-                const emailInput = document.getElementById('email');
-                const emailGroup = emailInput.closest('.form-group');
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailInput.value)) {
-                    emailGroup.classList.add('error');
-                    isValid = false;
-                } else {
-                    emailGroup.classList.remove('error');
-                }
-                
-                // Validate message
-                const messageInput = document.getElementById('message');
-                const messageGroup = messageInput.closest('.form-group');
-                if (messageInput.value.trim() === '') {
-                    messageGroup.classList.add('error');
-                    isValid = false;
-                } else {
-                    messageGroup.classList.remove('error');
-                }
-                
-                // Validate privacy checkbox
-                const privacyInput = document.getElementById('privacy');
-                const privacyGroup = privacyInput.closest('.form-group');
-                if (!privacyInput.checked) {
-                    privacyGroup.classList.add('error');
-                    isValid = false;
-                } else {
-                    privacyGroup.classList.remove('error');
-                }
-                
-                // If form is valid, submit it
-                if (isValid) {
-                    // Here you would normally send the form data to a server
-                    // For demonstration, we'll just show the success message
-                    
-                    // Simulate form submission delay
-                    const submitBtn = document.querySelector('.submit-btn');
-                    const btnText = submitBtn.querySelector('.btn-text');
-                    const originalText = btnText.textContent;
-                    
-                    btnText.textContent = 'Sending...';
-                    submitBtn.disabled = true;
-                    
-                    setTimeout(() => {
-                        contactForm.style.display = 'none';
-                        formSuccess.classList.remove('hidden');
-                        
-                        // Trigger animation
-                        setTimeout(() => {
-                            formSuccess.classList.add('show');
-                        }, 10);
-                        
-                        // Reset form
-                        contactForm.reset();
-                        charCounter.textContent = '0/500';
-                        btnText.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }, 1500);
-                }
-            });
-            
-            // Reset form
-            resetBtn.addEventListener('click', function() {
-                formSuccess.classList.remove('show');
-                
-                setTimeout(() => {
-                    formSuccess.classList.add('hidden');
-                    contactForm.style.display = 'block';
-                }, 300);
-            });
-            
-            // Remove error class on input
-            const inputs = contactForm.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    const formGroup = this.closest('.form-group');
-                    if (formGroup) {
-                        formGroup.classList.remove('error');
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     }
                 });
-            });
-            
-            // Improve mobile form experience
-            const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
-            formInputs.forEach(input => {
-                // Add focus effect
-                input.addEventListener('focus', function() {
-                    this.parentElement.classList.add('focused');
-                });
-                
-                input.addEventListener('blur', function() {
-                    this.parentElement.classList.remove('focused');
-                });
-                
-                // Add touch-friendly size for mobile
-                if (window.innerWidth <= 768) {
-                    input.style.fontSize = '16px'; // Prevents zoom on iOS
-                }
             });
         });
     </script>
