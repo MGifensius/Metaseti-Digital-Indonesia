@@ -121,8 +121,7 @@
         .gradient-layer {
             position: absolute;
             border-radius: 50%;
-            will-change: transform, border-radius, filter;
-            transition: none;
+            transition: transform 0.1s ease-out;
         }
 
         .gradient-1 {
@@ -2029,92 +2028,27 @@
             });
         });
 
-        // Smooth mesh gradient animation
+        // Simple parallax effect on scroll
         const gradient1 = document.querySelector('.gradient-1');
         const gradient2 = document.querySelector('.gradient-2');
         const gradient3 = document.querySelector('.gradient-3');
         const gradient4 = document.querySelector('.gradient-4');
         const gradient5 = document.querySelector('.gradient-5');
         
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetMouseX = 0;
-        let targetMouseY = 0;
-        let time = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            targetMouseY = (e.clientY / window.innerHeight) * 2 - 1;
-        });
-        
-        function animateMeshGradient() {
-            time += 0.002;
-            mouseX += (targetMouseX - mouseX) * 0.05;
-            mouseY += (targetMouseY - mouseY) * 0.05;
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const speedFactor = 0.5;
             
-            const angle1 = time * 0.3;
-            const radiusX1 = 150 + Math.sin(time * 0.4) * 50;
-            const radiusY1 = 150 + Math.cos(time * 0.3) * 50;
-            const x1 = Math.cos(angle1) * radiusX1 + mouseX * 30;
-            const y1 = Math.sin(angle1) * radiusY1 + mouseY * 30;
-            const scale1 = 1 + Math.sin(time * 0.25) * 0.2;
-            const morph1 = 50 + Math.sin(time * 0.35) * 10;
+            // Apply parallax effect to each gradient with different speeds
+            gradient1.style.transform = `translateY(${scrollY * 0.1}px)`;
+            gradient2.style.transform = `translateY(${scrollY * 0.15}px)`;
+            gradient3.style.transform = `translateY(${scrollY * 0.2}px)`;
+            gradient4.style.transform = `translateY(${scrollY * 0.25}px)`;
+            gradient5.style.transform = `translateY(${scrollY * 0.3}px)`;
             
-            const angle2 = time * 0.5 + Math.PI / 3;
-            const radiusX2 = 180 + Math.cos(time * 0.5) * 60;
-            const radiusY2 = 180 + Math.sin(time * 0.4) * 60;
-            const x2 = Math.sin(angle2) * radiusX2 - mouseX * 40;
-            const y2 = Math.cos(angle2) * radiusY2 - mouseY * 40;
-            const scale2 = 1 + Math.cos(time * 0.3) * 0.25;
-            const morph2 = 50 + Math.cos(time * 0.4) * 12;
-            
-            const angle3 = time * 0.7 + Math.PI / 2;
-            const radiusX3 = 200 + Math.sin(time * 0.6) * 70;
-            const radiusY3 = 200 + Math.cos(time * 0.5) * 70;
-            const x3 = Math.cos(angle3) * radiusX3 + mouseX * 50;
-            const y3 = Math.sin(angle3) * radiusY3 + mouseY * 50;
-            const scale3 = 1 + Math.sin(time * 0.4) * 0.3;
-            const morph3 = 50 + Math.sin(time * 0.5) * 15;
-            
-            const angle4 = -time * 0.4 + Math.PI;
-            const radiusX4 = 170 + Math.cos(time * 0.45) * 55;
-            const radiusY4 = 170 + Math.sin(time * 0.35) * 55;
-            const x4 = Math.sin(angle4) * radiusX4 + mouseX * 35;
-            const y4 = Math.cos(angle4) * radiusY4 + mouseY * 35;
-            const scale4 = 1 + Math.cos(time * 0.35) * 0.22;
-            const morph4 = 50 + Math.cos(time * 0.45) * 11;
-            
-            const angle5 = time * 0.6 + Math.PI * 1.5;
-            const radiusX5 = 190 + Math.sin(time * 0.55) * 65;
-            const radiusY5 = 190 + Math.cos(time * 0.45) * 65;
-            const x5 = Math.cos(angle5) * radiusX5 - mouseX * 45;
-            const y5 = Math.sin(angle5) * radiusY5 - mouseY * 45;
-            const scale5 = 1 + Math.sin(time * 0.38) * 0.28;
-            const morph5 = 50 + Math.sin(time * 0.42) * 13;
-            
-            gradient1.style.transform = `translate(${x1}px, ${y1}px) scale(${scale1})`;
-            gradient1.style.borderRadius = `${morph1}% ${100 - morph1}% ${60 + Math.sin(time * 0.3) * 10}% ${40 + Math.cos(time * 0.4) * 10}%`;
-            
-            gradient2.style.transform = `translate(${x2}px, ${y2}px) scale(${scale2})`;
-            gradient2.style.borderRadius = `${morph2}% ${100 - morph2}% ${55 + Math.cos(time * 0.35) * 12}% ${45 + Math.sin(time * 0.38) * 12}%`;
-            
-            gradient3.style.transform = `translate(${x3}px, ${y3}px) scale(${scale3})`;
-            gradient3.style.borderRadius = `${morph3}% ${100 - morph3}% ${50 + Math.sin(time * 0.4) * 15}% ${50 + Math.cos(time * 0.42) * 15}%`;
-            
-            gradient4.style.transform = `translate(${x4}px, ${y4}px) scale(${scale4})`;
-            gradient4.style.borderRadius = `${morph4}% ${100 - morph4}% ${58 + Math.cos(time * 0.38) * 11}% ${42 + Math.sin(time * 0.36) * 11}%`;
-            
-            gradient5.style.transform = `translate(${x5}px, ${y5}px) scale(${scale5})`;
-            gradient5.style.borderRadius = `${morph5}% ${100 - morph5}% ${52 + Math.sin(time * 0.43) * 13}% ${48 + Math.cos(time * 0.39) * 13}%`;
-            
-            requestAnimationFrame(animateMeshGradient);
-        }
-        
-        animateMeshGradient();
-        
-        window.addEventListener('scroll', function() {
+            // Header scroll effect
             const header = document.querySelector('header');
-            if (window.scrollY > 50) {
+            if (scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
