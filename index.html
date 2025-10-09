@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Metaseti Digital Indonesia</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,6 +28,7 @@
     </script>
     
     <style>
+        /* Mobile-first CSS with responsive adjustments */
         /* Custom styles that can't be done with Tailwind */
         .bg-gradient-1 {
             background: radial-gradient(circle at 30% 50%, 
@@ -252,8 +253,8 @@
 
         /* Mobile menu toggle button */
         .mobile-menu-toggle {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -603,8 +604,8 @@
         }
         
         .mobile-menu-close {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -636,7 +637,7 @@
             color: white;
             text-decoration: none;
             transition: all 0.3s ease;
-            padding: 12px 0;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
         }
@@ -667,7 +668,7 @@
         
         .mobile-menu-cta a {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 14px 28px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
@@ -907,6 +908,244 @@
                 transform: translateY(300px) rotate(720deg);
             }
         }
+        
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            /* Typography adjustments */
+            h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            h2 {
+                font-size: 2rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            p, li {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+            
+            /* Layout adjustments */
+            section {
+                padding: 4rem 1rem !important;
+            }
+            
+            /* Hero section */
+            .hero-stats {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                margin-top: 2rem !important;
+            }
+            
+            /* Navigation */
+            .nav-blur {
+                margin: 8px !important;
+                width: calc(100% - 16px) !important;
+                padding: 6px 0 !important;
+            }
+            
+            .nav-logo img {
+                height: 32px !important;
+            }
+            
+            /* Mobile menu */
+            .mobile-menu-nav a {
+                font-size: 1.25rem !important;
+                padding: 14px 0 !important;
+            }
+            
+            .mobile-menu-cta a {
+                padding: 12px 24px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            /* Portfolio section */
+            .project-card {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .project-image {
+                height: 200px !important;
+            }
+            
+            /* Services section */
+            .service-hover {
+                padding: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .service-icon {
+                width: 48px !important;
+                height: 48px !important;
+            }
+            
+            /* Contact section */
+            #contact-form {
+                padding: 1.5rem !important;
+            }
+            
+            /* Buttons */
+            .btn-gradient, .filter-btn, button {
+                min-height: 48px !important;
+                padding: 12px 20px !important;
+                font-size: 0.9rem !important;
+                width: 100% !important;
+            }
+            
+            /* Form inputs */
+            input, textarea, select {
+                min-height: 48px !important;
+                padding: 12px 16px !important;
+                font-size: 16px !important; /* Prevents zoom on focus in iOS */
+            }
+            
+            /* Social links */
+            footer a {
+                width: 44px !important;
+                height: 44px !important;
+            }
+            
+            /* Spacing adjustments */
+            .mb-16 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .mt-16 {
+                margin-top: 2rem !important;
+            }
+            
+            .gap-8 {
+                gap: 1.5rem !important;
+            }
+            
+            .gap-12 {
+                gap: 2rem !important;
+            }
+            
+            /* Grid adjustments */
+            .grid {
+                gap: 1.5rem !important;
+            }
+            
+            .grid-cols-1 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .lg\:grid-cols-3 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .lg\:grid-cols-4 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            /* Animation adjustments */
+            .animate-slide-from-bottom {
+                animation-duration: 0.8s !important;
+            }
+            
+            .animate-slide-from-bottom-smooth {
+                animation-duration: 1s !important;
+            }
+            
+            /* Abstract background - reduce dots for performance */
+            .dot {
+                width: 3px !important;
+                height: 3px !important;
+            }
+            
+            /* Hero section adjustments */
+            .min-h-screen {
+                min-height: 70vh !important;
+                padding: 4rem 1rem !important;
+            }
+            
+            /* Footer adjustments */
+            footer {
+                padding: 3rem 1rem !important;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            .hero-stat-number {
+                font-size: 2rem !important;
+            }
+            
+            .mobile-menu-nav a {
+                font-size: 1.1rem !important;
+            }
+        }
+        
+        /* Touch optimizations */
+        @media (hover: none) {
+            /* Increase touch target sizes */
+            .nav-link {
+                padding: 12px 16px !important;
+            }
+            
+            .mobile-menu-toggle, .mobile-menu-close {
+                width: 48px !important;
+                height: 48px !important;
+            }
+            
+            .project-card {
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Add active state feedback */
+            .nav-link:active, .mobile-menu-nav a:active {
+                background-color: rgba(102, 126, 234, 0.2) !important;
+            }
+            
+            .btn-gradient:active, .filter-btn:active {
+                transform: scale(0.98) !important;
+            }
+            
+            .service-hover:active {
+                transform: scale(0.98) !important;
+            }
+        }
+        
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+            /* Reduce animation complexity */
+            .abstract-bg {
+                will-change: auto !important;
+            }
+            
+            .hero-glow, .hero-accent {
+                display: none !important;
+            }
+            
+            /* Simplify animations */
+            .animate-float, .animate-pulse-slow {
+                animation: none !important;
+            }
+            
+            /* Reduce particle effects */
+            .particle {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="font-poppins bg-dark text-white min-h-screen">
@@ -922,7 +1161,7 @@
                 <div class="particle"></div>
             </div>
             <div class="loader-logo-container">
-                <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Digital" class="loader-logo">
+                <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Digital" class="loader-logo" loading="eager" fetchpriority="high">
             </div>
             <div class="loader-progress">
                 <div class="loader-progress-bar"></div>
@@ -943,7 +1182,7 @@
                     <div class="flex items-center">
                         <!-- Logo -->
                         <div class="nav-logo flex-shrink-0 mr-10">
-                            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Digital" class="h-10 w-auto">
+                            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Digital" class="h-10 w-auto" loading="eager">
                         </div>
                         
                         <!-- Desktop Navigation Links -->
@@ -963,7 +1202,7 @@
                     </div>
                     
                     <!-- Mobile Menu Toggle -->
-                    <button class="mobile-menu-toggle md:hidden" id="mobileMenuToggle">
+                    <button class="mobile-menu-toggle md:hidden" id="mobileMenuToggle" aria-label="Toggle mobile menu">
                         <i class="fas fa-bars text-white text-xl"></i>
                     </button>
                 </div>
@@ -971,10 +1210,10 @@
         </header>
 
         <!-- Enhanced Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation menu">
             <div class="mobile-menu-header">
-                <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Digital" class="mobile-menu-logo">
-                <button class="mobile-menu-close" id="mobileMenuClose">
+                <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Digital" class="mobile-menu-logo" loading="eager">
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1077,7 +1316,7 @@
                 <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="development">
                     <div class="project-image w-full h-72 relative overflow-hidden project-gradient-1">
                         <a href="custom-development.html">
-                            <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Custom%20Logistics%20Management%20System.png" alt="Harton Logistics Website">
+                            <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Custom%20Logistics%20Management%20System.png" alt="Harton Logistics Website" loading="lazy">
                             <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
                                 <span class="text-white text-sm font-medium flex items-center gap-2">
                                     View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -1105,7 +1344,7 @@
                 <!-- Marketing Project -->
                 <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="marketing">
                     <div class="project-image w-full h-72 relative overflow-hidden project-gradient-2">
-                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital Marketing Campaign">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital Marketing Campaign" loading="lazy">
                         <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
                             <span class="text-white text-sm font-medium flex items-center gap-2">
                                 View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -1132,7 +1371,7 @@
                 <!-- Branding Project -->
                 <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="branding">
                     <div class="project-image w-full h-72 relative overflow-hidden project-gradient-3">
-                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Brand Identity Design">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Brand Identity Design" loading="lazy">
                         <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
                             <span class="text-white text-sm font-medium flex items-center gap-2">
                                 View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -1159,7 +1398,7 @@
                 <!-- Analytics Project -->
                 <div class="project-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl" data-category="analytics">
                     <div class="project-image w-full h-72 relative overflow-hidden project-gradient-4">
-                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Stock-Business-Inteliigence.png" alt="Data Analytics Dashboard">
+                        <img class="project-thumbnail w-full h-full object-cover transition-transform duration-400" src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/Stock-Business-Inteliigence.png" alt="Data Analytics Dashboard" loading="lazy">
                         <div class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 transition-opacity duration-400 flex items-end p-6">
                             <span class="text-white text-sm font-medium flex items-center gap-2">
                                 View Project <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
