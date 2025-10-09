@@ -1316,23 +1316,105 @@
             }
         }
         
-        /* Form submission message styles */
-        .form-message {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            display: none;
+        /* Success Screen Styles */
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            position: relative;
         }
-        
-        .form-message.success {
-            background-color: rgba(72, 187, 120, 0.2);
-            border: 1px solid rgba(72, 187, 120, 0.5);
-            color: #48bb78;
-        }
-        
-        .form-message.show {
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
             display: block;
+            stroke-width: 3;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #667eea;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #667eea;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px #667eea;
+            }
+        }
+
+        /* Success Screen Animation */
+        #success-screen {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        #success-screen.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Form Hide Animation */
+        #contact-form.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Confetti Styles */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            opacity: 0;
+        }
+
+        .confetti.animate {
+            animation: confetti-fall 3s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(300px) rotate(720deg);
+            }
         }
     </style>
 </head>
@@ -1793,63 +1875,102 @@
                     
                     <!-- Contact Form Section -->
                     <div class="lg:col-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-10 shadow-xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient">
-                        <div class="mb-8 text-center">
-                            <h3 class="text-2xl font-normal mb-4">Start your project</h3>
-                            <div class="flex justify-center gap-2">
+                        <!-- Form Container -->
+                        <div id="form-container" class="relative">
+                            <!-- Form Header -->
+                            <div class="mb-8 text-center">
+                                <h3 class="text-2xl font-normal mb-4">Start your project</h3>
+                                <div class="flex justify-center gap-2">
+                                </div>
                             </div>
+                            
+                            <!-- Contact Form -->
+                            <form id="contact-form" class="contact-form">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="mb-6">
+                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
+                                        <input type="text" id="name" name="name" required class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
+                                        <span class="text-red-400 text-xs mt-1 hidden" id="name-error">Please enter your name</span>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email Address</label>
+                                        <input type="email" id="email" name="email" required class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
+                                        <span class="text-red-400 text-xs mt-1 hidden" id="email-error">Please enter a valid email</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="mb-6">
+                                        <label for="company" class="block mb-2 text-sm font-medium text-gray-300">Company</label>
+                                        <input type="text" id="company" name="company" class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label for="service" class="block mb-2 text-sm font-medium text-gray-300">Service Interest</label>
+                                        <select id="service" name="service" class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50 appearance-none">
+                                            <option value="" class="bg-[#1a1a2e] text-white">Select a service</option>
+                                            <option value="web-development" class="bg-[#1a1a2e] text-white">Web Development</option>
+                                            <option value="app-development" class="bg-[#1a1a2e] text-white">App Development</option>
+                                            <option value="full-stack" class="bg-[#1a1a2e] text-white">Full-Stack Solution</option>
+                                            <option value="ui-ux" class="bg-[#1a1a2e] text-white">UI/UX Design</option>
+                                            <option value="consultation" class="bg-[#1a1a2e] text-white">Technical Consultation</option>
+                                        </select>
+                                        <span class="text-red-400 text-xs mt-1 hidden" id="service-error">Please select a service</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Tell us about your project</label>
+                                    <textarea id="message" name="message" required class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50 min-h-36"></textarea>
+                                    <span class="text-red-400 text-xs mt-1 hidden" id="message-error">Please enter your message</span>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <div class="flex items-start gap-3">
+                                        <input type="checkbox" id="privacy" name="privacy" required class="mt-1">
+                                        <label for="privacy" class="text-xs leading-relaxed">I agree to the <a href="#" class="text-primary no-underline hover:underline">Privacy Policy</a> and <a href="#" class="text-primary no-underline hover:underline">Terms of Service</a></label>
+                                    </div>
+                                    <span class="text-red-400 text-xs mt-1 hidden" id="privacy-error">You must agree to the terms</span>
+                                </div>
+                                
+                                <button type="submit" id="submit-btn" class="w-full py-4 px-6 btn-gradient text-white text-sm font-medium border-none rounded-full cursor-pointer transition-all duration-300 hover:shadow-xl flex items-center justify-center">
+                                    <span id="btn-text">Send Message</span>
+                                    <svg id="btn-loader" class="animate-spin -mr-1 ml-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                            
+                            <!-- Success Screen (Initially Hidden) -->
+                            <div id="success-screen" class="hidden flex flex-col items-center justify-center p-8">
+                                <!-- Success Icon with Animation -->
+                                <div class="success-icon mb-8">
+                                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                                    </svg>
+                                </div>
+                                
+                                <!-- Success Message -->
+                                <h3 class="text-3xl font-light mb-4 text-center">Message Sent!</h3>
+                                <p class="text-gray-300 text-center mb-8 max-w-md">Thank you for your message. We'll get back to you within 24 hours.</p>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                    <button id="reset-form" class="py-3 px-8 bg-white/10 text-white text-sm font-medium rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20">
+                                        Send Another Message
+                                    </button>
+                                    <a href="#portfolio" class="py-3 px-8 btn-gradient text-white text-sm font-medium rounded-full hover:shadow-lg transition-all duration-300 text-center no-underline">
+                                        View Our Work
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Confetti Container -->
+                            <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
                         </div>
-                        
-                        <form id="contact-form" class="contact-form">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="mb-6">
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
-                                    <input type="text" id="name" name="name" required class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
-                                </div>
-                                
-                                <div class="mb-6">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email Address</label>
-                                    <input type="email" id="email" name="email" required class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="mb-6">
-                                    <label for="company" class="block mb-2 text-sm font-medium text-gray-300">Company</label>
-                                    <input type="text" id="company" name="company" class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50">
-                                </div>
-                                
-                                <div class="mb-6">
-                                    <label for="service" class="block mb-2 text-sm font-medium text-gray-300">Service Interest</label>
-                                    <select id="service" name="service" class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50 appearance-none">
-                                        <option value="" class="bg-[#1a1a2e] text-white">Select a service</option>
-                                        <option value="web-development" class="bg-[#1a1a2e] text-white">Web Development</option>
-                                        <option value="app-development" class="bg-[#1a1a2e] text-white">App Development</option>
-                                        <option value="full-stack" class="bg-[#1a1a2e] text-white">Full-Stack Solution</option>
-                                        <option value="ui-ux" class="bg-[#1a1a2e] text-white">UI/UX Design</option>
-                                        <option value="consultation" class="bg-[#1a1a2e] text-white">Technical Consultation</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Tell us about your project</label>
-                                <textarea id="message" name="message" required class="w-full py-4 px-4 bg-[#1a1a2e] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-primary/50 min-h-36"></textarea>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex items-start gap-3">
-                                    <input type="checkbox" id="privacy" name="privacy" required class="mt-1">
-                                    <label for="privacy" class="text-xs leading-relaxed">I agree to the <a href="#" class="text-primary no-underline hover:underline">Privacy Policy</a> and <a href="#" class="text-primary no-underline hover:underline">Terms of Service</a></label>
-                                </div>
-                            </div>
-                            
-                            <button type="submit" id="submit-btn" class="w-full py-4 px-6 btn-gradient text-white text-sm font-medium border-none rounded-full cursor-pointer transition-all duration-300 hover:shadow-xl">
-                                Send Message
-                            </button>
-                            
-                            <!-- Form submission message -->
-                            <div id="form-message" class="form-message"></div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -2062,44 +2183,217 @@
             });
         });
         
-        // Contact form submission with loading and success message
+        // Contact form functionality with enhanced effects
         function initContactForm() {
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
-            const formMessage = document.getElementById('form-message');
+            const btnText = document.getElementById('btn-text');
+            const btnLoader = document.getElementById('btn-loader');
+            const formContainer = document.getElementById('form-container');
+            const successScreen = document.getElementById('success-screen');
+            const resetBtn = document.getElementById('reset-form');
+            const confettiContainer = document.getElementById('confetti-container');
             
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                
+                // Name validation
+                const name = document.getElementById('name');
+                const nameError = document.getElementById('name-error');
+                if (name.value.trim() === '') {
+                    nameError.classList.remove('hidden');
+                    name.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    nameError.classList.add('hidden');
+                    name.classList.remove('border-red-500');
+                }
+                
+                // Email validation
+                const email = document.getElementById('email');
+                const emailError = document.getElementById('email-error');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value)) {
+                    emailError.classList.remove('hidden');
+                    email.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    emailError.classList.add('hidden');
+                    email.classList.remove('border-red-500');
+                }
+                
+                // Service validation
+                const service = document.getElementById('service');
+                const serviceError = document.getElementById('service-error');
+                if (service.value === '') {
+                    serviceError.classList.remove('hidden');
+                    service.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    serviceError.classList.add('hidden');
+                    service.classList.remove('border-red-500');
+                }
+                
+                // Message validation
+                const message = document.getElementById('message');
+                const messageError = document.getElementById('message-error');
+                if (message.value.trim() === '') {
+                    messageError.classList.remove('hidden');
+                    message.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    messageError.classList.add('hidden');
+                    message.classList.remove('border-red-500');
+                }
+                
+                // Privacy validation
+                const privacy = document.getElementById('privacy');
+                const privacyError = document.getElementById('privacy-error');
+                if (!privacy.checked) {
+                    privacyError.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    privacyError.classList.add('hidden');
+                }
+                
+                return isValid;
+            }
+            
+            // Create confetti effect
+            function createConfetti() {
+                const colors = ['#667eea', '#764ba2', '#f5576c', '#4facfe', '#00f2fe'];
+                const confettiCount = 100;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    // Random properties
+                    const size = Math.random() * 8 + 5;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const left = Math.random() * 100;
+                    const delay = Math.random() * 2;
+                    const duration = Math.random() * 2 + 2;
+                    
+                    // Apply styles
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    confetti.style.backgroundColor = color;
+                    confetti.style.left = `${left}%`;
+                    confetti.style.top = '-20px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.animationDelay = `${delay}s`;
+                    confetti.style.animationDuration = `${duration}s`;
+                    
+                    confettiContainer.appendChild(confetti);
+                    
+                    // Trigger animation
+                    setTimeout(() => {
+                        confetti.classList.add('animate');
+                    }, 100);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, (delay + duration) * 1000);
+                }
+            }
+            
+            // Show success screen
+            function showSuccessScreen() {
+                // Hide form with animation
+                contactForm.classList.add('hide');
+                
+                // Show success screen after a short delay
+                setTimeout(() => {
+                    contactForm.style.display = 'none';
+                    successScreen.classList.remove('hidden');
+                    
+                    // Trigger success screen animation
+                    setTimeout(() => {
+                        successScreen.classList.add('show');
+                    }, 100);
+                    
+                    // Create confetti effect
+                    createConfetti();
+                }, 300);
+            }
+            
+            // Reset form
+            function resetForm() {
+                // Hide success screen
+                successScreen.classList.remove('show');
+                
+                // Show form after animation
+                setTimeout(() => {
+                    successScreen.classList.add('hidden');
+                    contactForm.style.display = 'block';
+                    contactForm.classList.remove('hide');
+                    
+                    // Reset form fields
+                    contactForm.reset();
+                    
+                    // Remove any error states
+                    document.querySelectorAll('.border-red-500').forEach(el => {
+                        el.classList.remove('border-red-500');
+                    });
+                    document.querySelectorAll('.text-red-400').forEach(el => {
+                        el.classList.add('hidden');
+                    });
+                }, 300);
+            }
+            
+            // Form submission
             if (contactForm) {
                 contactForm.addEventListener('submit', function(event) {
                     event.preventDefault();
                     
-                    // Show loading state
-                    const originalButtonText = submitBtn.textContent;
-                    submitBtn.textContent = 'Sending...';
-                    submitBtn.disabled = true;
+                    // Validate form
+                    if (!validateForm()) {
+                        return;
+                    }
                     
-                    // Hide any existing message
-                    formMessage.classList.remove('show');
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    btnText.textContent = 'Sending...';
+                    btnLoader.classList.remove('hidden');
                     
                     // Simulate form submission with a delay
                     setTimeout(function() {
-                        // Show success message
-                        formMessage.textContent = 'Thank you for submitting! We will get back to you within 24 hours.';
-                        formMessage.className = 'form-message success show';
-                        
-                        // Reset form
-                        contactForm.reset();
-                        
-                        // Reset button
-                        submitBtn.textContent = originalButtonText;
+                        // Reset button state
                         submitBtn.disabled = false;
+                        btnText.textContent = 'Send Message';
+                        btnLoader.classList.add('hidden');
                         
-                        // Hide message after 5 seconds
-                        setTimeout(function() {
-                            formMessage.classList.remove('show');
-                        }, 5000);
+                        // Show success screen
+                        showSuccessScreen();
                     }, 2000); // 2 seconds delay to simulate sending
                 });
             }
+            
+            // Reset button functionality
+            if (resetBtn) {
+                resetBtn.addEventListener('click', resetForm);
+            }
+            
+            // Real-time validation
+            const inputs = document.querySelectorAll('#contact-form input, #contact-form select, #contact-form textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (input.hasAttribute('required') && input.value.trim() === '') {
+                        input.classList.add('border-red-500');
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+                
+                input.addEventListener('input', function() {
+                    if (input.classList.contains('border-red-500') && input.value.trim() !== '') {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+            });
         }
     </script>
 </body>
