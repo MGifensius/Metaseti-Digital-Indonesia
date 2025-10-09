@@ -30,6 +30,8 @@
     <style>
         /* Mobile-first CSS with responsive adjustments */
         /* Custom styles that can't be done with Tailwind */
+/* Mobile-first CSS with responsive adjustments */
+/* Custom styles that can't be done with Tailwind */
         .bg-gradient-1 {
             background: radial-gradient(circle at 30% 50%, 
                 rgba(102, 126, 234, 0.6) 0%, 
@@ -163,7 +165,7 @@
         .animate-pulse-slow {
             animation: pulse 4s ease-in-out infinite;
         }
-
+        
         /* Custom hover effects */
         .service-hover:hover .service-icon {
             transform: scale(1.1) rotate(5deg);
@@ -180,7 +182,7 @@
         .btn-hover:hover::before {
             transform: translateX(0);
         }
-
+        
         /* Enhanced Navigation Bar */
         .nav-blur {
             background: rgba(5, 5, 16, 0.7);
@@ -200,7 +202,7 @@
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.12);
         }
-
+        
         /* Ensure the header is properly positioned */
         .nav-container {
             left: 0;
@@ -209,7 +211,7 @@
             z-index: 50;
             transition: all 0.3s ease;
         }
-
+        
         /* Navigation links */
         .nav-link {
             position: relative;
@@ -250,7 +252,7 @@
         .nav-link.active::after {
             width: 70%;
         }
-
+        
         /* Mobile menu toggle button */
         .mobile-menu-toggle {
             width: 44px;
@@ -266,7 +268,7 @@
         .mobile-menu-toggle:hover {
             background: rgba(255, 255, 255, 0.1);
         }
-
+        
         /* Abstract background dots animation */
         .abstract-bg {
             position: fixed;
@@ -281,7 +283,7 @@
             will-change: transform;
             transition: transform 0.5s ease-out;
         }
-
+        
         .dot {
             position: absolute;
             width: 4px;
@@ -290,7 +292,7 @@
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
-
+        
         @keyframes float {
             0%, 100% {
                 transform: translateY(0) rotate(0deg);
@@ -301,13 +303,13 @@
                 opacity: 0.7;
             }
         }
-
+        
         /* Form select styling */
         select option {
             background: #1a1a2e;
             color: white;
         }
-
+        
         select:focus option:checked {
             background: #667eea;
             color: white;
@@ -325,12 +327,12 @@
             transform: translateY(50px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
+        
         .scroll-animate.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
+        
         /* Staggered animation delays */
         .scroll-animate.stagger-1 { transition-delay: 0.1s; }
         .scroll-animate.stagger-2 { transition-delay: 0.2s; }
@@ -343,7 +345,7 @@
             transform: translateY(50px) scale(0.95);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
+        
         .scroll-animate.enhanced.visible {
             opacity: 1;
             transform: translateY(0) scale(1);
@@ -362,16 +364,16 @@
             position: relative;
             transition: all 0.2s ease;
         }
-
+        
         input[type="checkbox"]:hover {
             border-color: rgba(102, 126, 234, 0.5);
         }
-
+        
         input[type="checkbox"]:checked {
             background: #667eea;
             border-color: #667eea;
         }
-
+        
         input[type="checkbox"]:checked::after {
             content: '';
             position: absolute;
@@ -814,7 +816,7 @@
             height: 100px;
             position: relative;
         }
-
+        
         .checkmark {
             width: 100px;
             height: 100px;
@@ -826,7 +828,7 @@
             box-shadow: inset 0px 0px 0px #667eea;
             animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
         }
-
+        
         .checkmark__circle {
             stroke-dasharray: 166;
             stroke-dashoffset: 166;
@@ -836,20 +838,20 @@
             fill: none;
             animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
-
+        
         .checkmark__check {
             transform-origin: 50% 50%;
             stroke-dasharray: 48;
             stroke-dashoffset: 48;
             animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
         }
-
+        
         @keyframes stroke {
             100% {
                 stroke-dashoffset: 0;
             }
         }
-
+        
         @keyframes scale {
             0%, 100% {
                 transform: none;
@@ -858,25 +860,25 @@
                 transform: scale3d(1.1, 1.1, 1);
             }
         }
-
+        
         @keyframes fill {
             100% {
                 box-shadow: inset 0px 0px 0px 30px #667eea;
             }
         }
-
+        
         /* Success Screen Animation */
         #success-screen {
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
+        
         #success-screen.show {
             opacity: 1;
             transform: translateY(0);
         }
-
+        
         /* Form Hide Animation */
         #contact-form.hide {
             opacity: 0;
@@ -884,7 +886,7 @@
             transition: all 0.3s ease;
             pointer-events: none;
         }
-
+        
         /* Confetti Styles */
         .confetti {
             position: absolute;
@@ -893,11 +895,11 @@
             background: #667eea;
             opacity: 0;
         }
-
+        
         .confetti.animate {
             animation: confetti-fall 3s ease-out forwards;
         }
-
+        
         @keyframes confetti-fall {
             0% {
                 opacity: 1;
@@ -962,15 +964,32 @@
                 height: 28px !important;
             }
             
-            /* Mobile menu improvements */
+            /* Enhanced Mobile Menu */
             .mobile-menu-nav {
-                padding: 3rem 2rem !important;
-                gap: 2rem !important;
+                padding: 4rem 2rem !important;
+                gap: 2.5rem !important;
             }
             
             .mobile-menu-nav a {
-                font-size: 1.4rem !important;
-                padding: 18px 0 !important;
+                font-size: 1.6rem !important;
+                padding: 20px 0 !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+            
+            .mobile-menu-header {
+                padding: 24px !important;
+            }
+            
+            .mobile-menu-close {
+                width: 54px !important;
+                height: 54px !important;
+                font-size: 1.8rem !important;
+            }
+            
+            .mobile-menu-cta a {
+                padding: 18px 32px !important;
+                font-size: 1.1rem !important;
+                margin-top: 2.5rem !important;
             }
             
             /* Portfolio section improvements */
@@ -994,9 +1013,92 @@
                 margin-bottom: 1.5rem !important;
             }
             
-            /* Contact section improvements */
+            /* Contact Form Improvements */
             #contact-form {
-                padding: 2rem !important;
+                padding: 2.5rem !important;
+            }
+            
+            .contact-form input, 
+            .contact-form select, 
+            .contact-form textarea {
+                min-height: 60px !important;
+                padding: 18px !important;
+                font-size: 16px !important;
+                margin-bottom: 1.5rem !important;
+                border-radius: 14px !important;
+            }
+            
+            .contact-form textarea {
+                min-height: 140px !important;
+            }
+            
+            .contact-form label {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .contact-form button[type="submit"] {
+                min-height: 60px !important;
+                padding: 18px 24px !important;
+                font-size: 1.1rem !important;
+                margin-top: 1rem !important;
+            }
+            
+            .contact-form .mb-6 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .contact-form .grid {
+                gap: 1.5rem !important;
+            }
+            
+            .contact-form .flex.items-start {
+                margin-top: 1rem !important;
+            }
+            
+            .contact-form input[type="checkbox"] {
+                width: 24px !important;
+                height: 24px !important;
+                margin-top: 2px !important;
+            }
+            
+            .contact-form .flex.items-start label {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+                padding-top: 2px !important;
+            }
+            
+            /* Error message improvements */
+            .contact-form .text-red-400 {
+                font-size: 0.9rem !important;
+                margin-top: 0.5rem !important;
+            }
+            
+            /* Success screen improvements */
+            #success-screen {
+                padding: 3rem 2rem !important;
+            }
+            
+            #success-screen h3 {
+                font-size: 2rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            #success-screen p {
+                font-size: 1.1rem !important;
+                line-height: 1.7 !important;
+                margin-bottom: 2.5rem !important;
+            }
+            
+            #success-screen .flex {
+                gap: 1rem !important;
+            }
+            
+            #success-screen button, 
+            #success-screen a {
+                min-height: 54px !important;
+                padding: 16px 24px !important;
+                font-size: 1rem !important;
             }
             
             /* Buttons and inputs improvements */
@@ -1070,10 +1172,85 @@
             .project-image {
                 height: 180px !important;
             }
+            
+            .mobile-menu-nav {
+                padding: 3rem 1.5rem !important;
+                gap: 2rem !important;
+            }
+            
+            .mobile-menu-nav a {
+                font-size: 1.4rem !important;
+                padding: 18px 0 !important;
+            }
+            
+            #contact-form {
+                padding: 2rem !important;
+            }
+            
+            .contact-form input, 
+            .contact-form select, 
+            .contact-form textarea {
+                min-height: 56px !important;
+                padding: 16px !important;
+                font-size: 15px !important;
+            }
+            
+            .contact-form button[type="submit"] {
+                min-height: 56px !important;
+                padding: 16px 20px !important;
+            }
         }
         
         /* Touch optimizations */
         @media (hover: none) and (pointer: coarse) {
+            /* Mobile menu touch targets */
+            .mobile-menu-nav a {
+                padding: 24px 0 !important;
+                font-size: 1.8rem !important;
+            }
+            
+            .mobile-menu-close {
+                width: 60px !important;
+                height: 60px !important;
+                border-radius: 12px !important;
+            }
+            
+            /* Form touch targets */
+            .contact-form input, 
+            .contact-form select, 
+            .contact-form textarea {
+                min-height: 64px !important;
+                padding: 20px !important;
+                font-size: 17px !important;
+            }
+            
+            .contact-form button[type="submit"] {
+                min-height: 64px !important;
+                padding: 20px 24px !important;
+                font-size: 1.2rem !important;
+            }
+            
+            .contact-form input[type="checkbox"] {
+                width: 28px !important;
+                height: 28px !important;
+            }
+            
+            /* Add more visual feedback for touch */
+            .mobile-menu-nav a:active {
+                background-color: rgba(102, 126, 234, 0.2) !important;
+                transform: scale(0.98) !important;
+            }
+            
+            .contact-form input:active, 
+            .contact-form select:active, 
+            .contact-form textarea:active {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+            }
+            
+            .contact-form button:active {
+                transform: scale(0.96) !important;
+            }
+            
             /* Increase touch target sizes */
             .nav-link {
                 padding: 16px !important;
@@ -1131,7 +1308,7 @@
             .particle {
                 display: none !important;
             }
-        }
+        }    
     </style>
 </head>
 <body class="font-poppins bg-dark text-white min-h-screen">
@@ -2391,3 +2568,4 @@
     </script>
 </body>
 </html>
+
