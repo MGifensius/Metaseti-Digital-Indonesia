@@ -838,44 +838,6 @@
             letter-spacing: 0.05em;
         }
         
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 2s;
-        }
-        
-        .scroll-indicator-text {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .scroll-indicator-icon {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        
         /* Success Screen Styles */
         .success-icon {
             width: 100px;
@@ -1245,11 +1207,6 @@
             left: 1.5rem;
             animation: float 6s ease-in-out infinite 2s;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
         
         /* Enhanced Static Grid Styles */
         #static-grid {
@@ -1272,250 +1229,672 @@
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         
-        /* MOBILE RESPONSIVE FIXES */
+        /* Enhanced Hero Section Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+
+        /* 3D Card Hover Effect */
+        #hero-card {
+            transform: rotateY(0) rotateX(0);
+            transition: transform 0.7s ease;
+        }
+
+        #hero-card:hover {
+            transform: rotateY(6deg) rotateX(6deg);
+        }
+
+        /* Enhanced About Section Styles */
+        .about-gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Team Member Hover Effects */
+        .team-member {
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member:hover .team-member-image {
+            transform: scale(1.05);
+        }
+
+        .team-member-image {
+            transition: transform 0.5s ease;
+        }
+
+        /* Enhanced Value Cards */
+        .value-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Story Section Timeline */
+        .story-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, rgba(102, 126, 234, 0.7), transparent);
+        }
+
+        .story-timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .story-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Enhanced CTA Button */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            transform: translateX(0);
+        }
+        
+        /* Enhanced Project Card Styles for New Portfolio */
+        .project-card {
+            position: relative;
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 100%;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: subtract;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        
+        /* CRITICAL MOBILE OPTIMIZATIONS */
         @media (max-width: 768px) {
-            /* Hero section mobile fixes */
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            html {
+                font-size: 16px;
+            }
+            
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            
+            /* Hero section - MAJOR mobile improvements */
             .min-h-screen {
                 min-height: 100vh;
-                padding: 6rem 1.5rem 4rem;
+                min-height: -webkit-fill-available;
+                padding: 4.5rem 1rem 2.5rem !important;
             }
             
-            .hero-stats {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 1rem;
-                margin-top: 2rem;
+            /* Hero badge mobile */
+            #hero-badge {
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.625rem !important;
             }
             
-            .hero-stat {
-                padding: 0 0.5rem;
+            #hero-badge .w-2 {
+                width: 0.375rem !important;
+                height: 0.375rem !important;
             }
             
-            .hero-stat::before {
-                display: none;
-            }
-            
-            .hero-stat-number {
-                font-size: 1.75rem;
-            }
-            
-            .hero-stat-label {
-                font-size: 0.625rem;
-            }
-            
-            /* Typography mobile fixes */
+            /* Hero title mobile - CRITICAL FIX */
             h1 {
-                font-size: 2.5rem;
-                line-height: 1.1;
+                font-size: 2rem !important;
+                line-height: 1.15 !important;
+                margin-bottom: 0.25rem !important;
             }
             
             h2 {
-                font-size: 2rem;
-                line-height: 1.3;
+                font-size: 1.75rem !important;
+                line-height: 1.25 !important;
             }
             
             h3 {
-                font-size: 1.5rem;
+                font-size: 1.25rem !important;
+                line-height: 1.3 !important;
             }
             
-            /* Section padding mobile fixes */
+            /* Hero tagline mobile */
+            #tagline {
+                font-size: 0.875rem !important;
+                line-height: 1.4 !important;
+                text-align: center;
+            }
+            
+            #tagline + div .w-16 {
+                width: 2rem !important;
+                display: none;
+            }
+            
+            /* Description mobile */
+            #description {
+                font-size: 0.875rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 2rem !important;
+            }
+            
+            /* CTA buttons mobile - FULL WIDTH */
+            #cta-button {
+                margin-bottom: 2.5rem !important;
+            }
+            
+            #cta-button a {
+                padding: 0.875rem 1.25rem !important;
+                font-size: 0.875rem !important;
+                width: 100%;
+                justify-content: center !important;
+            }
+            
+            #cta-button .gap-3 {
+                gap: 0.5rem !important;
+            }
+            
+            /* Hero stats - OPTIMIZED layout */
+            .hero-stats,
+            #stats {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.5rem !important;
+                margin-top: 1.5rem !important;
+            }
+            
+            .hero-stat,
+            #stats > div {
+                padding: 0.75rem 0.5rem !important;
+                min-width: 0 !important;
+            }
+            
+            .hero-stat::before {
+                display: none !important;
+            }
+            
+            .hero-stat-number,
+            #stats span[data-count] {
+                font-size: 1.5rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .hero-stat-label,
+            #stats .text-xs {
+                font-size: 0.625rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            /* Section padding */
             section {
-                padding: 4rem 1.5rem;
+                padding: 2.5rem 1rem !important;
             }
             
-            /* Project card mobile fixes */
-            .project-card {
-                margin-bottom: 1.5rem;
+            /* Portfolio section mobile */
+            #work {
+                padding: 2.5rem 0.5rem !important;
             }
             
-            .project-image {
-                height: 200px;
+            /* Portfolio header mobile */
+            #work .text-center {
+                padding: 0 1rem;
+                margin-bottom: 2rem !important;
             }
             
-            /* Service card mobile fixes */
-            .service-hover {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
+            #work h2 {
+                font-size: 1.75rem !important;
+                margin-bottom: 0.75rem !important;
             }
             
-            .service-icon {
-                width: 48px;
-                height: 48px;
+            #work p {
+                font-size: 0.875rem !important;
             }
             
-            /* Filter buttons mobile fixes */
+            /* Filter buttons - BETTER mobile layout */
             .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-                margin-bottom: 0.5rem;
+                padding: 0.5rem 0.875rem !important;
+                font-size: 0.75rem !important;
+                margin: 0.25rem !important;
+                white-space: nowrap;
             }
             
-            /* Contact form mobile fixes */
+            .flex.justify-center.gap-3 {
+                gap: 0.5rem !important;
+                padding: 0 0.5rem !important;
+            }
+            
+            /* Project cards - OPTIMIZED size */
+            .project-card {
+                width: 100% !important;
+                height: auto !important;
+                margin-bottom: 0.75rem !important;
+                padding: 1.25rem !important;
+            }
+            
+            .project-card h3 {
+                font-size: 1rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .project-card p {
+                font-size: 0.8125rem !important;
+                line-height: 1.4 !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .project-card .tech-tag {
+                font-size: 0.6875rem !important;
+                padding: 0.1875rem 0.375rem !important;
+            }
+            
+            .project-card .category-badge, .project-card .featured-badge {
+                font-size: 0.625rem !important;
+                padding: 0.1875rem 0.5rem !important;
+            }
+            
+            /* Portfolio container - CRITICAL mobile fix */
+            #portfolio-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            /* Hide gradient overlays on mobile */
+            #portfolio-container .absolute.inset-0 {
+                display: none !important;
+            }
+            
+            /* Scroll hint - BETTER positioning */
+            #scroll-hint {
+                bottom: 5rem !important;
+                right: 1rem !important;
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 1.25rem !important;
+            }
+            
+            /* Services section mobile */
+            #services h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            #services .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+            }
+            
+            /* Service cards mobile */
+            .service-hover,
+            #services > div > div > div {
+                padding: 1.5rem !important;
+                margin-bottom: 0 !important;
+            }
+            
+            .service-hover h3,
+            #services h3 {
+                font-size: 1.125rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .service-hover p,
+            #services .text-sm {
+                font-size: 0.875rem !important;
+            }
+            
+            /* About section mobile - CRITICAL FIX */
+            #about {
+                display: block !important;
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                padding: 2.5rem 1rem !important;
+            }
+            
+            #about > * {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            #about .scroll-animate {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            
+            #about .scroll-animate.enhanced {
+                opacity: 1 !important;
+                transform: translateY(0) scale(1) !important;
+            }
+            
+            #about .scroll-animate.visible {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            
+            #about h2 {
+                font-size: 1.875rem !important;
+            }
+            
+            #about h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            #about h4 {
+                font-size: 1rem !important;
+            }
+            
+            #about p {
+                font-size: 0.875rem !important;
+            }
+            
+            #about .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            /* Value cards mobile */
+            .value-card {
+                margin-bottom: 1.25rem !important;
+            }
+            
+            /* Team members mobile */
+            #about .grid.grid-cols-1.sm\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+            
+            .team-member h4 {
+                font-size: 0.9375rem !important;
+            }
+            
+            .team-member .text-xs {
+                font-size: 0.6875rem !important;
+            }
+            
+            .w-24.h-24 {
+                width: 4.5rem !important;
+                height: 4.5rem !important;
+            }
+            
+            /* Contact section mobile */
+            #contact {
+                padding: 2.5rem 1rem !important;
+            }
+            
+            #contact h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            #contact .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            /* Contact form mobile - CRITICAL improvements */
             #contact-form {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem !important;
             }
             
             .contact-form input,
             .contact-form select,
             .contact-form textarea {
-                font-size: 16px;
-                padding: 0.875rem;
+                font-size: 16px !important;
+                padding: 0.75rem !important;
+                border-radius: 0.75rem !important;
             }
             
             .contact-form textarea {
-                min-height: 120px;
+                min-height: 120px !important;
             }
             
-            /* Grid mobile fixes */
-            .grid.grid-cols-1.md\:grid-cols-2 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .contact-form label {
+                font-size: 0.8125rem !important;
+                margin-bottom: 0.5rem !important;
             }
             
-            /* Button mobile fixes */
-            .btn-gradient {
-                padding: 0.875rem 1.5rem;
-                font-size: 1rem;
+            .contact-form .grid {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
             }
             
-            /* Navigation mobile fixes */
+            .contact-form button {
+                font-size: 0.9375rem !important;
+                padding: 0.875rem 1.5rem !important;
+            }
+            
+            /* Success screen mobile */
+            #success-screen h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            #success-screen p {
+                font-size: 0.875rem !important;
+            }
+            
+            .success-icon,
+            .checkmark {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            /* Navigation mobile */
             .nav-blur {
-                margin: 10px;
-                width: calc(100% - 20px);
-                padding: 8px 0;
+                margin: 8px !important;
+                width: calc(100% - 16px) !important;
+                padding: 6px 0 !important;
+                border-radius: 12px !important;
             }
             
             .nav-logo img {
-                height: 32px;
+                height: 28px !important;
             }
             
-            /* Mobile menu improvements */
             .mobile-menu-toggle {
-                width: 48px;
-                height: 48px;
+                width: 40px !important;
+                height: 40px !important;
             }
             
+            /* Mobile menu */
             .mobile-menu-nav a {
-                font-size: 1.25rem;
-                padding: 14px 0;
+                font-size: 1.125rem !important;
+                padding: 12px 0 !important;
             }
             
-            /* Footer mobile fixes */
+            /* Footer mobile */
             footer {
-                padding: 3rem 1.5rem;
+                padding: 2rem 1rem !important;
             }
             
-            /* Reduce animations on mobile for performance */
+            footer p {
+                font-size: 0.8125rem !important;
+            }
+            
+            /* Disable heavy animations on mobile */
             .hero-glow,
-            .hero-accent {
-                display: none;
+            .hero-accent,
+            .abstract-bg .dot {
+                display: none !important;
             }
             
             .animate-float,
             .animate-pulse-slow {
-                animation: none;
-            }
-            
-            /* Portfolio mobile fixes */
-            .project-card {
-                width: 280px;
-                height: 220px;
-            }
-            
-            /* Fix for portfolio container on mobile */
-            #portfolio-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Hide scrollbar for Firefox */
-                -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
-            }
-            
-            #portfolio-container::-webkit-scrollbar {
-                display: none; /* Hide scrollbar for Chrome, Safari and Opera */
-            }
-            
-            /* Hide gradient overlays on mobile */
-            #portfolio-container .absolute.inset-0.bg-gradient-to-r {
-                display: none;
-            }
-            
-            /* Adjust portfolio rows for mobile */
-            .animate-scroll-left,
-            .animate-scroll-right {
                 animation: none !important;
-                width: max-content; /* Make rows as wide as their content */
-                overflow-x: visible; /* Don't clip content */
             }
             
-            /* Ensure parent containers don't restrict width */
-            #portfolio-container > div {
-                min-width: 100%; /* Ensure gradient containers are at least viewport width */
+            #hero-card {
+                display: none !important;
+            }
+            
+            .floating-icon {
+                display: none !important;
+            }
+            
+            /* Better touch targets */
+            a, button {
+                min-height: 44px;
+                min-width: 44px;
             }
         }
         
-        /* Small mobile (max-width: 480px) */
-        @media (max-width: 480px) {
+        /* Extra small mobile */
+        @media (max-width: 375px) {
             h1 {
-                font-size: 2rem;
-                line-height: 1.1;
+                font-size: 1.75rem !important;
             }
             
             h2 {
-                font-size: 1.75rem;
-            }
-            
-            h3 {
-                font-size: 1.25rem;
-            }
-            
-            .min-h-screen {
-                padding: 5rem 1rem 3rem;
-            }
-            
-            section {
-                padding: 3rem 1rem;
-            }
-            
-            .hero-stat-number {
-                font-size: 1.5rem;
-            }
-            
-            .project-image {
-                height: 180px;
-            }
-            
-            .service-hover {
-                padding: 1.25rem;
-            }
-            
-            #contact-form {
-                padding: 1.5rem 1rem;
-            }
-            
-            .mobile-menu-nav a {
-                font-size: 1.125rem;
+                font-size: 1.5rem !important;
             }
             
             .project-card {
-                width: 240px;
+                width: 100% !important;
+                height: auto !important;
+            }
+            
+            .hero-stat-number,
+            #stats span[data-count] {
+                font-size: 1.25rem !important;
+            }
+            
+            #cta-button a {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.8125rem !important;
             }
         }
         
-        /* Landscape mobile fixes */
+        /* Landscape mobile */
         @media (max-height: 600px) and (orientation: landscape) {
             .min-h-screen {
-                min-height: auto;
-                padding: 4rem 1.5rem 2rem;
+                min-height: auto !important;
+                padding: 3.5rem 1rem 2rem !important;
             }
             
-            .hero-stats {
-                flex-direction: row;
-                gap: 1.5rem;
-                margin-top: 1.5rem;
+            #hero-badge {
+                margin-bottom: 1rem !important;
             }
             
-            .scroll-indicator {
-                display: none;
+            .hero-stats,
+            #stats {
+                margin-top: 1rem !important;
             }
         }
     </style>
@@ -1602,134 +1981,172 @@
 
         <!-- Enhanced Hero Section -->
         <div class="min-h-screen flex items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32 relative z-10 overflow-hidden">
-            <!-- Hero Background Elements -->
-            <div class="hero-glow"></div>
-            <div class="hero-accent accent-1"></div>
-            <div class="hero-accent accent-2"></div>
+            <!-- Dynamic Background Elements -->
+            <div class="absolute inset-0 bg-gradient-to-br from-dark via-dark/95 to-dark">
+                <!-- Animated Gradient Orbs -->
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-slow"></div>
+                <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+                <div class="absolute top-1/3 right-1/3 w-64 h-64 bg-accent/15 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 3s;"></div>
+                
+                <!-- Geometric Pattern Overlay -->
+                <div class="absolute inset-0 opacity-5">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC4xIi8+Cjwvc3ZnPg==')]"></div>
+                </div>
+            </div>
             
-            <!-- Animated Geometric Shapes -->
-            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/10 blur-3xl animate-pulse-slow"></div>
-            <div class="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full bg-secondary/10 blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
-            <div class="absolute top-1/3 right-1/3 w-32 h-32 rounded-full bg-accent/10 blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <!-- Animated Particles -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div id="particles-container" class="absolute inset-0"></div>
+            </div>
             
-            <div class="max-w-7xl w-full">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Main Content -->
+            <div class="max-w-7xl w-full relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
                     <!-- Left Column - Text Content -->
-                    <div class="text-left lg:text-left">
-                        <!-- Animated Title Lines with Enhanced Design -->
+                    <div class="text-left lg:text-left z-10">
+                        <!-- Badge -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-8 opacity-0" id="hero-badge">
+                            <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                            <span class="text-xs font-medium tracking-wider uppercase text-gray-300">Leading in Digital Transformation</span>
+                        </div>
+                        
+                        <!-- Animated Title with Enhanced Design -->
                         <div class="mb-6">
-                            <div class="overflow-hidden mb-2">
-                                <h1 id="line1" class="font-light tracking-tight leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl opacity-0">
-                                    Metaseti
+                            <div class="overflow-hidden mb-1 pb-2">
+                                <h1 id="line1" class="font-bold tracking-tight leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl opacity-0" style="line-height: 1.2;">
+                                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Metaseti</span>
                                 </h1>
                             </div>
-                            <div class="overflow-hidden mb-2">
-                                <h1 id="line2" class="font-light tracking-tight leading-tight text-3x1 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl opacity-0">
-                                    Digital
+                            <div class="overflow-hidden mb-1 pb-2">
+                                <h1 id="line2" class="font-bold tracking-tight leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl opacity-0" style="line-height: 1.2;">
+                                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Digital</span>
                                 </h1>
                             </div>
-                            <br>
-                            <div class="overflow-hidden mb-6">
-                                <h1 id="line3" class="font-light tracking-tight leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl opacity-0">
-                                    Indonesia
+                            <div class="overflow-hidden pb-2">
+                                <h1 id="line3" class="font-bold tracking-tight leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl opacity-0" style="line-height: 1.2;">
+                                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Indonesia</span>
                                 </h1>
                             </div>
                         </div>
                         
                         <!-- Enhanced Tagline with Icon -->
                         <div class="overflow-hidden mb-8">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-12 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-                                <p id="tagline" class="hero-subtitle text-base sm:text-lg md:text-xl text-gray-300 opacity-0">
-                                    <span class="hero-text-gradient">Impact Engineered.</span> Advantage Secured.
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+                                <p id="tagline" class="text-xl sm:text-2xl text-gray-300 opacity-0">
+                                    <span class="font-medium">Impact Engineered.</span> <span class="text-primary">Advantage Secured.</span>
                                 </p>
-                                <div class="w-12 h-px bg-gradient-to-r from-primary via-transparent to-transparent"></div>
+                                <div class="w-16 h-px bg-gradient-to-r from-primary via-transparent to-transparent"></div>
                             </div>
                         </div>
                         
                         <!-- Enhanced Description with Better Typography -->
                         <div class="overflow-hidden mb-12 max-w-2xl">
-                            <p id="description" class="text-gray-400 text-sm sm:text-base leading-relaxed opacity-0 pl-1 border-l-2 border-primary/30">
+                            <p id="description" class="text-gray-400 text-lg leading-relaxed opacity-0">
                                 We engineer digital solutions and brand strategies that drive competitive advantage through precision development, measurable growth, and lasting impact.
                             </p>
                         </div>
                         
-                        <!-- Enhanced CTA Button -->
-                        <div class="overflow-hidden mb-12">
-                            <div id="cta-button" class="opacity-0">
-                                <a href="#contact" class="inline-flex items-center gap-3 py-3.5 px-8 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group">
+                        <!-- Enhanced CTA Section -->
+                        <div class="overflow-hidden mb-16">
+                            <div id="cta-button" class="opacity-0 flex flex-col sm:flex-row gap-4">
+                                <a href="#contact" class="inline-flex items-center justify-center gap-3 py-4 px-8 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group">
                                     <span>Start Your Project</span>
                                     <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                                </a>
+                                <a href="#work" class="inline-flex items-center justify-center gap-3 py-4 px-8 bg-transparent text-white font-medium rounded-full border border-white/20 hover:bg-white/5 hover:border-white/40 transition-all duration-300 group">
+                                    <span>View Our Work</span>
+                                    <i class="fas fa-briefcase group-hover:translate-x-1 transition-transform duration-300"></i>
                                 </a>
                             </div>
                         </div>
                         
-                        <!-- Hero Stats with Enhanced Design -->
+                        <!-- Enhanced Hero Stats with Better Design -->
                         <div class="overflow-hidden">
-                            <div id="stats" class="hero-stats opacity-0">
-                                <div class="hero-stat flex flex-col items-center">
-                                    <span class="hero-stat-number" data-count="10+">0</span>
-                                    <div class="w-8 h-0.5 bg-primary/50 my-2"></div>
-                                    <span class="hero-stat-label">Projects Delivered</span>
+                            <div id="stats" class="grid grid-cols-3 gap-8 opacity-0">
+                                <div class="flex flex-col items-center text-center p-4 bg-white/3 backdrop-blur-sm rounded-2xl border border-white/5">
+                                    <span class="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary" data-count="10+">8</span>
+                                    <div class="w-8 h-0.5 bg-gradient-to-r from-primary to-secondary my-2"></div>
+                                    <span class="text-xs uppercase tracking-wider text-gray-400">Projects</span>
                                 </div>
-                                <div class="hero-stat flex flex-col items-center">
-                                    <span class="hero-stat-number" data-count="8+">0</span>
-                                    <div class="w-8 h-0.5 bg-primary/50 my-2"></div>
-                                    <span class="hero-stat-label">Client Satisfaction</span>
+                                <div class="flex flex-col items-center text-center p-4 bg-white/3 backdrop-blur-sm rounded-2xl border border-white/5">
+                                    <span class="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary" data-count="8+">100%</span>
+                                    <div class="w-8 h-0.5 bg-gradient-to-r from-primary to-secondary my-2"></div>
+                                    <span class="text-xs uppercase tracking-wider text-gray-400">Satisfaction</span>
                                 </div>
-                                <div class="hero-stat flex flex-col items-center">
-                                    <span class="hero-stat-number" data-count="5">0</span>
-                                    <div class="w-8 h-0.5 bg-primary/50 my-2"></div>
-                                    <span class="hero-stat-label">Team Members</span>
+                                <div class="flex flex-col items-center text-center p-4 bg-white/3 backdrop-blur-sm rounded-2xl border border-white/5">
+                                    <span class="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary" data-count="5">2</span>
+                                    <div class="w-8 h-0.5 bg-gradient-to-r from-primary to-secondary my-2"></div>
+                                    <span class="text-xs uppercase tracking-wider text-gray-400">Team</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Right Column - Visual Element (Hidden on Mobile) -->
+                    <!-- Right Column - Enhanced Visual Element -->
                     <div class="hidden lg:block relative">
-                        <!-- Animated Visual Container -->
-                        <div class="relative w-full h-96 flex items-center justify-center">
-                            <!-- Central Circle with Logo -->
-                            <div class="absolute w-64 h-64 rounded-full border-2 border-primary/20 flex items-center justify-center animate-float">
-                                <div class="w-56 h-56 rounded-full border border-primary/30 flex items-center justify-center">
-                                    <div class="w-48 h-48 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm flex items-center justify-center p-2">
-                                        <div class="relative w-full h-full flex items-center justify-center logo-container">
-                                            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Metaseti.png" alt="Metaseti Digital" class="max-w-full max-h-full animate-spin-back-forth object-contain">
+                        <!-- 3D Card Effect Container -->
+                        <div class="relative w-full h-[500px] flex items-center justify-center perspective-1000">
+                            <!-- Main Floating Card -->
+                            <div class="absolute w-full h-full bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-lg rounded-3xl border border-white/10 shadow-2xl transform-style-3d transition-transform duration-700 hover:rotate-y-6 hover:rotate-x-6" id="hero-card">
+                                <!-- Card Content -->
+                                <div class="absolute inset-0 p-8 flex flex-col">
+                                    <!-- Card Header -->
+                                    <div class="flex justify-between items-start mb-8">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-white mb-2">Digital Transformation</h3>
+                                            <p class="text-gray-400">Complete solution for modern businesses</p>
+                                        </div>
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                            <i class="fas fa-rocket text-white"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Card Visual Elements -->
+                                    <div class="flex-grow flex items-center justify-center">
+                                        <!-- Central Logo with Enhanced Animation -->
+                                        <div class="relative w-48 h-48">
+                                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 blur-xl animate-pulse"></div>
+                                            <div class="relative w-full h-full rounded-full bg-dark/50 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+                                                <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Metaseti.png" alt="Metaseti Digital" class="w-32 h-32 animate-spin-back-forth object-contain">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Card Footer with Stats -->
+                                    <div class="grid grid-cols-3 gap-4 mt-8">
+                                        <div class="text-center p-3 bg-white/5 rounded-xl">
+                                            <div class="text-lg font-bold text-primary">98%</div>
+                                            <div class="text-xs text-gray-400">Efficiency</div>
+                                        </div>
+                                        <div class="text-center p-3 bg-white/5 rounded-xl">
+                                            <div class="text-lg font-bold text-secondary">24/7</div>
+                                            <div class="text-xs text-gray-400">Support</div>
+                                        </div>
+                                        <div class="text-center p-3 bg-white/5 rounded-xl">
+                                            <div class="text-lg font-bold text-accent">5★</div>
+                                            <div class="text-xs text-gray-400">Rating</div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <!-- Orbiting Elements -->
-                            <div class="absolute w-80 h-80 rounded-full border border-white/5 animate-spin-slow" style="animation-duration: 20s;">
-                                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center">
-                                    <i class="fas fa-laptop-code text-primary"></i>
+                                
+                                <!-- Floating Elements -->
+                                <div class="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg animate-float">
+                                    <i class="fas fa-code text-white"></i>
                                 </div>
-                                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-16 h-16 rounded-full bg-secondary/20 backdrop-blur-sm flex items-center justify-center">
-                                    <i class="fas fa-brain text-secondary"></i>
+                                <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center shadow-lg animate-float" style="animation-delay: 1s;">
+                                    <i class="fas fa-brain text-white"></i>
                                 </div>
-                                <div class="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center">
-                                    <i class="fas fa-chart-line text-accent"></i>
-                                </div>
-                                <div class="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-green-500/20 backdrop-blur-sm flex items-center justify-center">
-                                    <i class="fas fa-network-wired text-green-400"></i>
+                                <div class="absolute top-1/2 -right-8 w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg animate-float" style="animation-delay: 2s;">
+                                    <i class="fas fa-chart-line text-white"></i>
                                 </div>
                             </div>
                             
-                            <!-- Floating Particles -->
-                            <div class="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-primary animate-ping" style="animation-duration: 3s;"></div>
-                            <div class="absolute bottom-1/3 right-1/3 w-3 h-3 rounded-full bg-secondary animate-ping" style="animation-duration: 4s; animation-delay: 1s;"></div>
-                            <div class="absolute top-1/3 right-1/4 w-2 h-2 rounded-full bg-accent animate-ping" style="animation-duration: 2s; animation-delay: 2s;"></div>
+                            <!-- Background Glow Effect -->
+                            <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 blur-3xl -z-10"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Enhanced Scroll Indicator -->
-            <div class="scroll-indicator hidden sm:flex">
-                <span class="scroll-indicator-text">Scroll Down</span>
-                <i class="fas fa-chevron-down scroll-indicator-icon"></i>
             </div>
         </div>
 
@@ -1749,7 +2166,7 @@
             </div>
             
             <!-- Enhanced Filter Buttons with Glass Effect -->
-            <div class="flex justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 flex-wrap">
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12 sm:mb-16">
                 <button class="filter-btn active relative py-2.5 px-6 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 overflow-hidden group" data-filter="all">
                     <span class="relative z-10">All Projects</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -1776,32 +2193,17 @@
                 </button>
             </div>
 
-            <!-- Enhanced Animated Portfolio Container -->
-            <div id="portfolio-container" class="relative">
+            <!-- Enhanced Portfolio Grid -->
+            <div class="relative">
                 <!-- Decorative Background Elements -->
                 <div class="absolute inset-0 overflow-hidden pointer-events-none">
                     <div class="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
                     <div class="absolute bottom-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-                    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
                 </div>
                 
-                <!-- Animated Rows Container -->
-                <div class="relative">
-                    <!-- Top Row (Moving Left) with Enhanced Design -->
-                    <div class="relative mb-8">
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-dark/50 to-transparent pointer-events-none"></div>
-                        <div id="top-row" class="flex gap-6 sm:gap-8 animate-scroll-left relative z-10">
-                            <!-- Projects will be dynamically inserted here -->
-                        </div>
-                    </div>
-                    
-                    <!-- Bottom Row (Moving Right) with Enhanced Design -->
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-dark/50 to-transparent pointer-events-none"></div>
-                        <div id="bottom-row" class="flex gap-6 sm:gap-8 animate-scroll-right relative z-10">
-                            <!-- Projects will be dynamically inserted here -->
-                        </div>
-                    </div>
+                <!-- Portfolio Grid Container -->
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
+                    <!-- Projects will be dynamically inserted here -->
                 </div>
                 
                 <!-- Loading Indicator -->
@@ -1811,17 +2213,15 @@
                         <p class="text-white text-sm">Loading projects...</p>
                     </div>
                 </div>
+                
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button id="load-more-btn" class="relative py-3 px-8 bg-white/5 backdrop-blur-md text-white border border-white/10 rounded-full text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 overflow-hidden group">
+                        <span class="relative z-10">Load More Projects</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </button>
+                </div>
             </div>
-
-            <!-- Enhanced Static Grid Container -->
-            <div id="static-grid" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-8">
-                <!-- Filtered projects will appear here -->
-            </div>
-            
-            <!-- Floating Action Button for Mobile -->
-            <button id="scroll-hint" class="md:hidden fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-primary to-secondary rounded-full shadow-lg flex items-center justify-center text-white z-50 animate-bounce">
-                <i class="fas fa-hand-point-left"></i>
-            </button>
         </section>
 
         <!-- Services Section -->
@@ -1966,50 +2366,198 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto relative z-10 scroll-animate enhanced stagger-2">
-            <h2 class="font-light mb-4 text-3xl md:text-5xl lg:text-6xl tracking-tight">About Us</h2>
+        <section id="about" class="py-24 sm:py-32 md:py-40 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto relative z-10 scroll-animate enhanced">
+            <!-- Section Header with Enhanced Design -->
+            <div class="text-center mb-20">
+                <div class="inline-block relative">
+                    <h2 class="font-bold mb-6 text-4xl md:text-6xl lg:text-7xl tracking-tight relative z-10">
+                        About <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Metaseti</span>
+                    </h2>
+                    <div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-xl -z-10"></div>
+                </div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-8">
+                    Pioneering digital transformation in Indonesia through innovation, expertise, and strategic vision
+                </p>
+            </div>
+            
+            <!-- Enhanced About Content -->
             <div class="max-w-6xl mx-auto">
-                <div class="mb-12 sm:mb-16">
-                    <h3 class="text-2xl sm:text-3xl font-normal mb-4 sm:mb-6">Our Story</h3>
-                    <p class="text-gray-300 text-sm sm:text-base leading-loose">Born form a commitment to propel Indonesia's Digital Transformation, Metaseti Digital Indonesia engineer digital solutions and brand strategies that drive competitive advantage, Precision Development, Measurable Growth and Lasting Impact.</p>
+                <!-- Story Section -->
+                <div class="mb-24 relative">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full mb-8">
+                        <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                        <span class="text-xs font-medium tracking-wider uppercase text-primary">Our Story</span>
+                    </div>
+                    
+                    <div class="relative bg-gradient-to-br from-dark/90 to-dark/70 backdrop-blur-lg border border-white/10 rounded-3xl p-10 overflow-hidden">
+                        <!-- Background Effect -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-3xl opacity-30"></div>
+                        
+                        <h3 class="text-3xl font-bold mb-6 relative z-10">From Vision to Reality</h3>
+                        
+                        <div class="space-y-6 text-gray-300 relative z-10">
+                            <p class="leading-relaxed text-lg">
+                                Born from a commitment to propel Indonesia's digital transformation, Metaseti Digital Indonesia stands at the forefront of technological innovation. Our journey began with a simple yet powerful vision: to bridge the gap between cutting-edge technology and practical business solutions.
+                            </p>
+                            
+                            <p class="leading-relaxed text-lg">
+                                Today, we engineer digital solutions and brand strategies that drive competitive advantage through precision development, measurable growth, and lasting impact. Our team of experts brings together diverse talents and perspectives to create solutions that not only meet today's challenges but anticipate tomorrow's opportunities.
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="mb-12 sm:mb-16">
-                    <h3 class="text-2xl sm:text-3xl font-normal mb-4 sm:mb-6">Vision</h3>
-                    <p class="text-gray-300 text-sm sm:text-base leading-loose">To set the benchmark for how technology and branding converge to deliver measurable business dominance.
-                    <br><br>
-                    We redefine the convergence of technology and branding to set new industry standards. Our integrated solutions deliver measurable business dominance through strategic innovation. Partner with us to transform your market position and achieve unparalleled competitive advantage.</p>
+                <!-- Vision & Mission Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
+                    <!-- Vision Card -->
+                    <div class="group relative h-full">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-3xl blur-xl opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative bg-dark/90 backdrop-blur-lg border border-white/10 rounded-3xl p-10 h-full">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                    <i class="fas fa-eye text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold">Our Vision</h3>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                                To set the benchmark for how technology and branding converge to deliver measurable business dominance.
+                            </p>
+                            
+                            <!-- Key Points -->
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-primary text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-400">Redefining the convergence of technology and branding</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-primary text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-400">Setting new industry standards through strategic innovation</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-primary text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-400">Transforming market position for competitive advantage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mission Card -->
+                    <div class="group relative h-full">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-3xl blur-xl opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative bg-dark/90 backdrop-blur-lg border border-white/10 rounded-3xl p-10 h-full">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
+                                    <i class="fas fa-bullseye text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold">Our Mission</h3>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                                To engineer integrated digital solutions that give businesses sustainable competitive advantage.
+                            </p>
+                            
+                            <!-- Key Points -->
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-secondary text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-400">Creating powerful integrated digital solutions</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-secondary text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-400">Delivering measurable and sustainable advantages</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-secondary text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-400">Securing long-term market leadership for clients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="mb-12 sm:mb-16">
-                    <h3 class="text-2xl sm:text-3xl font-normal mb-4 sm:mb-6">Mission</h3>
-                    <p class="text-gray-300 text-sm sm:text-base leading-loose">To engineer integrated digital solutions that give business sustainable competitive advantange.
-                    <br><br>
-                    We engineer powerful integrated digital solutions designed specifically for your business. Our focus is on creating systems that deliver measurable and sustainable competitive advantage. Partner with us to transform your operations and secure long-term market leadership.</p>
-                </div>
-                
+                <!-- Enhanced Values Section -->
                 <div>
-                    <h3 class="text-2xl sm:text-3xl font-normal mb-4 sm:mb-6">Our Values</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
-                            <h4 class="text-lg sm:text-xl font-medium mb-3 sm:mb-4">Unified Excellence</h4>
-                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Integrating technology and brand into seamless, high-impact solutions</p>
+                    <div class="text-center mb-16">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-6">
+                            <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                            <span class="text-xs font-medium tracking-wider uppercase text-gray-300">Core Values</span>
                         </div>
-                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
-                            <h4 class="text-lg sm:text-xl font-medium mb-3 sm:mb-4">Precision Craft</h4>
-                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Executing with meticulous attention to detail in code, design and strategy</p>
+                        <h3 class="text-3xl font-bold mb-4">The Principles That Guide Us</h3>
+                        <p class="text-gray-400 max-w-2xl mx-auto">Our values are the foundation of everything we do, shaping our culture and defining our approach to every project</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Value 1: Unified Excellence -->
+                        <div class="group relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl h-full flex flex-col transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-layer-group text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Unified Excellence</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed flex-grow">Integrating technology and brand into seamless, high-impact solutions that deliver exceptional results</p>
+                            </div>
                         </div>
-                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
-                            <h4 class="text-lg sm:text-xl font-medium mb-3 sm:mb-4">Measurable Impact</h4>
-                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Driving outcomes that deliver tangible competitive advantage</p>
+                        
+                        <!-- Value 2: Precision Craft -->
+                        <div class="group relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl h-full flex flex-col transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-ruler-combined text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Precision Craft</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed flex-grow">Executing with meticulous attention to detail in code, design, and strategy to ensure flawless delivery</p>
+                            </div>
                         </div>
-                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
-                            <h4 class="text-lg sm:text-xl font-medium mb-3 sm:mb-4">Principled Evolution</h4>
-                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Scaling with integrity - adapting strategically while upholding ethical standards</p>
+                        
+                        <!-- Value 3: Measurable Impact -->
+                        <div class="group relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl h-full flex flex-col transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-chart-line text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Measurable Impact</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed flex-grow">Driving outcomes that deliver tangible competitive advantage and quantifiable business results</p>
+                            </div>
                         </div>
-                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-10 rounded-2xl transition-all duration-400 hover:-translate-y-2 hover:border-white/20 hover:bg-white/7 hover:shadow-2xl">
-                            <h4 class="text-lg sm:text-xl font-medium mb-3 sm:mb-4">Clarity in Action</h4>
-                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Operating with radical transparency in processes, decisions and results</p>
+                        
+                        <!-- Value 4: Principled Evolution -->
+                        <div class="group relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-green-500/20 to-teal-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl h-full flex flex-col transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-balance-scale text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Principled Evolution</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed flex-grow">Scaling with integrity - adapting strategically while upholding ethical standards and values</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Value 5: Clarity in Action -->
+                        <div class="group relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl h-full flex flex-col transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-search text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Clarity in Action</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed flex-grow">Operating with radical transparency in processes, decisions, and results to build trust and accountability</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2063,7 +2611,7 @@
                     </div>
                     
                     <!-- Contact Form Section -->
-                    <div class="lg:col-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left:0 before:w-full before:h-1 before:form-gradient">
+                    <div class="lg:col-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:form-gradient">
                         <!-- Form Container -->
                         <div id="form-container" class="relative">
                             <!-- Form Header -->
@@ -2172,6 +2720,16 @@
         </footer>
     </div>
 
+    <!-- Mobile Scroll Indicator -->
+    <div class="md:hidden fixed bottom-6 right-6 z-50">
+        <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center shadow-lg animate-bounce">
+                <i class="fas fa-chevron-down text-white"></i>
+            </div>
+            <span class="text-xs text-white mt-2 opacity-80">Scroll</span>
+        </div>
+    </div>
+
     <script>
         // Project data
         const projects = [
@@ -2183,10 +2741,10 @@
                 description: "Scalable online marketplace with advanced payment integration",
                 technologies: ["React", "Node.js", "MongoDB"],
                 link: "#",
-                gradient: "from-primary/20 to-secondary/20",
                 color: "primary",
                 icon: "fas fa-laptop-code",
-                tags: ["React", "Node.js", "MongoDB"]
+                tags: ["React", "Node.js", "MongoDB"],
+                featured: true
             },
             {
                 id: 2,
@@ -2195,10 +2753,10 @@
                 description: "Enterprise solution with real-time tracking and automation",
                 technologies: ["React", "AWS", "Docker"],
                 link: "custom-development.html",
-                gradient: "from-primary/20 to-secondary/20",
                 color: "primary",
                 icon: "fas fa-code",
-                tags: ["React", "AWS", "Docker"]
+                tags: ["React", "AWS", "Docker"],
+                featured: true
             },
             
             // AI & ML Projects
@@ -2209,10 +2767,10 @@
                 description: "ML-powered forecasting system for business intelligence",
                 technologies: ["TensorFlow", "Python", "Scikit"],
                 link: "#",
-                gradient: "from-purple-500/20 to-pink-500/20",
                 color: "purple",
                 icon: "fas fa-brain",
-                tags: ["TensorFlow", "Python", "Scikit"]
+                tags: ["TensorFlow", "Python", "Scikit"],
+                featured: true
             },
             {
                 id: 4,
@@ -2221,10 +2779,10 @@
                 description: "AI-powered image recognition and analysis platform",
                 technologies: ["OpenCV", "PyTorch", "CNN"],
                 link: "#",
-                gradient: "from-purple-500/20 to-pink-500/20",
                 color: "purple",
                 icon: "fas fa-eye",
-                tags: ["OpenCV", "PyTorch", "CNN"]
+                tags: ["OpenCV", "PyTorch", "CNN"],
+                featured: true
             },
             
             // Analytics Projects
@@ -2235,10 +2793,10 @@
                 description: "Real-time analytics and visualization platform",
                 technologies: ["Tableau", "Power BI", "SQL"],
                 link: "#",
-                gradient: "from-cyan-500/20 to-blue-500/20",
                 color: "cyan",
                 icon: "fas fa-chart-line",
-                tags: ["Tableau", "Power BI", "SQL"]
+                tags: ["Tableau", "Power BI", "SQL"],
+                featured: true
             },
             {
                 id: 6,
@@ -2247,10 +2805,10 @@
                 description: "AI-powered forecasting and trend analysis system",
                 technologies: ["Python", "R", "ML"],
                 link: "#",
-                gradient: "from-cyan-500/20 to-blue-500/20",
                 color: "cyan",
                 icon: "fas fa-brain",
-                tags: ["Python", "R", "ML"]
+                tags: ["Python", "R", "ML"],
+                featured: true
             },
             
             // IoT Projects
@@ -2261,10 +2819,10 @@
                 description: "Industrial IoT solution for manufacturing automation",
                 technologies: ["Arduino", "MQTT", "Cloud"],
                 link: "#",
-                gradient: "from-green-500/20 to-teal-500/20",
                 color: "green",
                 icon: "fas fa-network-wired",
-                tags: ["Arduino", "MQTT", "Cloud"]
+                tags: ["Arduino", "MQTT", "Cloud"],
+                featured: true
             },
             {
                 id: 8,
@@ -2273,10 +2831,10 @@
                 description: "Connected home automation and security system",
                 technologies: ["Raspberry", "Sensors", "App"],
                 link: "#",
-                gradient: "from-green-500/20 to-teal-500/20",
                 color: "green",
                 icon: "fas fa-home",
-                tags: ["Raspberry", "Sensors", "App"]
+                tags: ["Raspberry", "Sensors", "App"],
+                featured: true
             },
             
             // Branding Projects
@@ -2287,10 +2845,10 @@
                 description: "Complete brand system for innovative tech company",
                 technologies: ["Logo", "Guide", "Assets"],
                 link: "#",
-                gradient: "from-amber-500/20 to-orange-500/20",
                 color: "amber",
                 icon: "fas fa-palette",
-                tags: ["Logo", "Guide", "Assets"]
+                tags: ["Logo", "Guide", "Assets"],
+                featured: true
             },
             {
                 id: 10,
@@ -2299,57 +2857,48 @@
                 description: "Modern brand refresh for online retail platform",
                 technologies: ["Identity", "UX", "Packaging"],
                 link: "#",
-                gradient: "from-amber-500/20 to-orange-500/20",
                 color: "amber",
                 icon: "fas fa-store",
-                tags: ["Identity", "UX", "Packaging"]
+                tags: ["Identity", "UX", "Packaging"],
+                featured: true
             }
         ];
 
         // Enhanced project card creation
         function createEnhancedProjectCard(project, index = 0) {
-            const delay = index * 0.1; // Stagger animation for static grid
+            const delay = index * 0.1; // Stagger animation
             
             return `
-                <div class="project-card group" data-category="${project.category}" style="${index !== undefined ? `animation-delay: ${delay}s;` : ''}">
-                    <!-- Background Pattern -->
-                    <div class="bg-pattern"></div>
-                    
-                    <!-- Floating Icons -->
-                    <div class="floating-icon floating-icon-1">
-                        <i class="${project.icon}"></i>
-                    </div>
-                    <div class="floating-icon floating-icon-2">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="floating-icon floating-icon-3">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    
-                    <!-- Project Content -->
-                    <div class="project-content">
-                        <!-- Category Badge -->
-                        <div class="category-badge">
+                <div class="project-card group" data-category="${project.category}" style="animation-delay: ${delay}s;">
+                    <!-- Card Header with Category Badge -->
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="category-badge bg-${project.color}/10 text-${project.color} border border-${project.color}/20">
                             <i class="${project.icon}"></i>
-                            ${project.category}
+                            ${project.category.charAt(0).toUpperCase() + project.category.slice(1)}
                         </div>
-                        
-                        <!-- Project Title -->
-                        <h3>${project.title}</h3>
-                        
-                        <!-- Project Description -->
-                        <p>${project.description}</p>
-                        
-                        <!-- Technology Tags -->
-                        <div class="tech-tags">
-                            ${project.tags.map(tag => `
-                                <span class="tech-tag">${tag}</span>
-                            `).join('')}
-                        </div>
-                        
-                        <!-- Project Link -->
-                        <a href="${project.link}" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
+                        ${project.featured ? '<div class="featured-badge bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/30">Featured</div>' : ''}
+                    </div>
+                    
+                    <!-- Project Title -->
+                    <h3 class="text-xl font-bold mb-3 text-white">${project.title}</h3>
+                    
+                    <!-- Project Description -->
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">${project.description}</p>
+                    
+                    <!-- Technology Tags -->
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${project.tags.map(tag => `
+                            <span class="tech-tag bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                                ${tag}
+                            </span>
+                        `).join('')}
+                    </div>
+                    
+                    <!-- Project Link -->
+                    <div class="mt-auto">
+                        <a href="${project.link}" class="inline-flex items-center gap-2 text-${project.color} hover:gap-3 transition-all duration-300 group-hover:text-white">
+                            <span>View Project</span>
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
                         </a>
                     </div>
                 </div>
@@ -2358,21 +2907,43 @@
 
         // Enhanced portfolio initialization
         function initEnhancedPortfolio() {
-            const topRow = document.getElementById('top-row');
-            const bottomRow = document.getElementById('bottom-row');
-            const staticGrid = document.getElementById('static-grid');
-            const portfolioContainer = document.getElementById('portfolio-container');
+            const portfolioGrid = document.getElementById('portfolio-grid');
             const loadingIndicator = document.getElementById('portfolio-loading');
-            const scrollHint = document.getElementById('scroll-hint');
+            const loadMoreBtn = document.getElementById('load-more-btn');
             
-            // Create two sets of projects for seamless looping
-            const allProjects = projects.concat(projects);
+            // Initial projects to display
+            let displayedProjects = 6;
+            let currentFilter = 'all';
             
-            // Populate top row (moving left)
-            topRow.innerHTML = allProjects.map(project => createEnhancedProjectCard(project)).join('');
-            
-            // Populate bottom row (moving right) - reverse order for variety
-            bottomRow.innerHTML = [...allProjects].reverse().map(project => createEnhancedProjectCard(project)).join('');
+            // Function to render projects
+            function renderProjects() {
+                loadingIndicator.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    let filteredProjects = projects;
+                    
+                    if (currentFilter !== 'all') {
+                        filteredProjects = projects.filter(project => project.category === currentFilter);
+                    }
+                    
+                    // Show only a subset of projects
+                    const projectsToShow = filteredProjects.slice(0, displayedProjects);
+                    
+                    // Populate grid
+                    portfolioGrid.innerHTML = projectsToShow.map((project, index) => 
+                        createEnhancedProjectCard(project, index)
+                    ).join('');
+                    
+                    // Show/hide load more button
+                    if (projectsToShow.length >= filteredProjects.length) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'inline-flex';
+                    }
+                    
+                    loadingIndicator.classList.add('hidden');
+                }, 300);
+            }
             
             // Enhanced filter functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -2380,6 +2951,8 @@
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const filter = button.getAttribute('data-filter');
+                    currentFilter = filter;
+                    displayedProjects = 6; // Reset displayed projects count
                     
                     // Update active button with enhanced effect
                     filterButtons.forEach(btn => {
@@ -2391,90 +2964,19 @@
                     const absoluteDiv = button.querySelector('.absolute.inset-0');
                     if (absoluteDiv) absoluteDiv.style.opacity = '1';
                     
-                    if (filter === 'all') {
-                        // Show animated rows with enhanced transition
-                        showAnimatedView();
-                    } else {
-                        // Show static grid with enhanced transition
-                        showStaticView(filter);
-                    }
+                    // Re-render projects
+                    renderProjects();
                 });
             });
             
-            // Enhanced view switching functions
-            function showAnimatedView() {
-                loadingIndicator.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    portfolioContainer.classList.remove('hidden');
-                    staticGrid.classList.add('hidden');
-                    loadingIndicator.classList.add('hidden');
-                    
-                    // On mobile, ensure proper scrolling
-                    if (window.innerWidth <= 768) {
-                        // Reset scroll position
-                        portfolioContainer.scrollLeft = 0;
-                        
-                        // Make rows full width for horizontal scrolling
-                        topRow.style.width = 'max-content';
-                        bottomRow.style.width = 'max-content';
-                    } else {
-                        // Restart animations with enhanced effect
-                        topRow.style.animation = 'none';
-                        bottomRow.style.animation = 'none';
-                        
-                        // Force reflow
-                        topRow.offsetHeight;
-                        bottomRow.offsetHeight;
-                        
-                        // Restart animations
-                        topRow.style.animation = 'scrollLeft 40s linear infinite';
-                        bottomRow.style.animation = 'scrollRight 40s linear infinite';
-                    }
-                    
-                    // Hide scroll hint on desktop
-                    if (window.innerWidth > 768) {
-                        scrollHint.classList.add('hidden');
-                    } else {
-                        scrollHint.classList.remove('hidden');
-                    }
-                }, 300);
-            }
+            // Load more functionality
+            loadMoreBtn.addEventListener('click', () => {
+                displayedProjects += 3; // Load 3 more projects
+                renderProjects();
+            });
             
-            function showStaticView(filter) {
-                loadingIndicator.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    portfolioContainer.classList.add('hidden');
-                    loadingIndicator.classList.add('hidden');
-                    
-                    // Filter projects
-                    const filteredProjects = projects.filter(project => project.category === filter);
-                    
-                    // Populate static grid with staggered animation
-                    staticGrid.classList.remove('hidden');
-                    staticGrid.innerHTML = filteredProjects.map((project, index) => 
-                        createEnhancedProjectCard(project, index)
-                    ).join('');
-                    
-                    // Show scroll hint on mobile
-                    if (window.innerWidth <= 768) {
-                        scrollHint.classList.remove('hidden');
-                    } else {
-                        scrollHint.classList.add('hidden');
-                    }
-                }, 300);
-            }
-            
-            // Enhanced scroll hint functionality
-            if (scrollHint) {
-                scrollHint.addEventListener('click', () => {
-                    portfolioContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            }
-            
-            // Initialize with animated view
-            showAnimatedView();
+            // Initial render
+            renderProjects();
         }
 
         // Simple loader removal with animation trigger
@@ -2526,6 +3028,10 @@
                     
                     // Initialize mobile viewport fixes
                     initMobileViewport();
+                    
+                    // Initialize enhanced animations
+                    initEnhancedHeroAnimations();
+                    initEnhancedAboutAnimations();
                 }
             }, 2500);
         });
@@ -2602,6 +3108,7 @@
         // Updated animateHero function with new elements
         function animateHero() {
             // Get all hero elements
+            const heroBadge = document.getElementById('hero-badge');
             const line1 = document.getElementById('line1');
             const line2 = document.getElementById('line2');
             const line3 = document.getElementById('line3');
@@ -2611,58 +3118,79 @@
             const ctaButton = document.getElementById('cta-button');
             
             // Animate each element with staggered delays
+            if (heroBadge) {
+                setTimeout(() => {
+                    heroBadge.classList.add('animate-slide-from-bottom');
+                    heroBadge.style.opacity = '1';
+                }, 100);
+            }
+            
             if (line1) {
                 setTimeout(() => {
                     line1.classList.add('animate-slide-from-bottom');
                     line1.style.opacity = '1';
-                }, 100);
+                }, 200);
             }
             
             if (line2) {
                 setTimeout(() => {
                     line2.classList.add('animate-slide-from-bottom');
                     line2.style.opacity = '1';
-                }, 300);
+                }, 400);
             }
             
             if (line3) {
                 setTimeout(() => {
                     line3.classList.add('animate-slide-from-bottom');
                     line3.style.opacity = '1';
-                }, 500);
+                }, 600);
             }
             
             if (tagline) {
                 setTimeout(() => {
                     tagline.classList.add('animate-slide-from-bottom-smooth');
                     tagline.style.opacity = '1';
-                }, 800);
+                }, 900);
             }
             
             if (description) {
                 setTimeout(() => {
                     description.classList.add('animate-slide-from-bottom-smooth');
                     description.style.opacity = '1';
-                }, 1100);
+                }, 1200);
             }
             
             if (ctaButton) {
                 setTimeout(() => {
                     ctaButton.classList.add('animate-slide-from-bottom-smooth');
                     ctaButton.style.opacity = '1';
-                }, 1300);
+                }, 1400);
             }
             
             if (stats) {
                 setTimeout(() => {
                     stats.classList.add('animate-slide-from-bottom-smooth');
                     stats.style.opacity = '1';
-                }, 1500);
+                }, 1600);
             }
         }
         
         // Initialize scroll animations
         function initScrollAnimations() {
+            // Force About section to be visible on mobile
+            if (window.innerWidth <= 768) {
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                    aboutSection.classList.add('visible');
+                    
+                    // Also make all child elements visible
+                    const aboutElements = aboutSection.querySelectorAll('.scroll-animate');
+                    aboutElements.forEach(element => {
+                        element.classList.add('visible');
+                    });
+                }
+            }
+            
             const animatedElements = document.querySelectorAll('.scroll-animate');
             
             const observerOptions = {
@@ -3001,32 +3529,108 @@
                     if (heroSection) {
                         heroSection.style.minHeight = `${window.innerHeight}px`;
                     }
-                    
-                    // Ensure portfolio rows are properly sized for horizontal scrolling
-                    const topRow = document.getElementById('top-row');
-                    const bottomRow = document.getElementById('bottom-row');
-                    
-                    if (topRow && bottomRow) {
-                        topRow.style.width = 'max-content';
-                        bottomRow.style.width = 'max-content';
-                    }
                 }
             };
             
             fixMobileViewport();
             window.addEventListener('orientationchange', fixMobileViewport);
+        }
+        
+        // Enhanced Hero Animations
+        function initEnhancedHeroAnimations() {
+            // Create floating particles for hero section
+            createHeroParticles();
             
-            // Handle window resize for portfolio section
-            window.addEventListener('resize', () => {
-                if (window.innerWidth <= 768) {
-                    const topRow = document.getElementById('top-row');
-                    const bottomRow = document.getElementById('bottom-row');
+            // Enhanced card 3D effect on mouse move
+            const heroCard = document.getElementById('hero-card');
+            if (heroCard) {
+                heroCard.addEventListener('mousemove', (e) => {
+                    const rect = heroCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
                     
-                    if (topRow && bottomRow) {
-                        topRow.style.width = 'max-content';
-                        bottomRow.style.width = 'max-content';
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    heroCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                heroCard.addEventListener('mouseleave', () => {
+                    heroCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            }
+        }
+
+        // Create floating particles for hero section
+        function createHeroParticles() {
+            const particlesContainer = document.getElementById('particles-container');
+            if (!particlesContainer) return;
+            
+            const particleCount = window.innerWidth <= 768 ? 30 : 80;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute rounded-full bg-white';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Enhanced About Section Animations
+        function initEnhancedAboutAnimations() {
+            // Animate value cards on scroll
+            const valueCards = document.querySelectorAll('.value-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-fade-in-up');
+                        }, index * 100);
                     }
-                }
+                });
+            }, { threshold: 0.1 });
+            
+            valueCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Animate team members on scroll
+            const teamMembers = document.querySelectorAll('.team-member');
+            
+            const teamObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-fade-in-up');
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            teamMembers.forEach(member => {
+                teamObserver.observe(member);
             });
         }
     </script>
