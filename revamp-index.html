@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex IT Consulting</title>
+    <title>Metaseti Digital Indonesia</title>
     <style>
         * {
             margin: 0;
@@ -81,41 +81,61 @@
         .nebula {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.1;
-            animation: nebulaDrift 60s infinite ease-in-out alternate;
+            filter: blur(120px);
+            opacity: 0.15;
+            animation: nebulaDrift 50s infinite ease-in-out alternate;
         }
 
         .nebula1 {
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-            top: -200px;
-            left: -200px;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.4) 40%, transparent 70%);
+            top: -250px;
+            left: -250px;
+            animation-duration: 45s;
         }
 
         .nebula2 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, #818cf8 0%, transparent 70%);
-            bottom: -100px;
-            right: 10%;
-            animation-delay: -20s;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, rgba(129, 140, 248, 0.4) 40%, transparent 70%);
+            bottom: -150px;
+            right: 5%;
+            animation-delay: -15s;
+            animation-duration: 55s;
         }
 
         .nebula3 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, #a5b4fc 0%, transparent 70%);
-            top: 30%;
-            right: -150px;
-            animation-delay: -40s;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, rgba(165, 180, 252, 0.4) 40%, transparent 70%);
+            top: 25%;
+            right: -200px;
+            animation-delay: -30s;
+            animation-duration: 60s;
         }
 
         @keyframes nebulaDrift {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 30px) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1); }
+            0% { 
+                transform: translate(0, 0) scale(1) rotate(0deg); 
+                opacity: 0.12;
+            }
+            25% {
+                transform: translate(80px, 50px) scale(1.15) rotate(45deg);
+                opacity: 0.18;
+            }
+            50% { 
+                transform: translate(120px, -30px) scale(1.2) rotate(90deg); 
+                opacity: 0.15;
+            }
+            75% {
+                transform: translate(40px, 70px) scale(1.1) rotate(135deg);
+                opacity: 0.2;
+            }
+            100% { 
+                transform: translate(0, 0) scale(1) rotate(180deg); 
+                opacity: 0.12;
+            }
         }
 
         /* Stars */
@@ -131,115 +151,133 @@
             50% { opacity: 0.3; transform: scale(0.8); }
         }
 
-        @keyframes floatParticle {
-            0%, 100% {
-                transform: translateY(0) translateX(0) scale(1);
-                opacity: 0.6;
-            }
-            25% {
-                transform: translateY(-100px) translateX(50px) scale(1.2);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(-200px) translateX(-30px) scale(0.8);
-                opacity: 0.5;
-            }
-            75% {
-                transform: translateY(-150px) translateX(80px) scale(1.1);
-                opacity: 0.7;
-            }
-        }
-
         /* Aurora/Light waves */
         .aurora {
             position: absolute;
             width: 100%;
-            height: 300px;
+            height: 400px;
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(99, 102, 241, 0.15) 25%, 
-                rgba(129, 140, 248, 0.2) 50%, 
-                rgba(165, 180, 252, 0.15) 75%, 
+                rgba(99, 102, 241, 0.25) 20%,
+                rgba(129, 140, 248, 0.35) 40%, 
+                rgba(165, 180, 252, 0.3) 50%,
+                rgba(129, 140, 248, 0.35) 60%,
+                rgba(99, 102, 241, 0.25) 80%, 
                 transparent 100%);
-            filter: blur(40px);
-            animation: auroraFlow 15s infinite ease-in-out;
-            opacity: 0.5;
+            filter: blur(50px);
+            animation: auroraFlow 12s infinite ease-in-out;
+            opacity: 0.7;
         }
 
         .aurora1 {
-            top: 20%;
+            top: 15%;
             animation-delay: 0s;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(139, 92, 246, 0.3) 25%, 
+                rgba(99, 102, 241, 0.4) 50%, 
+                rgba(139, 92, 246, 0.3) 75%, 
+                transparent 100%);
         }
 
         .aurora2 {
-            top: 60%;
-            animation-delay: -5s;
-            animation-duration: 18s;
+            top: 55%;
+            animation-delay: -4s;
+            animation-duration: 15s;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(59, 130, 246, 0.25) 25%, 
+                rgba(129, 140, 248, 0.35) 50%, 
+                rgba(59, 130, 246, 0.25) 75%, 
+                transparent 100%);
         }
 
         @keyframes auroraFlow {
             0%, 100% {
-                transform: translateX(-50%) skewY(2deg);
-                opacity: 0.3;
+                transform: translateX(-60%) skewY(3deg) scaleY(1);
+                opacity: 0.5;
+            }
+            25% {
+                transform: translateX(-20%) skewY(-2deg) scaleY(1.2);
+                opacity: 0.8;
             }
             50% {
-                transform: translateX(50%) skewY(-2deg);
+                transform: translateX(60%) skewY(3deg) scaleY(1);
                 opacity: 0.6;
+            }
+            75% {
+                transform: translateX(20%) skewY(-2deg) scaleY(1.1);
+                opacity: 0.7;
             }
         }
 
         /* Additional Aurora layers */
         .aurora3 {
-            top: 40%;
-            animation-delay: -10s;
-            animation-duration: 20s;
-            height: 400px;
+            top: 35%;
+            animation-delay: -8s;
+            animation-duration: 18s;
+            height: 500px;
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(165, 180, 252, 0.1) 20%,
-                rgba(99, 102, 241, 0.2) 40%, 
-                rgba(129, 140, 248, 0.25) 50%,
-                rgba(99, 102, 241, 0.2) 60%, 
-                rgba(165, 180, 252, 0.1) 80%,
+                rgba(165, 180, 252, 0.2) 15%,
+                rgba(99, 102, 241, 0.35) 35%, 
+                rgba(168, 85, 247, 0.3) 50%,
+                rgba(99, 102, 241, 0.35) 65%, 
+                rgba(165, 180, 252, 0.2) 85%,
                 transparent 100%);
+            filter: blur(60px);
         }
 
         .aurora4 {
-            top: 80%;
-            animation-delay: -15s;
-            animation-duration: 22s;
-            height: 350px;
+            top: 75%;
+            animation-delay: -12s;
+            animation-duration: 20s;
+            height: 450px;
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(129, 140, 248, 0.12) 30%,
-                rgba(165, 180, 252, 0.18) 50%, 
-                rgba(129, 140, 248, 0.12) 70%,
+                rgba(79, 70, 229, 0.2) 20%,
+                rgba(129, 140, 248, 0.3) 40%,
+                rgba(165, 180, 252, 0.35) 50%, 
+                rgba(129, 140, 248, 0.3) 60%,
+                rgba(79, 70, 229, 0.2) 80%,
                 transparent 100%);
+            filter: blur(55px);
         }
 
         /* Vertical aurora beams */
         .aurora-beam {
             position: absolute;
-            width: 2px;
+            width: 3px;
             height: 100%;
             background: linear-gradient(to bottom, 
                 transparent 0%,
-                rgba(99, 102, 241, 0.3) 30%,
-                rgba(129, 140, 248, 0.4) 50%,
-                rgba(99, 102, 241, 0.3) 70%,
+                rgba(99, 102, 241, 0.4) 20%,
+                rgba(139, 92, 246, 0.5) 40%,
+                rgba(129, 140, 248, 0.6) 50%,
+                rgba(139, 92, 246, 0.5) 60%,
+                rgba(99, 102, 241, 0.4) 80%,
                 transparent 100%);
-            filter: blur(20px);
-            animation: beamShift 25s infinite ease-in-out;
+            filter: blur(25px);
+            animation: beamShift 20s infinite ease-in-out;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.8);
         }
 
         @keyframes beamShift {
             0%, 100% {
-                opacity: 0.3;
-                transform: translateX(0);
+                opacity: 0.4;
+                transform: translateX(0) scaleY(1);
+            }
+            25% {
+                opacity: 0.7;
+                transform: translateX(80px) scaleY(1.2);
             }
             50% {
-                opacity: 0.6;
-                transform: translateX(50px);
+                opacity: 0.5;
+                transform: translateX(-40px) scaleY(0.9);
+            }
+            75% {
+                opacity: 0.8;
+                transform: translateX(60px) scaleY(1.1);
             }
         }
 
@@ -262,21 +300,7 @@
             to { transform: rotate(360deg); }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(100px, -100px) scale(1.1);
-            }
-            66% {
-                transform: translate(-100px, 100px) scale(0.9);
-            }
-        }
-
-
-
-        /* Navigation - New Design */
+        /* Navigation */
         nav {
             position: fixed;
             top: 30px;
@@ -307,16 +331,10 @@
             gap: 8px;
         }
 
-        .logo-icon {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #6366f1, #818cf8);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -346,10 +364,6 @@
         .nav-links a.active {
             color: #ffffff;
             background: rgba(99, 102, 241, 0.2);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         /* Mobile menu toggle */
@@ -384,25 +398,35 @@
             position: relative;
         }
 
-        .hero-content {
-            max-width: 1400px;
+        .hero-container {
+            max-width: 900px;
             width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 100%;
+            width: 100%;
+            text-align: center;
         }
 
         .hero-content h1 {
-            font-size: clamp(60px, 8vw, 140px);
-            font-weight: 300;
+            font-size: clamp(50px, 5vw, 100px);
+            font-weight: 350;
             line-height: 1.1;
             margin-bottom: 40px;
             letter-spacing: -2px;
         }
 
         .hero-subtitle {
-            font-size: clamp(20px, 2.5vw, 32px);
+            font-size: clamp(18px, 2vw, 24px);
             font-weight: 300;
-            color: #888;
+            color: #ccc;
             max-width: 800px;
-            line-height: 1.4;
+            margin: 0 auto;
+            line-height: 1.5;
             letter-spacing: 0.5px;
         }
 
@@ -459,18 +483,36 @@
 
         .section-subtitle {
             font-size: clamp(16px, 1.8vw, 22px);
-            color: #888;
-            margin-bottom: 80px;
+            color: #bbb;
+            margin-bottom: 60px;
             max-width: 700px;
             line-height: 1.6;
         }
 
         /* About Section */
-        .about-grid {
+        .about-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 100px;
             margin-top: 60px;
+            align-items: start;
+        }
+
+        .about-header {
+            position: sticky;
+            top: 150px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
         }
 
         .about-text p {
@@ -480,38 +522,99 @@
             margin-bottom: 30px;
         }
 
-        .stats-grid {
+        /* Vision & Mission */
+        .vision-mission-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
-        .stat-item {
-            border-top: 1px solid #333;
-            padding-top: 20px;
+        .vision-mission-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .stat-number {
-            font-size: 60px;
-            font-weight: 300;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
-            color: #6366f1;
-            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        .vision-mission-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
 
-        .stat-label {
-            font-size: 14px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .vision-mission-item:hover::before {
+            opacity: 1;
+        }
+
+        .vision-mission-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .vm-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.4s;
+        }
+
+        .vm-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: #6366f1;
+            fill: none;
+            stroke-width: 2;
+            transition: all 0.4s;
+        }
+
+        .vision-mission-item:hover .vm-icon {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.6);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .vision-mission-item:hover .vm-icon svg {
+            stroke: #818cf8;
+            transform: scale(1.1);
+        }
+
+        .vm-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .vm-description {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.8;
         }
 
         /* Services Section */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-top: 60px;
         }
 
@@ -519,7 +622,7 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            padding: 50px 40px;
+            padding: 35px 30px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -553,7 +656,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .service-number {
@@ -573,7 +676,7 @@
         .service-icon-wrapper {
             width: 50px;
             height: 50px;
-            background: transparent;
+            background: rgba(99, 102, 241, 0.08);
             border: 2px solid rgba(99, 102, 241, 0.3);
             border-radius: 12px;
             display: flex;
@@ -583,100 +686,31 @@
             position: relative;
         }
 
-        .service-icon-wrapper::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: transparent;
-            border: 2px solid #6366f1;
-            border-radius: 50%;
-            opacity: 0.5;
+        .service-icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+            stroke: #6366f1;
+            fill: none;
+            stroke-width: 2;
             transition: all 0.4s;
-        }
-
-        .service-icon-wrapper::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #6366f1;
-            border-radius: 50%;
-            opacity: 0.7;
-            transition: all 0.4s;
-        }
-
-        /* Service-specific icon styles */
-        .service-card:nth-child(1) .service-icon-wrapper::before {
-            border-radius: 4px;
-            transform: rotate(45deg);
-        }
-
-        .service-card:nth-child(2) .service-icon-wrapper::before {
-            border-radius: 0;
-            width: 16px;
-            height: 16px;
-        }
-
-        .service-card:nth-child(2) .service-icon-wrapper::after {
-            width: 6px;
-            height: 6px;
-        }
-
-        .service-card:nth-child(3) .service-icon-wrapper::before {
-            border-radius: 2px;
-        }
-
-        .service-card:nth-child(4) .service-icon-wrapper::before {
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            border: none;
-            background: #6366f1;
-            opacity: 0.5;
-        }
-
-        .service-card:nth-child(5) .service-icon-wrapper::before {
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-        }
-
-        .service-card:nth-child(6) .service-icon-wrapper::before {
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-            border: none;
-            background: #6366f1;
-            opacity: 0.5;
         }
 
         .service-card:hover .service-icon-wrapper {
-            background: rgba(99, 102, 241, 0.05);
+            background: rgba(99, 102, 241, 0.15);
             border-color: rgba(99, 102, 241, 0.6);
-            transform: rotate(5deg) scale(1.1);
+            transform: scale(1.1);
             box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
         }
 
-        .service-card:hover .service-icon-wrapper::before {
-            transform: rotate(90deg) scale(1.2);
-            opacity: 0.8;
-        }
-
-        .service-card:hover .service-icon-wrapper::after {
-            transform: scale(1.3);
-            opacity: 1;
-        }
-
-        .service-card:nth-child(1):hover .service-icon-wrapper::before {
-            transform: rotate(90deg) scale(1.2);
-        }
-
-        .service-card:nth-child(4):hover .service-icon-wrapper::before,
-        .service-card:nth-child(5):hover .service-icon-wrapper::before,
-        .service-card:nth-child(6):hover .service-icon-wrapper::before {
-            transform: rotate(180deg) scale(1.2);
+        .service-card:hover .service-icon-wrapper svg {
+            stroke: #818cf8;
+            transform: scale(1.1);
         }
 
         .service-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: -0.5px;
             position: relative;
             z-index: 1;
@@ -684,7 +718,7 @@
 
         .service-description {
             font-size: 16px;
-            color: #999;
+            color: #bbb;
             line-height: 1.8;
             position: relative;
             z-index: 1;
@@ -728,6 +762,40 @@
             overflow: hidden;
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .load-more-button {
+            padding: 20px 45px;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid #333;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .load-more-button:hover {
+            background: #6366f1;
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .load-more-button.hidden {
+            display: none;
         }
 
         .portfolio-item::before {
@@ -798,7 +866,7 @@
 
         .portfolio-description {
             font-size: 16px;
-            color: #999;
+            color: #bbb;
             line-height: 1.8;
             max-width: 500px;
         }
@@ -889,7 +957,7 @@
 
         .contact-item {
             font-size: 16px;
-            color: #888;
+            color: #bbb;
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -923,7 +991,7 @@
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #888;
+            color: #aaa;
         }
 
         .form-group input,
@@ -995,14 +1063,27 @@
                 width: 92%;
             }
 
-            .about-grid,
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .about-header {
+                position: relative;
+                top: 0;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
 
             .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .service-card {
+                padding: 30px 25px;
             }
 
             .portfolio-item {
@@ -1020,21 +1101,6 @@
 
             .portfolio-visual {
                 height: 250px;
-            }
-
-            .nebula1 {
-                width: 600px;
-                height: 600px;
-            }
-
-            .nebula2, .nebula3 {
-                width: 500px;
-                height: 500px;
-            }
-
-            .galaxy {
-                width: 200px;
-                height: 100px;
             }
 
             .nav-links {
@@ -1066,12 +1132,6 @@
 
             .logo {
                 font-size: 16px;
-            }
-
-            .logo-icon {
-                width: 26px;
-                height: 26px;
-                font-size: 14px;
             }
 
             .nav-links {
@@ -1111,10 +1171,6 @@
                 transform: rotate(-45deg) translate(7px, -7px);
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
             .hero {
                 padding: 100px 30px 60px 30px;
             }
@@ -1136,7 +1192,7 @@
             }
 
             .service-card {
-                padding: 40px 30px;
+                padding: 30px 25px;
             }
         }
     </style>
@@ -1149,21 +1205,14 @@
 
     <!-- Animated Background -->
     <div class="animated-bg">
-        <!-- Nebula clouds -->
         <div class="nebula nebula1"></div>
         <div class="nebula nebula2"></div>
         <div class="nebula nebula3"></div>
-        
-        <!-- Distant galaxy -->
         <div class="galaxy"></div>
-        
-        <!-- Aurora waves -->
         <div class="aurora aurora1"></div>
         <div class="aurora aurora2"></div>
         <div class="aurora aurora3"></div>
         <div class="aurora aurora4"></div>
-        
-        <!-- Starfield will be generated by JavaScript -->
         <div id="starfield"></div>
         <div id="aurora-beams"></div>
     </div>
@@ -1171,8 +1220,7 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">
-            <div class="logo-icon">M</div>
-            <span>METASETI</span>
+            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo-Metaseti.png" alt="Metaseti Logo">
         </div>
         <div class="menu-toggle">
             <span></span>
@@ -1191,41 +1239,57 @@
     <div class="content">
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>An IT Consulting Firm Devoted To Building The Most Innovative Solutions For Your Business.</h1>
-                <p class="hero-subtitle">We transform complex technological challenges into seamless digital experiences through strategic consulting and cutting-edge implementation.</p>
-                <a href="#contact" class="cta-button">Start Your Project</a>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Impact Engineered. 
+                        <br>Advantage Secured.</h1>
+                    <p class="hero-subtitle">We don't hope for results; we build them. By intentionally engineering every move for maximum impact, we ensure your competitive advantage isn't just won—it's permanently secured.</p>
+                    <a href="#contact" class="cta-button">Start Your Project</a>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about">
             <div class="section-container">
-                <h2>About Studio</h2>
-                <p class="section-subtitle">A team of strategic thinkers and technical experts dedicated to delivering excellence.</p>
-                
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>Founded with a vision to bridge the gap between business strategy and technology execution, we've spent over a decade helping organizations navigate digital transformation.</p>
-                        <p>Our approach combines deep technical expertise with strategic thinking, ensuring every solution we deliver not only meets current needs but anticipates future challenges.</p>
+                <div class="about-container">
+                    <div class="about-header">
+                        <h2>About Metaseti</h2>
+                        <p class="section-subtitle">Pioneering digital transformation in Indonesia through innovation, expertise, and strategic vision.</p>
                     </div>
                     
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Projects Delivered</div>
+                    <div class="about-content">
+                        <div class="about-grid">
+                            <div class="about-text">
+                                <p>Born from a commitment to propel Indonesia's digital transformation, Metaseti Digital Indonesia stands at the forefront of technological innovation. 
+                                Our journey began with a simple yet powerful vision: to bridge the gap between cutting-edge technology and practical business solutions.</p>
+                                <p>Today, we engineer digital solutions and brand strategies that drive competitive advantage through precision development, measurable growth, and lasting impact. 
+                                Our team of experts brings together diverse talents and perspectives to create solutions that not only meet today's challenges but anticipate tomorrow's opportunities.</p>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">200+</div>
-                            <div class="stat-label">Clients Worldwide</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Team Members</div>
+                        
+                        <div class="vision-mission-grid">
+                            <div class="vision-mission-item">
+                                <div class="vm-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 5C7 5 2.73 8.11 1 12.5 2.73 16.89 7 20 12 20s9.27-3.11 11-7.5C21.27 8.11 17 5 12 5z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12.5" r="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="vm-title">Our Vision</div>
+                                <div class="vm-description">To be Indonesia's leading catalyst for digital transformation, empowering businesses to achieve unprecedented growth through innovative technology solutions and strategic excellence.</div>
+                            </div>
+                            <div class="vision-mission-item">
+                                <div class="vm-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16.24 7.76l-2.12 2.12M18.36 12H16M16.24 16.24l-2.12-2.12" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="vm-title">Our Mission</div>
+                                <div class="vm-description">To deliver world-class IT solutions and branding strategies that transform challenges into competitive advantages, fostering sustainable innovation and measurable success for every client.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1242,56 +1306,61 @@
                     <div class="service-card">
                         <div class="service-header">
                             <div class="service-number">01</div>
-                            <div class="service-icon-wrapper"></div>
+                            <div class="service-icon-wrapper">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8 21h8M12 17v4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="service-title">Cloud Infrastructure</div>
-                        <div class="service-description">Design, migrate, and optimize cloud architectures that scale with your business needs.</div>
+                        <div class="service-title">Custom Web/App Development</div>
+                        <div class="service-description">Build responsive, scalable web and mobile applications tailored to your business needs with cutting-edge technologies and user-centric design.</div>
                     </div>
                     
                     <div class="service-card">
                         <div class="service-header">
                             <div class="service-number">02</div>
-                            <div class="service-icon-wrapper"></div>
+                            <div class="service-icon-wrapper">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="service-title">Cybersecurity</div>
-                        <div class="service-description">Comprehensive security solutions to protect your digital assets and ensure compliance.</div>
+                        <div class="service-title">AI Machine Learning</div>
+                        <div class="service-description">Implement intelligent automation and predictive models that learn from your data to optimize operations and drive innovation.</div>
                     </div>
                     
                     <div class="service-card">
                         <div class="service-header">
                             <div class="service-number">03</div>
-                            <div class="service-icon-wrapper"></div>
+                            <div class="service-icon-wrapper">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="service-title">Custom Development</div>
-                        <div class="service-description">Bespoke software solutions tailored to your unique business requirements.</div>
+                        <div class="service-title">IoT & Digital Engineering</div>
+                        <div class="service-description">Connect and optimize your devices with smart IoT solutions and digital engineering that brings physical and digital worlds together.</div>
                     </div>
                     
                     <div class="service-card">
                         <div class="service-header">
                             <div class="service-number">04</div>
-                            <div class="service-icon-wrapper"></div>
+                            <div class="service-icon-wrapper">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 8v4M12 16h.01" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="service-title">Data Analytics</div>
-                        <div class="service-description">Transform raw data into actionable insights that drive strategic decision-making.</div>
+                        <div class="service-title">Branding & Identity</div>
+                        <div class="service-description">Craft compelling brand identities and digital experiences that resonate with your audience and establish lasting market presence.</div>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-header">
-                            <div class="service-number">05</div>
-                            <div class="service-icon-wrapper"></div>
-                        </div>
-                        <div class="service-title">Digital Transformation</div>
-                        <div class="service-description">End-to-end transformation strategies that modernize your operations.</div>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-header">
-                            <div class="service-number">06</div>
-                            <div class="service-icon-wrapper"></div>
-                        </div>
-                        <div class="service-title">IT Consulting</div>
-                        <div class="service-description">Strategic guidance to align technology investments with business objectives.</div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1303,65 +1372,59 @@
                 <p class="section-subtitle">Recent projects that showcase our approach and capabilities.</p>
                 
                 <div class="portfolio-container">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-portfolio="1">
                         <div class="portfolio-info">
                             <div class="portfolio-number">PROJECT 01</div>
-                            <div class="portfolio-title">Enterprise Cloud Migration</div>
-                            <div class="portfolio-description">Successfully migrated a Fortune 500 company's entire infrastructure to AWS, reducing costs by 40% while improving performance and scalability.</div>
-                            <div class="portfolio-category">Cloud Infrastructure</div>
+                            <div class="portfolio-title">E-Commerce Platform</div>
+                            <div class="portfolio-description">Developed a high-performance e-commerce platform with real-time inventory management, secure payment gateway integration, and personalized shopping experiences serving 50,000+ daily users.</div>
+                            <div class="portfolio-category">Web Development</div>
                         </div>
                         <div class="portfolio-visual"></div>
                     </div>
                     
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-portfolio="2">
                         <div class="portfolio-info">
                             <div class="portfolio-number">PROJECT 02</div>
-                            <div class="portfolio-title">Healthcare Platform</div>
-                            <div class="portfolio-description">Built a HIPAA-compliant telemedicine platform serving over 100,000 patients with real-time video consultations and secure medical records.</div>
-                            <div class="portfolio-category">Custom Development</div>
+                            <div class="portfolio-title">Predictive Maintenance System</div>
+                            <div class="portfolio-description">Built an AI-powered predictive maintenance solution for manufacturing, reducing equipment downtime by 60% through machine learning algorithms that anticipate failures before they occur.</div>
+                            <div class="portfolio-category">AI & Machine Learning</div>
                         </div>
                         <div class="portfolio-visual"></div>
                     </div>
                     
-                    <div class="portfolio-item">
+                    <div class="portfolio-item hidden" data-portfolio="3">
                         <div class="portfolio-info">
                             <div class="portfolio-number">PROJECT 03</div>
-                            <div class="portfolio-title">Financial Analytics Dashboard</div>
-                            <div class="portfolio-description">Developed a real-time analytics platform processing millions of transactions daily, providing actionable insights for investment decisions.</div>
+                            <div class="portfolio-title">Business Intelligence Dashboard</div>
+                            <div class="portfolio-description">Created a comprehensive analytics platform processing millions of data points daily, providing real-time insights and AI-driven recommendations for strategic decision-making across multiple departments.</div>
                             <div class="portfolio-category">Data Analytics</div>
                         </div>
                         <div class="portfolio-visual"></div>
                     </div>
                     
-                    <div class="portfolio-item">
+                    <div class="portfolio-item hidden" data-portfolio="4">
                         <div class="portfolio-info">
                             <div class="portfolio-number">PROJECT 04</div>
-                            <div class="portfolio-title">Secure Banking Application</div>
-                            <div class="portfolio-description">Created a mobile banking app with biometric authentication and fraud detection, serving 2 million users with zero security breaches.</div>
-                            <div class="portfolio-category">Cybersecurity</div>
+                            <div class="portfolio-title">Smart Factory IoT Solution</div>
+                            <div class="portfolio-description">Implemented an end-to-end IoT ecosystem connecting 1,000+ sensors and devices, enabling real-time monitoring, automated quality control, and optimized production workflows.</div>
+                            <div class="portfolio-category">IoT & Digital Engineering</div>
                         </div>
                         <div class="portfolio-visual"></div>
                     </div>
                     
-                    <div class="portfolio-item">
+                    <div class="portfolio-item hidden" data-portfolio="5">
                         <div class="portfolio-info">
                             <div class="portfolio-number">PROJECT 05</div>
-                            <div class="portfolio-title">ERP System Integration</div>
-                            <div class="portfolio-description">Integrated multiple legacy systems into a unified ERP solution, streamlining operations across 50+ locations worldwide.</div>
-                            <div class="portfolio-category">Digital Transformation</div>
+                            <div class="portfolio-title">Corporate Rebranding Campaign</div>
+                            <div class="portfolio-description">Designed and executed a complete brand transformation including visual identity, digital presence, and marketing strategy, resulting in 250% increase in brand recognition and market engagement.</div>
+                            <div class="portfolio-category">Branding & Identity</div>
                         </div>
                         <div class="portfolio-visual"></div>
                     </div>
-                    
-                    <div class="portfolio-item">
-                        <div class="portfolio-info">
-                            <div class="portfolio-number">PROJECT 06</div>
-                            <div class="portfolio-title">AI-Powered CRM</div>
-                            <div class="portfolio-description">Implemented machine learning algorithms to predict customer behavior, increasing sales conversions by 35% and improving retention rates.</div>
-                            <div class="portfolio-category">Custom Development</div>
-                        </div>
-                        <div class="portfolio-visual"></div>
-                    </div>
+                </div>
+
+                <div class="load-more-container">
+                    <button class="load-more-button" id="loadMoreBtn">Load More</button>
                 </div>
             </div>
         </section>
@@ -1379,17 +1442,17 @@
                         <div class="contact-details">
                             <div class="contact-item">
                                 <div class="contact-label">Email</div>
-                                <div class="contact-value">hello@metaseti.digital</div>
+                                <div class="contact-value">hello@metaseti.com</div>
                             </div>
                             
                             <div class="contact-item">
                                 <div class="contact-label">Phone</div>
-                                <div class="contact-value">+1 (555) 123-4567</div>
+                                <div class="contact-value">+62 81385073901</div>
                             </div>
                             
                             <div class="contact-item">
                                 <div class="contact-label">Location</div>
-                                <div class="contact-value">123 Tech Street<br>Silicon Valley, CA 94025</div>
+                                <div class="contact-value">Jalan Gading Batavia Blok LC 10 No.7, RT 10, RW 7 <br>Kelapa Gading, Jakarta Utara, DKI Jakarta, 14240</div>
                             </div>
                         </div>
                     </div>
@@ -1424,7 +1487,7 @@
 
     <script>
         // Typing animation
-        const text = "Welcome to Metaseti Digital";
+        const text = "Welcome to Metaseti Digital Indonesia";
         const typingElement = document.getElementById('typingText');
         let charIndex = 0;
 
@@ -1441,7 +1504,6 @@
             }
         }
 
-        // Start typing animation
         setTimeout(typeText, 500);
 
         // Generate starfield
@@ -1452,20 +1514,13 @@
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                
-                // Random size
                 const size = Math.random() * 2 + 0.5;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
-                
-                // Random position
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-                
-                // Random animation delay and duration
                 star.style.animationDelay = Math.random() * 3 + 's';
                 star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                
                 starfield.appendChild(star);
             }
         }
@@ -1473,54 +1528,53 @@
         // Generate aurora beams
         function createAuroraBeams() {
             const beamsContainer = document.getElementById('aurora-beams');
-            const beamCount = 6;
+            const beamCount = 10;
+            const beamColors = [
+                'linear-gradient(to bottom, transparent 0%, rgba(99, 102, 241, 0.4) 20%, rgba(139, 92, 246, 0.5) 40%, rgba(129, 140, 248, 0.6) 50%, rgba(139, 92, 246, 0.5) 60%, rgba(99, 102, 241, 0.4) 80%, transparent 100%)',
+                'linear-gradient(to bottom, transparent 0%, rgba(59, 130, 246, 0.4) 20%, rgba(129, 140, 248, 0.5) 40%, rgba(165, 180, 252, 0.6) 50%, rgba(129, 140, 248, 0.5) 60%, rgba(59, 130, 246, 0.4) 80%, transparent 100%)',
+                'linear-gradient(to bottom, transparent 0%, rgba(168, 85, 247, 0.4) 20%, rgba(139, 92, 246, 0.5) 40%, rgba(165, 180, 252, 0.6) 50%, rgba(139, 92, 246, 0.5) 60%, rgba(168, 85, 247, 0.4) 80%, transparent 100%)',
+                'linear-gradient(to bottom, transparent 0%, rgba(79, 70, 229, 0.4) 20%, rgba(99, 102, 241, 0.5) 40%, rgba(129, 140, 248, 0.6) 50%, rgba(99, 102, 241, 0.5) 60%, rgba(79, 70, 229, 0.4) 80%, transparent 100%)'
+            ];
             
             for (let i = 0; i < beamCount; i++) {
                 const beam = document.createElement('div');
                 beam.className = 'aurora-beam';
-                
-                // Random position
-                beam.style.left = (i * 20 + Math.random() * 10) + '%';
-                
-                // Random animation delay and duration
-                beam.style.animationDelay = Math.random() * 15 + 's';
-                beam.style.animationDuration = (Math.random() * 15 + 20) + 's';
-                
+                beam.style.left = (i * 11 + Math.random() * 8) + '%';
+                beam.style.background = beamColors[Math.floor(Math.random() * beamColors.length)];
+                beam.style.width = (Math.random() * 2 + 2) + 'px';
+                beam.style.animationDelay = Math.random() * 20 + 's';
+                beam.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                beam.style.filter = `blur(${Math.random() * 15 + 20}px)`;
                 beamsContainer.appendChild(beam);
             }
         }
         
-        // Initialize starfield and beams
         createStarfield();
         createAuroraBeams();
 
-        // Parallax effect for nebula and galaxy on scroll
+        // Parallax effect
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             
             const nebulas = document.querySelectorAll('.nebula');
             nebulas.forEach((nebula, index) => {
                 const speed = 0.2 + (index * 0.1);
-                const yPos = scrolled * speed;
-                nebula.style.transform = `translateY(${yPos}px)`;
+                nebula.style.transform = `translateY(${scrolled * speed}px)`;
             });
             
             const galaxy = document.querySelector('.galaxy');
             if (galaxy) {
-                const yPos = scrolled * 0.15;
-                galaxy.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
+                galaxy.style.transform = `translateY(${scrolled * 0.15}px) rotate(${scrolled * 0.05}deg)`;
             }
             
-            // Parallax for aurora
             const auroras = document.querySelectorAll('.aurora');
             auroras.forEach((aurora, index) => {
                 const speed = 0.1 + (index * 0.05);
-                const yPos = scrolled * speed;
-                aurora.style.transform = `translateY(${yPos}px) skewY(2deg)`;
+                aurora.style.transform = `translateY(${scrolled * speed}px) skewY(2deg)`;
             });
         });
 
-        // Mobile menu toggle
+        // Mobile menu
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
 
@@ -1529,7 +1583,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function() {
                 menuToggle.classList.remove('active');
@@ -1544,8 +1597,6 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Update active link
                     document.querySelectorAll('.nav-links a').forEach(link => {
                         link.classList.remove('active');
                     });
@@ -1561,7 +1612,33 @@
             this.reset();
         });
 
-        // Intersection Observer for scroll animations
+        // Load More Portfolio Items
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                const hiddenItems = document.querySelectorAll('.portfolio-item.hidden');
+                
+                hiddenItems.forEach(item => {
+                    item.classList.remove('hidden');
+                    // Add fade-in animation
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                    
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+                
+                // Hide the load more button
+                this.classList.add('hidden');
+            });
+        }
+
+        // Intersection Observer
         const observerOptions = {
             threshold: 0.2,
             rootMargin: '0px 0px -100px 0px'
@@ -1576,7 +1653,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .portfolio-item, .stat-item').forEach(el => {
+        document.querySelectorAll('.service-card, .portfolio-item:not(.hidden), .vision-mission-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
