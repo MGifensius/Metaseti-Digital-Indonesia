@@ -434,25 +434,25 @@
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            padding: 20px 45px;
-            background: #6366f1;
+            padding: 22px 50px;
+            background: #818cf8;
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 500;
-            font-size: 15px;
+            font-weight: 600;
+            font-size: 17px;
             margin-top: 50px;
             transition: all 0.3s;
             letter-spacing: 0.5px;
-            border: 2px solid #6366f1;
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+            border: 3px solid #a5b4fc;
+            box-shadow: 0 4px 20px rgba(129, 140, 248, 0.6);
         }
 
         .cta-button:hover {
-            background: #818cf8;
-            border-color: #818cf8;
+            background: #a5b4fc;
+            border-color: #c7d2fe;
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 8px 30px rgba(165, 180, 252, 0.8);
         }
 
         .cta-button::after {
@@ -608,6 +608,168 @@
             font-size: 16px;
             color: #aaa;
             line-height: 1.8;
+        }
+
+        /* Motto Section */
+        .motto-section {
+            background: rgba(99, 102, 241, 0.05);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motto-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .motto-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: 50%;
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            position: relative;
+        }
+
+        .motto-icon svg {
+            width: 35px;
+            height: 35px;
+            stroke: #818cf8;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .motto-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #6366f1;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .motto-text {
+            font-size: 28px;
+            font-weight: 300;
+            color: #ffffff;
+            line-height: 1.6;
+            letter-spacing: -0.5px;
+            font-style: italic;
+            position: relative;
+        }
+
+        /* Core Values Section */
+        .core-values-section {
+            margin-top: 60px;
+        }
+
+        .core-values-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        .core-values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .core-value-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 35px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .core-value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .core-value-item:hover::before {
+            opacity: 1;
+        }
+
+        .core-value-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .cv-icon {
+            width: 55px;
+            height: 55px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.4s;
+        }
+
+        .cv-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #6366f1;
+            fill: none;
+            stroke-width: 2;
+            transition: all 0.4s;
+        }
+
+        .core-value-item:hover .cv-icon {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.6);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .core-value-item:hover .cv-icon svg {
+            stroke: #818cf8;
+            transform: scale(1.1);
+        }
+
+        .cv-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .cv-description {
+            font-size: 15px;
+            color: #aaa;
+            line-height: 1.7;
         }
 
         /* Services Section */
@@ -775,23 +937,23 @@
         }
 
         .load-more-button {
-            padding: 20px 45px;
-            background: transparent;
+            padding: 22px 50px;
+            background: rgba(165, 180, 252, 0.15);
             color: #ffffff;
-            border: 1px solid #333;
+            border: 3px solid #818cf8;
             border-radius: 50px;
-            font-size: 15px;
-            font-weight: 400;
+            font-size: 17px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             letter-spacing: 0.5px;
         }
 
         .load-more-button:hover {
-            background: #6366f1;
-            border-color: #6366f1;
+            background: #818cf8;
+            border-color: #a5b4fc;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 8px 30px rgba(129, 140, 248, 0.8);
         }
 
         .load-more-button.hidden {
@@ -996,7 +1158,7 @@
 
         .form-group input,
         .form-group textarea {
-            padding: 18px 0;
+            padding: 18px 0 18px 20px;
             background: transparent;
             border: none;
             border-bottom: 1px solid #333;
@@ -1019,13 +1181,13 @@
         }
 
         .submit-button {
-            padding: 20px 45px;
-            background: transparent;
+            padding: 22px 50px;
+            background: rgba(165, 180, 252, 0.15);
             color: #ffffff;
-            border: 1px solid #333;
+            border: 3px solid #818cf8;
             border-radius: 50px;
-            font-size: 15px;
-            font-weight: 400;
+            font-size: 17px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             letter-spacing: 0.5px;
@@ -1033,19 +1195,18 @@
         }
 
         .submit-button:hover {
-            background: #6366f1;
-            border-color: #6366f1;
+            background: #818cf8;
+            border-color: #a5b4fc;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 8px 30px rgba(129, 140, 248, 0.8);
         }
 
         /* Footer */
         footer {
             padding: 60px;
-            border-top: 1px solid #222;
             text-align: center;
             font-size: 14px;
-            color: #666;
+            color: #fff;
             letter-spacing: 1px;
         }
 
@@ -1291,6 +1452,88 @@
                                 <div class="vm-description">To deliver world-class IT solutions and branding strategies that transform challenges into competitive advantages, fostering sustainable innovation and measurable success for every client.</div>
                             </div>
                         </div>
+
+                        <!-- Motto Section -->
+                        <div class="motto-section">
+                            <div class="motto-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="motto-title">Our Motto</h3>
+                            <p class="motto-text">"Innovation Through Collaboration, Excellence Through Dedication"</p>
+                        </div>
+
+                        <!-- Core Values Section -->
+                        <div class="core-values-section">
+                            <h3 class="core-values-title">Core Values</h3>
+                            <div class="core-values-grid">
+                                <div class="core-value-item">
+                                    <div class="cv-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cv-title">Innovation</div>
+                                    <div class="cv-description">Continuously pushing boundaries to deliver cutting-edge solutions that drive industry transformation.</div>
+                                </div>
+
+                                <div class="core-value-item">
+                                    <div class="cv-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cv-title">Collaboration</div>
+                                    <div class="cv-description">Building strong partnerships with clients, working together to achieve shared goals and mutual success.</div>
+                                </div>
+
+                                <div class="core-value-item">
+                                    <div class="cv-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cv-title">Excellence</div>
+                                    <div class="cv-description">Maintaining the highest standards in every project, ensuring quality and precision in all deliverables.</div>
+                                </div>
+
+                                <div class="core-value-item">
+                                    <div class="cv-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cv-title">Integrity</div>
+                                    <div class="cv-description">Operating with transparency, honesty, and ethical principles in all business relationships and decisions.</div>
+                                </div>
+
+                                <div class="core-value-item">
+                                    <div class="cv-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cv-title">Commitment</div>
+                                    <div class="cv-description">Dedicated to delivering on promises, meeting deadlines, and providing unwavering support to our clients.</div>
+                                </div>
+
+                                <div class="core-value-item">
+                                    <div class="cv-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <line x1="12" y1="22.08" x2="12" y2="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cv-title">Adaptability</div>
+                                    <div class="cv-description">Embracing change and evolving with technology trends to remain at the forefront of digital innovation.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1481,7 +1724,7 @@
 
         <!-- Footer -->
         <footer>
-            <p>© 2025 METASETI DIGITAL — ALL RIGHTS RESERVED</p>
+            <p>© 2025 METASETI DIGITAL INDONESIA — ALL RIGHTS RESERVED</p>
         </footer>
     </div>
 
@@ -1653,7 +1896,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .portfolio-item:not(.hidden), .vision-mission-item').forEach(el => {
+        document.querySelectorAll('.service-card, .portfolio-item:not(.hidden), .vision-mission-item, .core-value-item, .motto-section').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
