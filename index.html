@@ -69,7 +69,7 @@
             line-height: 1.6;
         }
 
-        /* Animated Background - Wave Dots Pattern */
+        /* Complex Parallax Background */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -78,17 +78,72 @@
             height: 100%;
             z-index: 0;
             overflow: hidden;
-            background: #000000;
+            background: radial-gradient(ellipse at top, #0a0510 0%, #000000 50%, #000000 100%);
         }
 
-        .wave-canvas {
+        .parallax-layer {
             position: absolute;
-            top: 0;
-            left: 0;
+            width: 100%;
+            height: 200%;
+            pointer-events: none;
+        }
+
+        .parallax-shape {
+            position: absolute;
+            transition: transform 0.1s ease-out;
+        }
+
+        .shape-blob {
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .shape-ring {
+            border-radius: 50%;
+            border: 2px solid;
+            filter: blur(2px);
+        }
+
+        .shape-line {
+            height: 1px;
+            transform-origin: left center;
+        }
+
+        .shape-grid {
+            background-image: 
+                linear-gradient(rgba(124, 58, 237, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.08) 1px, transparent 1px);
+            background-size: 80px 80px;
+            filter: blur(0.5px);
             width: 100%;
             height: 100%;
-            will-change: transform;
-            transform: translateZ(0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -20px); }
+            50% { transform: translate(-15px, 15px); }
+            75% { transform: translate(15px, 10px); }
         }
 
         /* Navigation */
@@ -223,7 +278,7 @@
             justify-content: center;
             padding: 120px 60px 80px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.2);
+            background: transparent;
         }
 
         .hero-content {
@@ -286,12 +341,7 @@
         section {
             padding: 100px 60px;
             position: relative;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-        }
-        
-        section:nth-child(odd) {
-            background: rgba(19, 19, 19, 0.4);
+            background: transparent;
         }
 
         .section-container {
@@ -329,322 +379,642 @@
             transform: translateY(0);
         }
 
-        /* About Section */
-        .about-grid {
+        /* About Section - Redesigned */
+        .about-container {
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .about-hero {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .about-hero-text {
+            flex: 1;
+        }
+
+        .about-highlight {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #7C3AED;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .about-highlight::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #7C3AED, transparent);
+        }
+
+        .about-hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #F5F5F5 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero-description {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            line-height: 2;
+            color: #A0A0A0;
+            max-width: 600px;
+        }
+
+        .about-stats {
+            flex: 0 0 400px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            margin-top: 60px;
+            gap: 30px;
         }
 
-        .about-text p {
+        .stat-box {
+            position: relative;
+            padding: 35px 30px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+            transition: all 0.5s;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #7C3AED, transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .stat-box:hover::before {
+            opacity: 1;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: #7C3AED;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 15px;
-            line-height: 1.9;
+            font-size: 13px;
             color: #A0A0A0;
-            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .vision-mission-grid {
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-item {
+            position: relative;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 28, 77, 0.2) 100%);
+            border: 1px solid rgba(124, 58, 237, 0.15);
+            border-radius: 20px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.1) 100%);
+            transition: height 0.6s;
+            border-radius: 20px;
+        }
+
+        .feature-item:hover::after {
+            height: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.2);
+        }
+
+        .feature-icon {
+            position: relative;
+            z-index: 1;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(124, 58, 237, 0.1);
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            margin-bottom: 25px;
+            transition: all 0.6s;
+        }
+
+        .feature-item:hover .feature-icon {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.6);
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: #7C3AED;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .feature-title {
+            position: relative;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #F5F5F5;
+            margin-bottom: 15px;
+        }
+
+        .feature-text {
+            position: relative;
+            z-index: 1;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #A0A0A0;
+        }
+
+        .vision-mission-wrapper {
+            position: relative;
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .vm-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(124, 58, 237, 0.5) 50%, transparent 100%);
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .vm-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: #7C3AED;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+        }
+
+        .vision-section,
+        .mission-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+        }
+
+        .mission-section {
+            flex-direction: row-reverse;
+        }
+
+        .vm-visual {
+            flex: 0 0 280px;
+            height: 280px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vm-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vm-circle-1 {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .vm-circle-2 {
+            width: 200px;
+            height: 200px;
+            border-color: rgba(124, 58, 237, 0.4);
+            animation: rotate 20s linear infinite;
+        }
+
+        .vm-circle-3 {
+            width: 120px;
+            height: 120px;
+            background: rgba(124, 58, 237, 0.2);
+            border: none;
+            animation: pulse 3s ease-in-out infinite reverse;
+        }
+
+        .vision-section:hover .vm-circle,
+        .mission-section:hover .vm-circle {
+            transform: scale(1.1);
+        }
+
+        .vm-icon-large {
+            position: relative;
+            z-index: 2;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #7C3AED;
+            border-radius: 50%;
+            transition: all 0.6s;
+        }
+
+        .vision-section:hover .vm-icon-large,
+        .mission-section:hover .vm-icon-large {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.8);
+        }
+
+        .vm-icon-large svg {
+            width: 40px;
+            height: 40px;
+            stroke: #7C3AED;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .vm-content {
+            flex: 1;
+            position: relative;
+        }
+
+        .vm-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #7C3AED;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .vm-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(124, 58, 237, 0.5) 0%, transparent 100%);
+        }
+
+        .mission-section .vm-label::after {
+            display: none;
+        }
+
+        .mission-section .vm-label::before {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(124, 58, 237, 0.5) 100%);
+        }
+
+        .vm-heading {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #F5F5F5;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #F5F5F5 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vm-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            line-height: 2;
+            color: #A0A0A0;
+        }
+
+        /* Services Section - Redesigned */
+        #services {
+            padding: 120px 60px;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             margin-top: 60px;
         }
 
-        .vision-mission-item {
-            padding: 40px;
-            background: rgba(26, 28, 77, 0.1);
-            border: 1px solid rgba(26, 28, 77, 0.3);
-            border-radius: 12px;
-            transition: all 0.4s ease;
-        }
-
-        .vision-mission-item:hover {
-            background: rgba(26, 28, 77, 0.2);
-            border-color: rgba(26, 28, 77, 0.6);
-            box-shadow: 0 0 40px rgba(26, 28, 77, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .vm-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(26, 28, 77, 0.3);
-            border-radius: 10px;
-            transition: all 0.4s;
-        }
-
-        .vision-mission-item:hover .vm-icon {
-            background: rgba(26, 28, 77, 0.5);
-            box-shadow: 0 0 20px rgba(26, 28, 77, 0.6);
-        }
-
-        .vm-icon svg {
-            width: 30px;
-            height: 30px;
-            stroke: #7C3AED;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .vm-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            color: #F5F5F5;
-            text-transform: uppercase;
-        }
-
-        .vm-description {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
-            color: #A0A0A0;
-            line-height: 1.8;
-        }
-
-        /* Services/Resources Grid */
-        #services {
-            background: rgba(26, 28, 77, 0.05);
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .resource-card {
+        .service-item {
             position: relative;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(26, 28, 77, 0.3);
-            border-radius: 12px;
-            padding: 40px 30px;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(26, 28, 77, 0.2) 100%);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 24px;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
 
-        .resource-card::before {
+        .service-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(26, 28, 77, 0.2) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%);
             opacity: 0;
-            transition: opacity 0.4s;
+            transition: opacity 0.6s;
         }
 
-        .resource-card:hover::before {
+        .service-item:hover::before {
             opacity: 1;
         }
 
-        .resource-card:hover {
-            border-color: #1A1C4D;
-            box-shadow: 0 0 50px rgba(26, 28, 77, 0.6);
-            transform: translateY(-8px);
+        .service-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 30px 80px rgba(124, 58, 237, 0.3);
+            background: linear-gradient(135deg, rgba(26, 28, 77, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
         }
 
-        .resource-header {
+        .service-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 40px;
         }
 
-        .resource-number {
+        .service-index {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
+            font-size: 14px;
             color: #7C3AED;
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
-        .resource-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(26, 28, 77, 0.3);
-            border: 2px solid rgba(26, 28, 77, 0.5);
-            border-radius: 10px;
+        .service-icon-box {
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s;
+            background: rgba(124, 58, 237, 0.15);
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 16px;
+            transition: all 0.6s;
         }
 
-        .resource-card:hover .resource-icon {
-            background: rgba(26, 28, 77, 0.6);
-            border-color: #1A1C4D;
-            box-shadow: 0 0 20px rgba(26, 28, 77, 0.8);
+        .service-item:hover .service-icon-box {
+            background: rgba(124, 58, 237, 0.25);
+            border-color: rgba(124, 58, 237, 0.6);
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4);
         }
 
-        .resource-icon svg {
-            width: 24px;
-            height: 24px;
+        .service-icon-box svg {
+            width: 35px;
+            height: 35px;
             stroke: #7C3AED;
             fill: none;
             stroke-width: 2;
         }
 
-        .resource-title {
+        .service-content h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 700;
             color: #F5F5F5;
-        }
-
-        .resource-description {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
-            color: #A0A0A0;
-            line-height: 1.8;
-        }
-
-        /* Portfolio Section */
-        .portfolio-container {
-            margin-top: 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .portfolio-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            padding: 50px;
-            background: rgba(26, 28, 77, 0.05);
-            border: 1px solid rgba(26, 28, 77, 0.2);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
-
-        .portfolio-item.hidden {
-            display: none;
-        }
-
-        .portfolio-item:hover {
-            border-color: #1A1C4D;
-            background: rgba(26, 28, 77, 0.1);
-            transform: translateX(10px);
-            box-shadow: 0 10px 60px rgba(26, 28, 77, 0.4);
-        }
-
-        .portfolio-item:nth-child(even) {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .portfolio-item:nth-child(even):hover {
-            transform: translateX(-10px);
-        }
-
-        .portfolio-item:nth-child(even) .portfolio-info {
-            order: 2;
-        }
-
-        .portfolio-item:nth-child(even) .portfolio-visual {
-            order: 1;
-        }
-
-        .portfolio-info {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .portfolio-number {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
-            color: #7C3AED;
-            font-weight: 500;
-            letter-spacing: 2px;
-        }
-
-        .portfolio-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
-            color: #F5F5F5;
+            margin-bottom: 20px;
             line-height: 1.3;
         }
 
-        .portfolio-description {
+        .service-content p {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
+            font-size: 15px;
+            line-height: 1.9;
             color: #A0A0A0;
-            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
-        .portfolio-category {
+        .service-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .feature-badge {
             font-family: 'Courier New', Courier, monospace;
-            display: inline-block;
-            font-size: 11px;
-            color: #A0A0A0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 8px 20px;
-            border: 1px solid rgba(26, 28, 77, 0.5);
+            font-size: 12px;
+            padding: 8px 18px;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 20px;
-            align-self: flex-start;
+            color: #A0A0A0;
             transition: all 0.3s;
         }
 
-        .portfolio-item:hover .portfolio-category {
-            border-color: #1A1C4D;
+        .service-item:hover .feature-badge {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.5);
             color: #F5F5F5;
-            box-shadow: 0 0 20px rgba(26, 28, 77, 0.5);
         }
 
-        .portfolio-visual {
-            height: 280px;
-            background: linear-gradient(135deg, rgba(26, 28, 77, 0.3) 0%, rgba(124, 58, 237, 0.1) 100%);
-            border-radius: 12px;
-            border: 1px solid rgba(26, 28, 77, 0.3);
+        /* Portfolio Section - Redesigned */
+        #portfolio {
+            padding: 120px 60px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .portfolio-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 28, 77, 0.2) 100%);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .portfolio-card.hidden {
+            display: none;
+        }
+
+        .portfolio-card:hover {
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 30px 80px rgba(124, 58, 237, 0.3);
+            transform: translateY(-10px);
+        }
+
+        .portfolio-image {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(26, 28, 77, 0.3) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            color: rgba(26, 28, 77, 0.5);
-            transition: all 0.4s;
+            overflow: hidden;
         }
 
-        .portfolio-item:hover .portfolio-visual {
-            border-color: #1A1C4D;
-            box-shadow: 0 0 40px rgba(26, 28, 77, 0.4);
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s;
+        }
+
+        .portfolio-card:hover .portfolio-image::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .portfolio-placeholder {
+            font-size: 80px;
+            color: rgba(124, 58, 237, 0.3);
+            z-index: 1;
+            transition: all 0.6s;
+        }
+
+        .portfolio-card:hover .portfolio-placeholder {
+            transform: scale(1.2) rotate(10deg);
+            color: rgba(124, 58, 237, 0.5);
+        }
+
+        .portfolio-content {
+            padding: 40px;
+        }
+
+        .portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-num {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #7C3AED;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        .portfolio-cat {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            padding: 6px 16px;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            color: #A0A0A0;
+            transition: all 0.3s;
+        }
+
+        .portfolio-card:hover .portfolio-cat {
+            background: rgba(124, 58, 237, 0.25);
+            border-color: rgba(124, 58, 237, 0.5);
+            color: #F5F5F5;
+        }
+
+        .portfolio-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #F5F5F5;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .portfolio-content p {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #A0A0A0;
         }
 
         .load-more-button {
-            padding: 16px 40px;
+            padding: 18px 50px;
             background: transparent;
             color: #F5F5F5;
-            border: 2px solid #1A1C4D;
-            border-radius: 8px;
+            border: 2px solid rgba(124, 58, 237, 0.5);
+            border-radius: 12px;
             font-family: 'Poppins', sans-serif;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s;
             letter-spacing: 0.5px;
-            margin: 40px auto 0;
+            margin: 60px auto 0;
             display: block;
         }
 
         .load-more-button:hover {
-            background: #1A1C4D;
-            box-shadow: 0 0 30px rgba(26, 28, 77, 0.6);
-            transform: translateY(-2px);
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7C3AED;
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.4);
+            transform: translateY(-3px);
         }
 
         .load-more-button.hidden {
@@ -777,21 +1147,44 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .about-grid,
-            .vision-mission-grid {
+            .services-grid,
+            .portfolio-grid {
                 grid-template-columns: 1fr;
             }
 
-            .portfolio-item {
-                grid-template-columns: 1fr !important;
+            .about-hero {
+                flex-direction: column;
+                gap: 50px;
             }
 
-            .portfolio-item:nth-child(even) .portfolio-info {
-                order: 1;
+            .about-stats {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 500px;
             }
 
-            .portfolio-item:nth-child(even) .portfolio-visual {
-                order: 2;
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-section,
+            .mission-section {
+                flex-direction: column !important;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .vm-visual {
+                flex: 0 0 auto;
+            }
+
+            .vm-label::after,
+            .mission-section .vm-label::before {
+                display: none !important;
+            }
+
+            .vm-label {
+                justify-content: center;
             }
 
             .contact-grid {
@@ -848,12 +1241,29 @@
                 padding: 60px 30px;
             }
 
+            #services,
+            #portfolio {
+                padding: 80px 30px;
+            }
+
             .hero {
                 padding: 100px 30px 60px;
             }
 
-            .resources-grid {
-                grid-template-columns: 1fr;
+            .service-item {
+                padding: 40px 30px;
+            }
+
+            .portfolio-content {
+                padding: 30px 25px;
+            }
+
+            .about-hero-title {
+                font-size: 36px;
+            }
+
+            .about-highlight::before {
+                width: 20px;
             }
 
             .loading-screen {
@@ -876,9 +1286,7 @@
         <div class="typing-text" id="typingText"></div>
     </div>
 
-    <div class="animated-bg">
-        <canvas class="wave-canvas" id="waveCanvas"></canvas>
-    </div>
+    <div class="animated-bg" id="parallaxBg"></div>
 
     <nav>
         <div class="logo">
@@ -913,31 +1321,88 @@
                 <h2 class="fade-in">About Metaseti</h2>
                 <p class="section-subtitle fade-in">Pioneering digital transformation in Indonesia through innovation, expertise, and strategic vision.</p>
                 
-                <div class="about-grid">
-                    <div class="about-text fade-in">
-                        <p>Born from a commitment to propel Indonesia's digital transformation, Metaseti Digital Indonesia stands at the forefront of technological innovation. Our journey began with a simple yet powerful vision: to bridge the gap between cutting-edge technology and practical business solutions.</p>
-                        <p>Today, we engineer digital solutions and brand strategies that drive competitive advantage through precision development, measurable growth, and lasting impact. Our team of experts brings together diverse talents and perspectives to create solutions that not only meet today's challenges but anticipate tomorrow's opportunities.</p>
-                    </div>
-                    <div class="vision-mission-grid">
-                        <div class="vision-mission-item fade-in">
-                            <div class="vm-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 5C7 5 2.73 8.11 1 12.5 2.73 16.89 7 20 12 20s9.27-3.11 11-7.5C21.27 8.11 17 5 12 5z" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="12" cy="12.5" r="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div class="vm-title">Our Vision</div>
-                            <div class="vm-description">To be Indonesia's leading catalyst for digital transformation, empowering businesses to achieve unprecedented growth through innovative technology solutions and strategic excellence.</div>
+                <div class="about-container">
+                    <div class="about-hero fade-in">
+                        <div class="about-hero-text">
+                            <div class="about-highlight">Who We Are</div>
+                            <h3 class="about-hero-title">Engineering Tomorrow's Digital Landscape</h3>
+                            <p class="about-hero-description">Born from a commitment to propel Indonesia's digital transformation, Metaseti Digital Indonesia stands at the forefront of technological innovation. We bridge the gap between cutting-edge technology and practical business solutions, engineering digital experiences that drive competitive advantage through precision development, measurable growth, and lasting impact.</p>
                         </div>
-                        <div class="vision-mission-item fade-in">
-                            <div class="vm-icon">
+                    </div>
+
+                    <div class="about-features">
+                        <div class="feature-item fade-in">
+                            <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <div class="vm-title">Our Mission</div>
-                            <div class="vm-description">To deliver world-class IT solutions and branding strategies that transform challenges into competitive advantages, fostering sustainable innovation and measurable success for every client.</div>
+                            <h4 class="feature-title">Innovation First</h4>
+                            <p class="feature-text">We leverage cutting-edge technologies and methodologies to deliver solutions that push boundaries and set new standards.</p>
+                        </div>
+
+                        <div class="feature-item fade-in">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h4 class="feature-title">Client-Centric</h4>
+                            <p class="feature-text">Your success is our mission. We build lasting partnerships through transparent communication and dedicated support.</p>
+                        </div>
+
+                        <div class="feature-item fade-in">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h4 class="feature-title">Measurable Results</h4>
+                            <p class="feature-text">We focus on delivering tangible outcomes with data-driven strategies and continuous optimization.</p>
+                        </div>
+                    </div>
+
+                    <div class="vision-mission-wrapper">
+                        <div class="vision-section fade-in">
+                            <div class="vm-visual">
+                                <div class="vm-circle vm-circle-1"></div>
+                                <div class="vm-circle vm-circle-2"></div>
+                                <div class="vm-circle vm-circle-3"></div>
+                                <div class="vm-icon-large">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 5C7 5 2.73 8.11 1 12.5 2.73 16.89 7 20 12 20s9.27-3.11 11-7.5C21.27 8.11 17 5 12 5z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12.5" r="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="vm-content">
+                                <div class="vm-label">Our Vision</div>
+                                <h3 class="vm-heading">Leading Catalyst for Digital Transformation</h3>
+                                <p class="vm-text">To be Indonesia's leading catalyst for digital transformation, empowering businesses to achieve unprecedented growth through innovative technology solutions and strategic excellence.</p>
+                            </div>
+                        </div>
+
+                        <div class="vm-divider"></div>
+
+                        <div class="mission-section fade-in">
+                            <div class="vm-visual">
+                                <div class="vm-circle vm-circle-1"></div>
+                                <div class="vm-circle vm-circle-2"></div>
+                                <div class="vm-circle vm-circle-3"></div>
+                                <div class="vm-icon-large">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="vm-content">
+                                <div class="vm-label">Our Mission</div>
+                                <h3 class="vm-heading">World-Class Solutions, Sustainable Innovation</h3>
+                                <p class="vm-text">To deliver world-class IT solutions and branding strategies that transform challenges into competitive advantages, fostering sustainable innovation and measurable success for every client.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -947,41 +1412,57 @@
         <section id="services">
             <div class="section-container">
                 <h2 class="fade-in">Services</h2>
-                <p class="section-subtitle fade-in">Comprehensive IT solutions designed to drive your business forward.</p>
+                <p class="section-subtitle fade-in">Comprehensive IT solutions engineered to drive your business forward.</p>
                 
-                <div class="resources-grid">
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <div class="resource-number">01</div>
-                            <div class="resource-icon">
+                <div class="services-grid">
+                    <div class="service-item fade-in">
+                        <div class="service-header">
+                            <span class="service-index">01</span>
+                            <div class="service-icon-box">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="2" y="3" width="20" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M8 21h8M12 17v4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </div>
-                        <div class="resource-title">Custom Web/App Development</div>
-                        <div class="resource-description">Build responsive, scalable web and mobile applications tailored to your business needs with cutting-edge technologies and user-centric design.</div>
+                        <div class="service-content">
+                            <h3>Web & App Development</h3>
+                            <p>Transform your vision into powerful digital experiences with responsive, scalable applications built using cutting-edge technologies and user-centric design principles.</p>
+                            <div class="service-features">
+                                <span class="feature-badge">React & Next.js</span>
+                                <span class="feature-badge">Node.js</span>
+                                <span class="feature-badge">Mobile Apps</span>
+                                <span class="feature-badge">Progressive Web Apps</span>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <div class="resource-number">02</div>
-                            <div class="resource-icon">
+
+                    <div class="service-item fade-in">
+                        <div class="service-header">
+                            <span class="service-index">02</span>
+                            <div class="service-icon-box">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </div>
-                        <div class="resource-title">AI Machine Learning</div>
-                        <div class="resource-description">Implement intelligent automation and predictive models that learn from your data to optimize operations and drive innovation.</div>
+                        <div class="service-content">
+                            <h3>AI & Machine Learning</h3>
+                            <p>Harness the power of intelligent automation with predictive models that learn from your data to optimize operations and unlock new possibilities.</p>
+                            <div class="service-features">
+                                <span class="feature-badge">Deep Learning</span>
+                                <span class="feature-badge">NLP</span>
+                                <span class="feature-badge">Computer Vision</span>
+                                <span class="feature-badge">Predictive Analytics</span>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <div class="resource-number">03</div>
-                            <div class="resource-icon">
+
+                    <div class="service-item fade-in">
+                        <div class="service-header">
+                            <span class="service-index">03</span>
+                            <div class="service-icon-box">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/>
                                     <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -989,22 +1470,38 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="resource-title">IoT & Digital Engineering</div>
-                        <div class="resource-description">Connect and optimize your devices with smart IoT solutions and digital engineering that brings physical and digital worlds together.</div>
+                        <div class="service-content">
+                            <h3>IoT & Digital Engineering</h3>
+                            <p>Connect and optimize your physical assets with smart IoT solutions that bridge digital and physical worlds seamlessly for real-time insights.</p>
+                            <div class="service-features">
+                                <span class="feature-badge">Smart Sensors</span>
+                                <span class="feature-badge">Edge Computing</span>
+                                <span class="feature-badge">Cloud Integration</span>
+                                <span class="feature-badge">Real-time Analytics</span>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <div class="resource-number">04</div>
-                            <div class="resource-icon">
+
+                    <div class="service-item fade-in">
+                        <div class="service-header">
+                            <span class="service-index">04</span>
+                            <div class="service-icon-box">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 8v4M12 16h.01" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </div>
-                        <div class="resource-title">Branding & Identity</div>
-                        <div class="resource-description">Craft compelling brand identities and digital experiences that resonate with your audience and establish lasting market presence.</div>
+                        <div class="service-content">
+                            <h3>Branding & Identity</h3>
+                            <p>Craft compelling brand identities that resonate with your audience and establish a lasting presence in competitive markets through strategic design.</p>
+                            <div class="service-features">
+                                <span class="feature-badge">Brand Strategy</span>
+                                <span class="feature-badge">Visual Identity</span>
+                                <span class="feature-badge">Digital Marketing</span>
+                                <span class="feature-badge">Content Creation</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1015,59 +1512,123 @@
                 <h2 class="fade-in">Selected Work</h2>
                 <p class="section-subtitle fade-in">Recent projects that showcase our approach and capabilities.</p>
                 
-                <div class="portfolio-container">
-                    <div class="portfolio-item fade-in" data-portfolio="1" onclick="window.location.href='portfolio-1.html'">
-                        <div class="portfolio-info">
-                            <div class="portfolio-number">PROJECT 01</div>
-                            <div class="portfolio-title">Logistics Landing Page</div>
-                            <div class="portfolio-description">A modern, responsive landing page built to position a logistics company as a tech-savvy and reliable partner. The clean aesthetic and benefit-driven copy work together to cut through industry noise and capture high-quality leads.</div>
-                            <div class="portfolio-category">Web Design, Brand Identity, Development</div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-card fade-in" onclick="window.location.href='portfolio-1.html'">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="portfolio-visual">→</div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-num">PROJECT 01</span>
+                                <span class="portfolio-cat">Web Design</span>
+                            </div>
+                            <h3>Logistics Landing Page</h3>
+                            <p>A modern, responsive landing page built to position a logistics company as a tech-savvy partner. Clean aesthetics and benefit-driven copy capture high-quality leads.</p>
+                        </div>
                     </div>
-                    
-                    <div class="portfolio-item fade-in" data-portfolio="2">
-                        <div class="portfolio-info">
-                            <div class="portfolio-number">PROJECT 02</div>
-                            <div class="portfolio-title">Predictive Maintenance System</div>
-                            <div class="portfolio-description">Built an AI-powered predictive maintenance solution for manufacturing, reducing equipment downtime by 60% through machine learning algorithms that anticipate failures before they occur.</div>
-                            <div class="portfolio-category">AI & Machine Learning</div>
+
+                    <div class="portfolio-card fade-in">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="portfolio-visual">→</div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-num">PROJECT 02</span>
+                                <span class="portfolio-cat">AI/ML</span>
+                            </div>
+                            <h3>Predictive Maintenance System</h3>
+                            <p>AI-powered solution for manufacturing that reduced equipment downtime by 60% through machine learning algorithms anticipating failures before they occur.</p>
+                        </div>
                     </div>
-                    
-                    <div class="portfolio-item hidden fade-in" data-portfolio="3">
-                        <div class="portfolio-info">
-                            <div class="portfolio-number">PROJECT 03</div>
-                            <div class="portfolio-title">Business Intelligence Dashboard</div>
-                            <div class="portfolio-description">Created a comprehensive analytics platform processing millions of data points daily, providing real-time insights and AI-driven recommendations for strategic decision-making across multiple departments.</div>
-                            <div class="portfolio-category">Data Analytics</div>
+
+                    <div class="portfolio-card hidden fade-in">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="portfolio-visual">→</div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-num">PROJECT 03</span>
+                                <span class="portfolio-cat">Data Analytics</span>
+                            </div>
+                            <h3>Business Intelligence Dashboard</h3>
+                            <p>Comprehensive analytics platform processing millions of data points daily, providing real-time insights and AI-driven recommendations for decision-making.</p>
+                        </div>
                     </div>
-                    
-                    <div class="portfolio-item hidden fade-in" data-portfolio="4">
-                        <div class="portfolio-info">
-                            <div class="portfolio-number">PROJECT 04</div>
-                            <div class="portfolio-title">Smart Factory IoT Solution</div>
-                            <div class="portfolio-description">Implemented an end-to-end IoT ecosystem connecting 1,000+ sensors and devices, enabling real-time monitoring, automated quality control, and optimized production workflows.</div>
-                            <div class="portfolio-category">IoT & Digital Engineering</div>
+
+                    <div class="portfolio-card hidden fade-in">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="portfolio-visual">→</div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-num">PROJECT 04</span>
+                                <span class="portfolio-cat">IoT</span>
+                            </div>
+                            <h3>Smart Factory IoT Solution</h3>
+                            <p>End-to-end IoT ecosystem connecting 1,000+ sensors and devices, enabling real-time monitoring, automated quality control, and optimized workflows.</p>
+                        </div>
                     </div>
-                    
-                    <div class="portfolio-item hidden fade-in" data-portfolio="5">
-                        <div class="portfolio-info">
-                            <div class="portfolio-number">PROJECT 05</div>
-                            <div class="portfolio-title">Corporate Rebranding Campaign</div>
-                            <div class="portfolio-description">Designed and executed a complete brand transformation including visual identity, digital presence, and marketing strategy, resulting in 250% increase in brand recognition and market engagement.</div>
-                            <div class="portfolio-category">Branding & Identity</div>
+
+                    <div class="portfolio-card hidden fade-in">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="portfolio-visual">→</div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-num">PROJECT 05</span>
+                                <span class="portfolio-cat">Branding</span>
+                            </div>
+                            <h3>Corporate Rebranding Campaign</h3>
+                            <p>Complete brand transformation including visual identity, digital presence, and marketing strategy, resulting in 250% increase in brand recognition.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card hidden fade-in">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-num">PROJECT 06</span>
+                                <span class="portfolio-cat">Development</span>
+                            </div>
+                            <h3>E-Commerce Platform</h3>
+                            <p>Scalable e-commerce solution handling 50,000+ daily transactions with advanced inventory management, payment integration, and customer analytics.</p>
+                        </div>
                     </div>
                 </div>
 
-                <button class="load-more-button" id="loadMoreBtn">Load More Projects</button>
+                <button class="load-more-button" id="loadMoreBtn">View More Projects</button>
             </div>
         </section>
 
@@ -1197,7 +1758,7 @@
         
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', function() {
-                const hiddenItems = document.querySelectorAll('.portfolio-item.hidden');
+                const hiddenItems = document.querySelectorAll('.portfolio-card.hidden');
                 hiddenItems.forEach(item => {
                     item.classList.remove('hidden');
                 });
@@ -1223,134 +1784,163 @@
             fadeObserver.observe(element);
         });
 
-        // Modern Particle Network Animation
-        const canvas = document.getElementById('waveCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+        // Complex Parallax Animation System
+        const parallaxBg = document.getElementById('parallaxBg');
         let animationTime = 0;
 
-        // Setup canvas
-        function setupCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight; // Fixed to viewport only
-            
-            // Create particles
-            particles = [];
-            const numParticles = Math.min(80, Math.floor((canvas.width * canvas.height) / 20000)); // Limit particles
-            
-            for (let i = 0; i < numParticles; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.2,
-                    vy: (Math.random() - 0.5) * 0.2,
-                    size: Math.random() * 2.5 + 1,
-                    opacity: Math.random() * 0.5 + 0.3,
-                    pulseSpeed: Math.random() * 2 + 1,
-                    pulseOffset: Math.random() * Math.PI * 2
-                });
+        function createComplexParallax() {
+            const layers = [];
+            for (let i = 0; i < 5; i++) {
+                const layer = document.createElement('div');
+                layer.className = 'parallax-layer';
+                layer.style.zIndex = i;
+                parallaxBg.appendChild(layer);
+                layers.push(layer);
             }
+
+            // Layer 1: Large floating blobs
+            const blobs = [
+                { size: 500, color: 'rgba(124, 58, 237, 0.15)', top: '10%', left: '15%', speed: 0.02 },
+                { size: 450, color: 'rgba(168, 85, 247, 0.12)', top: '60%', left: '70%', speed: 0.03 },
+                { size: 400, color: 'rgba(124, 58, 237, 0.1)', top: '120%', left: '25%', speed: 0.025 }
+            ];
+
+            blobs.forEach(blob => {
+                const el = document.createElement('div');
+                el.className = 'parallax-shape shape-blob';
+                el.style.width = blob.size + 'px';
+                el.style.height = blob.size + 'px';
+                el.style.background = blob.color;
+                el.style.top = blob.top;
+                el.style.left = blob.left;
+                el.style.animation = `float ${10 + Math.random() * 10}s ease-in-out infinite`;
+                el.dataset.speed = blob.speed;
+                layers[0].appendChild(el);
+            });
+
+            // Layer 2: Medium blobs with pulse
+            const mediumBlobs = [
+                { size: 350, color: 'rgba(124, 58, 237, 0.2)', top: '30%', left: '60%', speed: 0.04 },
+                { size: 380, color: 'rgba(26, 28, 77, 0.25)', top: '80%', left: '10%', speed: 0.05 },
+                { size: 320, color: 'rgba(168, 85, 247, 0.15)', top: '140%', left: '65%', speed: 0.045 }
+            ];
+
+            mediumBlobs.forEach(blob => {
+                const el = document.createElement('div');
+                el.className = 'parallax-shape shape-blob';
+                el.style.width = blob.size + 'px';
+                el.style.height = blob.size + 'px';
+                el.style.background = blob.color;
+                el.style.top = blob.top;
+                el.style.left = blob.left;
+                el.style.animation = `pulse ${8 + Math.random() * 6}s ease-in-out infinite, drift ${15 + Math.random() * 10}s ease-in-out infinite`;
+                el.dataset.speed = blob.speed;
+                layers[1].appendChild(el);
+            });
+
+            // Layer 3: Rotating rings
+            const rings = [
+                { size: 300, color: 'rgba(124, 58, 237, 0.3)', top: '20%', left: '80%', speed: 0.06 },
+                { size: 250, color: 'rgba(168, 85, 247, 0.25)', top: '70%', left: '40%', speed: 0.07 },
+                { size: 280, color: 'rgba(124, 58, 237, 0.2)', top: '130%', left: '75%', speed: 0.065 }
+            ];
+
+            rings.forEach(ring => {
+                const el = document.createElement('div');
+                el.className = 'parallax-shape shape-ring';
+                el.style.width = ring.size + 'px';
+                el.style.height = ring.size + 'px';
+                el.style.borderColor = ring.color;
+                el.style.top = ring.top;
+                el.style.left = ring.left;
+                el.style.animation = `rotate ${30 + Math.random() * 20}s linear infinite, float ${12 + Math.random() * 8}s ease-in-out infinite`;
+                el.dataset.speed = ring.speed;
+                layers[2].appendChild(el);
+            });
+
+            // Layer 4: Diagonal lines
+            const lines = [
+                { width: 400, color: 'rgba(124, 58, 237, 0.15)', top: '15%', left: '5%', angle: 45, speed: 0.08 },
+                { width: 350, color: 'rgba(168, 85, 247, 0.12)', top: '55%', left: '60%', angle: -30, speed: 0.09 },
+                { width: 300, color: 'rgba(124, 58, 237, 0.1)', top: '95%', left: '20%', angle: 60, speed: 0.085 },
+                { width: 380, color: 'rgba(168, 85, 247, 0.08)', top: '150%', left: '70%', angle: -45, speed: 0.095 }
+            ];
+
+            lines.forEach(line => {
+                const el = document.createElement('div');
+                el.className = 'parallax-shape shape-line';
+                el.style.width = line.width + 'px';
+                el.style.background = line.color;
+                el.style.top = line.top;
+                el.style.left = line.left;
+                el.style.transform = `rotate(${line.angle}deg)`;
+                el.style.animation = `pulse ${6 + Math.random() * 4}s ease-in-out infinite`;
+                el.dataset.speed = line.speed;
+                el.dataset.angle = line.angle;
+                layers[3].appendChild(el);
+            });
+
+            // Layer 5: Full-page grid
+            const grid = document.createElement('div');
+            grid.className = 'parallax-shape shape-grid';
+            grid.dataset.speed = '0.01';
+            layers[4].appendChild(grid);
+
+            return layers;
         }
 
-        // Draw particle network
-        function drawParticleNetwork() {
-            animationTime += 0.01;
+        const layers = createComplexParallax();
+
+        // Scroll-based parallax
+        let ticking = false;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
             
-            // Create gradient background
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#000000');
-            gradient.addColorStop(0.5, '#0a0510');
-            gradient.addColorStop(1, '#000000');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Update and draw particles
-            particles.forEach((particle, i) => {
-                // Update position
-                particle.x += particle.vx;
-                particle.y += particle.vy;
+            layers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.03;
+                layer.style.transform = `translateY(${scrolled * speed}px)`;
                 
-                // Bounce off edges
-                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-                
-                // Keep within bounds
-                particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-                particle.y = Math.max(0, Math.min(canvas.height, particle.y));
-                
-                // Pulsing effect
-                const pulse = Math.sin(animationTime * particle.pulseSpeed + particle.pulseOffset) * 0.3 + 0.7;
-                const currentOpacity = particle.opacity * pulse;
-                
-                // Draw connections to nearby particles (optimized)
-                for (let j = i + 1; j < particles.length; j++) {
-                    const other = particles[j];
-                    const dx = particle.x - other.x;
-                    const dy = particle.y - other.y;
+                const shapes = layer.querySelectorAll('.parallax-shape');
+                shapes.forEach(shape => {
+                    const shapeSpeed = parseFloat(shape.dataset.speed) || 0.5;
+                    const scrollEffect = scrolled * shapeSpeed;
+                    const mouseEffect = `translate(${mouseX * shapeSpeed * 5}px, ${mouseY * shapeSpeed * 5}px)`;
                     
-                    // Quick distance check before calculating sqrt
-                    const distSq = dx * dx + dy * dy;
-                    if (distSq < 22500) { // 150 * 150
-                        const distance = Math.sqrt(distSq);
-                        const lineOpacity = (1 - distance / 150) * 0.3 * currentOpacity;
-                        ctx.strokeStyle = `rgba(124, 58, 237, ${lineOpacity})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particle.x, particle.y);
-                        ctx.lineTo(other.x, other.y);
-                        ctx.stroke();
+                    if (shape.classList.contains('shape-line')) {
+                        const angle = parseFloat(shape.dataset.angle) || 0;
+                        shape.style.transform = `translateY(${scrollEffect}px) ${mouseEffect} rotate(${angle}deg)`;
+                    } else {
+                        shape.style.transform = `translateY(${scrollEffect}px) ${mouseEffect}`;
                     }
-                }
-                
-                // Draw particle with glow
-                const glowGradient = ctx.createRadialGradient(
-                    particle.x, particle.y, 0,
-                    particle.x, particle.y, particle.size * 4
-                );
-                glowGradient.addColorStop(0, `rgba(124, 58, 237, ${currentOpacity})`);
-                glowGradient.addColorStop(0.4, `rgba(124, 58, 237, ${currentOpacity * 0.6})`);
-                glowGradient.addColorStop(1, 'rgba(124, 58, 237, 0)');
-                
-                ctx.fillStyle = glowGradient;
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size * 4, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Draw particle core
-                ctx.fillStyle = `rgba(200, 150, 255, ${currentOpacity})`;
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fill();
+                });
             });
             
-            // Add ambient light effects
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 3;
-            const ambientGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, canvas.width * 0.6);
-            ambientGlow.addColorStop(0, 'rgba(124, 58, 237, 0.03)');
-            ambientGlow.addColorStop(0.5, 'rgba(124, 58, 237, 0.01)');
-            ambientGlow.addColorStop(1, 'rgba(124, 58, 237, 0)');
-            ctx.fillStyle = ambientGlow;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            requestAnimationFrame(drawParticleNetwork);
+            ticking = false;
         }
 
-        // Initialize
-        setupCanvas();
-        drawParticleNetwork();
-
-        // Optimized resize handler with debounce
-        let resizeTimeout;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(setupCanvas, 250);
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
         });
-        
-        // Remove scroll listener since we don't need it
-        // window.addEventListener('scroll', function() {
-        //     targetScrollPosition = window.scrollY;
-        // });
+
+        // Mouse move parallax
+        document.addEventListener('mousemove', function(e) {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+            
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Initial update
+        updateParallax();
     </script>
 </body>
 </html>
