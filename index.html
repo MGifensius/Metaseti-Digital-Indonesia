@@ -41,7 +41,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-xs);
+            padding: 20px;
             transition: opacity 0.8s ease;
         }
 
@@ -1056,7 +1056,7 @@
         /* Mobile-specific loader adjustments */
         @media (max-width: 768px) {
             .loading-screen {
-                padding: 20px 15px;
+                padding: 30px 20px;
             }
             
             .loading-text {
@@ -1080,12 +1080,54 @@
         }
 
         @media (max-width: 480px) {
+            .loading-screen {
+                padding: 40px 15px;
+            }
+            
             .loading-text {
-                font-size: 24px;
+                font-size: 22px;
+                line-height: 1.6;
+            }
+            
+            .loading-text::before {
+                white-space: normal;
+                word-wrap: break-word;
             }
             
             .loading-progress {
-                bottom: -25px;
+                bottom: -40px;
+                height: 3px;
+            }
+            
+            .loading-progress-bar {
+                height: 3px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .loading-screen {
+                padding: 50px 10px;
+            }
+            
+            .loading-text {
+                font-size: 20px;
+                line-height: 1.7;
+            }
+            
+            .loading-text::before {
+                white-space: normal;
+                word-wrap: break-word;
+                content: "Metaseti\nDigital Indonesia";
+                white-space: pre-line;
+            }
+            
+            .loading-progress {
+                bottom: -50px;
+                height: 3px;
+            }
+            
+            .loading-progress-bar {
+                height: 3px;
             }
         }
     </style>
