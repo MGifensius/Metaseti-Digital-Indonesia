@@ -1044,18 +1044,32 @@
                 padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
             }
 
+            /* Mobile service cards - no flip, show only front */
             .service-item {
                 height: auto;
-                min-height: 380px;
-            }
-
-            .service-card-front,
-            .service-card-back {
-                padding: var(--spacing-sm) var(--spacing-sm);
+                min-height: unset;
+                perspective: none;
             }
 
             .service-card-inner {
-                min-height: 380px;
+                transform: none !important;
+                min-height: unset;
+            }
+
+            .service-card-front {
+                position: relative;
+                transform: none !important;
+                backface-visibility: visible;
+                padding: var(--spacing-sm);
+            }
+
+            .service-card-back {
+                display: none;
+            }
+
+            /* Disable hover effects on mobile */
+            .service-item:hover .service-card-inner {
+                transform: none !important;
             }
 
             .portfolio-content {
@@ -1253,6 +1267,8 @@
                                 <p class="vm-text">To be Indonesia's leading catalyst for digital transformation, empowering businesses to achieve unprecedented growth through innovative technology solutions and strategic excellence.</p>
                             </div>
                         </div>
+                    
+                        <br><br>
 
                         <div class="mission-section fade-in">
                             <div class="vm-content">
