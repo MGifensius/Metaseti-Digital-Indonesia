@@ -1130,6 +1130,40 @@
                 height: 3px;
             }
         }
+
+        /* iPhone 5 specific adjustments (320px width) */
+        @media only screen and (max-width: 320px) {
+            .loading-screen {
+                padding: 60px 10px;
+            }
+            
+            .loading-text-container {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            
+            .loading-text {
+                font-size: 18px;
+                line-height: 1.8;
+                letter-spacing: 0.5px;
+            }
+            
+            .loading-text::before {
+                content: "Metaseti\nDigital Indonesia";
+                white-space: pre-line;
+                word-wrap: break-word;
+            }
+            
+            .loading-progress {
+                bottom: -60px;
+                height: 4px;
+                width: 100%;
+            }
+            
+            .loading-progress-bar {
+                height: 4px;
+            }
+        }
     </style>
 </head>
 <body>
