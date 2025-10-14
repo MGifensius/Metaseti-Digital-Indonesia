@@ -452,25 +452,6 @@
             gap: 0;
         }
 
-        .vm-divider {
-            height: 1px;
-            background: var(--primary-black);
-            margin: var(--spacing-lg) 0;
-            position: relative;
-        }
-
-        .vm-divider::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background: var(--primary-black);
-            border-radius: 50%;
-        }
-
         .vision-section,
         .mission-section {
             display: flex;
@@ -546,31 +527,52 @@
 
         .service-item {
             position: relative;
-            padding: var(--spacing-lg) 50px;
-            background: var(--primary-white);
-            border: 1px solid var(--primary-black);
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 400px;
             cursor: pointer;
+            perspective: 1000px;
         }
 
-        .service-item:hover {
+        .service-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .service-item:hover .service-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .service-card-front,
+        .service-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 1px solid var(--primary-black);
+            padding: var(--spacing-md) 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card-front {
+            background: var(--primary-white);
+            color: var(--primary-black);
+        }
+
+        .service-card-back {
             background: var(--primary-black);
             color: var(--primary-white);
-        }
-
-        .service-item:hover .service-index,
-        .service-item:hover .service-content h3,
-        .service-item:hover .service-content p,
-        .service-item:hover .feature-badge {
-            color: var(--primary-white);
+            transform: rotateY(180deg);
+            justify-content: center;
         }
 
         .service-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
         }
 
         .service-index {
@@ -584,17 +586,17 @@
 
         .service-content h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 300;
             color: var(--primary-black);
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: 15px;
             line-height: 1.3;
         }
 
         .service-content p {
             font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            line-height: 1.9;
+            font-size: 14px;
+            line-height: 1.8;
             color: var(--primary-black);
             margin-bottom: var(--spacing-sm);
             opacity: 0.7;
@@ -604,6 +606,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            margin-top: auto;
         }
 
         .feature-badge {
@@ -617,9 +620,45 @@
             opacity: 0.7;
         }
 
-        .service-item:hover .feature-badge {
-            border-color: var(--primary-white);
-            opacity: 1;
+        .service-card-back h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 300;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-white);
+        }
+
+        .service-card-back p {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-card-back ul {
+            list-style: none;
+            padding: 0;
+            margin-top: var(--spacing-xs);
+        }
+
+        .service-card-back ul li {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .service-card-back ul li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card-back ul li::before {
+            content: '→';
+            margin-right: 12px;
+            opacity: 0.6;
         }
 
         /* Portfolio Section */
@@ -1006,7 +1045,17 @@
             }
 
             .service-item {
-                padding: var(--spacing-md) var(--spacing-sm);
+                height: auto;
+                min-height: 380px;
+            }
+
+            .service-card-front,
+            .service-card-back {
+                padding: var(--spacing-sm) var(--spacing-sm);
+            }
+
+            .service-card-inner {
+                min-height: 380px;
             }
 
             .portfolio-content {
@@ -1205,8 +1254,6 @@
                             </div>
                         </div>
 
-                        <div class="vm-divider"></div>
-
                         <div class="mission-section fade-in">
                             <div class="vm-content">
                                 <div class="vm-label">Our Mission</div>
@@ -1226,65 +1273,129 @@
                 
                 <div class="services-grid">
                     <div class="service-item fade-in">
-                        <div class="service-header">
-                            <span class="service-index">01</span>
-                        </div>
-                        <div class="service-content">
-                            <h3>Web & App Development</h3>
-                            <p>Transform your vision into powerful digital experiences with responsive, scalable applications built using cutting-edge technologies and user-centric design principles.</p>
-                            <div class="service-features">
-                                <span class="feature-badge">React & Next.js</span>
-                                <span class="feature-badge">Node.js</span>
-                                <span class="feature-badge">Mobile Apps</span>
-                                <span class="feature-badge">Progressive Web Apps</span>
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <div class="service-header">
+                                    <span class="service-index">01</span>
+                                </div>
+                                <div class="service-content">
+                                    <h3>Web & App Development</h3>
+                                    <p>Transform your vision into powerful digital experiences with responsive, scalable applications built using cutting-edge technologies and user-centric design principles.</p>
+                                    <div class="service-features">
+                                        <span class="feature-badge">React & Next.js</span>
+                                        <span class="feature-badge">Node.js</span>
+                                        <span class="feature-badge">Mobile Apps</span>
+                                        <span class="feature-badge">Progressive Web Apps</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <h4>What We Deliver</h4>
+                                <p>Complete end-to-end development services tailored to your business needs.</p>
+                                <ul>
+                                    <li>Custom web applications with modern frameworks</li>
+                                    <li>Native & cross-platform mobile apps</li>
+                                    <li>E-commerce platforms & payment integration</li>
+                                    <li>API development & third-party integrations</li>
+                                    <li>Progressive Web Apps (PWAs)</li>
+                                    <li>Responsive design & optimization</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="service-item fade-in">
-                        <div class="service-header">
-                            <span class="service-index">02</span>
-                        </div>
-                        <div class="service-content">
-                            <h3>AI & Machine Learning</h3>
-                            <p>Harness the power of intelligent automation with predictive models that learn from your data to optimize operations and unlock new possibilities.</p>
-                            <div class="service-features">
-                                <span class="feature-badge">Deep Learning</span>
-                                <span class="feature-badge">NLP</span>
-                                <span class="feature-badge">Computer Vision</span>
-                                <span class="feature-badge">Predictive Analytics</span>
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <div class="service-header">
+                                    <span class="service-index">02</span>
+                                </div>
+                                <div class="service-content">
+                                    <h3>AI & Machine Learning</h3>
+                                    <p>Harness the power of intelligent automation with predictive models that learn from your data to optimize operations and unlock new possibilities.</p>
+                                    <div class="service-features">
+                                        <span class="feature-badge">Deep Learning</span>
+                                        <span class="feature-badge">NLP</span>
+                                        <span class="feature-badge">Computer Vision</span>
+                                        <span class="feature-badge">Predictive Analytics</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <h4>What We Deliver</h4>
+                                <p>Intelligent solutions that transform raw data into actionable insights.</p>
+                                <ul>
+                                    <li>Custom machine learning models</li>
+                                    <li>Natural language processing systems</li>
+                                    <li>Computer vision applications</li>
+                                    <li>Predictive analytics & forecasting</li>
+                                    <li>Chatbots & virtual assistants</li>
+                                    <li>Data mining & pattern recognition</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="service-item fade-in">
-                        <div class="service-header">
-                            <span class="service-index">03</span>
-                        </div>
-                        <div class="service-content">
-                            <h3>IoT & Digital Engineering</h3>
-                            <p>Connect and optimize your physical assets with smart IoT solutions that bridge digital and physical worlds seamlessly for real-time insights.</p>
-                            <div class="service-features">
-                                <span class="feature-badge">Smart Sensors</span>
-                                <span class="feature-badge">Edge Computing</span>
-                                <span class="feature-badge">Cloud Integration</span>
-                                <span class="feature-badge">Real-time Analytics</span>
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <div class="service-header">
+                                    <span class="service-index">03</span>
+                                </div>
+                                <div class="service-content">
+                                    <h3>IoT & Digital Engineering</h3>
+                                    <p>Connect and optimize your physical assets with smart IoT solutions that bridge digital and physical worlds seamlessly for real-time insights.</p>
+                                    <div class="service-features">
+                                        <span class="feature-badge">Smart Sensors</span>
+                                        <span class="feature-badge">Edge Computing</span>
+                                        <span class="feature-badge">Cloud Integration</span>
+                                        <span class="feature-badge">Real-time Analytics</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <h4>What We Deliver</h4>
+                                <p>Connected ecosystems that bring intelligence to physical operations.</p>
+                                <ul>
+                                    <li>IoT device integration & management</li>
+                                    <li>Sensor networks & data collection</li>
+                                    <li>Edge computing solutions</li>
+                                    <li>Real-time monitoring dashboards</li>
+                                    <li>Industrial automation systems</li>
+                                    <li>Smart building & facility management</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="service-item fade-in">
-                        <div class="service-header">
-                            <span class="service-index">04</span>
-                        </div>
-                        <div class="service-content">
-                            <h3>Branding & Identity</h3>
-                            <p>Craft compelling brand identities that resonate with your audience and establish a lasting presence in competitive markets through strategic design.</p>
-                            <div class="service-features">
-                                <span class="feature-badge">Brand Strategy</span>
-                                <span class="feature-badge">Visual Identity</span>
-                                <span class="feature-badge">Digital Marketing</span>
-                                <span class="feature-badge">Content Creation</span>
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <div class="service-header">
+                                    <span class="service-index">04</span>
+                                </div>
+                                <div class="service-content">
+                                    <h3>Branding & Identity</h3>
+                                    <p>Craft compelling brand identities that resonate with your audience and establish a lasting presence in competitive markets through strategic design.</p>
+                                    <div class="service-features">
+                                        <span class="feature-badge">Brand Strategy</span>
+                                        <span class="feature-badge">Visual Identity</span>
+                                        <span class="feature-badge">Digital Marketing</span>
+                                        <span class="feature-badge">Content Creation</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <h4>What We Deliver</h4>
+                                <p>Comprehensive branding solutions that make your business stand out.</p>
+                                <ul>
+                                    <li>Brand strategy & positioning</li>
+                                    <li>Logo design & visual identity</li>
+                                    <li>Marketing collateral & guidelines</li>
+                                    <li>Social media management</li>
+                                    <li>Content creation & copywriting</li>
+                                    <li>Digital marketing campaigns</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -1310,9 +1421,9 @@
                         <div class="portfolio-content">
                             <div class="portfolio-meta">
                                 <span class="portfolio-num">PROJECT 01</span>
-                                <span class="portfolio-cat">Web Design</span>
+                                <span class="portfolio-cat">Custom Web/App Design</span>
                             </div>
-                            <h3>Logistics Landing Page</h3>
+                            <h3>Landing Page</h3>
                             <p>A modern, responsive landing page built to position a logistics company as a tech-savvy partner. Clean aesthetics and benefit-driven copy capture high-quality leads.</p>
                         </div>
                     </div>
@@ -1329,29 +1440,10 @@
                         <div class="portfolio-content">
                             <div class="portfolio-meta">
                                 <span class="portfolio-num">PROJECT 02</span>
-                                <span class="portfolio-cat">AI/ML</span>
+                                <span class="portfolio-cat">AI & Machine Learning</span>
                             </div>
-                            <h3>Predictive Maintenance System</h3>
-                            <p>AI-powered solution for manufacturing that reduced equipment downtime by 60% through machine learning algorithms anticipating failures before they occur.</p>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-card hidden fade-in">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 03</span>
-                                <span class="portfolio-cat">Data Analytics</span>
-                            </div>
-                            <h3>Business Intelligence Dashboard</h3>
-                            <p>Comprehensive analytics platform processing millions of data points daily, providing real-time insights and AI-driven recommendations for decision-making.</p>
+                            <h3>Chatbot System</h3>
+                            <p>AI-powered solution for customer service solution that increased efficiency by 60% through machine learning algorithms.</p>
                         </div>
                     </div>
 
@@ -1367,8 +1459,8 @@
                         </div>
                         <div class="portfolio-content">
                             <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 04</span>
-                                <span class="portfolio-cat">IoT</span>
+                                <span class="portfolio-num">PROJECT 03</span>
+                                <span class="portfolio-cat">IoT & Digital Engineering</span>
                             </div>
                             <h3>Smart Factory IoT Solution</h3>
                             <p>End-to-end IoT ecosystem connecting 1,000+ sensors and devices, enabling real-time monitoring, automated quality control, and optimized workflows.</p>
@@ -1386,31 +1478,14 @@
                         </div>
                         <div class="portfolio-content">
                             <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 05</span>
-                                <span class="portfolio-cat">Branding</span>
+                                <span class="portfolio-num">PROJECT 04</span>
+                                <span class="portfolio-cat">Identity Branding & Marketing</span>
                             </div>
                             <h3>Corporate Rebranding Campaign</h3>
                             <p>Complete brand transformation including visual identity, digital presence, and marketing strategy, resulting in 250% increase in brand recognition.</p>
                         </div>
                     </div>
 
-                    <div class="portfolio-card hidden fade-in">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 06</span>
-                                <span class="portfolio-cat">Development</span>
-                            </div>
-                            <h3>E-Commerce Platform</h3>
-                            <p>Scalable e-commerce solution handling 50,000+ daily transactions with advanced inventory management, payment integration, and customer analytics.</p>
-                        </div>
-                    </div>
                 </div>
 
                 <button class="load-more-button" id="loadMoreBtn">View More Projects</button>
