@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metaseti Digital Indonesia - E-Commerce Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --spacing-xs: 20px;
+            --spacing-sm: 30px;
+            --spacing-md: 40px;
+            --spacing-lg: 60px;
+            --spacing-xl: 80px;
+            --spacing-2xl: 100px;
+            --spacing-3xl: 120px;
+            
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --medium-gray: #888888;
+            --dark-gray: #222222;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-white);
+            color: var(--primary-black);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: var(--spacing-xs) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: var(--spacing-lg);
+            right: var(--spacing-lg);
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%);
+        }
+
+        .back-link {
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            color: var(--primary-black);
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.3s;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 18px;
+        }
+
+        /* Hero Section */
+        .project-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-xl);
+            text-align: center;
+            background: var(--primary-white);
+        }
+
+        .project-hero-content {
+            max-width: 900px;
+        }
+
+        .project-category {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--primary-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            opacity: 0.7;
+        }
+
+        .project-hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -2px;
+            color: var(--primary-black);
+        }
+
+        .project-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            color: var(--primary-black);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-black);
+            margin-bottom: 5px;
+            opacity: 0.7;
+        }
+
+        .meta-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--primary-black);
+        }
+
+        /* Content Sections */
+        section {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            position: relative;
+            background: var(--primary-white);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 300;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -1px;
+            color: var(--primary-black);
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--primary-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0.7;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            max-width: 60px;
+            height: 1px;
+            background: var(--primary-black);
+        }
+
+        /* Challenge & Solution */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .content-block p {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 2;
+            color: var(--primary-black);
+            opacity: 0.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Illustration Section */
+        .illustration-container {
+            background: var(--light-gray);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .illustration-svg {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .feature-card {
+            padding: var(--spacing-md);
+            border: 1px solid var(--primary-black);
+            transition: all 0.4s;
+        }
+
+        .feature-card:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.7;
+        }
+
+        .feature-card:hover .feature-icon {
+            filter: invert(1);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: var(--spacing-md);
+        }
+
+        .tech-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        /* Results Section */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .result-card {
+            text-align: center;
+            padding: var(--spacing-md);
+            border: 1px solid var(--primary-black);
+        }
+
+        .result-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 300;
+            color: var(--primary-black);
+            margin-bottom: 10px;
+        }
+
+        .result-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--primary-black);
+            opacity: 0.7;
+        }
+
+        /* Live Demo Section */
+        .demo-section {
+            background: var(--light-gray);
+            padding: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .demo-preview {
+            max-width: 1000px;
+            margin: var(--spacing-lg) auto;
+            border: 1px solid var(--primary-black);
+            background: var(--primary-white);
+            overflow: hidden;
+        }
+
+        .browser-bar {
+            background: var(--dark-gray);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--medium-gray);
+        }
+
+        .demo-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            background: var(--primary-white);
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--primary-black);
+            text-decoration: none;
+            border-radius: 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            border: 1px solid var(--primary-black);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            transition: left 0.6s;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: var(--primary-white);
+        }
+
+        .cta-button.secondary {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .cta-button.secondary::before {
+            background: var(--primary-white);
+        }
+
+        .cta-button.secondary:hover {
+            color: var(--primary-black);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg);
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--primary-black);
+            border-top: 1px solid var(--primary-black);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .two-column-grid,
+            .features-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px var(--spacing-sm);
+            }
+
+            nav::after {
+                left: var(--spacing-sm);
+                right: var(--spacing-sm);
+            }
+
+            section {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            .project-hero {
+                padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
+            }
+
+            .project-meta {
+                gap: var(--spacing-sm);
+            }
+
+            .illustration-container {
+                padding: var(--spacing-md);
+                min-height: 300px;
+            }
+
+            .demo-frame {
+                height: 400px;
+            }
+
+            .demo-section {
+                padding: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo"><img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo%20for%20White%20Background.png" alt="Metaseti Logo"></a>
+        <a href="index.html#portfolio" class="back-link">Back to Portfolio</a>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-content fade-in">
+            <div class="project-category">E-COMMERCE PLATFORM</div>
+            <h1>Modern Shopping Experience</h1>
+            <p class="project-subtitle">A full-featured e-commerce platform designed for seamless shopping. Intuitive product browsing, smart cart management, and secure checkout create an engaging retail experience.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Client</div>
+                    <div class="meta-value">StyleHub Retail</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Timeline</div>
+                    <div class="meta-value">8 Weeks</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Year</div>
+                    <div class="meta-value">2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="section-container">
+            <div class="two-column-grid fade-in">
+                <div class="content-block">
+                    <div class="section-label">The Challenge</div>
+                    <h2>Overcoming Shopping Barriers</h2>
+                    <p>Modern consumers expect frictionless shopping experiences, yet many e-commerce platforms fall short. Complex navigation makes product discovery frustrating, while cart abandonment rates soar due to 
+                    complicated checkout processes. Mobile shoppers face inconsistent experiences, and concerns about payment security create hesitation at the final purchase moment.</p>
+                </div>
+                <div class="content-block">
+                    <div class="section-label">The Solution</div>
+                    <h2>Streamlined End-to-End Commerce</h2>
+                    <p>We built a comprehensive platform that removes friction at every touchpoint. Smart product filtering and search enable instant discovery, while a persistent cart keeps shopping seamless across sessions. 
+                    One-click checkout reduces purchase steps, and integrated secure payment processing with multiple options builds trust. Real-time inventory updates and order confirmation create transparency throughout the journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="illustration-container fade-in">
+        <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background decorative elements -->
+            <circle cx="120" cy="100" r="60" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
+            <circle cx="680" cy="320" r="80" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
+            
+            <!-- Shopping Bag (main element) -->
+            <path d="M280 180 L280 340 Q280 350 290 350 L470 350 Q480 350 480 340 L480 180 Z" 
+                stroke="#1a1a1a" stroke-width="2.5" fill="white"/>
+            <path d="M260 180 L500 180 L490 160 L270 160 Z" 
+                stroke="#1a1a1a" stroke-width="2.5" fill="white"/>
+            
+            <!-- Bag handles -->
+            <path d="M320 160 Q320 130 350 130 Q380 130 380 160" 
+                stroke="#1a1a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M380 160 Q380 130 410 130 Q440 130 440 160" 
+                stroke="#1a1a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            
+            <!-- Shopping bag pattern -->
+            <line x1="380" y1="200" x2="380" y2="330" stroke="#E8E8E8" stroke-width="1.5"/>
+            <rect x="300" y="220" width="30" height="30" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            <circle cx="430" cy="235" r="15" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            <path d="M300 280 L330 280 L315 310 Z" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            
+            <!-- Product box (floating left) -->
+            <g transform="translate(140, 220)">
+                <rect x="0" y="0" width="70" height="70" stroke="#1a1a1a" stroke-width="2" fill="white"/>
+                <path d="M0 0 L35 30 L70 0" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                <path d="M35 30 L35 70" stroke="#1a1a1a" stroke-width="2"/>
+                <circle cx="35" cy="50" r="8" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            </g>
+            
+            <!-- Credit card (floating right) -->
+            <g transform="translate(520, 200)">
+                <rect x="0" y="0" width="120" height="75" rx="8" stroke="#1a1a1a" stroke-width="2" fill="white"/>
+                <rect x="0" y="15" width="120" height="20" fill="#1a1a1a"/>
+                <line x1="10" y1="50" x2="50" y2="50" stroke="#E8E8E8" stroke-width="2" stroke-linecap="round"/>
+                <line x1="10" y1="60" x2="70" y2="60" stroke="#E8E8E8" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="100" cy="55" r="12" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+                <circle cx="90" cy="55" r="12" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            </g>
+            
+            <!-- Cursor pointer with click effect -->
+            <g transform="translate(550, 130)">
+                <path d="M0 0 L0 24 L7 18 L11 26 L15 24 L11 16 L18 16 Z" 
+                    fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1"/>
+                <circle cx="25" cy="5" r="3" fill="#1a1a1a">
+                    <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="25" cy="5" r="5" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5">
+                    <animate attributeName="r" values="5;12;5" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite"/>
+                </circle>
+            </g>
+            
+            <!-- Shopping cart icon (small, bottom left) -->
+            <g transform="translate(160, 320)">
+                <rect x="5" y="0" width="30" height="22" rx="2" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+                <path d="M0 5 L5 5" stroke="#1a1a1a" stroke-width="1.5"/>
+                <circle cx="13" cy="28" r="3" fill="#1a1a1a"/>
+                <circle cx="27" cy="28" r="3" fill="#1a1a1a"/>
+            </g>
+            
+            <!-- Decorative dots pattern -->
+            <circle cx="600" cy="140" r="4" fill="#E8E8E8"/>
+            <circle cx="620" cy="145" r="3" fill="#E8E8E8"/>
+            <circle cx="640" cy="138" r="4" fill="#E8E8E8"/>
+            
+            <circle cx="200" cy="170" r="3" fill="#E8E8E8"/>
+            <circle cx="185" cy="180" r="4" fill="#E8E8E8"/>
+            <circle cx="215" cy="175" r="3" fill="#E8E8E8"/>
+            
+            <!-- Connection lines (subtle) -->
+            <path d="M210 255 Q250 240 280 240" stroke="#E8E8E8" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.6"/>
+            <path d="M500 240 Q520 220 520 200" stroke="#E8E8E8" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.6"/>
+        </svg>
+    </div>
+
+    <section>
+        <div class="section-container">
+            <div class="section-label fade-in">Key Features</div>
+            <h2 class="fade-in">Built for Conversion</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="8" width="40" height="32" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 16h40M14 12h20" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Smart Cart System</h3>
+                    <p>Persistent shopping cart with real-time updates, quantity management, and saved items across sessions.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
+                        <path d="M24 12v12l8 4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Quick Checkout</h3>
+                    <p>Streamlined one-page checkout with guest options, saved addresses, and multiple payment methods.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="8" width="24" height="32" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="24" cy="34" r="2" fill="currentColor"/>
+                        <path d="M16 12h16" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Mobile Optimized</h3>
+                    <p>Touch-friendly interface with gesture support, ensuring perfect shopping experience on any device.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 24h32M24 8v32" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Product Discovery</h3>
+                    <p>Advanced filtering, instant search, and smart recommendations help customers find exactly what they need.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4l6 18h18l-14.5 11 5.5 18L24 39l-15 12 5.5-18L4 22h18z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Secure Payments</h3>
+                    <p>PCI-compliant payment processing with encryption, fraud detection, and support for major payment providers.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 20h32M18 28h12" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Order Management</h3>
+                    <p>Real-time order tracking, automated notifications, and customer portal for complete transparency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--light-gray);">
+        <div class="section-container">
+            <div class="section-label fade-in">Technology Stack</div>
+            <h2 class="fade-in">Built with Modern Tools</h2>
+            
+            <div class="tech-stack fade-in">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Next.js</span>
+                <span class="tech-badge">Node.js</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">Stripe</span>
+                <span class="tech-badge">Redux</span>
+                <span class="tech-badge">Tailwind CSS</span>
+                <span class="tech-badge">AWS</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-container">
+            <div class="section-label fade-in">Impact</div>
+            <h2 class="fade-in">Measurable Results</h2>
+            
+            <div class="results-grid">
+                <div class="result-card fade-in">
+                    <div class="result-number">68%</div>
+                    <div class="result-label">Reduction in Cart Abandonment</div>
+                </div>
+                
+                <div class="result-card fade-in">
+                    <div class="result-number">3.2x</div>
+                    <div class="result-label">Increase in Conversion Rate</div>
+                </div>
+                
+                <div class="result-card fade-in">
+                    <div class="result-number">$2.4M</div>
+                    <div class="result-label">Monthly Revenue Growth</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <div class="section-container">
+            <div class="section-label fade-in">Live Preview</div>
+            <h2 class="fade-in">Experience the E-Commerce Platform</h2>
+            <p class="project-subtitle fade-in">Interact with the fully functional demo - browse products, add to cart, and complete the checkout process.</p>
+            
+            <div class="demo-preview fade-in" id="ecommerceApp" style="max-width: 1200px;">
+                <!-- E-Commerce App will be injected here -->
+            </div>
+            
+            <div class="demo-buttons fade-in">
+                <a href="#" class="cta-button secondary" target="_blank" rel="noopener">
+                    View Case Study
+                </a>
+                <a href="index.html#contact" class="cta-button">
+                    Start Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 METASETI DIGITAL INDONESIA — ALL RIGHTS RESERVED</p>
+    </footer>
+
+    <script>
+        // Fade-in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // E-Commerce Application
+        class ECommerceApp {
+            constructor() {
+                this.products = [
+                    { id: 1, name: 'Premium Wireless Headphones', price: 299, image: '🎧', category: 'Electronics' },
+                    { id: 2, name: 'Smart Watch Pro', price: 449, image: '⌚', category: 'Electronics' },
+                    { id: 3, name: 'Designer Backpack', price: 129, image: '🎒', category: 'Fashion' },
+                    { id: 4, name: 'Running Shoes Elite', price: 159, image: '👟', category: 'Sports' },
+                    { id: 5, name: 'Coffee Maker Deluxe', price: 199, image: '☕', category: 'Home' },
+                    { id: 6, name: 'Yoga Mat Premium', price: 79, image: '🧘', category: 'Sports' }
+                ];
+                this.cart = [];
+                this.currentView = 'products';
+                this.customerInfo = null;
+                this.init();
+            }
+
+            init() {
+                this.renderApp();
+            }
+
+            renderApp() {
+                const container = document.getElementById('ecommerceApp');
+                container.innerHTML = `
+                    <div style="background: white; min-height: 600px;">
+                        <div class="browser-bar">
+                            <div class="browser-dot"></div>
+                            <div class="browser-dot"></div>
+                            <div class="browser-dot"></div>
+                        </div>
+                        <div id="appContent"></div>
+                    </div>
+                `;
+                this.updateView();
+            }
+
+            updateView() {
+                const content = document.getElementById('appContent');
+                switch(this.currentView) {
+                    case 'products':
+                        content.innerHTML = this.renderProducts();
+                        break;
+                    case 'cart':
+                        content.innerHTML = this.renderCart();
+                        break;
+                    case 'checkout':
+                        content.innerHTML = this.renderCheckout();
+                        break;
+                    case 'payment':
+                        content.innerHTML = this.renderPayment();
+                        break;
+                    case 'success':
+                        content.innerHTML = this.renderSuccess();
+                        break;
+                }
+                this.attachEventListeners();
+            }
+
+            renderProducts() {
+                const cartCount = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+                return `
+                    <div style="padding: 30px; font-family: 'Inter', sans-serif;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; margin: 0;">Shop Products</h2>
+                            <button onclick="app.currentView = 'cart'; app.updateView();" style="background: #000; color: #fff; border: none; padding: 12px 24px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                                🛒 Cart (${cartCount})
+                            </button>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px;">
+                            ${this.products.map(product => `
+                                <div style="border: 1px solid #e0e0e0; padding: 20px; transition: transform 0.3s;">
+                                    <div style="font-size: 64px; text-align: center; margin-bottom: 16px;">${product.image}</div>
+                                    <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; margin-bottom: 8px;">${product.name}</h3>
+                                    <p style="color: #888; font-size: 13px; margin-bottom: 12px;">${product.category}</p>
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 500;">$${product.price}</span>
+                                        <button data-product-id="${product.id}" class="add-to-cart-btn" style="background: #000; color: #fff; border: none; padding: 8px 16px; cursor: pointer; font-size: 13px;">Add to Cart</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderCart() {
+                if (this.cart.length === 0) {
+                    return `
+                        <div style="padding: 60px 30px; text-align: center; font-family: 'Inter', sans-serif;">
+                            <div style="font-size: 80px; margin-bottom: 20px;">🛒</div>
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 300; margin-bottom: 16px;">Your Cart is Empty</h2>
+                            <p style="color: #888; margin-bottom: 30px;">Add some products to get started!</p>
+                            <button onclick="app.currentView = 'products'; app.updateView();" style="background: #000; color: #fff; border: none; padding: 14px 32px; cursor: pointer; font-size: 14px;">Continue Shopping</button>
+                        </div>
+                    `;
+                }
+
+                const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                return `
+                    <div style="padding: 30px; font-family: 'Inter', sans-serif;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; margin: 0;">Shopping Cart</h2>
+                            <button onclick="app.currentView = 'products'; app.updateView();" style="background: transparent; color: #000; border: 1px solid #000; padding: 10px 20px; cursor: pointer; font-size: 13px;">← Continue Shopping</button>
+                        </div>
+                        <div style="max-width: 800px; margin: 0 auto;">
+                            ${this.cart.map(item => `
+                                <div style="display: flex; align-items: center; gap: 20px; padding: 20px; border: 1px solid #e0e0e0; margin-bottom: 16px;">
+                                    <div style="font-size: 48px;">${item.image}</div>
+                                    <div style="flex: 1;">
+                                        <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; margin-bottom: 4px;">${item.name}</h3>
+                                        <p style="color: #888; font-size: 14px;">$${item.price} each</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <button data-item-id="${item.id}" class="decrease-qty" style="background: #f5f5f5; border: none; width: 32px; height: 32px; cursor: pointer; font-size: 16px;">−</button>
+                                        <span style="min-width: 30px; text-align: center; font-weight: 500;">${item.quantity}</span>
+                                        <button data-item-id="${item.id}" class="increase-qty" style="background: #f5f5f5; border: none; width: 32px; height: 32px; cursor: pointer; font-size: 16px;">+</button>
+                                    </div>
+                                    <div style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 500; min-width: 80px; text-align: right;">$${item.price * item.quantity}</div>
+                                    <button data-item-id="${item.id}" class="remove-item" style="background: transparent; border: none; color: #ff4444; cursor: pointer; font-size: 20px; padding: 8px;">×</button>
+                                </div>
+                            `).join('')}
+                            
+                            <div style="margin-top: 30px; padding: 24px; background: #f5f5f5;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 14px;">
+                                    <span>Subtotal:</span>
+                                    <span>$${total}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 14px;">
+                                    <span>Shipping:</span>
+                                    <span>Free</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding-top: 16px; border-top: 2px solid #000; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 500;">
+                                    <span>Total:</span>
+                                    <span>$${total}</span>
+                                </div>
+                                <button onclick="app.currentView = 'checkout'; app.updateView();" style="width: 100%; margin-top: 24px; background: #000; color: #fff; border: none; padding: 16px; cursor: pointer; font-size: 16px; font-family: 'Poppins', sans-serif;">Proceed to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderCheckout() {
+                return `
+                    <div style="padding: 30px; font-family: 'Inter', sans-serif;">
+                        <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; margin: 0;">Checkout</h2>
+                        </div>
+                        <div style="max-width: 600px; margin: 0 auto;">
+                            <form id="checkoutForm" style="display: flex; flex-direction: column; gap: 20px;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Full Name *</label>
+                                    <input type="text" name="name" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Email *</label>
+                                    <input type="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Phone Number *</label>
+                                    <input type="tel" name="phone" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Shipping Address *</label>
+                                    <input type="text" name="address" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">City *</label>
+                                        <input type="text" name="city" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Zip Code *</label>
+                                        <input type="text" name="zip" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px; padding: 20px; background: #f5f5f5;">
+                                    <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; margin-bottom: 12px;">Order Summary</h3>
+                                    ${this.cart.map(item => `
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                                            <span>${item.name} × ${item.quantity}</span>
+                                            <span>$${item.price * item.quantity}</span>
+                                        </div>
+                                    `).join('')}
+                                    <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #000; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 500;">
+                                        <span>Total:</span>
+                                        <span>$${this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)}</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                                    <button type="button" onclick="app.currentView = 'cart'; app.updateView();" style="flex: 1; background: transparent; color: #000; border: 1px solid #000; padding: 14px; cursor: pointer; font-size: 14px;">Back to Cart</button>
+                                    <button type="submit" style="flex: 2; background: #000; color: #fff; border: none; padding: 14px; cursor: pointer; font-size: 16px; font-family: 'Poppins', sans-serif;">Continue to Payment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderPayment() {
+                const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                return `
+                    <div style="padding: 30px; font-family: 'Inter', sans-serif;">
+                        <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; margin: 0;">Payment</h2>
+                        </div>
+                        <div style="max-width: 600px; margin: 0 auto;">
+                            <div style="background: #f5f5f5; padding: 20px; margin-bottom: 30px;">
+                                <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; margin-bottom: 12px;">Shipping To:</h3>
+                                <p style="font-size: 14px; line-height: 1.6; margin: 0;">${this.customerInfo.name}<br>${this.customerInfo.address}<br>${this.customerInfo.city}, ${this.customerInfo.zip}<br>${this.customerInfo.email}</p>
+                            </div>
+                            
+                            <form id="paymentForm" style="display: flex; flex-direction: column; gap: 20px;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Card Number *</label>
+                                    <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Cardholder Name *</label>
+                                    <input type="text" name="cardName" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Expiry Date *</label>
+                                        <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">CVV *</label>
+                                        <input type="text" name="cvv" placeholder="123" maxlength="3" required style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; font-size: 14px; font-family: 'Inter', sans-serif;">
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px; padding: 20px; background: #000; color: #fff;">
+                                    <div style="display: flex; justify-content: space-between; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 500;">
+                                        <span>Total Amount:</span>
+                                        <span>$${total}</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                                    <button type="button" onclick="app.currentView = 'checkout'; app.updateView();" style="flex: 1; background: transparent; color: #000; border: 1px solid #000; padding: 14px; cursor: pointer; font-size: 14px;">Back</button>
+                                    <button type="submit" style="flex: 2; background: #000; color: #fff; border: none; padding: 14px; cursor: pointer; font-size: 16px; font-family: 'Poppins', sans-serif;">Complete Payment</button>
+                                </div>
+                                
+                                <p style="text-align: center; font-size: 12px; color: #888; margin-top: 16px;">🔒 Your payment information is secure and encrypted</p>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderSuccess() {
+                const orderNumber = Math.floor(100000 + Math.random() * 900000);
+                return `
+                    <div style="padding: 60px 30px; text-align: center; font-family: 'Inter', sans-serif;">
+                        <div style="font-size: 80px; margin-bottom: 20px;">✓</div>
+                        <h2 style="font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 300; margin-bottom: 16px; color: #00aa00;">Order Successful!</h2>
+                        <p style="font-size: 16px; color: #666; margin-bottom: 8px;">Thank you for your purchase, ${this.customerInfo.name}!</p>
+                        <p style="font-size: 14px; color: #888; margin-bottom: 30px;">Order #${orderNumber}</p>
+                        
+                        <div style="max-width: 500px; margin: 30px auto; padding: 24px; background: #f5f5f5; text-align: left;">
+                            <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 500; margin-bottom: 16px;">Order Details</h3>
+                            ${this.cart.map(item => `
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                                    <span>${item.name} × ${item.quantity}</span>
+                                    <span>$${item.price * item.quantity}</span>
+                                </div>
+                            `).join('')}
+                            <div style="display: flex; justify-content: space-between; margin-top: 16px; padding-top: 16px; border-top: 2px solid #000; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 500;">
+                                <span>Total Paid:</span>
+                                <span>$${this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)}</span>
+                            </div>
+                        </div>
+                        
+                        <div style="max-width: 500px; margin: 0 auto 30px; padding: 20px; background: #e8f5e9; border-left: 4px solid #00aa00; text-align: left;">
+                            <p style="font-size: 14px; margin: 0;"><strong>What's Next?</strong><br>
+                            A confirmation email has been sent to ${this.customerInfo.email}. Your order will be shipped within 2-3 business days.</p>
+                        </div>
+                        
+                        <button onclick="app.resetAndContinueShopping();" style="background: #000; color: #fff; border: none; padding: 16px 40px; cursor: pointer; font-size: 16px; font-family: 'Poppins', sans-serif;">Continue Shopping</button>
+                    </div>
+                `;
+            }
+
+            attachEventListeners() {
+                // Add to cart buttons
+                document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const productId = parseInt(e.target.dataset.productId);
+                        this.addToCart(productId);
+                    });
+                });
+
+                // Cart quantity controls
+                document.querySelectorAll('.increase-qty').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const itemId = parseInt(e.target.dataset.itemId);
+                        this.updateQuantity(itemId, 1);
+                    });
+                });
+
+                document.querySelectorAll('.decrease-qty').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const itemId = parseInt(e.target.dataset.itemId);
+                        this.updateQuantity(itemId, -1);
+                    });
+                });
+
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const itemId = parseInt(e.target.dataset.itemId);
+                        this.removeFromCart(itemId);
+                    });
+                });
+
+                // Checkout form
+                const checkoutForm = document.getElementById('checkoutForm');
+                if (checkoutForm) {
+                    checkoutForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.target);
+                        this.customerInfo = Object.fromEntries(formData);
+                        this.currentView = 'payment';
+                        this.updateView();
+                    });
+                }
+
+                // Payment form
+                const paymentForm = document.getElementById('paymentForm');
+                if (paymentForm) {
+                    paymentForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.currentView = 'success';
+                        this.updateView();
+                    });
+                }
+            }
+
+            addToCart(productId) {
+                const product = this.products.find(p => p.id === productId);
+                const existingItem = this.cart.find(item => item.id === productId);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.cart.push({ ...product, quantity: 1 });
+                }
+
+                this.updateView();
+            }
+
+            updateQuantity(itemId, change) {
+                const item = this.cart.find(i => i.id === itemId);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) {
+                        this.removeFromCart(itemId);
+                    } else {
+                        this.updateView();
+                    }
+                }
+            }
+
+            removeFromCart(itemId) {
+                this.cart = this.cart.filter(item => item.id !== itemId);
+                this.updateView();
+            }
+
+            resetAndContinueShopping() {
+                this.cart = [];
+                this.customerInfo = null;
+                this.currentView = 'products';
+                this.updateView();
+            }
+        }
+
+        // Initialize the app
+        const app = new ECommerceApp();
+    </script>
+</body>
+</html>
