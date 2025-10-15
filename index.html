@@ -705,7 +705,7 @@
         .portfolio-card::after {
             content: 'View Project →';
             position: absolute;
-            bottom: 30px;
+            bottom: 15px;
             right: 30px;
             font-family: 'Inter', sans-serif;
             font-size: 13px;
@@ -799,6 +799,15 @@
             opacity: 0.7;
         }
 
+        /* Button Container for Centering */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: var(--spacing-lg);
+        }
+
+        /* Update the button style */
         .load-more-button {
             padding: 16px 40px;
             background: transparent;
@@ -811,10 +820,9 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             letter-spacing: 0.5px;
-            margin: var(--spacing-lg) auto 0;
-            display: block;
             position: relative;
             overflow: hidden;
+            margin: 0; /* Remove margin since container handles spacing */
         }
 
         .load-more-button::before {
@@ -1460,73 +1468,85 @@
                                     <span class="portfolio-cat">Custom Development</span>
                                 </div>
                                 <h3>Modern Shopping Experience</h3>
-                                <p>Developed a full-featured, responsive e-commerce platform with secure authentication, product management, and integrated payment gateway.</p>
+                                <p>Built a secure, responsive e-commerce platform with payments and product tools.</p>
                             </div>
                         </div>
                     </a>
 
-                    <!-- Project 02 - No link yet -->
-                    <div class="portfolio-card fade-in">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
+                    <!-- Project 02 - Clickable with link -->
+                    <a href="portfolio-2.html" class="portfolio-card-link">
+                        <div class="portfolio-card fade-in">
+                            <div class="portfolio-image">
+                                <div class="portfolio-placeholder">
+                                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <div class="portfolio-meta">
+                                    <span class="portfolio-num">PROJECT 02</span>
+                                    <span class="portfolio-cat">AI & Machine Learning</span>
+                                </div>
+                                <h3>Chatbot System</h3>
+                                <p>Created an AI-driven customer service tool that boosted efficiency by 60%.</p>
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 02</span>
-                                <span class="portfolio-cat">AI & Machine Learning</span>
-                            </div>
-                            <h3>Chatbot System</h3>
-                            <p>AI-powered solution for customer service solution that increased efficiency by 60% through machine learning algorithms.</p>
-                        </div>
-                    </div>
+                    </a>
 
                     <!-- Hidden projects -->
-                    <div class="portfolio-card hidden fade-in">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 03</span>
-                                <span class="portfolio-cat">IoT & Digital Engineering</span>
-                            </div>
-                            <h3>Smart Factory IoT Solution</h3>
-                            <p>End-to-end IoT ecosystem connecting 1,000+ sensors and devices, enabling real-time monitoring, automated quality control, and optimized workflows.</p>
-                        </div>
-                    </div>
 
-                    <div class="portfolio-card hidden fade-in">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
+                    <!-- Project 03 - Clickable with link -->
+                    <a href="portfolio-3.html" class="portfolio-card-link">
+                        <div class="portfolio-card hidden fade-in">
+                            <div class="portfolio-image">
+                                <div class="portfolio-placeholder">
+                                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <div class="portfolio-meta">
+                                    <span class="portfolio-num">PROJECT 03</span>
+                                    <span class="portfolio-cat">IoT & Digital Engineering</span>
+                                </div>
+                                <h3>Smart Factory IoT Solution</h3>
+                                <p>Developed an IoT system for real-time monitoring and automated workflow optimization.</p>
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 04</span>
-                                <span class="portfolio-cat">Identity Branding & Marketing</span>
+                    </a>
+
+                    <!-- Project 04 - Clickable with link -->
+                    <a href="portfolio-4.html" class="portfolio-card-link">
+                        <div class="portfolio-card hidden fade-in">
+                            <div class="portfolio-image">
+                                <div class="portfolio-placeholder">
+                                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
                             </div>
-                            <h3>Corporate Rebranding Campaign</h3>
-                            <p>Complete brand transformation including visual identity, digital presence, and marketing strategy, resulting in 250% increase in brand recognition.</p>
+                            <div class="portfolio-content">
+                                <div class="portfolio-meta">
+                                    <span class="portfolio-num">PROJECT 04</span>
+                                    <span class="portfolio-cat">Identity Branding & Marketing</span>
+                                </div>
+                                <h3>Corporate Rebranding Campaign</h3>
+                                <p>Complete brand transformation - visual identity, digital presence, and marketing strategy.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <button class="load-more-button" id="loadMoreBtn">View More Projects</button>
+                <!-- Button Container for Centering -->
+                <div class="button-container">
+                    <button class="load-more-button" id="loadMoreBtn">View More Projects</button>
+                </div>
             </div>
         </section>
 
