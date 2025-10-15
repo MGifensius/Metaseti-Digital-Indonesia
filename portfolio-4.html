@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 4: Corporate Rebranding Campaign | Metaseti Digital Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --spacing-xs: 20px;
+            --spacing-sm: 30px;
+            --spacing-md: 40px;
+            --spacing-lg: 60px;
+            --spacing-xl: 80px;
+            --spacing-2xl: 100px;
+            --spacing-3xl: 120px;
+            
+            /* Monochrome Color Palette */
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --medium-gray: #888888;
+            --dark-gray: #222222;
+            --accent-color: #C9A961; /* Gold accent for branding project */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-white);
+            color: var(--primary-black);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: var(--spacing-xs) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: var(--spacing-lg);
+            right: var(--spacing-lg);
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%);
+        }
+
+        .back-link {
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            color: var(--primary-black);
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.3s;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 18px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Project Hero Section */
+        .project-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-xl);
+            text-align: center;
+            background: var(--primary-white);
+        }
+
+        .project-hero-content {
+            max-width: 900px;
+        }
+
+        .project-category {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--primary-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            opacity: 0.7;
+        }
+
+        .project-hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -2px;
+            color: var(--primary-black);
+        }
+
+        .project-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            color: var(--primary-black);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-black);
+            margin-bottom: 5px;
+            opacity: 0.7;
+        }
+
+        .meta-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--primary-black);
+        }
+
+        /* Content Sections */
+        section {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            position: relative;
+            background: var(--primary-white);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 300;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -1px;
+            color: var(--primary-black);
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--primary-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0.7;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            max-width: 60px;
+            height: 1px;
+            background: var(--primary-black);
+        }
+
+        /* Challenge & Solution */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .content-block p {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 2;
+            color: var(--primary-black);
+            opacity: 0.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Brand Elements Section */
+        .brand-elements {
+            margin-top: var(--spacing-xl);
+        }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .element-card {
+            background: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .element-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .element-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .element-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .element-card:hover .element-image img {
+            transform: scale(1.05);
+        }
+
+        .element-content {
+            padding: var(--spacing-md);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .element-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-black);
+        }
+
+        .element-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--primary-black);
+            opacity: 0.8;
+            flex-grow: 1;
+        }
+
+        /* Results Section */
+        .results-container {
+            margin-top: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--dark-gray) 100%);
+            border-radius: 4px;
+            padding: var(--spacing-2xl);
+            color: var(--primary-white);
+        }
+
+        .results-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-white);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: var(--spacing-sm);
+            color: var(--accent-color);
+        }
+
+        .result-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--primary-white);
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--primary-white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Testimonial Section */
+        .testimonial-container {
+            max-width: 800px;
+            margin: var(--spacing-xl) auto 0;
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--primary-black);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 60px;
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            color: var(--accent-color);
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--primary-black);
+            opacity: 0.8;
+        }
+
+        .testimonial-position {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--primary-black);
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--primary-black);
+            text-decoration: none;
+            border-radius: 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            border: 1px solid var(--primary-black);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            transition: left 0.6s;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: var(--primary-white);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg);
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--primary-black);
+            border-top: 1px solid var(--primary-black);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .elements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px var(--spacing-sm);
+            }
+
+            nav::after {
+                left: var(--spacing-sm);
+                right: var(--spacing-sm);
+            }
+
+            section {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            .project-hero {
+                padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-xl);
+            }
+
+            .elements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo%20for%20White%20Background.png" alt="Metaseti Logo">
+        </a>
+        <a href="index.html#portfolio" class="back-link">Back to Portfolio</a>
+    </nav>
+
+    <div class="content">
+        <section class="project-hero">
+            <div class="project-hero-content fade-in">
+                <div class="project-category">IDENTITY BRANDING & MARKETING</div>
+                <h1>Corporate Rebranding Campaign</h1>
+                <p class="project-subtitle">A complete brand transformation that repositioned our client as an industry leader through strategic visual identity, digital presence, and marketing strategy.</p>
+                
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Timeline</div>
+                        <div class="meta-value">5 Weeks</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Year</div>
+                        <div class="meta-value">2025</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview">
+            <div class="section-container">
+                <div class="section-label fade-in">Project Overview</div>
+                <h2 class="fade-in">A Comprehensive Rebranding Initiative</h2>
+                
+                <div class="two-column-grid">
+                    <div class="content-block fade-in">
+                        <p>GlobalTech Industries approached us with a challenge: their brand identity no longer reflected their innovative capabilities and market leadership position. After two decades of operation, their visual identity, messaging, and digital presence had become fragmented and outdated.</p>
+                        <p>Our team conducted extensive market research, stakeholder interviews, and competitive analysis to develop a comprehensive rebranding strategy that would position GlobalTech as a forward-thinking industry leader while honoring their heritage and core values.</p>
+                    </div>
+                    <div class="content-block fade-in">
+                        <p>The project encompassed a complete visual identity redesign, messaging framework, website overhaul, marketing collateral, and launch campaign. The result was a cohesive brand experience that resonated with both existing clients and new prospects.</p>
+                        <p>Through this transformation, GlobalTech successfully repositioned itself in the market, creating a distinct identity that communicated their technological expertise and forward-thinking approach.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenge-solution">
+            <div class="section-container">
+                <div class="section-label fade-in">Challenge & Solution</div>
+                <h2 class="fade-in">Addressing Core Brand Challenges</h2>
+                
+                <div class="two-column-grid">
+                    <div class="content-block fade-in">
+                        <h3 style="font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 300; margin-bottom: var(--spacing-md);">The Challenge</h3>
+                        <p>GlobalTech faced several critical branding challenges that were impacting their market position and growth potential:</p>
+                        <p>• Outdated visual identity that failed to reflect their technological innovation</p>
+                        <p>• Inconsistent brand messaging across different departments and regions</p>
+                        <p>• Digital presence that didn't showcase their capabilities or engage their audience</p>
+                        <p>• Lack of brand differentiation in a crowded marketplace</p>
+                        <p>• Internal misalignment on brand values and positioning</p>
+                    </div>
+                    <div class="content-block fade-in">
+                        <h3 style="font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 300; margin-bottom: var(--spacing-md);">Our Solution</h3>
+                        <p>We developed a comprehensive rebranding strategy that addressed each challenge systematically:</p>
+                        <p>• Created a modern, flexible visual identity system that communicates innovation and reliability</p>
+                        <p>• Developed a unified messaging framework with clear brand voice and tone guidelines</p>
+                        <p>• Designed and built a fully responsive website that showcases their expertise and solutions</p>
+                        <p>• Implemented a cohesive brand experience across all touchpoints</p>
+                        <p>• Conducted internal workshops to ensure brand alignment and adoption</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="brand-elements">
+            <div class="section-container">
+                <div class="section-label fade-in">Brand Elements</div>
+                <h2 class="fade-in">Key Components of the New Identity</h2>
+                
+                <div class="brand-elements">
+                    <div class="elements-grid">
+                        <div class="element-card fade-in">
+                            <div class="element-image">
+                                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Logo Design">
+                            </div>
+                            <div class="element-content">
+                                <h3 class="element-title">Logo & Visual Identity</h3>
+                                <p class="element-description">A modern, minimalist logo that represents GlobalTech's technological expertise and forward-thinking approach, with a flexible system for various applications.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card fade-in">
+                            <div class="element-image">
+                                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Color Palette">
+                            </div>
+                            <div class="element-content">
+                                <h3 class="element-title">Color Palette</h3>
+                                <p class="element-description">A sophisticated color palette that balances technology with approachability, featuring deep blues and teals complemented by warm accent tones.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card fade-in">
+                            <div class="element-image">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Typography">
+                            </div>
+                            <div class="element-content">
+                                <h3 class="element-title">Typography System</h3>
+                                <p class="element-description">A carefully selected typography system that balances readability with personality, featuring both serif and sans-serif fonts for different applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="results">
+            <div class="section-container">
+                <div class="section-label fade-in">Results</div>
+                <h2 class="fade-in">Measurable Business Impact</h2>
+                
+                <div class="results-container fade-in">
+                    <h3 class="results-title">Business Impact</h3>
+                    
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-number">65%</div>
+                            <div class="result-label">Increase in Brand Recognition</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-number">42%</div>
+                            <div class="result-label">Growth in Lead Generation</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-number">38%</div>
+                            <div class="result-label">Increase in Website Engagement</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-number">28%</div>
+                            <div class="result-label">Improvement in Customer Perception</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="section-container">
+                <div class="section-label fade-in">Gallery</div>
+                <h2 class="fade-in">Brand Implementation Showcase</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Business Cards">
+                        <div class="gallery-caption">Business Cards & Stationery</div>
+                    </div>
+                    
+                    <div class="gallery-item fade-in">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Website Design">
+                        <div class="gallery-caption">Website Design</div>
+                    </div>
+                    
+                    <div class="gallery-item fade-in">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Marketing Materials">
+                        <div class="gallery-caption">Marketing Collateral</div>
+                    </div>
+                    
+                    <div class="gallery-item fade-in">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Office Branding">
+                        <div class="gallery-caption">Office Environment Branding</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonial">
+            <div class="section-container">
+                <div class="section-label fade-in">Testimonial</div>
+                <h2 class="fade-in">Client Feedback</h2>
+                
+                <div class="testimonial-container fade-in">
+                    <p class="testimonial-quote">The rebranding project with Metaseti Digital Indonesia transformed not just our visual identity but our entire market position. Their strategic approach and creative excellence have positioned us as an industry leader.</p>
+                    <p class="testimonial-author">Sarah Johnson</p>
+                    <p class="testimonial-position">Chief Marketing Officer, GlobalTech Industries</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="background: var(--light-gray);">
+            <div class="section-container">
+                <div class="section-label fade-in">Get Started</div>
+                <h2 class="fade-in">Transform Your Brand Today</h2>
+                
+                <div style="text-align: center; margin-top: var(--spacing-lg);">
+                    <a href="index.html#contact" class="cta-button fade-in">
+                        Start Your Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 METASETI DIGITAL INDONESIA — ALL RIGHTS RESERVED</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade-in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
