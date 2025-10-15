@@ -669,6 +669,13 @@
             margin-top: var(--spacing-lg);
         }
 
+        /* Portfolio Card Link Wrapper */
+        .portfolio-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .portfolio-card {
             position: relative;
             background: var(--primary-white);
@@ -692,6 +699,26 @@
         .portfolio-card:hover .portfolio-content h3,
         .portfolio-card:hover .portfolio-content p {
             color: var(--primary-white);
+        }
+
+        /* View Project indicator */
+        .portfolio-card::after {
+            content: 'View Project →';
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s;
+            color: inherit;
+            pointer-events: none;
+        }
+
+        .portfolio-card:hover::after {
+            opacity: 0.9;
+            transform: translateX(0);
         }
 
         .portfolio-image {
@@ -1076,6 +1103,12 @@
                 padding: var(--spacing-sm) 25px;
             }
 
+            .portfolio-card::after {
+                bottom: 20px;
+                right: 20px;
+                font-size: 12px;
+            }
+
             .about-hero-title {
                 font-size: 36px;
             }
@@ -1086,7 +1119,6 @@
         }
 
         /* Mobile-specific loader adjustments */
-        /* Large phones and tablets */
         @media (max-width: 768px) {
             .loading-screen {
                 padding: 40px 25px;
@@ -1103,7 +1135,6 @@
             }
         }
 
-        /* Standard phones (iPhone 6/7/8, Galaxy S, etc.) */
         @media (max-width: 480px) {
             .loading-screen {
                 padding: 30px 20px;
@@ -1125,7 +1156,6 @@
             }
         }
 
-        /* Small phones */
         @media (max-width: 375px) {
             .loading-screen {
                 padding: 25px 18px;
@@ -1137,7 +1167,6 @@
             }
         }
 
-        /* Very small phones (iPhone 5/SE) */
         @media (max-width: 320px) {
             .loading-screen {
                 padding: 20px 15px;
@@ -1160,14 +1189,12 @@
             }
         }
 
-        /* Long screen phones (iPhone X and newer, modern Android flagships) */
         @media (max-width: 480px) and (min-height: 700px) {
             .loading-screen {
                 padding: 50px 25px;
             }
         }
 
-        /* Extra long screens (21:9 aspect ratio phones) */
         @media (max-width: 480px) and (min-height: 800px) {
             .loading-screen {
                 padding: 80px 25px;
@@ -1178,14 +1205,12 @@
             }
         }
 
-        /* Ultra long screens */
         @media (max-width: 480px) and (min-height: 900px) {
             .loading-screen {
                 padding: 100px 25px;
             }
         }
 
-        /* Landscape mode for phones */
         @media (max-height: 480px) and (orientation: landscape) {
             .loading-screen {
                 padding: 15px 30px;
@@ -1197,7 +1222,6 @@
             }
         }
 
-        /* iPhone 5/SE in landscape */
         @media (max-height: 320px) and (orientation: landscape) {
             .loading-screen {
                 padding: 10px 20px;
@@ -1309,11 +1333,10 @@
                                 <h4>What We Deliver</h4>
                                 <p>Complete end-to-end development services tailored to your business needs.</p>
                                 <ul>
-                                    <li>Custom web applications with modern frameworks</li>
-                                    <li>Native & cross-platform mobile apps</li>
-                                    <li>E-commerce platforms & payment integration</li>
+                                    <li>Custom web development</li>
+                                    <li>Custom web application with modern frameworks</li>
+                                    <li>Native and cross-platform mobile apps</li>
                                     <li>API development & third-party integrations</li>
-                                    <li>Progressive Web Apps (PWAs)</li>
                                     <li>Responsive design & optimization</li>
                                 </ul>
                             </div>
@@ -1342,8 +1365,6 @@
                                 <p>Intelligent solutions that transform raw data into actionable insights.</p>
                                 <ul>
                                     <li>Custom machine learning models</li>
-                                    <li>Natural language processing systems</li>
-                                    <li>Computer vision applications</li>
                                     <li>Predictive analytics & forecasting</li>
                                     <li>Chatbots & virtual assistants</li>
                                     <li>Data mining & pattern recognition</li>
@@ -1375,10 +1396,8 @@
                                 <ul>
                                     <li>IoT device integration & management</li>
                                     <li>Sensor networks & data collection</li>
-                                    <li>Edge computing solutions</li>
                                     <li>Real-time monitoring dashboards</li>
-                                    <li>Industrial automation systems</li>
-                                    <li>Smart building & facility management</li>
+                                    <li>Automation systems</li>
                                 </ul>
                             </div>
                         </div>
@@ -1407,7 +1426,6 @@
                                 <ul>
                                     <li>Brand strategy & positioning</li>
                                     <li>Logo design & visual identity</li>
-                                    <li>Marketing collateral & guidelines</li>
                                     <li>Social media management</li>
                                     <li>Content creation & copywriting</li>
                                     <li>Digital marketing campaigns</li>
@@ -1425,25 +1443,29 @@
                 <p class="section-subtitle fade-in">Recent projects that showcase our approach and capabilities.</p>
                 
                 <div class="portfolio-grid">
-                    <div class="portfolio-card fade-in">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
+                    <!-- Project 01 - Clickable with link -->
+                    <a href="portfolio-1.html" class="portfolio-card-link">
+                        <div class="portfolio-card fade-in">
+                            <div class="portfolio-image">
+                                <div class="portfolio-placeholder">
+                                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <div class="portfolio-meta">
+                                    <span class="portfolio-num">PROJECT 01</span>
+                                    <span class="portfolio-cat">Custom Development</span>
+                                </div>
+                                <h3>Modern Shopping Experience</h3>
+                                <p>Developed a full-featured, responsive e-commerce platform with secure authentication, product management, and integrated payment gateway.</p>
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-meta">
-                                <span class="portfolio-num">PROJECT 01</span>
-                                <span class="portfolio-cat">Custom Web/App Design</span>
-                            </div>
-                            <h3>Landing Page</h3>
-                            <p>A modern, responsive landing page built to position a logistics company as a tech-savvy partner. Clean aesthetics and benefit-driven copy capture high-quality leads.</p>
-                        </div>
-                    </div>
+                    </a>
 
+                    <!-- Project 02 - No link yet -->
                     <div class="portfolio-card fade-in">
                         <div class="portfolio-image">
                             <div class="portfolio-placeholder">
@@ -1463,6 +1485,7 @@
                         </div>
                     </div>
 
+                    <!-- Hidden projects -->
                     <div class="portfolio-card hidden fade-in">
                         <div class="portfolio-image">
                             <div class="portfolio-placeholder">
@@ -1501,7 +1524,6 @@
                             <p>Complete brand transformation including visual identity, digital presence, and marketing strategy, resulting in 250% increase in brand recognition.</p>
                         </div>
                     </div>
-
                 </div>
 
                 <button class="load-more-button" id="loadMoreBtn">View More Projects</button>
