@@ -269,10 +269,188 @@
             padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-xl);
             text-align: center;
             background: var(--primary-white);
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+        }
+
+        /* Light Speed Animation Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                /* Central light beam */
+                linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(255, 255, 255, 0.8) 20%, 
+                    rgba(255, 255, 255, 0.9) 50%, 
+                    rgba(255, 255, 255, 0.8) 80%, 
+                    transparent 100%),
+                /* Subtle radial glow */
+                radial-gradient(circle at 50% 50%, 
+                    rgba(255, 255, 255, 0.4) 0%, 
+                    rgba(255, 255, 255, 0.2) 30%, 
+                    transparent 70%);
+            background-size: 200% 100%, 100% 100%;
+            background-position: -200% 0, 0 0;
+            animation: lightSpeed 8s ease-in-out infinite;
+            z-index: 1;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+        }
+
+        /* Light particles */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.3) 2px, transparent 3px),
+                radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.3) 1px, transparent 2px),
+                radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.4) 1px, transparent 2px),
+                radial-gradient(circle at 60% 20%, rgba(0, 0, 0, 0.3) 2px, transparent 3px),
+                radial-gradient(circle at 90% 40%, rgba(0, 0, 0, 0.2) 1px, transparent 2px);
+            background-size: 200px 200px, 150px 150px, 180px 180px, 220px 220px, 170px 170px;
+            animation: particleFloat 12s ease-in-out infinite;
+            z-index: 1;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+        }
+
+        /* Light Speed Animation */
+        @keyframes lightSpeed {
+            0%, 100% {
+                background-position: -200% 0, 0 0;
+                opacity: 0.3;
+            }
+            25% {
+                background-position: -100% 0, 0 0;
+                opacity: 0.6;
+            }
+            50% {
+                background-position: 0% 0, 0 0;
+                opacity: 0.8;
+            }
+            75% {
+                background-position: 100% 0, 0 0;
+                opacity: 0.6;
+            }
+        }
+
+        /* Particle Floating Animation */
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-10px) translateX(5px);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-5px) translateX(10px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-8px) translateX(-5px);
+                opacity: 0.5;
+            }
+        }
+
+        /* Additional light streaks */
+        .light-streak {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(18, 13, 13, 0.8) 15%, 
+                rgba(0, 0, 0, 0.9) 50%, 
+                rgba(0, 0, 0, 0.8) 85%, 
+                transparent 100%);
+            animation: streakMove 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .light-streak:nth-child(1) {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .light-streak:nth-child(2) {
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        .light-streak:nth-child(3) {
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes streakMove {
+            0%, 100% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(100%);
+                opacity: 0.7;
+            }
         }
 
         .hero-content {
             max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                border-bottom-left-radius: 40px;
+                border-bottom-right-radius: 40px;
+            }
+            
+            .hero::before,
+            .hero::after {
+                border-bottom-left-radius: 40px;
+                border-bottom-right-radius: 40px;
+            }
+
+            /* Reduce animation intensity on mobile */
+            .hero::before {
+                animation-duration: 10s;
+            }
+            
+            .hero::after {
+                animation-duration: 15s;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+            
+            .hero::before,
+            .hero::after {
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+
+            /* Further reduce animation on small screens */
+            .hero::before {
+                opacity: 0.4;
+            }
         }
 
         .hero-content h1 {
@@ -389,37 +567,64 @@
         }
 
         /* About Section */
-        .about-container {
-            margin-top: var(--spacing-xl);
+        #about {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            background: var(--primary-white);
             position: relative;
         }
 
-        .about-hero {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xl);
+        .about-header {
+            text-align: center;
             margin-bottom: var(--spacing-2xl);
-            position: relative;
         }
 
-        .about-hero-text {
-            flex: 1;
-        }
-
-        .about-highlight {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            color: var(--primary-black);
-            letter-spacing: 4px;
-            text-transform: uppercase;
+        .about-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 300;
             margin-bottom: var(--spacing-sm);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
+            letter-spacing: -1px;
+            color: var(--primary-black);
+        }
+
+        .about-header .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(14px, 1.5vw, 18px);
+            color: var(--primary-black);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
             opacity: 0.7;
         }
 
-        .about-highlight::before {
+        /* About Hero - Redesigned */
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+            margin-bottom: var(--spacing-3xl);
+            position: relative;
+        }
+
+        .about-hero-content {
+            padding-right: var(--spacing-lg);
+        }
+
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--primary-black);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.7;
+        }
+
+        .about-badge::before {
             content: '';
             width: 40px;
             height: 1px;
@@ -428,93 +633,320 @@
 
         .about-hero-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 48px;
+            font-size: clamp(32px, 4vw, 48px);
             font-weight: 300;
             line-height: 1.2;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
             color: var(--primary-black);
         }
 
         .about-hero-description {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
-            line-height: 2;
+            line-height: 1.8;
             color: var(--primary-black);
-            max-width: 600px;
+            opacity: 0.7;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Focus Areas instead of Stats */
+        .focus-areas {
+            margin-top: var(--spacing-lg);
+        }
+
+        .focus-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-sm);
             opacity: 0.7;
         }
 
-        .vision-mission-wrapper {
-            position: relative;
-            margin-top: var(--spacing-xl);
+        .focus-tags {
             display: flex;
-            flex-direction: column;
-            gap: 0;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .vision-section,
-        .mission-section {
+        .focus-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .focus-tag:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            opacity: 1;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 400px;
+            background: var(--light-gray);
+            border-radius: 20px;
+            overflow: hidden;
             display: flex;
             align-items: center;
-            gap: var(--spacing-lg);
-            position: relative;
+            justify-content: center;
         }
 
-        .mission-section {
-            flex-direction: row-reverse;
+        .visual-placeholder {
+            font-size: 48px;
+            color: var(--medium-gray);
+        }
+
+        /* Vision & Mission Grid */
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .vm-card {
+            background: var(--primary-white);
+            border: 1px solid var(--primary-black);
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .vm-card:hover::before {
+            opacity: 1;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vm-card:hover .vm-icon,
+        .vm-card:hover .vm-label,
+        .vm-card:hover .vm-heading,
+        .vm-card:hover .vm-text {
+            color: var(--primary-white);
         }
 
         .vm-content {
-            flex: 1;
             position: relative;
+            z-index: 2;
+        }
+
+        .vm-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .vm-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary-black);
+            transition: color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .vm-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Vision Icon - Eye/Target */
+        .vm-icon.vision-icon svg {
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        /* Mission Icon - Compass/Radar */
+        .vm-icon.mission-icon svg {
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        /* Alternative simpler icons */
+        .vm-icon.simple-vision svg {
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .vm-icon.simple-mission svg {
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
         }
 
         .vm-label {
             font-family: 'Inter', sans-serif;
             font-size: 12px;
             color: var(--primary-black);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: var(--spacing-xs);
-            display: flex;
-            align-items: center;
-            gap: 15px;
             opacity: 0.7;
-        }
-
-        .vm-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--primary-black);
-        }
-
-        .mission-section .vm-label::after {
-            display: none;
-        }
-
-        .mission-section .vm-label::before {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--primary-black);
+            transition: color 0.3s ease;
         }
 
         .vm-heading {
             font-family: 'Poppins', sans-serif;
-            font-size: 42px;
+            font-size: clamp(24px, 3vw, 32px);
             font-weight: 300;
             color: var(--primary-black);
-            margin-bottom: 25px;
-            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+            transition: color 0.3s ease;
         }
 
         .vm-text {
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 2;
+            font-size: 15px;
+            line-height: 1.7;
             color: var(--primary-black);
             opacity: 0.7;
+            transition: color 0.3s ease;
+        }
+
+        /* Team Preview - Updated */
+        .team-preview {
+            margin-top: var(--spacing-3xl);
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .team-preview h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 300;
+            color: var(--primary-black);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .team-preview p {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--primary-black);
+            opacity: 0.7;
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .team-highlight {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--primary-black);
+            opacity: 0.8;
+            margin-bottom: var(--spacing-md);
+            font-style: italic;
+        }
+
+        .team-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--primary-black);
+            text-decoration: none;
+            border: 1px solid var(--primary-black);
+            border-radius: 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .team-cta:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .about-hero-content {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .about-badge {
+                justify-content: center;
+            }
+
+            .focus-tags {
+                justify-content: center;
+            }
+
+            .vm-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #about {
+                padding: var(--spacing-2xl) var(--spacing-sm);
+            }
+
+            .about-visual {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-visual {
+                height: 250px;
+            }
+
+            .vm-card {
+                padding: var(--spacing-md);
+            }
+
+            .focus-tags {
+                justify-content: center;
+            }
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Services Section */
@@ -1270,6 +1702,11 @@
 
     <div class="content">
         <section id="home" class="hero">
+            <!-- Light streaks -->
+            <div class="light-streak"></div>
+            <div class="light-streak"></div>
+            <div class="light-streak"></div>
+            
             <div class="hero-content">
                 <h1 class="fade-in">Impact Engineered.<br>Advantage Secured.</h1>
                 <p class="hero-subtitle fade-in">We don't hope for results; we build them. By intentionally engineering every move for maximum impact, we ensure your competitive advantage isn't just won—it's permanently secured.</p>
@@ -1279,37 +1716,93 @@
 
         <section id="about">
             <div class="section-container">
-                <h2 class="fade-in">About Metaseti</h2>
-                <p class="section-subtitle fade-in">Pioneering digital transformation in Indonesia through innovation, expertise, and strategic vision.</p>
+                <div class="about-header fade-in">
+                    <h2>About Metaseti</h2>
+                    <p class="section-subtitle">Pioneering digital transformation in Indonesia through innovation, expertise, and strategic vision.</p>
+                </div>
                 
-                <div class="about-container">
-                    <div class="about-hero fade-in">
-                        <div class="about-hero-text">
-                            <div class="about-highlight">Who We Are</div>
-                            <h3 class="about-hero-title">Engineering Tomorrow's Digital Landscape</h3>
-                            <p class="about-hero-description">Born from a commitment to propel Indonesia's digital transformation, Metaseti Digital Indonesia stands at the forefront of technological innovation. We bridge the gap between cutting-edge technology and practical business solutions, engineering digital experiences that drive competitive advantage through precision development, measurable growth, and lasting impact.</p>
-                        </div>
-                    </div>
-
-                    <div class="vision-mission-wrapper">
-                        <div class="vision-section fade-in">
-                            <div class="vm-content">
-                                <div class="vm-label">Our Vision</div>
-                                <h3 class="vm-heading">Leading Catalyst for Digital Transformation</h3>
-                                <p class="vm-text">To be Indonesia's leading catalyst for digital transformation, empowering businesses to achieve unprecedented growth through innovative technology solutions and strategic excellence.</p>
+                <div class="about-hero fade-in">
+                    <div class="about-hero-content">
+                        <div class="about-badge">Who We Are</div>
+                        <h3 class="about-hero-title">Engineering Tomorrow's Digital Landscape</h3>
+                        <p class="about-hero-description">
+                            Born from a commitment to propel Indonesia's digital transformation, Metaseti Digital Indonesia stands at the forefront of technological innovation. We bridge the gap between cutting-edge technology and practical business solutions, engineering digital experiences that drive competitive advantage through precision development, measurable growth, and lasting impact.
+                        </p>
+                        
+                        <div class="focus-areas">
+                            <div class="focus-title">Our Expertise</div>
+                            <div class="focus-tags">
+                                <span class="focus-tag">Web Development</span>
+                                <span class="focus-tag">AI Solutions</span>
+                                <span class="focus-tag">Brand Strategy</span>
+                                <span class="focus-tag">Digital Innovation</span>
+                                <span class="focus-tag">IoT Systems</span>
+                                <span class="focus-tag">Business Growth</span>
                             </div>
                         </div>
+                    </div>
                     
-                        <br><br>
-
-                        <div class="mission-section fade-in">
-                            <div class="vm-content">
-                                <div class="vm-label">Our Mission</div>
-                                <h3 class="vm-heading">World-Class Solutions, Sustainable Innovation</h3>
-                                <p class="vm-text">To deliver world-class IT solutions and branding strategies that transform challenges into competitive advantages, fostering sustainable innovation and measurable success for every client.</p>
-                            </div>
+                    <div class="about-visual fade-in">
+                        <div class="visual-placeholder">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
                         </div>
                     </div>
+                </div>
+
+                <!-- Vision & Mission Grid -->
+                <div class="vm-grid">
+                    <div class="vm-card fade-in">
+                        <div class="vm-content">
+                            <div class="vm-header">
+                                <div class="vm-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 3L18 14L6 14L12 3Z" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M4 20L8 14L16 14L20 20H4Z" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                                <div class="vm-label">Our Vision</div>
+                            </div>
+                            <h4 class="vm-heading">Leading Catalyst for Digital Transformation</h4>
+                            <p class="vm-text">
+                                To be Indonesia's leading catalyst for digital transformation, empowering businesses to achieve unprecedented growth through innovative technology solutions and strategic excellence.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="vm-card fade-in">
+                        <div class="vm-content">
+                            <div class="vm-header">
+                                <div class="vm-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M12 6V3" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M12 21V18" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M18 12H21" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M3 12H6" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M16.5 7.5L18.5 5.5" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M5.5 18.5L7.5 16.5" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M16.5 16.5L18.5 18.5" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M5.5 5.5L7.5 7.5" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                                <div class="vm-label">Our Mission</div>
+                            </div>
+                            <h4 class="vm-heading">World-Class Solutions, Sustainable Innovation</h4>
+                            <p class="vm-text">
+                                To deliver world-class IT solutions and branding strategies that transform challenges into competitive advantages, fostering sustainable innovation and measurable success for every client.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Preview - Updated -->
+                <div class="team-preview fade-in">
+                    <h3>Our Founding Team</h3>
+                    <p class="team-highlight">A dedicated duo with complementary expertise driving innovation forward</p>
+                    <p>While we're starting small, our combined experience and shared vision enable us to deliver exceptional results for every project we undertake. We believe in building strong partnerships and creating solutions that make a real impact.</p>
                 </div>
             </div>
         </section>
@@ -1490,7 +1983,7 @@
                                     <span class="portfolio-cat">AI & Machine Learning</span>
                                 </div>
                                 <h3>Chatbot System</h3>
-                                <p>Created an AI-driven customer service tool that boosted efficiency by 60%.</p>
+                                <p>Created an AI-driven customer service tool that boosted efficiency.</p>
                             </div>
                         </div>
                     </a>
