@@ -555,7 +555,7 @@
             background: transparent;
             color: var(--primary-black);
             text-decoration: none;
-            border-radius: 0;
+            border-radius: 8px; /* Added border radius */
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
             font-size: 16px;
@@ -1195,6 +1195,7 @@
             color: var(--primary-black);
             transition: all 0.3s;
             opacity: 0.7;
+            border-radius: 8px;
         }
 
         .service-card-back h4 {
@@ -1352,6 +1353,7 @@
             color: var(--primary-black);
             transition: all 0.3s;
             opacity: 0.7;
+            border-radius: 8px;
         }
 
         .portfolio-card:hover .portfolio-cat {
@@ -1420,7 +1422,7 @@
             background: transparent;
             color: var(--primary-black);
             border: 1px solid var(--primary-black);
-            border-radius: 0;
+            border-radius: 8px; /* Added border radius */
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             font-weight: 300;
@@ -1429,7 +1431,7 @@
             letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
-            margin: 0; /* Remove margin since container handles spacing */
+            margin: 0;
         }
 
         .load-more-button::before {
@@ -1655,7 +1657,7 @@
             background: transparent;
             color: var(--primary-black);
             border: 1px solid var(--primary-black);
-            border-radius: 0;
+            border-radius: 8px; /* Added border radius */
             font-family: 'Poppins', sans-serif;
             font-size: 15px;
             font-weight: 300;
@@ -2681,16 +2683,14 @@
                                 <label for="email">Email Address</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
-                        </div>
-                        
-                        <div class="form-row">
+
                             <div class="form-group">
                                 <label for="company">Company</label>
                                 <input type="text" id="company" name="company">
                             </div>
                             
                             <div class="form-group">
-                                <label for="budget">Phone Numbert</label>
+                                <label for="budget">Phone Number</label>
                                 <input type="phone number" id="phone number" name="phone number" required>
                             </div>
                         </div>
