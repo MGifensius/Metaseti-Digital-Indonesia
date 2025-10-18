@@ -1161,22 +1161,57 @@
             opacity: 0.7;
         }
 
+        /* Updated Service Card Styles with Illustrations */
+        .service-card-front {
+            background: var(--primary-white);
+            color: var(--primary-black);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-illustration {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-sm);
+            padding: 20px;
+        }
+        
+        .service-illustration svg {
+            max-width: 100%;
+            max-height: 100%;
+            transition: transform 0.4s ease;
+        }
+        
+        .service-item:hover .service-illustration svg {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 0 20px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .service-content h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 300;
             color: var(--primary-black);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             line-height: 1.3;
         }
-
+        
         .service-content p {
             font-family: 'Inter', sans-serif;
             font-size: 14px;
-            line-height: 1.8;
+            line-height: 1.6;
             color: var(--primary-black);
-            margin-bottom: var(--spacing-sm);
             opacity: 0.7;
+            margin-bottom: auto;
         }
 
         .service-features {
@@ -1237,6 +1272,17 @@
             content: '→';
             margin-right: 12px;
             opacity: 0.6;
+        }
+
+        /* Responsive adjustments for service illustrations */
+        @media (max-width: 768px) {
+            .service-illustration {
+                height: 140px;
+            }
+            
+            .service-content h3 {
+                font-size: 20px;
+            }
         }
 
         /* Portfolio Section */
@@ -2370,8 +2416,19 @@
                     <div class="service-item fade-in">
                         <div class="service-card-inner">
                             <div class="service-card-front">
-                                <div class="service-header">
-                                    <span class="service-index">01</span>
+                                <div class="service-illustration">
+                                    <!-- Web Development Illustration -->
+                                    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="50" y="50" width="300" height="200" rx="10" stroke="currentColor" stroke-width="2"/>
+                                        <rect x="70" y="70" width="260" height="30" rx="5" fill="currentColor" opacity="0.2"/>
+                                        <rect x="70" y="110" width="80" height="60" rx="5" fill="currentColor" opacity="0.1"/>
+                                        <rect x="160" y="110" width="80" height="60" rx="5" fill="currentColor" opacity="0.1"/>
+                                        <rect x="250" y="110" width="80" height="60" rx="5" fill="currentColor" opacity="0.1"/>
+                                        <rect x="70" y="180" width="260" height="40" rx="5" fill="currentColor" opacity="0.1"/>
+                                        <circle cx="85" cy="85" r="5" fill="#FF5E5E"/>
+                                        <circle cx="105" cy="85" r="5" fill="#FFD166"/>
+                                        <circle cx="125" cy="85" r="5" fill="#06D6A0"/>
+                                    </svg>
                                 </div>
                                 <div class="service-content">
                                     <h3>Web & App Development</h3>
@@ -2395,8 +2452,19 @@
                     <div class="service-item fade-in">
                         <div class="service-card-inner">
                             <div class="service-card-front">
-                                <div class="service-header">
-                                    <span class="service-index">02</span>
+                                <div class="service-illustration">
+                                    <!-- AI & Machine Learning Illustration -->
+                                    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="200" cy="150" r="80" stroke="currentColor" stroke-width="2" fill="none"/>
+                                        <path d="M120 150C120 114.8 148.8 86 184 86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M280 150C280 185.2 251.2 214 216 214" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <circle cx="150" cy="120" r="15" fill="currentColor" opacity="0.3"/>
+                                        <circle cx="170" cy="170" r="10" fill="currentColor" opacity="0.3"/>
+                                        <circle cx="220" cy="130" r="12" fill="currentColor" opacity="0.3"/>
+                                        <circle cx="240" cy="180" r="8" fill="currentColor" opacity="0.3"/>
+                                        <path d="M150 120L170 170M170 170L220 130M220 130L240 180" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                        <circle cx="200" cy="150" r="5" fill="currentColor"/>
+                                    </svg>
                                 </div>
                                 <div class="service-content">
                                     <h3>AI & Machine Learning</h3>
@@ -2419,8 +2487,19 @@
                     <div class="service-item fade-in">
                         <div class="service-card-inner">
                             <div class="service-card-front">
-                                <div class="service-header">
-                                    <span class="service-index">03</span>
+                                <div class="service-illustration">
+                                    <!-- IoT & Digital Engineering Illustration -->
+                                    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="100" y="100" width="60" height="60" rx="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                        <rect x="240" y="100" width="60" height="60" rx="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                        <rect x="170" y="170" width="60" height="60" rx="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                        <circle cx="130" cy="130" r="5" fill="currentColor" opacity="0.5"/>
+                                        <circle cx="270" cy="130" r="5" fill="currentColor" opacity="0.5"/>
+                                        <circle cx="200" cy="200" r="5" fill="currentColor" opacity="0.5"/>
+                                        <path d="M130 130L200 200M200 200L270 130" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                        <path d="M160 100L130 130M240 100L270 130M170 170L200 200" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                        <path d="M230 170L200 200" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                    </svg>
                                 </div>
                                 <div class="service-content">
                                     <h3>IoT & Digital Engineering</h3>
@@ -2443,8 +2522,19 @@
                     <div class="service-item fade-in">
                         <div class="service-card-inner">
                             <div class="service-card-front">
-                                <div class="service-header">
-                                    <span class="service-index">04</span>
+                                <div class="service-illustration">
+                                    <!-- Branding & Identity Illustration -->
+                                    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="200" cy="150" r="70" stroke="currentColor" stroke-width="2" fill="none"/>
+                                        <path d="M130 150C130 114.8 158.8 86 194 86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M270 150C270 185.2 241.2 214 206 214" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M200 80V220" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M130 150H270" stroke="currentColor" stroke-width="2"/>
+                                        <circle cx="200" cy="150" r="15" fill="currentColor" opacity="0.3"/>
+                                        <rect x="180" y="140" width="40" height="20" rx="5" fill="currentColor" opacity="0.2"/>
+                                        <path d="M180 150L160 150" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                        <path d="M220 150L240 150" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                    </svg>
                                 </div>
                                 <div class="service-content">
                                     <h3>Branding & Identity</h3>
