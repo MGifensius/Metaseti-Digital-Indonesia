@@ -614,138 +614,145 @@
     </section>
 
     <div class="illustration-container fade-in">
-        <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Abstract Brand Flow Illustration -->
-            
-            <defs>
-                <!-- Fluid gradients -->
-                <linearGradient id="fluid1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#8b5cf6" />
-                    <stop offset="50%" stop-color="#7c3aed" />
-                    <stop offset="100%" stop-color="#6366f1" />
-                </linearGradient>
-                
-                <linearGradient id="fluid2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#f59e0b" />
-                    <stop offset="100%" stop-color="#d97706" />
-                </linearGradient>
-                
-                <linearGradient id="fluid3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#10b981" />
-                    <stop offset="100%" stop-color="#059669" />
-                </linearGradient>
-                
-                <linearGradient id="fluid4" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ec4899" />
-                    <stop offset="100%" stop-color="#db2777" />
-                </linearGradient>
-                
-                <!-- Glow effects -->
-                <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="glow" />
-                    <feComposite in="SourceGraphic" in2="glow" operator="over" />
-                </filter>
-            </defs>
-            
-            <!-- Main flowing composition -->
-            <g transform="translate(400, 200)">
-                <!-- Central flow - brand essence -->
-                <path d="M -150 0 
-                        C -100 -80, -50 -100, 0 -50
-                        S 50 0, 0 50
-                        S -50 100, -150 0 Z" 
-                    fill="url(#fluid1)" 
-                    opacity="0.9"
-                    filter="url(#glow1)" />
-                
-                <!-- Secondary flow - brand expression -->
-                <path d="M 0 -50
-                        C 50 -100, 100 -80, 150 0
-                        S 100 80, 50 100
-                        S 0 50, 0 -50 Z" 
-                    fill="url(#fluid2)" 
-                    opacity="0.8"
-                    filter="url(#glow1)" />
-                
-                <!-- Tertiary flow - brand reach -->
-                <path d="M -80 -40
-                        C -40 -120, 40 -120, 80 -40
-                        C 120 40, 40 120, -40 120
-                        C -120 40, -120 -40, -80 -40 Z" 
-                    fill="url(#fluid3)" 
-                    opacity="0.7"
-                    filter="url(#glow1)" />
-                
-                <!-- Core intersection point -->
-                <circle cx="0" cy="0" r="25" fill="white" opacity="0.9" filter="url(#glow1)" />
-                
-                <!-- Floating organic shapes -->
-                <g opacity="0.8">
-                    <!-- Top left organic shape -->
-                    <ellipse cx="-120" cy="-80" rx="20" ry="35" transform="rotate(-30 -120 -80)" fill="url(#fluid4)" />
+            <svg class="illustration-svg" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Advanced Gradient Definitions -->
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.9" />
+                    </linearGradient>
                     
-                    <!-- Top right organic shape -->
-                    <ellipse cx="120" cy="-80" rx="35" ry="20" transform="rotate(45 120 -80)" fill="#3b82f6" />
+                    <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:0.7" />
+                        <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.8" />
+                    </linearGradient>
                     
-                    <!-- Bottom left organic shape -->
-                    <path d="M -140 60 
-                            Q -120 100, -100 80
-                            Q -80 60, -100 40
-                            Q -120 20, -140 60 Z" 
-                        fill="#f59e0b" />
+                    <linearGradient id="grad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.7" />
+                        <stop offset="100%" style="stop-color:#eab308;stop-opacity:0.8" />
+                    </linearGradient>
                     
-                    <!-- Bottom right organic shape -->
-                    <path d="M 140 40 
-                            C 160 60, 160 90, 140 110
-                            C 120 90, 120 60, 140 40 Z" 
-                        fill="#10b981" />
+                    <linearGradient id="grad4" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.6" />
+                        <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:0.7" />
+                    </linearGradient>
+                    
+                    <radialGradient id="radial1" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0" />
+                    </radialGradient>
+                    
+                    <radialGradient id="radial2" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0" />
+                    </radialGradient>
+                    
+                    <!-- Blur Filters -->
+                    <filter id="blur1">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+                    </filter>
+                    
+                    <filter id="blur2">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="12" />
+                    </filter>
+                    
+                    <!-- Shadow -->
+                    <filter id="shadow">
+                        <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+                    </filter>
+                </defs>
+                
+                <!-- Background Glow Elements -->
+                <ellipse cx="200" cy="150" rx="180" ry="180" fill="url(#radial1)" opacity="0.4" filter="url(#blur2)"/>
+                <ellipse cx="600" cy="350" rx="200" ry="200" fill="url(#radial2)" opacity="0.4" filter="url(#blur2)"/>
+                
+                <!-- Large Overlapping Circles - Main Composition -->
+                <g opacity="0.85">
+                    <!-- Circle 1 - Purple/Pink -->
+                    <circle cx="280" cy="250" r="140" fill="url(#grad1)" opacity="0.7"/>
+                    <circle cx="280" cy="250" r="140" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.3"/>
+                    
+                    <!-- Circle 2 - Teal/Blue -->
+                    <circle cx="520" cy="250" r="140" fill="url(#grad2)" opacity="0.7"/>
+                    <circle cx="520" cy="250" r="140" fill="none" stroke="#14b8a6" stroke-width="2" opacity="0.3"/>
+                    
+                    <!-- Circle 3 - Orange/Yellow -->
+                    <circle cx="400" cy="150" r="120" fill="url(#grad3)" opacity="0.65"/>
+                    <circle cx="400" cy="150" r="120" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.3"/>
                 </g>
                 
-                <!-- Subtle connection lines -->
-                <g stroke="white" stroke-width="1.5" opacity="0.3" fill="none">
-                    <!-- Curved connectors -->
-                    <path d="M -25 0 
-                            C -60 -30, -90 -20, -120 -30" />
+                <!-- Geometric Accent Shapes -->
+                <g opacity="0.6">
+                    <!-- Floating Rectangles -->
+                    <rect x="150" y="320" width="80" height="80" fill="url(#grad4)" opacity="0.5" transform="rotate(15 190 360)"/>
+                    <rect x="570" y="100" width="60" height="60" fill="url(#grad1)" opacity="0.4" transform="rotate(-20 600 130)"/>
                     
-                    <path d="M 25 0 
-                            C 60 -30, 90 -20, 120 -30" />
-                    
-                    <path d="M 0 -25 
-                            C 30 -60, 20 -90, 30 -120" />
-                    
-                    <path d="M 0 25 
-                            C -30 60, -20 90, -30 120" />
+                    <!-- Circles -->
+                    <circle cx="180" cy="180" r="25" fill="#2563eb" opacity="0.5"/>
+                    <circle cx="620" cy="320" r="30" fill="#ec4899" opacity="0.4"/>
+                    <circle cx="350" cy="380" r="20" fill="#10b981" opacity="0.5"/>
                 </g>
-            </g>
-            
-            <!-- Background particles -->
-            <g opacity="0.4">
-                <!-- Small dots scattered -->
-                <circle cx="100" cy="50" r="2" fill="#8b5cf6" />
-                <circle cx="200" cy="80" r="1.5" fill="#f59e0b" />
-                <circle cx="300" cy="120" r="2" fill="#10b981" />
-                <circle cx="500" cy="60" r="1.5" fill="#ec4899" />
-                <circle cx="650" cy="100" r="2" fill="#3b82f6" />
-                <circle cx="700" cy="180" r="1.5" fill="#8b5cf6" />
-                <circle cx="600" cy="250" r="2" fill="#f59e0b" />
-                <circle cx="450" cy="300" r="1.5" fill="#10b981" />
-                <circle cx="250" cy="280" r="2" fill="#ec4899" />
-                <circle cx="150" cy="320" r="1.5" fill="#3b82f6" />
-                <circle cx="50" cy="250" r="2" fill="#8b5cf6" />
-                <circle cx="80" cy="150" r="1.5" fill="#f59e0b" />
-            </g>
-            
-            <!-- Floating translucent overlays -->
-            <g opacity="0.1">
-                <!-- Large background circles -->
-                <circle cx="200" cy="100" r="80" fill="url(#fluid1)" />
-                <circle cx="600" cy="300" r="60" fill="url(#fluid2)" />
-                <circle cx="150" cy="300" r="70" fill="url(#fluid3)" />
-                <circle cx="650" cy="150" r="50" fill="url(#fluid4)" />
-            </g>
-        </svg>
-    </div>
+                
+                <!-- Curved Flow Lines -->
+                <g stroke-width="2" fill="none" opacity="0.3">
+                    <path d="M 100 250 Q 250 150, 400 180" stroke="#8b5cf6" stroke-dasharray="8,8"/>
+                    <path d="M 400 180 Q 550 210, 700 280" stroke="#14b8a6" stroke-dasharray="8,8"/>
+                    <path d="M 150 350 Q 300 320, 450 340" stroke="#f59e0b" stroke-dasharray="8,8"/>
+                    <path d="M 450 340 Q 600 360, 680 320" stroke="#ec4899" stroke-dasharray="8,8"/>
+                </g>
+                
+                <!-- Central Focus Area with Text -->
+                <g transform="translate(400, 250)">
+                    <!-- Subtle background -->
+                    <circle cx="0" cy="0" r="80" fill="#1e293b" opacity="0.6" filter="url(#shadow)"/>
+                    <circle cx="0" cy="0" r="80" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.5"/>
+                    
+                    <!-- Inner decorative ring -->
+                    <circle cx="0" cy="0" r="65" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.2" stroke-dasharray="4,8"/>
+                    
+                    <!-- Central Icon -->
+                    <g transform="translate(0, -15)">
+                        <!-- Abstract brand symbol -->
+                        <path d="M -20,-10 L 0,-25 L 20,-10 L 20,10 L 0,25 L -20,10 Z" 
+                            fill="none" 
+                            stroke="url(#grad1)" 
+                            stroke-width="2.5"/>
+                        <circle cx="0" cy="0" r="8" fill="url(#grad2)"/>
+                    </g>
+                    
+                    <!-- Text -->
+                    <text x="0" y="25" 
+                        font-family="Inter, sans-serif" 
+                        font-size="14" 
+                        text-anchor="middle" 
+                        fill="#ffffff" 
+                        font-weight="500"
+                        letter-spacing="2">
+                        BRAND ESSENCE
+                    </text>
+                </g>
+                
+                <!-- Small Decorative Elements -->
+                <g opacity="0.4">
+                    <!-- Dots scattered around -->
+                    <circle cx="240" cy="120" r="4" fill="#8b5cf6"/>
+                    <circle cx="560" cy="400" r="4" fill="#14b8a6"/>
+                    <circle cx="680" cy="180" r="4" fill="#f59e0b"/>
+                    <circle cx="120" cy="280" r="4" fill="#ec4899"/>
+                    <circle cx="480" cy="420" r="4" fill="#10b981"/>
+                    
+                    <!-- Small rings -->
+                    <circle cx="300" cy="420" r="12" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.6"/>
+                    <circle cx="650" cy="240" r="15" fill="none" stroke="#8b5cf6" stroke-width="1.5" opacity="0.5"/>
+                </g>
+                
+                <!-- Abstract Corner Accents -->
+                <g opacity="0.3">
+                    <path d="M 50 50 Q 80 50, 80 80" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+                    <path d="M 750 450 Q 720 450, 720 420" stroke="#14b8a6" stroke-width="2" fill="none"/>
+                </g>
+            </svg>
+        </div>
 
     <section>
         <div class="section-container">
