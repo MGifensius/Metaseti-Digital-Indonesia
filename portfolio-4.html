@@ -326,42 +326,34 @@
             text-align: center;
         }
 
-        .gallery-grid {
+        /* Packed Gallery Styles */
+        .packed-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 180px;
+            gap: 15px;
             margin-top: var(--spacing-lg);
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
-            background: var(--primary-white);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: var(--dark-gray);
             transition: all 0.4s;
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10;
         }
 
         .gallery-image {
             width: 100%;
-            height: 250px;
-            background: var(--dark-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-image img {
-            width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .image-placeholder {
@@ -371,10 +363,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
             color: white;
             font-family: 'Inter', sans-serif;
             font-size: 16px;
+            padding: 20px;
+            text-align: center;
         }
 
         .image-placeholder span {
@@ -382,58 +375,78 @@
             margin-bottom: 10px;
         }
 
-        .gallery-content {
-            padding: 25px;
-            text-align: left;
+        /* Grid item positioning */
+        .item-1 {
+            grid-column: span 4;
+            grid-row: span 2;
         }
 
-        .gallery-category {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary-black);
-            margin-bottom: 10px;
-            opacity: 0.7;
+        .item-2 {
+            grid-column: span 3;
+            grid-row: span 1;
         }
 
-        .gallery-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: var(--primary-black);
+        .item-3 {
+            grid-column: span 5;
+            grid-row: span 1;
         }
 
-        .gallery-description {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--primary-black);
-            opacity: 0.7;
-            margin-bottom: 20px;
+        .item-4 {
+            grid-column: span 4;
+            grid-row: span 1;
         }
 
-        .gallery-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        .item-5 {
+            grid-column: span 4;
+            grid-row: span 1;
         }
 
-        .gallery-tag {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            padding: 6px 12px;
-            background: transparent;
-            border: 1px solid var(--primary-black);
-            color: var(--primary-black);
-            border-radius: 20px;
-            transition: all 0.3s;
+        .item-6 {
+            grid-column: span 4;
+            grid-row: span 1;
         }
 
-        .gallery-tag:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
+        .item-7 {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        .item-8 {
+            grid-column: span 5;
+            grid-row: span 1;
+        }
+
+        /* Color variations */
+        .purple-bg {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .orange-bg {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .teal-bg {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        }
+
+        .blue-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+
+        .green-bg {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .pink-bg {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+        }
+
+        .yellow-bg {
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+        }
+
+        .indigo-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
         }
 
         .demo-buttons {
@@ -512,8 +525,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .packed-gallery {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .item-1, .item-2, .item-3, .item-4, .item-5, .item-6, .item-7, .item-8 {
+                grid-column: span 3;
+                grid-row: span 1;
             }
         }
 
@@ -539,8 +557,14 @@
                 padding: var(--spacing-md);
             }
 
-            .gallery-grid {
+            .packed-gallery {
                 grid-template-columns: 1fr;
+                grid-auto-rows: 200px;
+            }
+
+            .item-1, .item-2, .item-3, .item-4, .item-5, .item-6, .item-7, .item-8 {
+                grid-column: span 1;
+                grid-row: span 1;
             }
         }
     </style>
@@ -591,94 +615,134 @@
 
     <div class="illustration-container fade-in">
         <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Brand Development Process -->
-            <rect x="100" y="200" width="600" height="150" fill="#6b21a8" opacity="0.7"/>
+            <!-- Abstract Brand Flow Illustration -->
             
-            <!-- Process Steps -->
-            <g transform="translate(120, 220)">
-                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
-                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">🎯</text>
-                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Strategy</text>
+            <defs>
+                <!-- Fluid gradients -->
+                <linearGradient id="fluid1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8b5cf6" />
+                    <stop offset="50%" stop-color="#7c3aed" />
+                    <stop offset="100%" stop-color="#6366f1" />
+                </linearGradient>
+                
+                <linearGradient id="fluid2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f59e0b" />
+                    <stop offset="100%" stop-color="#d97706" />
+                </linearGradient>
+                
+                <linearGradient id="fluid3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#10b981" />
+                    <stop offset="100%" stop-color="#059669" />
+                </linearGradient>
+                
+                <linearGradient id="fluid4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ec4899" />
+                    <stop offset="100%" stop-color="#db2777" />
+                </linearGradient>
+                
+                <!-- Glow effects -->
+                <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="glow" />
+                    <feComposite in="SourceGraphic" in2="glow" operator="over" />
+                </filter>
+            </defs>
+            
+            <!-- Main flowing composition -->
+            <g transform="translate(400, 200)">
+                <!-- Central flow - brand essence -->
+                <path d="M -150 0 
+                        C -100 -80, -50 -100, 0 -50
+                        S 50 0, 0 50
+                        S -50 100, -150 0 Z" 
+                    fill="url(#fluid1)" 
+                    opacity="0.9"
+                    filter="url(#glow1)" />
+                
+                <!-- Secondary flow - brand expression -->
+                <path d="M 0 -50
+                        C 50 -100, 100 -80, 150 0
+                        S 100 80, 50 100
+                        S 0 50, 0 -50 Z" 
+                    fill="url(#fluid2)" 
+                    opacity="0.8"
+                    filter="url(#glow1)" />
+                
+                <!-- Tertiary flow - brand reach -->
+                <path d="M -80 -40
+                        C -40 -120, 40 -120, 80 -40
+                        C 120 40, 40 120, -40 120
+                        C -120 40, -120 -40, -80 -40 Z" 
+                    fill="url(#fluid3)" 
+                    opacity="0.7"
+                    filter="url(#glow1)" />
+                
+                <!-- Core intersection point -->
+                <circle cx="0" cy="0" r="25" fill="white" opacity="0.9" filter="url(#glow1)" />
+                
+                <!-- Floating organic shapes -->
+                <g opacity="0.8">
+                    <!-- Top left organic shape -->
+                    <ellipse cx="-120" cy="-80" rx="20" ry="35" transform="rotate(-30 -120 -80)" fill="url(#fluid4)" />
+                    
+                    <!-- Top right organic shape -->
+                    <ellipse cx="120" cy="-80" rx="35" ry="20" transform="rotate(45 120 -80)" fill="#3b82f6" />
+                    
+                    <!-- Bottom left organic shape -->
+                    <path d="M -140 60 
+                            Q -120 100, -100 80
+                            Q -80 60, -100 40
+                            Q -120 20, -140 60 Z" 
+                        fill="#f59e0b" />
+                    
+                    <!-- Bottom right organic shape -->
+                    <path d="M 140 40 
+                            C 160 60, 160 90, 140 110
+                            C 120 90, 120 60, 140 40 Z" 
+                        fill="#10b981" />
+                </g>
+                
+                <!-- Subtle connection lines -->
+                <g stroke="white" stroke-width="1.5" opacity="0.3" fill="none">
+                    <!-- Curved connectors -->
+                    <path d="M -25 0 
+                            C -60 -30, -90 -20, -120 -30" />
+                    
+                    <path d="M 25 0 
+                            C 60 -30, 90 -20, 120 -30" />
+                    
+                    <path d="M 0 -25 
+                            C 30 -60, 20 -90, 30 -120" />
+                    
+                    <path d="M 0 25 
+                            C -30 60, -20 90, -30 120" />
+                </g>
             </g>
             
-            <g transform="translate(220, 220)">
-                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
-                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">🎨</text>
-                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Identity</text>
+            <!-- Background particles -->
+            <g opacity="0.4">
+                <!-- Small dots scattered -->
+                <circle cx="100" cy="50" r="2" fill="#8b5cf6" />
+                <circle cx="200" cy="80" r="1.5" fill="#f59e0b" />
+                <circle cx="300" cy="120" r="2" fill="#10b981" />
+                <circle cx="500" cy="60" r="1.5" fill="#ec4899" />
+                <circle cx="650" cy="100" r="2" fill="#3b82f6" />
+                <circle cx="700" cy="180" r="1.5" fill="#8b5cf6" />
+                <circle cx="600" cy="250" r="2" fill="#f59e0b" />
+                <circle cx="450" cy="300" r="1.5" fill="#10b981" />
+                <circle cx="250" cy="280" r="2" fill="#ec4899" />
+                <circle cx="150" cy="320" r="1.5" fill="#3b82f6" />
+                <circle cx="50" cy="250" r="2" fill="#8b5cf6" />
+                <circle cx="80" cy="150" r="1.5" fill="#f59e0b" />
             </g>
             
-            <g transform="translate(320, 220)">
-                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
-                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">📱</text>
-                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Digital</text>
-            </g>
-            
-            <g transform="translate(420, 220)">
-                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
-                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">📢</text>
-                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Marketing</text>
-            </g>
-            
-            <g transform="translate(520, 220)">
-                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
-                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">📈</text>
-                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Growth</text>
-            </g>
-            
-            <!-- Connection Lines -->
-            <g opacity="0.6">
-                <line x1="200" y1="250" x2="220" y2="250" stroke="#8b5cf6" stroke-width="2"/>
-                <line x1="300" y1="250" x2="320" y2="250" stroke="#8b5cf6" stroke-width="2"/>
-                <line x1="400" y1="250" x2="420" y2="250" stroke="#8b5cf6" stroke-width="2"/>
-                <line x1="500" y1="250" x2="520" y2="250" stroke="#8b5cf6" stroke-width="2"/>
-            </g>
-            
-            <!-- Brand Elements -->
-            <g transform="translate(150, 100)">
-                <rect x="0" y="0" width="60" height="60" rx="10" fill="#f59e0b"/>
-                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">✨</text>
-            </g>
-            
-            <g transform="translate(250, 100)">
-                <rect x="0" y="0" width="60" height="60" rx="30" fill="#10b981"/>
-                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">🎨</text>
-            </g>
-            
-            <g transform="translate(350, 100)">
-                <rect x="0" y="0" width="60" height="60" rx="5" fill="#ef4444"/>
-                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">📝</text>
-            </g>
-            
-            <g transform="translate(450, 100)">
-                <rect x="0" y="0" width="60" height="60" rx="10" fill="#3b82f6"/>
-                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">📱</text>
-            </g>
-            
-            <g transform="translate(550, 100)">
-                <rect x="0" y="0" width="60" height="60" rx="30" fill="#8b5cf6"/>
-                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">📊</text>
-            </g>
-            
-            <!-- Data Transmission -->
-            <g opacity="0.6">
-                <line x1="180" y1="160" x2="150" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
-                <line x1="280" y1="160" x2="250" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
-                <line x1="380" y1="160" x2="350" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
-                <line x1="480" y1="160" x2="450" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
-                <line x1="580" y1="160" x2="550" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
-            </g>
-            
-            <!-- Marketing Channels -->
-            <g transform="translate(650, 50)">
-                <rect x="0" y="0" width="40" height="40" rx="3" fill="#8b5cf6"/>
-                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">📱</text>
-                <text x="20" y="60" font-size="12" text-anchor="middle" fill="#666">Social</text>
-            </g>
-            
-            <g transform="translate(700, 50)">
-                <rect x="0" y="0" width="40" height="40" rx="3" fill="#10b981"/>
-                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🌐</text>
-                <text x="20" y="60" font-size="12" text-anchor="middle" fill="#666">Web</text>
+            <!-- Floating translucent overlays -->
+            <g opacity="0.1">
+                <!-- Large background circles -->
+                <circle cx="200" cy="100" r="80" fill="url(#fluid1)" />
+                <circle cx="600" cy="300" r="60" fill="url(#fluid2)" />
+                <circle cx="150" cy="300" r="70" fill="url(#fluid3)" />
+                <circle cx="650" cy="150" r="50" fill="url(#fluid4)" />
             </g>
         </svg>
     </div>
@@ -775,132 +839,64 @@
         <div class="section-container">
             <div class="section-label fade-in">Portfolio Gallery</div>
             <h2 class="fade-in">Our Branding & Marketing Work</h2>
-            <p class="project-subtitle fade-in">Explore our portfolio of successful brand identity and marketing campaigns that have transformed businesses and driven measurable results.</p>
+            <p class="project-subtitle fade-in">A tightly packed showcase of our brand identity and marketing projects.</p>
             
-            <div class="gallery-grid" id="galleryGrid">
-                <div class="gallery-item fade-in">
-                    <div class="gallery-image">
-                        <!-- Replace this div with your image -->
-                        <!-- <img src="path/to/your/image1.jpg" alt="NovaTech Rebranding"> -->
-                        <div class="image-placeholder">
-                            <span>🚀</span>
-                            Your Image Here
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <div class="gallery-category">BRAND IDENTITY</div>
-                        <h3 class="gallery-title">NovaTech Rebranding</h3>
-                        <p class="gallery-description">Complete brand transformation for a technology startup, including logo design, visual identity system, and brand guidelines.</p>
-                        <div class="gallery-tags">
-                            <span class="gallery-tag">Logo Design</span>
-                            <span class="gallery-tag">Brand Guidelines</span>
-                            <span class="gallery-tag">Visual Identity</span>
-                        </div>
+            <!-- Packed Gallery -->
+            <div class="packed-gallery" id="packedGallery">
+                <!-- Items with specific positioning to fill space -->
+                <div class="gallery-item item-1 purple-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>🚀</span>
+                        NovaTech Rebranding
                     </div>
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <div class="gallery-image">
-                        <!-- Replace this div with your image -->
-                        <!-- <img src="path/to/your/image2.jpg" alt="EcoLife Digital Campaign"> -->
-                        <div class="image-placeholder">
-                            <span>🌿</span>
-                            Your Image Here
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <div class="gallery-category">DIGITAL MARKETING</div>
-                        <h3 class="gallery-title">EcoLife Digital Campaign</h3>
-                        <p class="gallery-description">Multi-channel digital marketing campaign for a sustainable lifestyle brand, focusing on social media and content marketing.</p>
-                        <div class="gallery-tags">
-                            <span class="gallery-tag">Social Media</span>
-                            <span class="gallery-tag">Content Strategy</span>
-                            <span class="gallery-tag">Influencer Marketing</span>
-                        </div>
+                <div class="gallery-item item-2 orange-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>🌿</span>
+                        EcoLife Campaign
                     </div>
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <div class="gallery-image">
-                        <!-- Replace this div with your image -->
-                        <!-- <img src="path/to/your/image3.jpg" alt="UrbanBites Restaurant Identity"> -->
-                        <div class="image-placeholder">
-                            <span>🍽️</span>
-                            Your Image Here
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <div class="gallery-category">BRAND IDENTITY</div>
-                        <h3 class="gallery-title">UrbanBites Restaurant Identity</h3>
-                        <p class="gallery-description">Complete brand identity for a modern urban restaurant, including logo, packaging, and interior design elements.</p>
-                        <div class="gallery-tags">
-                            <span class="gallery-tag">Restaurant Branding</span>
-                            <span class="gallery-tag">Packaging</span>
-                            <span class="gallery-tag">Interior Design</span>
-                        </div>
+                <div class="gallery-item item-3 teal-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>🍽️</span>
+                        UrbanBites Identity
                     </div>
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <div class="gallery-image">
-                        <!-- Replace this div with your image -->
-                        <!-- <img src="path/to/your/image4.jpg" alt="WellnessPlus Product Launch"> -->
-                        <div class="image-placeholder">
-                            <span>💊</span>
-                            Your Image Here
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <div class="gallery-category">MARKETING CAMPAIGN</div>
-                        <h3 class="gallery-title">WellnessPlus Product Launch</h3>
-                        <p class="gallery-description">Integrated marketing campaign for a new wellness product line, including PR, influencer partnerships, and digital advertising.</p>
-                        <div class="gallery-tags">
-                            <span class="gallery-tag">Product Launch</span>
-                            <span class="gallery-tag">PR</span>
-                            <span class="gallery-tag">Influencer Marketing</span>
-                        </div>
+                <div class="gallery-item item-4 blue-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>💊</span>
+                        WellnessPlus Launch
                     </div>
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <div class="gallery-image">
-                        <!-- Replace this div with your image -->
-                        <!-- <img src="path/to/your/image5.jpg" alt="FinSecure Corporate Identity"> -->
-                        <div class="image-placeholder">
-                            <span>💼</span>
-                            Your Image Here
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <div class="gallery-category">BRAND IDENTITY</div>
-                        <h3 class="gallery-title">FinSecure Corporate Identity</h3>
-                        <p class="gallery-description">Corporate rebranding for a financial services company, establishing trust and credibility in a competitive market.</p>
-                        <div class="gallery-tags">
-                            <span class="gallery-tag">Corporate Branding</span>
-                            <span class="gallery-tag">Trust Building</span>
-                            <span class="gallery-tag">Financial Services</span>
-                        </div>
+                <div class="gallery-item item-5 green-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>💼</span>
+                        FinSecure Corporate
                     </div>
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <div class="gallery-image">
-                        <!-- Replace this div with your image -->
-                        <!-- <img src="path/to/your/image6.jpg" alt="StyleVibe Social Media Strategy"> -->
-                        <div class="image-placeholder">
-                            <span>👗</span>
-                            Your Image Here
-                        </div>
+                <div class="gallery-item item-6 pink-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>👗</span>
+                        StyleVibe Social
                     </div>
-                    <div class="gallery-content">
-                        <div class="gallery-category">DIGITAL MARKETING</div>
-                        <h3 class="gallery-title">StyleVibe Social Media Strategy</h3>
-                        <p class="gallery-description">Comprehensive social media strategy and content creation for a fashion e-commerce brand.</p>
-                        <div class="gallery-tags">
-                            <span class="gallery-tag">Social Media</span>
-                            <span class="gallery-tag">Content Creation</span>
-                            <span class="gallery-tag">E-commerce</span>
-                        </div>
+                </div>
+                
+                <div class="gallery-item item-7 yellow-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>📱</span>
+                        TechApp UI/UX
+                    </div>
+                </div>
+                
+                <div class="gallery-item item-8 indigo-bg fade-in">
+                    <div class="image-placeholder">
+                        <span>🏢</span>
+                        Corporate Rebrand
                     </div>
                 </div>
             </div>
