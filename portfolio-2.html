@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metaseti Digital Indonesia - Chatbot Systems Project</title>
+    <title>Metaseti Digital Indonesia - AI Chatbot System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -21,13 +21,14 @@
             --spacing-2xl: 100px;
             --spacing-3xl: 120px;
             
-            --primary-black: #000000;
-            --primary-white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --medium-gray: #888888;
-            --dark-gray: #222222;
+            --primary-black: #FFFFFF;
+            --primary-white: #000000;
+            --light-gray: #0A0A0A;
+            --medium-gray: #777777;
+            --dark-gray: #DDDDDD;
             --accent-blue: #2563eb;
             --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
         }
 
         body {
@@ -38,7 +39,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -49,7 +49,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
         }
 
@@ -60,7 +60,7 @@
             left: var(--spacing-lg);
             right: var(--spacing-lg);
             height: 1px;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .logo {
@@ -83,7 +83,6 @@
         .logo img {
             height: 40px;
             width: auto;
-            filter: grayscale(100%);
         }
 
         .back-link {
@@ -108,7 +107,6 @@
             font-size: 18px;
         }
 
-        /* Hero Section */
         .project-hero {
             min-height: 80vh;
             display: flex;
@@ -182,7 +180,6 @@
             color: var(--primary-black);
         }
 
-        /* Content Sections */
         section {
             padding: var(--spacing-2xl) var(--spacing-lg);
             position: relative;
@@ -225,7 +222,6 @@
             background: var(--primary-black);
         }
 
-        /* Challenge & Solution */
         .two-column-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -242,7 +238,6 @@
             margin-bottom: var(--spacing-sm);
         }
 
-        /* Illustration Section */
         .illustration-container {
             background: var(--light-gray);
             padding: var(--spacing-xl);
@@ -259,46 +254,6 @@
             height: auto;
         }
 
-        /* Three Column Illustrations */
-        .illustrations-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .illustration-card {
-            background: var(--light-gray);
-            padding: var(--spacing-md);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            min-height: 300px;
-            justify-content: center;
-        }
-
-        .illustration-card svg {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .illustration-card h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 400;
-            margin-bottom: 12px;
-        }
-
-        .illustration-card p {
-            font-size: 14px;
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -341,7 +296,6 @@
             filter: invert(1);
         }
 
-        /* Tech Stack */
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -364,36 +318,6 @@
             color: var(--primary-white);
         }
 
-        /* Results Section */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .result-card {
-            text-align: center;
-            padding: var(--spacing-md);
-            border: 1px solid var(--primary-black);
-        }
-
-        .result-number {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 300;
-            color: var(--primary-black);
-            margin-bottom: 10px;
-        }
-
-        .result-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            color: var(--primary-black);
-            opacity: 0.7;
-        }
-
-        /* Live Demo Section */
         .demo-section {
             background: var(--light-gray);
             padding: var(--spacing-xl);
@@ -401,11 +325,14 @@
         }
 
         .demo-preview {
-            max-width: 900px;
+            max-width: 1200px;
             margin: var(--spacing-lg) auto;
             border: 1px solid var(--primary-black);
             background: var(--primary-white);
             overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .browser-bar {
@@ -423,11 +350,229 @@
             background: var(--medium-gray);
         }
 
-        #chatbotApp > div {
-            min-height: 500px;
-            max-height: 700px;
+        .demo-content {
+            background: #fff;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chatbot-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .chat-sidebar {
+            width: 250px;
+            background: #f8f8f8;
+            border-right: 1px solid #e0e0e0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 0 20px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .chat-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .chat-list {
+            flex: 1;
             overflow-y: auto;
-            overflow-x: hidden;
+        }
+
+        .chat-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .chat-item:hover {
+            background: #f0f0f0;
+        }
+
+        .chat-item.active {
+            background: #e8e8e8;
+            border-left-color: var(--accent-purple);
+        }
+
+        .chat-item-name {
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 4px;
+        }
+
+        .chat-item-preview {
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-window {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--accent-purple);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: #f0f0f0;
+            color: #000;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .chat-input-container {
+            padding: 15px 20px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent-purple);
+        }
+
+        .send-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            flex-shrink: 0;
+        }
+
+        .send-button:hover {
+            background: #7c3aed;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: #f0f0f0;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            max-width: 70px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes typing {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #10b981;
+            margin-top: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
         .demo-buttons {
@@ -478,20 +623,6 @@
             color: var(--primary-white);
         }
 
-        .cta-button.secondary {
-            background: var(--primary-black);
-            color: var(--primary-white);
-        }
-
-        .cta-button.secondary::before {
-            background: var(--primary-white);
-        }
-
-        .cta-button.secondary:hover {
-            color: var(--primary-black);
-        }
-
-        /* Footer */
         footer {
             padding: var(--spacing-lg);
             text-align: center;
@@ -502,7 +633,6 @@
             opacity: 0.7;
         }
 
-        /* Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -514,12 +644,58 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
+        /* Mobile-specific styles */
+        .mobile-chat-header {
+            display: none;
+            padding: 15px 20px;
+            background: #1a1a1a;
+            color: white;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-chat-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .mobile-back-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-suggestions {
+            display: none;
+            padding: 15px;
+            background: #f8f8f8;
+            border-top: 1px solid #e0e0e0;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-button {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suggestion-button:hover {
+            background: #f0f0f0;
+        }
+
+        /* Responsive styles */
         @media (max-width: 1024px) {
             .two-column-grid,
-            .features-grid,
-            .results-grid,
-            .illustrations-grid {
+            .features-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -542,44 +718,78 @@
                 padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
             }
 
-            .project-meta {
-                gap: var(--spacing-sm);
-            }
-
-            .illustration-container {
-                padding: var(--spacing-md);
-                min-height: 300px;
-            }
-
             .demo-section {
                 padding: var(--spacing-md);
             }
 
-            .demo-section .project-subtitle {
-                font-size: 14px;
-                padding: 0 10px;
-            }
-
-            #chatbotApp > div {
-                min-height: 450px !important;
-                max-height: 600px !important;
-            }
-
             .demo-preview {
                 border: none;
+                border-radius: 0;
             }
 
-            .browser-bar {
-                padding: 10px 15px;
+            .demo-content {
+                height: 500px;
             }
 
-            .browser-dot {
-                width: 10px;
-                height: 10px;
+            /* Mobile chat layout */
+            .chat-sidebar {
+                display: none;
             }
 
-            .illustration-card {
-                min-height: 250px;
+            .mobile-chat-header {
+                display: flex;
+            }
+
+            .mobile-suggestions {
+                display: flex;
+            }
+
+            .message {
+                max-width: 85%;
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .chat-window {
+                padding: 15px;
+                gap: 12px;
+            }
+
+            .chat-input-container {
+                padding: 12px 15px;
+            }
+
+            .chat-input {
+                padding: 10px 14px;
+                font-size: 16px; /* Better for mobile keyboards */
+            }
+
+            .send-button {
+                width: 44px;
+                height: 44px;
+            }
+
+            .online-status {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demo-content {
+                height: 450px;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .mobile-suggestions {
+                padding: 12px;
+            }
+
+            .suggestion-button {
+                font-size: 12px;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -587,21 +797,21 @@
 <body>
     <nav>
         <a href="index.html" class="logo">
-            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Logo%20for%20White%20Background.png" alt="Metaseti Logo">
+            <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/MetasetiDarkBG.png" alt="Metaseti Logo">
         </a>
         <a href="index.html#portfolio" class="back-link">Back to Portfolio</a>
     </nav>
 
     <div class="project-hero">
         <div class="project-hero-content fade-in">
-            <div class="project-category">AI CHATBOT SYSTEMS</div>
-            <h1>Intelligent Conversational AI</h1>
-            <p class="project-subtitle">An advanced AI-powered chatbot system designed to transform customer engagement. Natural language processing, contextual understanding, and 24/7 availability deliver exceptional support experiences.</p>
+            <div class="project-category">AI CHATBOT SYSTEM</div>
+            <h1>Intelligent Conversation Platform</h1>
+            <p class="project-subtitle">An advanced AI chatbot system that delivers human-like conversations through natural language processing. Context-aware responses, multi-platform integration, and seamless user experiences redefine customer interactions.</p>
             
             <div class="project-meta">
                 <div class="meta-item">
                     <div class="meta-label">Timeline</div>
-                    <div class="meta-value">10 Weeks</div>
+                    <div class="meta-value">14 Weeks</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-label">Year</div>
@@ -616,13 +826,13 @@
             <div class="two-column-grid fade-in">
                 <div class="content-block">
                     <div class="section-label">The Challenge</div>
-                    <h2>Customer Support at Scale</h2>
-                    <p>Growing businesses struggle to provide instant, consistent customer support across multiple channels. Long wait times frustrate customers, support teams become overwhelmed, and operational costs escalate. Traditional FAQ pages fail to address nuanced questions, while customers expect immediate, personalized assistance regardless of the time of day.</p>
+                    <h2>Beyond Scripted Responses</h2>
+                    <p>Traditional chatbots rely on rigid decision trees and keyword matching, leading to frustrating user experiences. They struggle with context, nuance, and complex queries, forcing users to escalate to human agents for meaningful assistance.</p>
                 </div>
                 <div class="content-block">
                     <div class="section-label">The Solution</div>
-                    <h2>AI-Powered Support Assistant</h2>
-                    <p>We developed an intelligent chatbot that understands natural language, learns from interactions, and provides instant, accurate responses. The system integrates seamlessly with existing knowledge bases, escalates complex issues to human agents when needed, and operates 24/7 across multiple languages. Machine learning continuously improves response quality while reducing support costs.</p>
+                    <h2>Context-Aware AI Conversations</h2>
+                    <p>We developed an intelligent chatbot system powered by advanced NLP and machine learning. Our solution understands context, maintains conversation history, and provides human-like responses that adapt to user intent and emotional tone.</p>
                 </div>
             </div>
         </div>
@@ -634,210 +844,138 @@
             <circle cx="100" cy="100" r="40" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
             <circle cx="700" cy="300" r="60" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
             
-            <!-- Main chat window -->
-            <rect x="200" y="80" width="400" height="280" rx="8" stroke="#1a1a1a" stroke-width="2.5" fill="white"/>
+            <!-- Main chatbot interface -->
+            <rect x="150" y="60" width="500" height="300" rx="8" stroke="#1a1a1a" stroke-width="2.5" fill="white"/>
             
             <!-- Chat header -->
-            <rect x="200" y="80" width="400" height="50" fill="#1a1a1a" rx="8"/>
-            <path d="M200 130 L600 130" stroke="#1a1a1a" stroke-width="2.5"/>
+            <rect x="150" y="60" width="500" height="40" fill="#1a1a1a" rx="8"/>
+            <circle cx="170" cy="80" r="5" fill="#ff5f56"/>
+            <circle cx="190" cy="80" r="5" fill="#ffbd2e"/>
+            <circle cx="210" cy="80" r="5" fill="#27c93f"/>
             
-            <!-- Bot avatar in header -->
-            <circle cx="230" cy="105" r="15" fill="white"/>
-            <circle cx="227" cy="102" r="3" fill="#1a1a1a"/>
-            <circle cx="233" cy="102" r="3" fill="#1a1a1a"/>
-            <path d="M227 110 Q230 113 233 110" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-            
-            <!-- Bot name -->
-            <text x="255" y="112" font-family="Inter" font-size="14" fill="white" font-weight="500">AI Assistant</text>
-            
-            <!-- Online status -->
-            <circle cx="350" cy="107" r="4" fill="#10b981"/>
-            
-            <!-- Chat bubbles - Bot messages -->
-            <g transform="translate(220, 150)">
-                <rect x="0" y="0" width="200" height="40" rx="12" fill="#F5F5F5"/>
-                <text x="10" y="25" font-family="Inter" font-size="12" fill="#1a1a1a">Hello! How can I help you?</text>
+            <!-- Chat messages -->
+            <g transform="translate(320, 120)">
+                <!-- User message -->
+                <rect x="0" y="0" width="200" height="40" rx="20" fill="#8b5cf6"/>
+                <text x="20" y="22" font-family="Arial" font-size="12" fill="white">Hello, how can you help me?</text>
+                
+                <!-- Bot message -->
+                <rect x="0" y="60" width="180" height="50" rx="20" fill="#f0f0f0"/>
+                <text x="20" y="80" font-family="Arial" font-size="12" fill="black">I'm here to assist you!</text>
+                <text x="20" y="100" font-family="Arial" font-size="12" fill="black">What do you need help with?</text>
+                
+                <!-- User message -->
+                <rect x="50" y="130" width="150" height="40" rx="20" fill="#8b5cf6"/>
+                <text x="70" y="152" font-family="Arial" font-size="12" fill="white">I need support with my order</text>
+                
+                <!-- Typing indicator -->
+                <rect x="0" y="190" width="60" height="30" rx="15" fill="#f0f0f0"/>
+                <circle cx="20" cy="205" r="4" fill="#999"/>
+                <circle cx="30" cy="205" r="4" fill="#999"/>
+                <circle cx="40" cy="205" r="4" fill="#999"/>
             </g>
             
-            <!-- User message -->
-            <g transform="translate(380, 210)">
-                <rect x="0" y="0" width="180" height="40" rx="12" fill="#2563eb"/>
-                <text x="10" y="25" font-family="Inter" font-size="12" fill="white">What are your hours?</text>
+            <!-- AI brain visualization -->
+            <g transform="translate(600, 150)">
+                <circle cx="0" cy="0" r="40" fill="#8b5cf6" opacity="0.1"/>
+                <path d="M-25 -15 C -15 -25, 15 -25, 25 -15 C 30 -5, 30 5, 25 15 C 15 25, -15 25, -25 15 C -30 5, -30 -5, -25 -15" 
+                      stroke="#8b5cf6" stroke-width="2" fill="none"/>
+                <path d="M-15 -5 L0 -15 L15 -5 M-10 5 L0 0 L10 5" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+                
+                <!-- Neural connections -->
+                <g opacity="0.7">
+                    <line x1="-30" y1="-10" x2="-40" y2="-25" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <line x1="30" y1="-10" x2="40" y2="-25" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <line x1="20" y1="20" x2="35" y2="30" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <line x1="-20" y1="20" x2="-35" y2="30" stroke="#8b5cf6" stroke-width="1.5"/>
+                </g>
             </g>
             
-            <!-- Bot response -->
-            <g transform="translate(220, 270)">
-                <rect x="0" y="0" width="240" height="40" rx="12" fill="#F5F5F5"/>
-                <text x="10" y="25" font-family="Inter" font-size="12" fill="#1a1a1a">We're available 24/7 to assist!</text>
+            <!-- Platform integrations -->
+            <g transform="translate(180, 320)">
+                <circle cx="0" cy="0" r="12" fill="#10b981"/>
+                <text x="0" y="5" font-family="Arial" font-size="10" text-anchor="middle" fill="white">W</text>
+            </g>
+            <g transform="translate(210, 320)">
+                <circle cx="0" cy="0" r="12" fill="#3b5998"/>
+                <text x="0" y="5" font-family="Arial" font-size="10" text-anchor="middle" fill="white">f</text>
+            </g>
+            <g transform="translate(240, 320)">
+                <circle cx="0" cy="0" r="12" fill="#1da1f2"/>
+                <text x="0" y="5" font-family="Arial" font-size="10" text-anchor="middle" fill="white">𝕏</text>
             </g>
             
-            <!-- Input box -->
-            <rect x="215" y="330" width="360" height="40" rx="20" stroke="#E8E8E8" stroke-width="2" fill="white"/>
-            <text x="235" y="355" font-family="Inter" font-size="13" fill="#888">Type your message...</text>
-            
-            <!-- Send button -->
-            <circle cx="560" cy="350" r="15" fill="#2563eb"/>
-            <path d="M555 350 L565 350 M560 345 L565 350 L560 355" stroke="white" stroke-width="2" fill="none"/>
-            
-            <!-- Floating elements - Brain/AI -->
-            <g transform="translate(80, 200)">
-                <circle cx="0" cy="0" r="30" stroke="#2563eb" stroke-width="2" fill="none"/>
-                <path d="M-12 -8 Q-8 -12 0 -12 Q8 -12 12 -8" stroke="#2563eb" stroke-width="2" fill="none"/>
-                <path d="M-12 8 Q-8 12 0 12 Q8 12 12 8" stroke="#2563eb" stroke-width="2" fill="none"/>
-                <circle cx="-8" cy="0" r="3" fill="#2563eb"/>
-                <circle cx="8" cy="0" r="3" fill="#2563eb"/>
-                <circle cx="0" cy="-8" r="2" fill="#2563eb"/>
-                <circle cx="0" cy="8" r="2" fill="#2563eb"/>
-            </g>
-            
-            <!-- Network nodes -->
-            <g transform="translate(650, 150)">
-                <circle cx="0" cy="0" r="8" fill="#10b981"/>
-                <circle cx="25" cy="-15" r="6" fill="#E8E8E8"/>
-                <circle cx="25" cy="15" r="6" fill="#E8E8E8"/>
-                <circle cx="50" cy="0" r="6" fill="#E8E8E8"/>
-                <line x1="0" y1="0" x2="25" y2="-15" stroke="#10b981" stroke-width="1.5"/>
-                <line x1="0" y1="0" x2="25" y2="15" stroke="#10b981" stroke-width="1.5"/>
-                <line x1="0" y1="0" x2="50" y2="0" stroke="#10b981" stroke-width="1.5"/>
-            </g>
-            
-            <!-- Decorative dots -->
-            <circle cx="150" cy="320" r="4" fill="#E8E8E8"/>
-            <circle cx="170" cy="310" r="3" fill="#E8E8E8"/>
-            <circle cx="650" cy="250" r="4" fill="#E8E8E8"/>
-            <circle cx="670" cy="240" r="3" fill="#E8E8E8"/>
-            
-            <!-- Sparkle effects -->
-            <g transform="translate(620, 100)">
-                <path d="M0 -8 L0 8 M-8 0 L8 0" stroke="#2563eb" stroke-width="2">
-                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-                </path>
-            </g>
-            
-            <g transform="translate(160, 280)">
-                <path d="M0 -6 L0 6 M-6 0 L6 0" stroke="#10b981" stroke-width="1.5">
-                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/>
-                </path>
+            <!-- Animated elements -->
+            <g opacity="0.7">
+                <circle cx="100" cy="300" r="5" fill="#8b5cf6">
+                    <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="750" cy="100" r="4" fill="#10b981">
+                    <animate attributeName="r" values="4;7;4" dur="1.5s" repeatCount="indefinite"/>
+                </circle>
             </g>
         </svg>
     </div>
 
     <section>
         <div class="section-container">
-            <div class="section-label fade-in">How It Works</div>
-            <h2 class="fade-in">Three-Stage Intelligence</h2>
-            
-            <div class="illustrations-grid">
-                <div class="illustration-card fade-in">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Understanding -->
-                        <circle cx="100" cy="100" r="80" stroke="#1a1a1a" stroke-width="2"/>
-                        <path d="M60 80 Q100 60 140 80" stroke="#2563eb" stroke-width="3" fill="none"/>
-                        <path d="M60 100 L140 100" stroke="#2563eb" stroke-width="3"/>
-                        <path d="M60 120 Q100 140 140 120" stroke="#2563eb" stroke-width="3" fill="none"/>
-                        <circle cx="70" cy="70" r="5" fill="#10b981"/>
-                        <circle cx="130" cy="70" r="5" fill="#10b981"/>
-                        <circle cx="100" cy="90" r="5" fill="#10b981"/>
-                    </svg>
-                    <h3>Natural Language Understanding</h3>
-                    <p>Advanced NLP processes user input to understand intent, context, and sentiment in real-time.</p>
-                </div>
-                
-                <div class="illustration-card fade-in">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Processing -->
-                        <rect x="40" y="60" width="120" height="80" rx="8" stroke="#1a1a1a" stroke-width="2"/>
-                        <circle cx="70" cy="90" r="12" fill="#2563eb"/>
-                        <circle cx="100" cy="90" r="12" fill="#2563eb"/>
-                        <circle cx="130" cy="90" r="12" fill="#2563eb"/>
-                        <path d="M70 105 L70 125 L100 115 L130 125 L130 105" stroke="#10b981" stroke-width="2" fill="none"/>
-                        <circle cx="100" cy="120" r="8" fill="#10b981"/>
-                    </svg>
-                    <h3>Knowledge Processing</h3>
-                    <p>AI searches through knowledge bases, learns from past interactions, and formulates accurate responses.</p>
-                </div>
-                
-                <div class="illustration-card fade-in">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Response -->
-                        <path d="M100 40 L160 80 L160 140 L100 180 L40 140 L40 80 Z" stroke="#1a1a1a" stroke-width="2" fill="none"/>
-                        <circle cx="100" cy="100" r="30" fill="#2563eb"/>
-                        <path d="M85 100 L95 110 L115 85" stroke="white" stroke-width="3" fill="none"/>
-                        <circle cx="60" cy="70" r="4" fill="#10b981">
-                            <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
-                        </circle>
-                        <circle cx="140" cy="70" r="4" fill="#10b981">
-                            <animate attributeName="r" values="4;6;4" dur="2s" begin="0.5s" repeatCount="indefinite"/>
-                        </circle>
-                    </svg>
-                    <h3>Intelligent Response</h3>
-                    <p>Delivers personalized, contextual answers while continuously learning to improve future interactions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="section-container">
             <div class="section-label fade-in">Key Features</div>
-            <h2 class="fade-in">Comprehensive AI Capabilities</h2>
+            <h2 class="fade-in">Advanced Chatbot Capabilities</h2>
             
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16 24 L22 30 L32 18" stroke="currentColor" stroke-width="2"/>
+                        <path d="M24 8 C15.16 8 8 15.16 8 24 C8 32.84 15.16 40 24 40 C32.84 40 40 32.84 40 24 C40 15.16 32.84 8 24 8 Z M24 36 C17.38 36 12 30.62 12 24 C12 17.38 17.38 12 24 12 C30.62 12 36 17.38 36 24 C36 30.62 30.62 36 24 36 Z" fill="currentColor"/>
+                        <path d="M25 15 L23 15 L23 25 L25 25 L25 15 Z" fill="currentColor"/>
+                        <path d="M25 29 L23 29 L23 31 L25 31 L25 29 Z" fill="currentColor"/>
                     </svg>
                     <h3>Natural Language Processing</h3>
-                    <p>Advanced NLP understands complex queries, slang, and multi-turn conversations with high accuracy.</p>
+                    <p>Advanced NLP algorithms understand user intent, context, and sentiment for human-like conversations.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="16" cy="20" r="2" fill="currentColor"/>
-                        <circle cx="24" cy="20" r="2" fill="currentColor"/>
-                        <circle cx="32" cy="20" r="2" fill="currentColor"/>
-                        <path d="M12 28 L36 28" stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 12 L40 12 L40 36 L8 36 L8 12 Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 20 L32 20 M16 26 L28 26 M16 32 L24 32" stroke="currentColor" stroke-width="2"/>
                     </svg>
-                    <h3>Multi-Channel Support</h3>
-                    <p>Seamless integration across web, mobile, messaging apps, and social media platforms.</p>
+                    <h3>Multi-Platform Integration</h3>
+                    <p>Seamlessly deploy across websites, mobile apps, messaging platforms, and social media channels.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 8 L32 16 L32 32 L24 40 L16 32 L16 16 Z" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="24" cy="24" r="4" fill="currentColor"/>
+                        <path d="M24 4 L30 10 L38 10 L38 18 L44 24 L38 30 L38 38 L30 38 L24 44 L18 38 L10 38 L10 30 L4 24 L10 18 L10 10 L18 10 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="2"/>
                     </svg>
                     <h3>Context Awareness</h3>
-                    <p>Maintains conversation context and user history for personalized, relevant interactions.</p>
+                    <p>Maintains conversation context across sessions for continuous, meaningful interactions.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 24 L22 32 L34 16" stroke="currentColor" stroke-width="2"/>
                         <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 14 L24 24 L32 24" stroke="currentColor" stroke-width="2"/>
                     </svg>
-                    <h3>24/7 Availability</h3>
-                    <p>Always-on support ensures customers get instant help anytime, anywhere in the world.</p>
+                    <h3>Sentiment Analysis</h3>
+                    <p>Detects user emotions and adapts responses accordingly for more empathetic interactions.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 24 L20 16 L28 24 L36 16" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <path d="M12 32 L36 32" stroke="currentColor" stroke-width="2"/>
+                        <path d="M24 8 L30 14 L38 14 L38 22 L44 28 L38 34 L38 42 L30 42 L24 48 L18 42 L10 42 L10 34 L4 28 L10 22 L10 14 L18 14 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M20 24 L28 24 M24 20 L24 28" stroke="currentColor" stroke-width="2"/>
                     </svg>
-                    <h3>Machine Learning</h3>
-                    <p>Continuously learns from interactions to improve accuracy and expand knowledge base.</p>
+                    <h3>Continuous Learning</h3>
+                    <p>Machine learning algorithms improve responses over time based on user interactions.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="12" y="16" width="24" height="16" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16 20 L20 24 L28 16" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M16 16 L32 32 M32 16 L16 32" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
                     </svg>
                     <h3>Human Handoff</h3>
-                    <p>Intelligently escalates complex issues to human agents with full conversation context.</p>
+                    <p>Seamlessly transfers complex queries to human agents when needed, with full context.</p>
                 </div>
             </div>
         </div>
@@ -851,50 +989,85 @@
             <div class="tech-stack fade-in">
                 <span class="tech-badge">Python</span>
                 <span class="tech-badge">TensorFlow</span>
-                <span class="tech-badge">Natural Language Processing</span>
-                <span class="tech-badge">OpenAI GPT</span>
+                <span class="tech-badge">NLTK</span>
+                <span class="tech-badge">spaCy</span>
                 <span class="tech-badge">Node.js</span>
-                <span class="tech-badge">WebSocket</span>
+                <span class="tech-badge">React</span>
                 <span class="tech-badge">MongoDB</span>
                 <span class="tech-badge">Redis</span>
                 <span class="tech-badge">Docker</span>
-                <span class="tech-badge">Kubernetes</span>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="section-container">
-            <div class="section-label fade-in">Impact</div>
-            <h2 class="fade-in">Transformative Results</h2>
-            
-            <div class="results-grid">
-                <div class="result-card fade-in">
-                    <div class="result-number">87%</div>
-                    <div class="result-label">Reduction in Response Time</div>
-                </div>
-                
-                <div class="result-card fade-in">
-                    <div class="result-number">92%</div>
-                    <div class="result-label">Customer Satisfaction Rate</div>
-                </div>
-                
-                <div class="result-card fade-in">
-                    <div class="result-number">60%</div>
-                    <div class="result-label">Lower Support Costs</div>
-                </div>
+                <span class="tech-badge">AWS</span>
             </div>
         </div>
     </section>
 
     <section class="demo-section">
         <div class="section-container">
-            <div class="section-label fade-in">Live Demo</div>
-            <h2 class="fade-in">Try the AI Assistant</h2>
-            <p class="project-subtitle fade-in">Experience our intelligent chatbot in action. Ask questions and see how AI understands and responds naturally.</p>
+            <div class="section-label fade-in">Interactive Demo</div>
+            <h2 class="fade-in">Experience the Chatbot</h2>
+            <p class="project-subtitle fade-in">Try our AI chatbot - ask questions, request information, or test its conversational abilities. See how natural and responsive AI conversations can be.</p>
             
-            <div class="demo-preview fade-in" id="chatbotApp">
-                <!-- Chatbot will be injected here -->
+            <div class="demo-preview fade-in">
+                <div class="browser-bar">
+                    <div class="browser-dot"></div>
+                    <div class="browser-dot"></div>
+                    <div class="browser-dot"></div>
+                </div>
+                <div class="demo-content">
+                    <!-- Mobile header (visible only on mobile) -->
+                    <div class="mobile-chat-header">
+                        <div class="mobile-chat-title">Metaseti Assistant</div>
+                        <div class="online-status">
+                            <div class="status-dot"></div>
+                            <span>Online</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chatbot-container">
+                        <div class="chat-sidebar">
+                            <div class="chat-header">
+                                <h3>Metaseti Assistant</h3>
+                                <div class="online-status">
+                                    <div class="status-dot"></div>
+                                    <span>Online</span>
+                                </div>
+                            </div>
+                            <div class="chat-list">
+                                <div class="chat-item active">
+                                    <div class="chat-item-name">Metaseti Assistant</div>
+                                    <div class="chat-item-preview">Hello! How can I help you today?</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-main">
+                            <div class="chat-window" id="chatWindow">
+                                <div class="message bot">
+                                    Hello! I'm the Metaseti Assistant. I can help answer questions about Metaseti Digital Indonesia, our services, or anything else you'd like to know. How can I assist you today?
+                                    <div class="message-time">10:00 AM</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Quick suggestion buttons (visible only on mobile) -->
+                            <div class="mobile-suggestions">
+                                <button class="suggestion-button" data-suggestion="What services do you offer?">Services</button>
+                                <button class="suggestion-button" data-suggestion="Tell me about Metaseti">About</button>
+                                <button class="suggestion-button" data-suggestion="How can I contact you?">Contact</button>
+                                <button class="suggestion-button" data-suggestion="Show me your portfolio">Portfolio</button>
+                            </div>
+                            
+                            <div class="chat-input-container">
+                                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
+                                <button class="send-button" id="sendButton">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="demo-buttons fade-in">
@@ -928,284 +1101,166 @@
             fadeObserver.observe(element);
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
+        // Chatbot functionality
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.innerHTML = `
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        `;
+        typingIndicator.style.display = 'none';
 
-        // Chatbot Application
-        class ChatbotApp {
-            constructor() {
-                this.messages = [];
-                this.botResponses = {
-                    greetings: [
-                        "Hello! I'm your AI assistant. How can I help you today?",
-                        "Hi there! What can I assist you with?",
-                        "Hey! I'm here to help. What do you need?"
-                    ],
-                    hours: [
-                        "I'm available 24/7 to assist you! Feel free to reach out anytime.",
-                        "We operate around the clock! I'm always here when you need help."
-                    ],
-                    pricing: [
-                        "Our pricing is flexible and depends on your specific needs. Would you like to schedule a consultation to discuss your requirements?",
-                        "We offer customized pricing plans. I can connect you with our sales team for a detailed quote."
-                    ],
-                    services: [
-                        "We offer web development, mobile apps, AI solutions, chatbot systems, and digital transformation services. Which interests you?",
-                        "Our services include: Website Development, E-commerce Solutions, Mobile Apps, AI & Machine Learning, and Cloud Services. What would you like to know more about?"
-                    ],
-                    contact: [
-                        "You can reach us at info@metaseti.com or call +62 123-4567-890. Would you like to schedule a meeting?",
-                        "Feel free to email us at info@metaseti.com or use the contact form on our website. How else can I help?"
-                    ],
-                    thanks: [
-                        "You're welcome! Is there anything else I can help you with?",
-                        "Happy to help! Let me know if you have any other questions.",
-                        "My pleasure! Feel free to ask if you need anything else."
-                    ],
-                    default: [
-                        "That's an interesting question! Let me connect you with a human agent who can provide more specific information.",
-                        "I want to make sure you get the best answer. Would you like me to connect you with our support team?",
-                        "I'm still learning about that topic. Can you rephrase your question, or would you prefer to speak with a human agent?"
-                    ]
-                };
-                this.init();
+        // Metaseti services and information
+        const metasetiInfo = {
+            services: [
+                "Web Development: Custom websites, e-commerce platforms, and web applications",
+                "Mobile App Development: iOS and Android applications with modern frameworks",
+                "UI/UX Design: User-centered design that enhances user experience",
+                "Digital Marketing: SEO, social media marketing, and content strategy",
+                "Branding: Complete brand identity development and strategy",
+                "Consulting: Technology and digital transformation consulting"
+            ],
+            about: "Metaseti Digital Indonesia is a digital agency focused on creating impactful digital solutions. We combine creativity with technology to help businesses thrive in the digital landscape.",
+            contact: "You can contact Metaseti Digital Indonesia through our website contact form, email at hello@metaseti.id, or by phone at +62 21 1234 5678.",
+            portfolio: "We've worked on various projects including e-commerce platforms, SaaS applications, mobile apps, and corporate websites for clients across different industries."
+        };
+
+        // Add message to chat
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const time = new Date();
+            const timeString = time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            messageDiv.innerHTML = `
+                ${text}
+                <div class="message-time">${timeString}</div>
+            `;
+            
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        // Generate bot response based on user input
+        function generateResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            // Greetings
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                return "Hello! I'm the Metaseti Assistant. How can I help you today?";
             }
-
-            init() {
-                this.renderChatbot();
-                this.addMessage('bot', this.getRandomResponse('greetings'));
+            
+            // Services
+            if (lowerMessage.includes('service') || lowerMessage.includes('what do you do') || lowerMessage.includes('offer')) {
+                return `Metaseti Digital Indonesia offers the following services:\n\n${metasetiInfo.services.map(service => `• ${service}`).join('\n')}\n\nWhich service are you interested in?`;
             }
-
-            renderChatbot() {
-                const container = document.getElementById('chatbotApp');
-                container.innerHTML = `
-                    <div style="background: white; display: flex; flex-direction: column; height: 600px; max-height: 700px;">
-                        <div class="browser-bar">
-                            <div class="browser-dot"></div>
-                            <div class="browser-dot"></div>
-                            <div class="browser-dot"></div>
-                        </div>
-                        
-                        <!-- Chat Header -->
-                        <div style="background: #1a1a1a; color: white; padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e0e0e0; justify-content: flex-start;">
-                            <div style="width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">
-                                🤖
-                            </div>
-                            <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                                <div style="font-weight: 500; font-size: 15px; font-family: 'Poppins', sans-serif; margin-bottom: 2px;">AI Assistant</div>
-                                <div style="font-size: 12px; opacity: 0.8; display: flex; align-items: center; gap: 6px;">
-                                    <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                                    Online
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Messages Container -->
-                        <div id="messagesContainer" style="flex: 1; overflow-y: auto; padding: 20px; background: #fafafa; display: flex; flex-direction: column; gap: 16px;">
-                        </div>
-
-                        <!-- Input Container -->
-                        <div style="padding: 16px 20px; background: white; border-top: 1px solid #e0e0e0;">
-                            <div style="display: flex; gap: 12px; align-items: center;">
-                                <input 
-                                    type="text" 
-                                    id="chatInput" 
-                                    placeholder="Type your message..." 
-                                    style="flex: 1; padding: 12px 16px; border: 1px solid #e0e0e0; border-radius: 24px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;"
-                                    onkeypress="if(event.key === 'Enter') chatbot.sendMessage()"
-                                />
-                                <button 
-                                    onclick="chatbot.sendMessage()" 
-                                    style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s;"
-                                    onmouseover="this.style.background='#1d4ed8'" 
-                                    onmouseout="this.style.background='#2563eb'"
-                                >
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 10 L18 10 M12 4 L18 10 L12 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-                                <button onclick="chatbot.quickReply('What are your hours?')" class="quick-reply">⏰ Hours</button>
-                                <button onclick="chatbot.quickReply('Tell me about your services')" class="quick-reply">💼 Services</button>
-                                <button onclick="chatbot.quickReply('How can I contact you?')" class="quick-reply">📞 Contact</button>
-                                <button onclick="chatbot.quickReply('What is your pricing?')" class="quick-reply">💰 Pricing</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <style>
-                        .quick-reply {
-                            padding: 8px 16px;
-                            border: 1px solid #e0e0e0;
-                            background: white;
-                            border-radius: 16px;
-                            font-size: 12px;
-                            cursor: pointer;
-                            transition: all 0.3s;
-                            font-family: 'Inter', sans-serif;
-                        }
-                        .quick-reply:hover {
-                            background: #f5f5f5;
-                            border-color: #2563eb;
-                        }
-                        #messagesContainer::-webkit-scrollbar {
-                            width: 6px;
-                        }
-                        #messagesContainer::-webkit-scrollbar-track {
-                            background: #f1f1f1;
-                        }
-                        #messagesContainer::-webkit-scrollbar-thumb {
-                            background: #888;
-                            border-radius: 3px;
-                        }
-                        #messagesContainer::-webkit-scrollbar-thumb:hover {
-                            background: #555;
-                        }
-                        
-                        @media (max-width: 768px) {
-                            #chatbotApp > div {
-                                height: 500px !important;
-                            }
-                            .quick-reply {
-                                font-size: 11px;
-                                padding: 6px 12px;
-                            }
-                        }
-                    </style>
-                `;
+            
+            // About
+            if (lowerMessage.includes('about') || lowerMessage.includes('who are you') || lowerMessage.includes('metaseti')) {
+                return metasetiInfo.about;
             }
-
-            addMessage(sender, text) {
-                this.messages.push({ sender, text, timestamp: new Date() });
-                this.renderMessages();
+            
+            // Contact
+            if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('get in touch')) {
+                return metasetiInfo.contact;
             }
+            
+            // Portfolio
+            if (lowerMessage.includes('portfolio') || lowerMessage.includes('work') || lowerMessage.includes('projects')) {
+                return metasetiInfo.portfolio + " You can view our portfolio on our website to see examples of our work.";
+            }
+            
+            // Pricing
+            if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
+                return "Our pricing varies based on project scope and requirements. For a detailed quote, please contact us with your specific needs and we'll provide a customized estimate.";
+            }
+            
+            // Location
+            if (lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('based')) {
+                return "Metaseti Digital Indonesia is based in Jakarta, Indonesia, but we work with clients globally.";
+            }
+            
+            // Default responses for common questions
+            if (lowerMessage.includes('thank')) {
+                return "You're welcome! Is there anything else I can help you with?";
+            }
+            
+            if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
+                return "Thank you for chatting with me! Feel free to reach out if you have any more questions.";
+            }
+            
+            // Fallback responses
+            const fallbackResponses = [
+                "I'm not sure I understand. Could you rephrase your question?",
+                "That's an interesting question. Could you provide more details?",
+                "I'm here to help with information about Metaseti Digital Indonesia. Is there something specific you'd like to know about our services or company?",
+                "I'm still learning! Could you try asking about our services, portfolio, or how to contact us?",
+                "I specialize in answering questions about Metaseti Digital Indonesia. How can I assist you with our services or company information?"
+            ];
+            
+            return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+        }
 
-            renderMessages() {
-                const container = document.getElementById('messagesContainer');
-                container.innerHTML = this.messages.map(msg => {
-                    const isBot = msg.sender === 'bot';
-                    return `
-                        <div style="display: flex; gap: 12px; align-items: flex-start; ${isBot ? '' : 'flex-direction: row-reverse;'}">
-                            ${isBot ? `
-                                <div style="width: 32px; height: 32px; border-radius: 50%; background: #1a1a1a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
-                                    🤖
-                                </div>
-                            ` : ''}
-                            <div style="max-width: 70%; background: ${isBot ? 'white' : '#2563eb'}; color: ${isBot ? '#1a1a1a' : 'white'}; padding: 12px 16px; border-radius: 16px; ${isBot ? 'border-top-left-radius: 4px;' : 'border-top-right-radius: 4px;'} box-shadow: 0 1px 2px rgba(0,0,0,0.1); font-size: 14px; line-height: 1.5; word-wrap: break-word;">
-                                ${msg.text}
-                            </div>
-                        </div>
-                    `;
-                }).join('');
+        // Simulate bot typing and response
+        function botReply(userMessage) {
+            // Show typing indicator
+            chatWindow.appendChild(typingIndicator);
+            typingIndicator.style.display = 'flex';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            
+            // Simulate thinking time
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
                 
-                container.scrollTop = container.scrollHeight;
-            }
+                const response = generateResponse(userMessage);
+                addMessage(response, false);
+            }, 1000 + Math.random() * 1000);
+        }
 
-            getRandomResponse(category) {
-                const responses = this.botResponses[category];
-                return responses[Math.floor(Math.random() * responses.length)];
-            }
-
-            getBotResponse(userMessage) {
-                const message = userMessage.toLowerCase();
-                
-                if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-                    return this.getRandomResponse('greetings');
-                }
-                else if (message.includes('hour') || message.includes('time') || message.includes('available')) {
-                    return this.getRandomResponse('hours');
-                }
-                else if (message.includes('price') || message.includes('cost') || message.includes('pricing')) {
-                    return this.getRandomResponse('pricing');
-                }
-                else if (message.includes('service') || message.includes('offer') || message.includes('do you do')) {
-                    return this.getRandomResponse('services');
-                }
-                else if (message.includes('contact') || message.includes('reach') || message.includes('email') || message.includes('phone')) {
-                    return this.getRandomResponse('contact');
-                }
-                else if (message.includes('thank') || message.includes('thanks')) {
-                    return this.getRandomResponse('thanks');
-                }
-                else {
-                    return this.getRandomResponse('default');
-                }
-            }
-
-            sendMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (message) {
-                    this.addMessage('user', message);
-                    input.value = '';
-                    
-                    setTimeout(() => {
-                        this.showTypingIndicator();
-                        setTimeout(() => {
-                            this.removeTypingIndicator();
-                            const response = this.getBotResponse(message);
-                            this.addMessage('bot', response);
-                        }, 1000 + Math.random() * 1000);
-                    }, 300);
-                }
-            }
-
-            quickReply(message) {
-                document.getElementById('chatInput').value = message;
-                this.sendMessage();
-            }
-
-            showTypingIndicator() {
-                const container = document.getElementById('messagesContainer');
-                const indicator = document.createElement('div');
-                indicator.id = 'typingIndicator';
-                indicator.innerHTML = `
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #1a1a1a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
-                            🤖
-                        </div>
-                        <div style="background: white; padding: 12px 16px; border-radius: 16px; border-top-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
-                            <div style="display: flex; gap: 4px;">
-                                <div style="width: 8px; height: 8px; background: #888; border-radius: 50%; animation: typing 1.4s infinite;"></div>
-                                <div style="width: 8px; height: 8px; background: #888; border-radius: 50%; animation: typing 1.4s infinite 0.2s;"></div>
-                                <div style="width: 8px; height: 8px; background: #888; border-radius: 50%; animation: typing 1.4s infinite 0.4s;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <style>
-                        @keyframes typing {
-                            0%, 60%, 100% { transform: translateY(0); }
-                            30% { transform: translateY(-10px); }
-                        }
-                    </style>
-                `;
-                container.appendChild(indicator);
-                container.scrollTop = container.scrollHeight;
-            }
-
-            removeTypingIndicator() {
-                const indicator = document.getElementById('typingIndicator');
-                if (indicator) {
-                    indicator.remove();
-                }
+        // Send message function
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                botReply(message);
             }
         }
 
-        // Initialize the chatbot
-        const chatbot = new ChatbotApp();
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Quick suggestion buttons for mobile
+        document.querySelectorAll('.suggestion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const suggestion = button.getAttribute('data-suggestion');
+                chatInput.value = suggestion;
+                sendMessage();
+            });
+        });
+
+        // Add welcome message after a brief delay
+        setTimeout(() => {
+            addMessage("Welcome! I'm the Metaseti Assistant. I can tell you about our services, portfolio, or help answer any questions you have about Metaseti Digital Indonesia.", false);
+        }, 500);
+
+        // Focus the input field on mobile for better UX
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                chatInput.focus();
+            }, 1000);
+        }
     </script>
 </body>
 </html>
