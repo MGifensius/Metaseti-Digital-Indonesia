@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metaseti Digital Indonesia - Fingerprint Scanner System</title>
+    <title>Metaseti Digital Indonesia - Smart Waste Management/title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -28,6 +28,9 @@
             --dark-gray: #DDDDDD;
             --accent-blue: #2563eb;
             --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-teal: #14b8a6;
         }
 
         body {
@@ -324,12 +327,14 @@
         }
 
         .demo-preview {
-            max-width: 900px;
+            max-width: 1200px;
             margin: var(--spacing-lg) auto;
             border: 1px solid var(--primary-black);
             background: var(--primary-white);
             overflow: hidden;
             position: relative;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .browser-bar {
@@ -348,169 +353,461 @@
         }
 
         .demo-content {
-            background: #f5f5f5;
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            position: relative;
-        }
-
-        .scanner-container {
             background: #fff;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .scanner-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: 500;
-            color: #000;
-            margin-bottom: 10px;
-        }
-
-        .scanner-subtitle {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .fingerprint-scanner {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
+            overflow: hidden;
             position: relative;
-            cursor: pointer;
-            transition: transform 0.3s;
         }
 
-        .fingerprint-scanner:hover {
-            transform: scale(1.05);
+        .waste-header {
+            background: linear-gradient(135deg, #1a5c1a 0%, #2d7a2d 100%);
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .scanner-circle {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .waste-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            gap: 10px;
         }
 
-        .scanner-circle.scanning {
-            animation: pulse 1.5s infinite;
+        .logo-icon {
+            font-size: 24px;
         }
 
-        .scanner-circle.success {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
         }
 
-        .scanner-circle.error {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-            }
-            50% {
-                box-shadow: 0 8px 40px rgba(102, 126, 234, 0.6);
-            }
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
-        .fingerprint-icon {
-            width: 100px;
-            height: 100px;
-            color: #fff;
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 600px;
         }
 
-        .scan-status {
-            font-size: 16px;
-            color: #000;
-            margin-bottom: 20px;
-            min-height: 24px;
-            font-weight: 500;
+        .sections-panel {
+            background: #f8f8f8;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
         }
 
-        .scan-button {
-            width: 100%;
-            padding: 14px;
-            background: #667eea;
-            color: #fff;
-            border: none;
+        .sections-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-item {
+            padding: 15px;
+            background: #fff;
             border-radius: 8px;
-            font-size: 15px;
-            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-item.active {
+            background: #1a5c1a;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-item:not(.active) {
+            color: #333;
+        }
+
+        .section-item:hover:not(.active) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #f0f0f0;
+        }
+
+        .section-icon {
+            font-size: 20px;
+        }
+
+        .section-info {
+            flex: 1;
+        }
+
+        .section-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .section-status {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .monitoring-panel {
+            padding: 20px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+
+        .sensors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sensor-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sensor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .sensor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .sensor-icon {
+            font-size: 28px;
+        }
+
+        .sensor-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .sensor-status.on {
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .sensor-status.alert {
+            background: var(--accent-orange);
+            box-shadow: 0 0 8px var(--accent-orange);
+        }
+
+        .sensor-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .sensor-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .sensor-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a5c1a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .sensor-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .control-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .control-btn.primary {
+            background: #1a5c1a;
+            color: #fff;
+            border-color: #1a5c1a;
+        }
+
+        .control-btn.primary:hover {
+            background: #2d7a2d;
+        }
+
+        .waste-panel {
+            grid-column: 1 / -1;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            background: #f8f8f8;
+        }
+
+        .waste-title {
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .waste-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding-bottom: 10px;
+        }
+
+        .waste-item {
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             transition: all 0.3s;
         }
 
-        .scan-button:hover {
-            background: #5568d3;
+        .waste-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .scan-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .waste-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .user-info {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f9fafb;
-            border-radius: 8px;
-            text-align: left;
-            display: none;
+        .waste-icon {
+            font-size: 20px;
         }
 
-        .user-info.show {
-            display: block;
-            animation: fadeIn 0.5s;
+        .waste-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .waste-progress {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
         }
 
-        .user-info-row {
+        .waste-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .waste-fill.organic {
+            background: linear-gradient(90deg, #8bc34a, #4caf50);
+            width: 65%;
+        }
+
+        .waste-fill.plastic {
+            background: linear-gradient(90deg, #ff9800, #f57c00);
+            width: 42%;
+        }
+
+        .waste-fill.glass {
+            background: linear-gradient(90deg, #2196f3, #1976d2);
+            width: 28%;
+        }
+
+        .waste-fill.metal {
+            background: linear-gradient(90deg, #9e9e9e, #616161);
+            width: 35%;
+        }
+
+        .waste-stats-info {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .user-info-row:last-child {
-            border-bottom: none;
-        }
-
-        .user-info-label {
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .user-info-value {
-            font-size: 14px;
-            color: #000;
+        .automation-panel {
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .automation-title {
             font-weight: 500;
+            margin-bottom: 10px;
+            color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .automation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            padding-bottom: 10px;
+        }
+
+        .automation-item {
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .automation-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .automation-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .automation-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-green);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .collection-panel {
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .collection-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collection-bar {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .collection-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #1976d2);
+            border-radius: 4px;
+            width: 75%;
+            transition: width 0.5s ease;
+        }
+
+        .collection-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
         }
 
         .demo-buttons {
@@ -582,10 +879,15 @@
             transform: translateY(0);
         }
 
+        /* Mobile Optimizations */
         @media (max-width: 1024px) {
             .two-column-grid,
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .sensors-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -607,6 +909,17 @@
                 padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
             }
 
+            .dashboard {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .sections-panel {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                max-height: 200px;
+            }
+
             .demo-section {
                 padding: var(--spacing-md);
             }
@@ -616,22 +929,19 @@
             }
 
             .demo-content {
-                height: 500px;
-                padding: 20px;
+                height: auto;
             }
 
-            .scanner-container {
-                padding: 30px 20px;
+            .waste-stats {
+                grid-template-columns: 1fr;
             }
 
-            .fingerprint-scanner {
-                width: 160px;
-                height: 160px;
+            .automation-list {
+                grid-template-columns: 1fr;
             }
 
-            .fingerprint-icon {
-                width: 80px;
-                height: 80px;
+            .sensors-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -646,14 +956,14 @@
 
     <div class="project-hero">
         <div class="project-hero-content fade-in">
-            <div class="project-category">BIOMETRIC SECURITY</div>
-            <h1>Fingerprint Authentication System</h1>
-            <p class="project-subtitle">Advanced biometric security solution utilizing fingerprint recognition technology. Fast, accurate, and secure authentication for access control, time tracking, and identity verification systems.</p>
+            <div class="project-category">SMART WASTE MANAGEMENT</div>
+            <h1>Intelligent Waste Processing</h1>
+            <p class="project-subtitle">A comprehensive IoT platform that transforms waste management through smart sorting, recycling optimization, and resource recovery. Monitor waste streams, automate processing, and maximize recycling efficiency.</p>
             
             <div class="project-meta">
                 <div class="meta-item">
                     <div class="meta-label">Timeline</div>
-                    <div class="meta-value">8 Weeks</div>
+                    <div class="meta-value">16 Weeks</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-label">Year</div>
@@ -668,13 +978,13 @@
             <div class="two-column-grid fade-in">
                 <div class="content-block">
                     <div class="section-label">The Challenge</div>
-                    <h2>Security Without Compromise</h2>
-                    <p>Traditional access control systems rely on cards, passwords, or PINs that can be lost, stolen, or forgotten. Security breaches cost businesses millions annually. Organizations need authentication that is both highly secure and user-friendly, eliminating the vulnerabilities of conventional methods while maintaining fast, seamless access.</p>
+                    <h2>Modern Waste Management Crisis</h2>
+                    <p>Traditional waste systems face inefficiencies in sorting, low recycling rates, landfill overflow, and environmental pollution. Municipalities and businesses need intelligent solutions that optimize waste streams and maximize resource recovery.</p>
                 </div>
                 <div class="content-block">
                     <div class="section-label">The Solution</div>
-                    <h2>Biometric Precision</h2>
-                    <p>We developed a fingerprint authentication system that combines cutting-edge sensor technology with advanced algorithms for instant, accurate identification. Each scan is processed in milliseconds with 99.9% accuracy, creating an impenetrable yet frictionless security layer. No cards to lose, no passwords to remember—just touch and go.</p>
+                    <h2>Smart Waste Processing Ecosystem</h2>
+                    <p>We developed an integrated IoT platform that combines smart bins, automated sorting, real-time monitoring, and data analytics to transform waste into valuable resources. The system increases recycling rates while reducing operational costs.</p>
                 </div>
             </div>
         </div>
@@ -682,74 +992,97 @@
 
     <div class="illustration-container fade-in">
         <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background elements -->
-            <circle cx="100" cy="100" r="40" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
-            <circle cx="700" cy="300" r="60" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
+            <!-- Waste Processing Facility -->
+            <rect x="100" y="200" width="600" height="150" fill="#795548" opacity="0.7"/>
             
-            <!-- Scanner Device -->
-            <rect x="250" y="100" width="300" height="200" rx="16" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+            <!-- Sorting Lines -->
+            <rect x="120" y="220" width="560" height="20" fill="#9E9E9E"/>
+            <rect x="120" y="250" width="560" height="20" fill="#9E9E9E"/>
+            <rect x="120" y="280" width="560" height="20" fill="#9E9E9E"/>
             
-            <!-- Screen -->
-            <rect x="270" y="120" width="260" height="140" rx="8" fill="#0a0a0a"/>
-            
-            <!-- Fingerprint display on screen -->
-            <g transform="translate(400, 190)">
-                <circle cx="0" cy="0" r="50" fill="none" stroke="#667eea" stroke-width="2" opacity="0.3"/>
-                <circle cx="0" cy="0" r="35" fill="none" stroke="#667eea" stroke-width="2" opacity="0.5"/>
-                <circle cx="0" cy="0" r="20" fill="none" stroke="#667eea" stroke-width="2" opacity="0.7"/>
-                
-                <!-- Fingerprint ridges -->
-                <path d="M-15,-25 Q-5,-30 5,-25" stroke="#667eea" stroke-width="1.5" fill="none"/>
-                <path d="M-20,-15 Q-10,-20 0,-20 Q10,-20 20,-15" stroke="#667eea" stroke-width="1.5" fill="none"/>
-                <path d="M-25,-5 Q-15,-10 0,-10 Q15,-10 25,-5" stroke="#667eea" stroke-width="1.5" fill="none"/>
-                <path d="M-25,5 Q-15,0 0,0 Q15,0 25,5" stroke="#667eea" stroke-width="1.5" fill="none"/>
-                <path d="M-20,15 Q-10,10 0,10 Q10,10 20,15" stroke="#667eea" stroke-width="1.5" fill="none"/>
-                <path d="M-15,25 Q-5,20 5,25" stroke="#667eea" stroke-width="1.5" fill="none"/>
+            <!-- Waste Bins -->
+            <g transform="translate(150, 180)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#FF9800"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🥤</text>
             </g>
             
-            <!-- Status indicator -->
-            <circle cx="530" cy="130" r="6" fill="#10b981">
-                <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            
-            <!-- Scanner pad -->
-            <rect x="300" y="270" width="200" height="20" rx="4" fill="#667eea" opacity="0.8"/>
-            
-            <!-- User silhouette -->
-            <g transform="translate(150, 200)">
-                <circle cx="0" cy="-20" r="20" fill="#333"/>
-                <path d="M-30,20 Q-30,0 0,0 Q30,0 30,20 L30,60 L-30,60 Z" fill="#333"/>
+            <g transform="translate(250, 180)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#4CAF50"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🍂</text>
             </g>
             
-            <!-- Access granted indicator -->
-            <g transform="translate(650, 190)">
-                <circle cx="0" cy="0" r="40" fill="#10b981" opacity="0.2"/>
-                <path d="M-15,0 L-5,10 L15,-10" stroke="#10b981" stroke-width="3" fill="none">
-                    <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
-                </path>
+            <g transform="translate(350, 180)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#2196F3"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🍶</text>
             </g>
             
-            <!-- Data flow lines -->
-            <g opacity="0.4">
-                <line x1="150" y1="230" x2="250" y2="200" stroke="#667eea" stroke-width="2">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
-                </line>
-                <line x1="550" y1="200" x2="650" y2="190" stroke="#10b981" stroke-width="2">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" begin="0.5s" repeatCount="indefinite"/>
-                </line>
+            <g transform="translate(450, 180)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#607D8B"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🔩</text>
             </g>
             
-            <!-- Sparkle effects -->
-            <g transform="translate(200, 150)">
-                <path d="M0 -6 L0 6 M-6 0 L6 0" stroke="#667eea" stroke-width="2">
-                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-                </path>
+            <!-- Processing Machines -->
+            <g transform="translate(200, 240)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#78909C"/>
+                <rect x="10" y="10" width="60" height="40" rx="3" fill="#546E7A"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">⚙️</text>
             </g>
             
-            <g transform="translate(600, 250)">
-                <path d="M0 -6 L0 6 M-6 0 L6 0" stroke="#10b981" stroke-width="2">
-                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/>
-                </path>
+            <g transform="translate(400, 240)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#78909C"/>
+                <rect x="10" y="10" width="60" height="40" rx="3" fill="#546E7A"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">♻️</text>
+            </g>
+            
+            <g transform="translate(600, 240)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#78909C"/>
+                <rect x="10" y="10" width="60" height="40" rx="3" fill="#546E7A"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">🔥</text>
+            </g>
+            
+            <!-- IoT Sensors -->
+            <g transform="translate(180, 220)">
+                <rect x="0" y="0" width="25" height="25" rx="4" fill="#2196f3" opacity="0.8"/>
+                <text x="12.5" y="15" font-size="12" text-anchor="middle" fill="white">📊</text>
+            </g>
+            
+            <g transform="translate(380, 220)">
+                <rect x="0" y="0" width="25" height="25" rx="4" fill="#2196f3" opacity="0.8"/>
+                <text x="12.5" y="15" font-size="12" text-anchor="middle" fill="white">📊</text>
+            </g>
+            
+            <g transform="translate(580, 220)">
+                <rect x="0" y="0" width="25" height="25" rx="4" fill="#2196f3" opacity="0.8"/>
+                <text x="12.5" y="15" font-size="12" text-anchor="middle" fill="white">📊</text>
+            </g>
+            
+            <!-- Data Transmission -->
+            <g opacity="0.6">
+                <line x1="192.5" y1="220" x2="100" y2="100" stroke="#2196f3" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="392.5" y1="220" x2="300" y2="100" stroke="#2196f3" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="592.5" y1="220" x2="500" y2="100" stroke="#2196f3" stroke-width="2" stroke-dasharray="4"/>
+            </g>
+            
+            <!-- Control Center -->
+            <g transform="translate(250, 50)">
+                <rect x="0" y="0" width="120" height="80" rx="10" fill="#1a1a1a"/>
+                <rect x="10" y="10" width="100" height="60" rx="5" fill="#fff"/>
+                <rect x="20" y="20" width="80" height="15" rx="2" fill="#4caf50"/>
+                <rect x="20" y="40" width="60" height="8" rx="1" fill="#e0e0e0"/>
+                <rect x="20" y="52" width="40" height="8" rx="1" fill="#e0e0e0"/>
+            </g>
+            
+            <!-- Output Products -->
+            <g transform="translate(650, 50)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#8BC34A"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🌱</text>
+                <text x="20" y="60" font-size="12" text-anchor="middle" fill="#666">Compost</text>
+            </g>
+            
+            <g transform="translate(700, 50)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#FFC107"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">⚡</text>
+                <text x="20" y="60" font-size="12" text-anchor="middle" fill="#666">Energy</text>
             </g>
         </svg>
     </div>
@@ -757,62 +1090,65 @@
     <section>
         <div class="section-container">
             <div class="section-label fade-in">Key Features</div>
-            <h2 class="fade-in">Advanced Biometric Technology</h2>
+            <h2 class="fade-in">Comprehensive Waste Intelligence</h2>
             
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 14v10M24 24l6 6" stroke="currentColor" stroke-width="2"/>
+                        <rect x="12" y="16" width="24" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 20 L32 20 M16 26 L28 26 M16 32 L24 32" stroke="currentColor" stroke-width="2"/>
                     </svg>
-                    <h3>Lightning Fast</h3>
-                    <p>Sub-second authentication with response times under 500ms for seamless access control.</p>
+                    <h3>Smart Sorting</h3>
+                    <p>AI-powered waste classification using computer vision and sensors to automatically separate materials with 95% accuracy.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 8L30 14M24 8L18 14M24 8v20" stroke="currentColor" stroke-width="2"/>
-                        <rect x="12" y="28" width="24" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M24 8 L40 16 L40 32 L24 40 L8 32 L8 16 Z" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M24 16 L24 32" stroke="currentColor" stroke-width="2"/>
                     </svg>
-                    <h3>99.9% Accuracy</h3>
-                    <p>Advanced algorithms ensure precise identification with minimal false acceptance rate.</p>
+                    <h3>Resource Recovery</h3>
+                    <p>Advanced processing to transform organic waste into compost and recyclables into raw materials for manufacturing.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="12" y="16" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
-                        <path d="M18 16V12a6 6 0 0112 0v4" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="24" cy="26" r="3" fill="currentColor"/>
-                    </svg>
-                    <h3>Bank-Level Security</h3>
-                    <p>Encrypted storage and transmission protect biometric data with military-grade security.</p>
-                </div>
-                
-                <div class="feature-card fade-in">
-                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 24h24M24 12v24" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    <h3>Multi-User Support</h3>
-                    <p>Store and manage thousands of fingerprint templates with instant lookup capability.</p>
-                </div>
-                
-                <div class="feature-card fade-in">
-                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16 20h16M16 28h10" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    <h3>Detailed Logging</h3>
-                    <p>Comprehensive audit trails track all access events with timestamps and user data.</p>
-                </div>
-                
-                <div class="feature-card fade-in">
-                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 16 L32 32 M32 16 L16 32" stroke="currentColor" stroke-width="2"/>
                         <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 18v6l4 4" stroke="currentColor" stroke-width="2"/>
                     </svg>
-                    <h3>Real-Time Monitoring</h3>
-                    <p>Live dashboard displays authentication attempts, success rates, and system status.</p>
+                    <h3>Real-time Monitoring</h3>
+                    <p>Comprehensive tracking of waste streams, processing efficiency, and output quality through IoT sensors and analytics.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="16" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="16" cy="12" r="2" fill="currentColor"/>
+                        <circle cx="24" cy="12" r="2" fill="currentColor"/>
+                        <circle cx="32" cy="12" r="2" fill="currentColor"/>
+                    </svg>
+                    <h3>Collection Optimization</h3>
+                    <p>Smart routing and scheduling for waste collection vehicles based on fill-level sensors and traffic patterns.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 16 L32 8 L40 16 L48 8" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M8 32 L16 24 L24 32 L32 24" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Energy Generation</h3>
+                    <p>Conversion of non-recyclable waste into clean energy through advanced thermal treatment technologies.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 16 L24 8 L32 16 M32 32 L24 40 L16 32" stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 24 L16 24 M32 24 L40 24" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Circular Economy</h3>
+                    <p>Integration with manufacturing supply chains to create closed-loop systems for recycled materials.</p>
                 </div>
             </div>
         </div>
@@ -821,28 +1157,29 @@
     <section style="background: var(--light-gray);">
         <div class="section-container">
             <div class="section-label fade-in">Technology Stack</div>
-            <h2 class="fade-in">Powered by Advanced Biometrics</h2>
+            <h2 class="fade-in">Built for Waste Innovation</h2>
             
             <div class="tech-stack fade-in">
+                <span class="tech-badge">IoT Sensors</span>
+                <span class="tech-badge">Computer Vision</span>
+                <span class="tech-badge">AI/ML</span>
+                <span class="tech-badge">Robotic Sorting</span>
                 <span class="tech-badge">Python</span>
-                <span class="tech-badge">OpenCV</span>
                 <span class="tech-badge">TensorFlow</span>
-                <span class="tech-badge">Fingerprint SDK</span>
-                <span class="tech-badge">PostgreSQL</span>
-                <span class="tech-badge">Redis Cache</span>
-                <span class="tech-badge">WebSocket</span>
-                <span class="tech-badge">React</span>
                 <span class="tech-badge">Node.js</span>
-                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">AWS IoT</span>
+                <span class="tech-badge">Blockchain</span>
             </div>
         </div>
     </section>
 
     <section class="demo-section">
         <div class="section-container">
-            <div class="section-label fade-in">Live Demo</div>
-            <h2 class="fade-in">Try the Scanner</h2>
-            <p class="project-subtitle fade-in">Experience our fingerprint authentication system in action. Click the scanner to simulate biometric verification.</p>
+            <div class="section-label fade-in">Interactive Demo</div>
+            <h2 class="fade-in">Experience Smart Waste Management</h2>
+            <p class="project-subtitle fade-in">Monitor waste processing, track recycling efficiency, control automation systems, and optimize resource recovery through our integrated dashboard.</p>
             
             <div class="demo-preview fade-in">
                 <div class="browser-bar">
@@ -851,41 +1188,183 @@
                     <div class="browser-dot"></div>
                 </div>
                 <div class="demo-content">
-                    <div class="scanner-container">
-                        <h3 class="scanner-title">Biometric Authentication</h3>
-                        <p class="scanner-subtitle">Place your finger on the scanner</p>
-                        
-                        <div class="fingerprint-scanner" id="scanner">
-                            <div class="scanner-circle" id="scannerCircle">
-                                <svg class="fingerprint-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 2c0-3.31-2.69-6-6-6s-6 2.69-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M12 7c2.76 0 5 2.24 5 5M7 12c0-2.76 2.24-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M12 17c-2.76 0-5-2.24-5-5M17 12c0 2.76-2.24 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
+                    <div class="waste-header">
+                        <div class="waste-logo">
+                            <div class="logo-icon">♻️</div>
+                            WASTE-SMART DASHBOARD
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot"></div>
+                            <span>All Systems Operational</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard">
+                        <div class="sections-panel">
+                            <h3 style="margin-bottom: 15px; color: #000;">Facility Sections</h3>
+                            <div class="sections-list">
+                                <div class="section-item active" data-section="sorting">
+                                    <div class="section-icon">⚙️</div>
+                                    <div class="section-info">
+                                        <div class="section-name">Sorting Facility</div>
+                                        <div class="section-status">Processing: 85% Efficiency</div>
+                                    </div>
+                                </div>
+                                <div class="section-item" data-section="recycling">
+                                    <div class="section-icon">♻️</div>
+                                    <div class="section-info">
+                                        <div class="section-name">Recycling Plant</div>
+                                        <div class="section-status">Running: 92% Capacity</div>
+                                    </div>
+                                </div>
+                                <div class="section-item" data-section="composting">
+                                    <div class="section-icon">🌱</div>
+                                    <div class="section-info">
+                                        <div class="section-name">Composting Unit</div>
+                                        <div class="section-status">Optimal Conditions</div>
+                                    </div>
+                                </div>
+                                <div class="section-item" data-section="energy">
+                                    <div class="section-icon">⚡</div>
+                                    <div class="section-info">
+                                        <div class="section-name">Energy Recovery</div>
+                                        <div class="section-status">Generating: 5.2 MW</div>
+                                    </div>
+                                </div>
+                                <div class="section-item" data-section="collection">
+                                    <div class="section-icon">🚛</div>
+                                    <div class="section-info">
+                                        <div class="section-name">Collection Network</div>
+                                        <div class="section-status">12 Vehicles Active</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="scan-status" id="scanStatus">Ready to scan</div>
-                        
-                        <button class="scan-button" id="scanButton">Start Scan</button>
-                        
-                        <div class="user-info" id="userInfo">
-                            <div class="user-info-row">
-                                <span class="user-info-label">Name</span>
-                                <span class="user-info-value" id="userName">-</span>
+
+                        <div class="monitoring-panel">
+                            <h3 style="margin-bottom: 15px; color: #000;">Facility Monitoring</h3>
+                            <div class="sensors-grid" id="sensorsGrid">
+                                <!-- Sensors will be populated by JavaScript -->
                             </div>
-                            <div class="user-info-row">
-                                <span class="user-info-label">ID</span>
-                                <span class="user-info-value" id="userId">-</span>
+                            
+                            <div class="collection-panel">
+                                <div class="collection-title">
+                                    <span>Today's Collection Progress</span>
+                                    <span>68%</span>
+                                </div>
+                                <div class="collection-bar">
+                                    <div class="collection-fill" id="collectionFill"></div>
+                                </div>
+                                <div class="collection-stats">
+                                    <span>0 Tons</span>
+                                    <span>34 Tons Collected</span>
+                                    <span>50 Tons Target</span>
+                                </div>
                             </div>
-                            <div class="user-info-row">
-                                <span class="user-info-label">Access Level</span>
-                                <span class="user-info-value" id="userAccess">-</span>
+
+                            <div class="automation-panel">
+                                <div class="automation-title">Automation Controls</div>
+                                <div class="automation-list">
+                                    <div class="automation-item">
+                                        <div class="automation-name">AI Sorting System</div>
+                                        <div class="automation-desc">Automated waste classification and separation</div>
+                                        <div class="automation-status">
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="sortingToggle" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span id="sortingStatus">Enabled</span>
+                                        </div>
+                                    </div>
+                                    <div class="automation-item">
+                                        <div class="automation-name">Quality Control</div>
+                                        <div class="automation-desc">Real-time monitoring of output quality</div>
+                                        <div class="automation-status">
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="qualityToggle" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span id="qualityStatus">Enabled</span>
+                                        </div>
+                                    </div>
+                                    <div class="automation-item">
+                                        <div class="automation-name">Energy Recovery</div>
+                                        <div class="automation-desc">Waste-to-energy conversion system</div>
+                                        <div class="automation-status">
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="energyToggle">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span id="energyStatus">Disabled</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="user-info-row">
-                                <span class="user-info-label">Status</span>
-                                <span class="user-info-value" id="userStatus">-</span>
+                        </div>
+
+                        <div class="waste-panel">
+                            <div class="waste-title">Waste Processing Statistics</div>
+                            <div class="waste-stats">
+                                <div class="waste-item">
+                                    <div class="waste-name">
+                                        <div class="waste-icon">🍂</div>
+                                        Organic Waste
+                                    </div>
+                                    <div class="waste-desc">Compost production: 65% of input processed</div>
+                                    <div class="waste-progress">
+                                        <div class="waste-fill organic"></div>
+                                    </div>
+                                    <div class="waste-stats-info">
+                                        <span>0 Tons</span>
+                                        <span>32.5 Tons Processed</span>
+                                        <span>50 Tons Input</span>
+                                    </div>
+                                </div>
+                                <div class="waste-item">
+                                    <div class="waste-name">
+                                        <div class="waste-icon">🥤</div>
+                                        Plastic Waste
+                                    </div>
+                                    <div class="waste-desc">Recycling: 42% of total collected</div>
+                                    <div class="waste-progress">
+                                        <div class="waste-fill plastic"></div>
+                                    </div>
+                                    <div class="waste-stats-info">
+                                        <span>0 Tons</span>
+                                        <span>8.4 Tons Recycled</span>
+                                        <span>20 Tons Total</span>
+                                    </div>
+                                </div>
+                                <div class="waste-item">
+                                    <div class="waste-name">
+                                        <div class="waste-icon">🍶</div>
+                                        Glass Waste
+                                    </div>
+                                    <div class="waste-desc">Recycling: 28% of total collected</div>
+                                    <div class="waste-progress">
+                                        <div class="waste-fill glass"></div>
+                                    </div>
+                                    <div class="waste-stats-info">
+                                        <span>0 Tons</span>
+                                        <span>5.6 Tons Recycled</span>
+                                        <span>20 Tons Total</span>
+                                    </div>
+                                </div>
+                                <div class="waste-item">
+                                    <div class="waste-name">
+                                        <div class="waste-icon">🔩</div>
+                                        Metal Waste
+                                    </div>
+                                    <div class="waste-desc">Recycling: 35% of total collected</div>
+                                    <div class="waste-progress">
+                                        <div class="waste-fill metal"></div>
+                                    </div>
+                                    <div class="waste-stats-info">
+                                        <span>0 Tons</span>
+                                        <span>7 Tons Recycled</span>
+                                        <span>20 Tons Total</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -923,81 +1402,197 @@
             fadeObserver.observe(element);
         });
 
-        // Demo users database
-        const users = [
-            { name: 'John Anderson', id: 'EMP-001', access: 'Administrator', status: 'Active' },
-            { name: 'Sarah Martinez', id: 'EMP-045', access: 'Manager', status: 'Active' },
-            { name: 'Michael Chen', id: 'EMP-127', access: 'Employee', status: 'Active' },
-            { name: 'Emily Rodriguez', id: 'EMP-203', access: 'Employee', status: 'Active' }
-        ];
+        // Waste Management Demo Data
+        const sections = {
+            'sorting': [
+                { id: 1, name: 'Throughput Rate', type: 'efficiency', status: true, icon: '⚙️', value: '85%', info: 'Processing efficiency' },
+                { id: 2, name: 'Sorting Accuracy', type: 'quality', status: true, icon: '🎯', value: '94%', info: 'AI classification accuracy' },
+                { id: 3, name: 'Belt Speed', type: 'operation', status: true, icon: '📏', value: '2.5 m/s', info: 'Optimal operating speed' },
+                { id: 4, name: 'Contamination', type: 'quality', status: false, icon: '⚠️', value: '3.2%', info: 'Within acceptable limits' }
+            ],
+            'recycling': [
+                { id: 5, name: 'Plastic Recovery', type: 'recovery', status: true, icon: '🥤', value: '88%', info: 'Plastic recycling rate' },
+                { id: 6, name: 'Metal Recovery', type: 'recovery', status: true, icon: '🔩', value: '92%', info: 'Metal recycling rate' },
+                { id: 7, name: 'Glass Recovery', type: 'recovery', status: true, icon: '🍶', value: '76%', info: 'Glass recycling rate' },
+                { id: 8, name: 'Paper Recovery', type: 'recovery', status: true, icon: '📄', value: '81%', info: 'Paper recycling rate' }
+            ],
+            'composting': [
+                { id: 9, name: 'Temperature', type: 'climate', status: true, icon: '🌡️', value: '58°C', info: 'Ideal for decomposition' },
+                { id: 10, name: 'Moisture Level', type: 'moisture', status: true, icon: '💧', value: '55%', info: 'Optimal moisture content' },
+                { id: 11, name: 'Oxygen Level', type: 'climate', status: true, icon: '💨', value: '12%', info: 'Adequate aeration' },
+                { id: 12, name: 'Maturity', type: 'quality', status: true, icon: '🌱', value: 'Stage 3', info: 'Advanced decomposition' }
+            ],
+            'energy': [
+                { id: 13, name: 'Power Output', type: 'energy', status: true, icon: '⚡', value: '5.2 MW', info: 'Current generation' },
+                { id: 14, name: 'Efficiency', type: 'efficiency', status: true, icon: '📊', value: '78%', info: 'Energy conversion rate' },
+                { id: 15, name: 'Feed Rate', type: 'operation', status: true, icon: '📦', value: '8.5 T/h', info: 'Waste processing rate' }
+            ],
+            'collection': [
+                { id: 16, name: 'Vehicle Fleet', type: 'operation', status: true, icon: '🚛', value: '12/15', info: 'Active vehicles' },
+                { id: 17, name: 'Route Efficiency', type: 'efficiency', status: true, icon: '🗺️', value: '87%', info: 'Optimal routing' },
+                { id: 18, name: 'Fill Level Avg', type: 'capacity', status: true, icon: '📊', value: '72%', info: 'Average bin capacity' }
+            ]
+        };
 
-        // Scanner functionality
-        const scanner = document.getElementById('scanner');
-        const scannerCircle = document.getElementById('scannerCircle');
-        const scanStatus = document.getElementById('scanStatus');
-        const scanButton = document.getElementById('scanButton');
-        const userInfo = document.getElementById('userInfo');
-
-        let isScanning = false;
-
-        function startScan() {
-            if (isScanning) return;
+        // Render Sensors for Selected Section
+        function renderSensors(sectionId) {
+            const sensorsGrid = document.getElementById('sensorsGrid');
+            const sectionSensors = sections[sectionId];
             
-            isScanning = true;
-            scanButton.disabled = true;
-            userInfo.classList.remove('show');
+            sensorsGrid.innerHTML = sectionSensors.map(sensor => `
+                <div class="sensor-card">
+                    <div class="sensor-header">
+                        <div class="sensor-icon">${sensor.icon}</div>
+                        <div class="sensor-status ${sensor.status ? 'on' : 'alert'}"></div>
+                    </div>
+                    <div class="sensor-name">${sensor.name}</div>
+                    <div class="sensor-info">${sensor.info}</div>
+                    <div class="sensor-value">${sensor.value}</div>
+                    <div class="sensor-controls">
+                        <button class="control-btn ${sensor.status ? 'primary' : ''}" onclick="toggleSensor(${sensor.id}, '${sectionId}')">
+                            ${sensor.status ? 'ACTIVE' : 'INACTIVE'}
+                        </button>
+                        <button class="control-btn" onclick="showSensorDetails(${sensor.id})">
+                            Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
             
-            // Reset states
-            scannerCircle.classList.remove('success', 'error');
-            scanStatus.textContent = 'Scanning...';
-            scannerCircle.classList.add('scanning');
-            
-            // Simulate scanning
-            setTimeout(() => {
-                // 80% success rate
-                const success = Math.random() > 0.2;
-                
-                scannerCircle.classList.remove('scanning');
-                
-                if (success) {
-                    // Success
-                    scannerCircle.classList.add('success');
-                    scanStatus.textContent = 'Authentication Successful';
-                    
-                    // Display random user
-                    const user = users[Math.floor(Math.random() * users.length)];
-                    document.getElementById('userName').textContent = user.name;
-                    document.getElementById('userId').textContent = user.id;
-                    document.getElementById('userAccess').textContent = user.access;
-                    document.getElementById('userStatus').textContent = user.status;
-                    
-                    setTimeout(() => {
-                        userInfo.classList.add('show');
-                    }, 500);
-                    
-                } else {
-                    // Failure
-                    scannerCircle.classList.add('error');
-                    scanStatus.textContent = 'Authentication Failed';
-                }
-                
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    scannerCircle.classList.remove('success', 'error');
-                    scanStatus.textContent = 'Ready to scan';
-                    scanButton.disabled = false;
-                    isScanning = false;
-                    
-                    if (!success) {
-                        userInfo.classList.remove('show');
-                    }
-                }, 3000);
-                
-            }, 2000);
+            // Update collection progress based on section
+            updateCollectionProgress(sectionId);
         }
 
-        scanner.addEventListener('click', startScan);
-        scanButton.addEventListener('click', startScan);
+        // Toggle Sensor Status
+        function toggleSensor(sensorId, sectionId) {
+            const sectionSensors = sections[sectionId];
+            const sensor = sectionSensors.find(s => s.id === sensorId);
+            
+            if (sensor) {
+                sensor.status = !sensor.status;
+                
+                // Update sensor value based on status
+                if (!sensor.status) {
+                    sensor.value = '--';
+                    sensor.info = 'Sensor inactive';
+                } else {
+                    // Reset to default values based on sensor type
+                    if (sensor.type === 'efficiency') {
+                        sensor.value = sectionId === 'sorting' ? '85%' : 
+                                      sectionId === 'recycling' ? '88%' : 
+                                      sectionId === 'energy' ? '78%' : '87%';
+                    } else if (sensor.type === 'quality') {
+                        sensor.value = sectionId === 'sorting' ? '94%' : 
+                                      sectionId === 'composting' ? 'Stage 3' : '3.2%';
+                    } else if (sensor.type === 'operation') {
+                        sensor.value = sectionId === 'sorting' ? '2.5 m/s' : 
+                                      sectionId === 'energy' ? '8.5 T/h' : '12/15';
+                    } else if (sensor.type === 'recovery') {
+                        sensor.value = sectionId === 'recycling' ? 
+                            (sensor.name.includes('Plastic') ? '88%' : 
+                             sensor.name.includes('Metal') ? '92%' : 
+                             sensor.name.includes('Glass') ? '76%' : '81%') : '--';
+                    } else if (sensor.type === 'climate') {
+                        sensor.value = sectionId === 'composting' ? 
+                            (sensor.name.includes('Temperature') ? '58°C' : 
+                             sensor.name.includes('Moisture') ? '55%' : '12%') : '--';
+                    } else if (sensor.type === 'energy') {
+                        sensor.value = '5.2 MW';
+                    } else if (sensor.type === 'capacity') {
+                        sensor.value = '72%';
+                    }
+                    
+                    // Reset info based on sensor type and section
+                    if (sectionId === 'sorting') {
+                        if (sensor.name === 'Throughput Rate') sensor.info = 'Processing efficiency';
+                        else if (sensor.name === 'Sorting Accuracy') sensor.info = 'AI classification accuracy';
+                        else if (sensor.name === 'Belt Speed') sensor.info = 'Optimal operating speed';
+                        else if (sensor.name === 'Contamination') sensor.info = 'Within acceptable limits';
+                    } else if (sectionId === 'recycling') {
+                        if (sensor.name.includes('Recovery')) sensor.info = `${sensor.name.split(' ')[0]} recycling rate`;
+                    } else if (sectionId === 'composting') {
+                        if (sensor.name === 'Temperature') sensor.info = 'Ideal for decomposition';
+                        else if (sensor.name === 'Moisture Level') sensor.info = 'Optimal moisture content';
+                        else if (sensor.name === 'Oxygen Level') sensor.info = 'Adequate aeration';
+                        else if (sensor.name === 'Maturity') sensor.info = 'Advanced decomposition';
+                    } else if (sectionId === 'energy') {
+                        if (sensor.name === 'Power Output') sensor.info = 'Current generation';
+                        else if (sensor.name === 'Efficiency') sensor.info = 'Energy conversion rate';
+                        else if (sensor.name === 'Feed Rate') sensor.info = 'Waste processing rate';
+                    } else if (sectionId === 'collection') {
+                        if (sensor.name === 'Vehicle Fleet') sensor.info = 'Active vehicles';
+                        else if (sensor.name === 'Route Efficiency') sensor.info = 'Optimal routing';
+                        else if (sensor.name === 'Fill Level Avg') sensor.info = 'Average bin capacity';
+                    }
+                }
+                
+                renderSensors(sectionId);
+            }
+        }
+
+        // Show Sensor Details (placeholder)
+        function showSensorDetails(sensorId) {
+            alert(`Detailed analytics for sensor ${sensorId} would open here in a full implementation.`);
+        }
+
+        // Update collection progress visualization
+        function updateCollectionProgress(sectionId) {
+            const collectionFill = document.getElementById('collectionFill');
+            let progressPercentage = 68; // Default
+            
+            // Adjust based on selected section
+            if (sectionId === 'sorting') {
+                progressPercentage = 72;
+            } else if (sectionId === 'recycling') {
+                progressPercentage = 65;
+            } else if (sectionId === 'composting') {
+                progressPercentage = 58;
+            } else if (sectionId === 'energy') {
+                progressPercentage = 82;
+            } else if (sectionId === 'collection') {
+                progressPercentage = 75;
+            }
+            
+            collectionFill.style.width = `${progressPercentage}%`;
+            
+            // Update the collection title
+            document.querySelector('.collection-title span:last-child').textContent = `${progressPercentage}%`;
+            const tonsCollected = (progressPercentage * 50 / 100).toFixed(0);
+            document.querySelector('.collection-stats span:nth-child(2)').textContent = `${tonsCollected} Tons Collected`;
+        }
+
+        // Section Selection
+        document.querySelectorAll('.section-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all sections
+                document.querySelectorAll('.section-item').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Add active class to clicked section
+                this.classList.add('active');
+                
+                // Render sensors for selected section
+                const sectionId = this.getAttribute('data-section');
+                renderSensors(sectionId);
+            });
+        });
+
+        // Toggle switch functionality
+        document.getElementById('sortingToggle').addEventListener('change', function() {
+            document.getElementById('sortingStatus').textContent = this.checked ? 'Enabled' : 'Disabled';
+        });
+
+        document.getElementById('qualityToggle').addEventListener('change', function() {
+            document.getElementById('qualityStatus').textContent = this.checked ? 'Enabled' : 'Disabled';
+        });
+
+        document.getElementById('energyToggle').addEventListener('change', function() {
+            document.getElementById('energyStatus').textContent = this.checked ? 'Enabled' : 'Disabled';
+        });
+
+        // Initialize with sorting facility sensors
+        renderSensors('sorting');
     </script>
 </body>
 </html>
