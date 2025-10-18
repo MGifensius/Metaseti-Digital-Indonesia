@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Portfolio 4 -Design Concepts | Metaseti Digital Indonesia</title>
+    <title>Metaseti Digital Indonesia - Brand Identity & Marketing</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -21,12 +21,16 @@
             --spacing-2xl: 100px;
             --spacing-3xl: 120px;
             
-            /* INVERTED Monochrome Color Palette */
             --primary-black: #FFFFFF;
             --primary-white: #000000;
             --light-gray: #0A0A0A;
             --medium-gray: #777777;
             --dark-gray: #DDDDDD;
+            --accent-blue: #2563eb;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-teal: #14b8a6;
         }
 
         body {
@@ -37,7 +41,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -84,119 +87,55 @@
             width: auto;
         }
 
-        .nav-links {
-            display: flex;
-            gap: var(--spacing-md);
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
+        .back-link {
             font-family: 'Inter', sans-serif;
             text-decoration: none;
             color: var(--primary-black);
             font-size: 14px;
             font-weight: 400;
             transition: all 0.3s;
-            position: relative;
             opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary-black);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
+        .back-link:hover {
             opacity: 1;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
+        .back-link::before {
+            content: '←';
+            font-size: 18px;
         }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 1px;
-            background: var(--primary-black);
-            transition: all 0.3s;
-        }
-
-        .menu-close {
-            display: none;
-            position: absolute;
-            top: var(--spacing-xs);
-            right: var(--spacing-sm);
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .menu-close::before,
-        .menu-close::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 25px;
-            height: 1px;
-            background: var(--primary-black);
-            transition: all 0.3s;
-        }
-
-        .menu-close::before {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        .menu-close::after {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-
-        .menu-close:hover::before,
-        .menu-close:hover::after {
-            background: var(--primary-black);
-        }
-
-        /* Hero Section */
-        .portfolio-hero {
+        .project-hero {
             min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-xl);
             text-align: center;
-            background: var(--light-gray);
-            position: relative;
-            overflow: hidden;
-            border-bottom-left-radius: 80px;
-            border-bottom-right-radius: 80px;
+            background: var(--primary-white);
         }
 
-        .portfolio-hero-content {
+        .project-hero-content {
             max-width: 900px;
-            position: relative;
-            z-index: 2;
         }
 
-        .portfolio-hero h1 {
+        .project-category {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--primary-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            opacity: 0.7;
+        }
+
+        .project-hero-content h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(36px, 6vw, 72px);
+            font-size: clamp(40px, 6vw, 80px);
             font-weight: 300;
             line-height: 1.1;
             margin-bottom: var(--spacing-sm);
@@ -204,7 +143,7 @@
             color: var(--primary-black);
         }
 
-        .portfolio-hero-subtitle {
+        .project-subtitle {
             font-family: 'Inter', sans-serif;
             font-size: clamp(16px, 2vw, 20px);
             font-weight: 300;
@@ -215,22 +154,34 @@
             opacity: 0.7;
         }
 
-        .concept-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: transparent;
-            border: 1px solid var(--primary-black);
-            border-radius: 20px;
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
             font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            color: var(--primary-black);
-            letter-spacing: 2px;
+            font-size: 11px;
             text-transform: uppercase;
-            margin-bottom: var(--spacing-md);
+            letter-spacing: 2px;
+            color: var(--primary-black);
+            margin-bottom: 5px;
             opacity: 0.7;
         }
 
-        /* Sections */
+        .meta-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--primary-black);
+        }
+
         section {
             padding: var(--spacing-2xl) var(--spacing-lg);
             position: relative;
@@ -238,319 +189,259 @@
         }
 
         .section-container {
-            max-width: 1400px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
         }
 
         h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(36px, 5vw, 64px);
+            font-size: clamp(32px, 4vw, 48px);
             font-weight: 300;
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
             letter-spacing: -1px;
             color: var(--primary-black);
         }
 
-        .section-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(14px, 1.5vw, 18px);
-            color: var(--primary-black);
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.8;
-            opacity: 0.7;
-        }
-
-        /* Concept Overview */
-        .concept-overview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
-            align-items: center;
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .overview-content {
-            padding-right: var(--spacing-lg);
-        }
-
-        .overview-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+        .section-label {
             font-family: 'Inter', sans-serif;
             font-size: 12px;
             color: var(--primary-black);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: 15px;
             opacity: 0.7;
         }
 
-        .overview-badge::before {
+        .section-label::after {
             content: '';
-            width: 40px;
+            flex: 1;
+            max-width: 60px;
             height: 1px;
             background: var(--primary-black);
         }
 
-        .overview-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: var(--spacing-md);
-            color: var(--primary-black);
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
         }
 
-        .overview-description {
+        .content-block p {
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 2;
             color: var(--primary-black);
             opacity: 0.7;
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
         }
 
-        .overview-visual {
-            position: relative;
-            height: 400px;
+        .illustration-container {
             background: var(--light-gray);
-            border-radius: 20px;
-            overflow: hidden;
+            padding: var(--spacing-xl);
+            margin: var(--spacing-lg) 0;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            min-height: 400px;
         }
 
-        .visual-placeholder {
-            font-size: 48px;
-            color: var(--medium-gray);
+        .illustration-svg {
+            max-width: 700px;
+            width: 100%;
+            height: auto;
         }
 
-        /* Concept Showcase */
-        .concept-showcase {
-            margin: var(--spacing-2xl) 0;
-        }
-
-        .showcase-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--spacing-md);
             margin-top: var(--spacing-lg);
         }
 
-        .showcase-item {
-            position: relative;
-            background: var(--primary-white);
-            border: 1px solid var(--primary-black);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .showcase-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .showcase-image {
-            height: 300px;
-            background: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .showcase-content {
+        .feature-card {
             padding: var(--spacing-md);
+            border: 1px solid var(--primary-black);
+            transition: all 0.4s;
         }
 
-        .showcase-title {
+        .feature-card:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .feature-card h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 20px;
-            font-weight: 400;
-            color: var(--primary-black);
-            margin-bottom: 12px;
+            font-weight: 300;
+            margin-bottom: 15px;
         }
 
-        .showcase-description {
+        .feature-card p {
             font-family: 'Inter', sans-serif;
             font-size: 14px;
-            line-height: 1.7;
-            color: var(--primary-black);
+            line-height: 1.8;
             opacity: 0.7;
         }
 
-        /* Concept Gallery */
-        .concept-gallery {
-            margin: var(--spacing-2xl) 0;
+        .feature-card:hover .feature-icon {
+            filter: invert(1);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: var(--spacing-md);
+        }
+
+        .tech-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .gallery-section {
+            background: var(--light-gray);
+            padding: var(--spacing-xl);
+            text-align: center;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-sm);
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
             margin-top: var(--spacing-lg);
         }
 
         .gallery-item {
             position: relative;
-            background: var(--light-gray);
-            border-radius: 12px;
             overflow: hidden;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            background: var(--primary-white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
         }
 
         .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .gallery-item.large {
-            grid-column: span 2;
-            grid-row: span 2;
-            aspect-ratio: 2 / 1;
-        }
-
-        /* Design Process */
-        .design-process {
-            margin: var(--spacing-2xl) 0;
-        }
-
-        .process-timeline {
-            position: relative;
-            max-width: 800px;
-            margin: var(--spacing-xl) auto 0;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 2px;
-            background: var(--primary-black);
-            opacity: 0.2;
-            transform: translateX(-50%);
-        }
-
-        .process-step {
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background: var(--dark-gray);
             display: flex;
             align-items: center;
-            margin-bottom: var(--spacing-lg);
-            position: relative;
-        }
-
-        .process-step:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .process-step:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .process-content {
-            flex: 1;
-            padding: var(--spacing-md);
-            background: var(--primary-white);
-            border: 1px solid var(--primary-black);
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .process-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .gallery-image img {
             width: 100%;
             height: 100%;
-            background: var(--primary-black);
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
+            object-fit: cover;
         }
 
-        .process-content:hover::before {
-            left: 0;
-        }
-
-        .process-content:hover .process-title,
-        .process-content:hover .process-description {
-            color: var(--primary-white);
-            z-index: 2;
-            position: relative;
-        }
-
-        .process-step:nth-child(odd) .process-content {
-            margin-right: var(--spacing-md);
-        }
-
-        .process-step:nth-child(even) .process-content {
-            margin-left: var(--spacing-md);
-        }
-
-        .process-marker {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary-black);
-            flex-shrink: 0;
-            z-index: 2;
-        }
-
-        .process-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--primary-black);
-            margin-bottom: 12px;
-            transition: color 0.3s ease;
-        }
-
-        .process-description {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--primary-black);
-            opacity: 0.7;
-            transition: color 0.3s ease;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-            background: var(--light-gray);
-            border-radius: 20px;
-            margin: var(--spacing-2xl) 0;
-        }
-
-        .cta-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 300;
-            color: var(--primary-black);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .cta-description {
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
             font-family: 'Inter', sans-serif;
             font-size: 16px;
+        }
+
+        .image-placeholder span {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .gallery-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .gallery-category {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-black);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        .gallery-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--primary-black);
+        }
+
+        .gallery-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
             color: var(--primary-black);
             opacity: 0.7;
-            margin-bottom: var(--spacing-lg);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .gallery-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .gallery-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .gallery-tag:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
         }
 
         .cta-button {
@@ -561,7 +452,7 @@
             background: transparent;
             color: var(--primary-black);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 0;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
             font-size: 16px;
@@ -570,6 +461,7 @@
             border: 1px solid var(--primary-black);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .cta-button::before {
@@ -592,17 +484,6 @@
             color: var(--primary-white);
         }
 
-        .cta-button::after {
-            content: '→';
-            font-size: 18px;
-            transition: transform 0.3s;
-        }
-
-        .cta-button:hover::after {
-            transform: translateX(3px);
-        }
-
-        /* Footer */
         footer {
             padding: var(--spacing-lg);
             text-align: center;
@@ -613,7 +494,6 @@
             opacity: 0.7;
         }
 
-        /* Fade-in animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -625,37 +505,11 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
+        /* Mobile Optimizations */
         @media (max-width: 1024px) {
-            .concept-overview {
+            .two-column-grid,
+            .features-grid {
                 grid-template-columns: 1fr;
-                gap: var(--spacing-lg);
-            }
-
-            .overview-content {
-                padding-right: 0;
-                text-align: center;
-            }
-
-            .overview-badge {
-                justify-content: center;
-            }
-
-            .process-timeline::before {
-                left: 30px;
-            }
-
-            .process-step {
-                flex-direction: row !important;
-            }
-
-            .process-step:nth-child(odd) .process-content,
-            .process-step:nth-child(even) .process-content {
-                margin: 0 0 0 var(--spacing-lg);
-            }
-
-            .process-marker {
-                margin-right: var(--spacing-sm);
             }
 
             .gallery-grid {
@@ -673,82 +527,20 @@
                 right: var(--spacing-sm);
             }
 
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 280px;
-                max-width: 80%;
-                background: rgba(0, 0, 0, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: center;
-                border-left: 1px solid var(--primary-black);
-                transition: right 0.3s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links.active .menu-close {
-                display: block;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(7px, 7px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
             section {
                 padding: var(--spacing-lg) var(--spacing-sm);
             }
 
-            .portfolio-hero {
+            .project-hero {
                 padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
-                border-bottom-left-radius: 40px;
-                border-bottom-right-radius: 40px;
             }
 
-            .showcase-grid {
-                grid-template-columns: 1fr;
+            .gallery-section {
+                padding: var(--spacing-md);
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .gallery-item.large {
-                grid-column: span 1;
-                grid-row: span 1;
-                aspect-ratio: 1 / 1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .overview-visual {
-                height: 250px;
-            }
-
-            .showcase-image {
-                height: 200px;
-            }
-
-            .process-step:nth-child(odd) .process-content,
-            .process-step:nth-child(even) .process-content {
-                margin: 0 0 0 var(--spacing-md);
             }
         }
     </style>
@@ -758,274 +550,391 @@
         <a href="index.html" class="logo">
             <img src="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/MetasetiDarkBG.png" alt="Metaseti Logo">
         </a>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links">
-            <div class="menu-close"></div>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#services">Services</a></li>
-            <li><a href="index.html#portfolio">Work</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+        <a href="index.html#portfolio" class="back-link">Back to Portfolio</a>
     </nav>
 
-    <div class="content">
-        <section class="portfolio-hero">
-            <div class="portfolio-hero-content">
-                <div class="concept-badge">Design Concept</div>
-                <h1 class="fade-in">Corporate Rebranding Vision</h1>
-                <p class="portfolio-hero-subtitle fade-in">A conceptual exploration of brand transformation - showcasing our approach to visual identity, digital presence, and strategic design thinking.</p>
-            </div>
-        </section>
-
-        <section id="overview">
-            <div class="section-container">
-                <div class="concept-overview">
-                    <div class="overview-content fade-in">
-                        <div class="overview-badge">Concept Overview</div>
-                        <h2 class="overview-title">Designing Tomorrow's Brands</h2>
-                        <p class="overview-description">
-                            This conceptual project demonstrates our approach to comprehensive brand transformation. We've envisioned a complete redesign process that showcases how we would approach a corporate rebranding initiative, from initial strategy to final implementation across all touchpoints.
-                        </p>
-                        <p class="overview-description">
-                            While this represents a conceptual exercise rather than an actual client project, it illustrates our design philosophy, process, and the quality of work we aim to deliver for future partners.
-                        </p>
-                    </div>
-                    
-                    <div class="overview-visual fade-in">
-                        <div class="visual-placeholder">
-                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
-                            </svg>
-                        </div>
-                    </div>
+    <div class="project-hero">
+        <div class="project-hero-content fade-in">
+            <div class="project-category">BRAND IDENTITY & MARKETING</div>
+            <h1>Strategic Brand Development</h1>
+            <p class="project-subtitle">A comprehensive approach to brand identity and marketing that transforms businesses through strategic positioning, compelling storytelling, and memorable visual identities. Create powerful brand experiences that resonate with audiences.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Timeline</div>
+                    <div class="meta-value">12 Weeks</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Year</div>
+                    <div class="meta-value">2025</div>
                 </div>
             </div>
-        </section>
-
-        <section id="concept-showcase">
-            <div class="section-container">
-                <h2 class="fade-in">Design Exploration</h2>
-                <p class="section-subtitle fade-in">Key elements of our conceptual brand transformation approach.</p>
-                
-                <div class="concept-showcase">
-                    <div class="showcase-grid">
-                        <div class="showcase-item fade-in">
-                            <div class="showcase-image">
-                                <div class="visual-placeholder">
-                                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-                                        <text x="12" y="16" text-anchor="middle" font-family="Arial" font-size="10" fill="currentColor">Logo</text>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="showcase-content">
-                                <h3 class="showcase-title">Visual Identity System</h3>
-                                <p class="showcase-description">Conceptual exploration of logo design, mark creation, and visual elements that form a cohesive brand identity system.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="showcase-item fade-in">
-                            <div class="showcase-image">
-                                <div class="visual-placeholder">
-                                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.5"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="showcase-content">
-                                <h3 class="showcase-title">Brand Architecture</h3>
-                                <p class="showcase-description">Strategic approach to color systems, typography hierarchies, and design principles that ensure brand consistency.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="showcase-item fade-in">
-                            <div class="showcase-image">
-                                <div class="visual-placeholder">
-                                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.5"/>
-                                        <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="showcase-content">
-                                <h3 class="showcase-title">Digital Experience</h3>
-                                <p class="showcase-description">Conceptual interface designs and user experience flows that bring the brand to life across digital platforms.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="showcase-item fade-in">
-                            <div class="showcase-image">
-                                <div class="visual-placeholder">
-                                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="showcase-content">
-                                <h3 class="showcase-title">Brand Applications</h3>
-                                <p class="showcase-description">Exploration of how the brand identity translates across various applications from print to environmental design.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery">
-            <div class="section-container">
-                <h2 class="fade-in">Visual Concepts</h2>
-                <p class="section-subtitle fade-in">A gallery of design explorations and conceptual applications.</p>
-                
-                <div class="concept-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item fade-in">
-                            <div class="visual-placeholder">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="gallery-item fade-in">
-                            <div class="visual-placeholder">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="gallery-item fade-in">
-                            <div class="visual-placeholder">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="gallery-item large fade-in">
-                            <div class="visual-placeholder">
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="gallery-item fade-in">
-                            <div class="visual-placeholder">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L2 7v10c0 5.5 3.84 9.36 10 11 6.16-1.64 10-5.5 10-11V7l-10-5z" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="process">
-            <div class="section-container">
-                <h2 class="fade-in">Our Design Process</h2>
-                <p class="section-subtitle fade-in">The methodology we would apply to transform your brand identity.</p>
-                
-                <div class="design-process">
-                    <div class="process-timeline">
-                        <div class="process-step fade-in">
-                            <div class="process-marker"></div>
-                            <div class="process-content">
-                                <h3 class="process-title">Discovery & Strategy</h3>
-                                <p class="process-description">Deep dive into business objectives, market positioning, and audience insights to establish strategic foundation.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="process-step fade-in">
-                            <div class="process-marker"></div>
-                            <div class="process-content">
-                                <h3 class="process-title">Concept Development</h3>
-                                <p class="process-description">Creating multiple design directions and conceptual approaches based on strategic insights.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="process-step fade-in">
-                            <div class="process-marker"></div>
-                            <div class="process-content">
-                                <h3 class="process-title">Visual Identity Creation</h3>
-                                <p class="process-description">Developing logo systems, color palettes, typography, and visual elements that embody the brand essence.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="process-step fade-in">
-                            <div class="process-marker"></div>
-                            <div class="process-content">
-                                <h3 class="process-title">Application Design</h3>
-                                <p class="process-description">Implementing the visual identity across all brand touchpoints from digital to physical applications.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="process-step fade-in">
-                            <div class="process-marker"></div>
-                            <div class="process-content">
-                                <h3 class="process-title">Guidelines & Handover</h3>
-                                <p class="process-description">Creating comprehensive brand guidelines and documentation to ensure consistent future application.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta">
-            <div class="section-container">
-                <div class="cta-section fade-in">
-                    <h2 class="cta-title">Ready to Bring Your Vision to Life?</h2>
-                    <p class="cta-description">This conceptual work represents our approach to design. Let's collaborate to create something extraordinary for your brand.</p>
-                    <a href="index.html#contact" class="cta-button">Start Your Project</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 Metaseti Digital Indonesia. All rights reserved.</p>
-        </footer>
+        </div>
     </div>
 
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const menuClose = document.querySelector('.menu-close');
+    <section>
+        <div class="section-container">
+            <div class="two-column-grid fade-in">
+                <div class="content-block">
+                    <div class="section-label">The Challenge</div>
+                    <h2>Brand Identity in a Crowded Market</h2>
+                    <p>Modern businesses struggle to differentiate themselves in saturated markets. Generic branding fails to connect with audiences, while inconsistent messaging dilutes brand equity and prevents meaningful customer relationships.</p>
+                </div>
+                <div class="content-block">
+                    <div class="section-label">The Solution</div>
+                    <h2>Holistic Brand Strategy</h2>
+                    <p>We develop comprehensive brand ecosystems that combine strategic positioning, compelling visual identities, and targeted marketing campaigns to create memorable brand experiences that drive engagement and loyalty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
+    <div class="illustration-container fade-in">
+        <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Brand Development Process -->
+            <rect x="100" y="200" width="600" height="150" fill="#6b21a8" opacity="0.7"/>
+            
+            <!-- Process Steps -->
+            <g transform="translate(120, 220)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">🎯</text>
+                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Strategy</text>
+            </g>
+            
+            <g transform="translate(220, 220)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">🎨</text>
+                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Identity</text>
+            </g>
+            
+            <g transform="translate(320, 220)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">📱</text>
+                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Digital</text>
+            </g>
+            
+            <g transform="translate(420, 220)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">📢</text>
+                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Marketing</text>
+            </g>
+            
+            <g transform="translate(520, 220)">
+                <rect x="0" y="0" width="80" height="60" rx="5" fill="#8b5cf6"/>
+                <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">📈</text>
+                <text x="40" y="80" font-size="12" text-anchor="middle" fill="#666">Growth</text>
+            </g>
+            
+            <!-- Connection Lines -->
+            <g opacity="0.6">
+                <line x1="200" y1="250" x2="220" y2="250" stroke="#8b5cf6" stroke-width="2"/>
+                <line x1="300" y1="250" x2="320" y2="250" stroke="#8b5cf6" stroke-width="2"/>
+                <line x1="400" y1="250" x2="420" y2="250" stroke="#8b5cf6" stroke-width="2"/>
+                <line x1="500" y1="250" x2="520" y2="250" stroke="#8b5cf6" stroke-width="2"/>
+            </g>
+            
+            <!-- Brand Elements -->
+            <g transform="translate(150, 100)">
+                <rect x="0" y="0" width="60" height="60" rx="10" fill="#f59e0b"/>
+                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">✨</text>
+            </g>
+            
+            <g transform="translate(250, 100)">
+                <rect x="0" y="0" width="60" height="60" rx="30" fill="#10b981"/>
+                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">🎨</text>
+            </g>
+            
+            <g transform="translate(350, 100)">
+                <rect x="0" y="0" width="60" height="60" rx="5" fill="#ef4444"/>
+                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">📝</text>
+            </g>
+            
+            <g transform="translate(450, 100)">
+                <rect x="0" y="0" width="60" height="60" rx="10" fill="#3b82f6"/>
+                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">📱</text>
+            </g>
+            
+            <g transform="translate(550, 100)">
+                <rect x="0" y="0" width="60" height="60" rx="30" fill="#8b5cf6"/>
+                <text x="30" y="35" font-size="20" text-anchor="middle" fill="white">📊</text>
+            </g>
+            
+            <!-- Data Transmission -->
+            <g opacity="0.6">
+                <line x1="180" y1="160" x2="150" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="280" y1="160" x2="250" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="380" y1="160" x2="350" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="480" y1="160" x2="450" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="580" y1="160" x2="550" y2="200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4"/>
+            </g>
+            
+            <!-- Marketing Channels -->
+            <g transform="translate(650, 50)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#8b5cf6"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">📱</text>
+                <text x="20" y="60" font-size="12" text-anchor="middle" fill="#666">Social</text>
+            </g>
+            
+            <g transform="translate(700, 50)">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="#10b981"/>
+                <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🌐</text>
+                <text x="20" y="60" font-size="12" text-anchor="middle" fill="#666">Web</text>
+            </g>
+        </svg>
+    </div>
 
-        menuClose.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
-        });
-
-        // Fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+    <section>
+        <div class="section-container">
+            <div class="section-label fade-in">Key Features</div>
+            <h2 class="fade-in">Comprehensive Brand Solutions</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="16" width="24" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 20 L32 20 M16 26 L28 26 M16 32 L24 32" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Brand Strategy</h3>
+                    <p>Comprehensive market analysis, positioning, and messaging frameworks that establish your unique value proposition and competitive advantage.</p>
+                </div>
                 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 8 L40 16 L40 32 L24 40 L8 32 L8 16 Z" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M24 16 L24 32" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Visual Identity</h3>
+                    <p>Memorable logos, color palettes, typography systems, and design elements that create cohesive brand recognition across all touchpoints.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 16 L32 32 M32 16 L16 32" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Content Strategy</h3>
+                    <p>Compelling storytelling, tone of voice guidelines, and content frameworks that engage audiences and build brand loyalty.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="16" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="16" cy="12" r="2" fill="currentColor"/>
+                        <circle cx="24" cy="12" r="2" fill="currentColor"/>
+                        <circle cx="32" cy="12" r="2" fill="currentColor"/>
+                    </svg>
+                    <h3>Digital Presence</h3>
+                    <p>Website design, social media strategy, and digital marketing campaigns that amplify your brand across online channels.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 16 L32 8 L40 16 L48 8" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M8 32 L16 24 L24 32 L32 24" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Marketing Automation</h3>
+                    <p>Integrated marketing technology stacks that streamline customer journeys and maximize campaign performance.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 16 L24 8 L32 16 M32 32 L24 40 L16 32" stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 24 L16 24 M32 24 L40 24" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Performance Analytics</h3>
+                    <p>Comprehensive tracking and reporting that measures brand health, campaign effectiveness, and ROI across all channels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--light-gray);">
+        <div class="section-container">
+            <div class="section-label fade-in">Technology Stack</div>
+            <h2 class="fade-in">Tools for Brand Excellence</h2>
+            
+            <div class="tech-stack fade-in">
+                <span class="tech-badge">Adobe Creative Suite</span>
+                <span class="tech-badge">Figma</span>
+                <span class="tech-badge">Sketch</span>
+                <span class="tech-badge">HubSpot</span>
+                <span class="tech-badge">Mailchimp</span>
+                <span class="tech-badge">Hootsuite</span>
+                <span class="tech-badge">Google Analytics</span>
+                <span class="tech-badge">SEMrush</span>
+                <span class="tech-badge">WordPress</span>
+                <span class="tech-badge">Shopify</span>
+                <span class="tech-badge">Webflow</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="section-container">
+            <div class="section-label fade-in">Portfolio Gallery</div>
+            <h2 class="fade-in">Our Branding & Marketing Work</h2>
+            <p class="project-subtitle fade-in">Explore our portfolio of successful brand identity and marketing campaigns that have transformed businesses and driven measurable results.</p>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item fade-in">
+                    <div class="gallery-image">
+                        <!-- Replace this div with your image -->
+                        <!-- <img src="path/to/your/image1.jpg" alt="NovaTech Rebranding"> -->
+                        <div class="image-placeholder">
+                            <span>🚀</span>
+                            Your Image Here
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-category">BRAND IDENTITY</div>
+                        <h3 class="gallery-title">NovaTech Rebranding</h3>
+                        <p class="gallery-description">Complete brand transformation for a technology startup, including logo design, visual identity system, and brand guidelines.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Logo Design</span>
+                            <span class="gallery-tag">Brand Guidelines</span>
+                            <span class="gallery-tag">Visual Identity</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <div class="gallery-image">
+                        <!-- Replace this div with your image -->
+                        <!-- <img src="path/to/your/image2.jpg" alt="EcoLife Digital Campaign"> -->
+                        <div class="image-placeholder">
+                            <span>🌿</span>
+                            Your Image Here
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-category">DIGITAL MARKETING</div>
+                        <h3 class="gallery-title">EcoLife Digital Campaign</h3>
+                        <p class="gallery-description">Multi-channel digital marketing campaign for a sustainable lifestyle brand, focusing on social media and content marketing.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Social Media</span>
+                            <span class="gallery-tag">Content Strategy</span>
+                            <span class="gallery-tag">Influencer Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <div class="gallery-image">
+                        <!-- Replace this div with your image -->
+                        <!-- <img src="path/to/your/image3.jpg" alt="UrbanBites Restaurant Identity"> -->
+                        <div class="image-placeholder">
+                            <span>🍽️</span>
+                            Your Image Here
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-category">BRAND IDENTITY</div>
+                        <h3 class="gallery-title">UrbanBites Restaurant Identity</h3>
+                        <p class="gallery-description">Complete brand identity for a modern urban restaurant, including logo, packaging, and interior design elements.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Restaurant Branding</span>
+                            <span class="gallery-tag">Packaging</span>
+                            <span class="gallery-tag">Interior Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <div class="gallery-image">
+                        <!-- Replace this div with your image -->
+                        <!-- <img src="path/to/your/image4.jpg" alt="WellnessPlus Product Launch"> -->
+                        <div class="image-placeholder">
+                            <span>💊</span>
+                            Your Image Here
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-category">MARKETING CAMPAIGN</div>
+                        <h3 class="gallery-title">WellnessPlus Product Launch</h3>
+                        <p class="gallery-description">Integrated marketing campaign for a new wellness product line, including PR, influencer partnerships, and digital advertising.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Product Launch</span>
+                            <span class="gallery-tag">PR</span>
+                            <span class="gallery-tag">Influencer Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <div class="gallery-image">
+                        <!-- Replace this div with your image -->
+                        <!-- <img src="path/to/your/image5.jpg" alt="FinSecure Corporate Identity"> -->
+                        <div class="image-placeholder">
+                            <span>💼</span>
+                            Your Image Here
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-category">BRAND IDENTITY</div>
+                        <h3 class="gallery-title">FinSecure Corporate Identity</h3>
+                        <p class="gallery-description">Corporate rebranding for a financial services company, establishing trust and credibility in a competitive market.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Corporate Branding</span>
+                            <span class="gallery-tag">Trust Building</span>
+                            <span class="gallery-tag">Financial Services</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <div class="gallery-image">
+                        <!-- Replace this div with your image -->
+                        <!-- <img src="path/to/your/image6.jpg" alt="StyleVibe Social Media Strategy"> -->
+                        <div class="image-placeholder">
+                            <span>👗</span>
+                            Your Image Here
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-category">DIGITAL MARKETING</div>
+                        <h3 class="gallery-title">StyleVibe Social Media Strategy</h3>
+                        <p class="gallery-description">Comprehensive social media strategy and content creation for a fashion e-commerce brand.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Social Media</span>
+                            <span class="gallery-tag">Content Creation</span>
+                            <span class="gallery-tag">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-buttons fade-in">
+                <a href="index.html#contact" class="cta-button">
+                    Start Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 METASETI DIGITAL INDONESIA — ALL RIGHTS RESERVED</p>
+    </footer>
+
+    <script>
+        // Fade-in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        };
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
 
-        // Check on load and scroll
-        window.addEventListener('load', fadeInOnScroll);
-        window.addEventListener('scroll', fadeInOnScroll);
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
     </script>
 </body>
 </html>
