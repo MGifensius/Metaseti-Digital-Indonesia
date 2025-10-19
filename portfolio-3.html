@@ -299,25 +299,44 @@
         }
 
         .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
             margin-top: var(--spacing-md);
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
         }
 
-        .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            padding: 12px 24px;
-            background: transparent;
-            border: 1px solid var(--primary-black);
-            color: var(--primary-black);
+        .tech-carousel {
+            display: flex;
+            gap: 60px;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        .tech-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.7;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
-        .tech-badge:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
+        .tech-logo:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .tech-logo.invert {
+            filter: brightness(0) invert(1);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .demo-section {
@@ -992,15 +1011,12 @@
 
     <div class="illustration-container fade-in">
         <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Waste Processing Facility -->
             <rect x="100" y="200" width="600" height="150" fill="#795548" opacity="0.7"/>
             
-            <!-- Sorting Lines -->
             <rect x="120" y="220" width="560" height="20" fill="#9E9E9E"/>
             <rect x="120" y="250" width="560" height="20" fill="#9E9E9E"/>
             <rect x="120" y="280" width="560" height="20" fill="#9E9E9E"/>
             
-            <!-- Waste Bins -->
             <g transform="translate(150, 180)">
                 <rect x="0" y="0" width="40" height="40" rx="3" fill="#FF9800"/>
                 <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🥤</text>
@@ -1021,7 +1037,6 @@
                 <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🔩</text>
             </g>
             
-            <!-- Processing Machines -->
             <g transform="translate(200, 240)">
                 <rect x="0" y="0" width="80" height="60" rx="5" fill="#78909C"/>
                 <rect x="10" y="10" width="60" height="40" rx="3" fill="#546E7A"/>
@@ -1040,7 +1055,6 @@
                 <text x="40" y="35" font-size="20" text-anchor="middle" fill="white">🔥</text>
             </g>
             
-            <!-- IoT Sensors -->
             <g transform="translate(180, 220)">
                 <rect x="0" y="0" width="25" height="25" rx="4" fill="#2196f3" opacity="0.8"/>
                 <text x="12.5" y="15" font-size="12" text-anchor="middle" fill="white">📊</text>
@@ -1056,14 +1070,12 @@
                 <text x="12.5" y="15" font-size="12" text-anchor="middle" fill="white">📊</text>
             </g>
             
-            <!-- Data Transmission -->
             <g opacity="0.6">
                 <line x1="192.5" y1="220" x2="100" y2="100" stroke="#2196f3" stroke-width="2" stroke-dasharray="4"/>
                 <line x1="392.5" y1="220" x2="300" y2="100" stroke="#2196f3" stroke-width="2" stroke-dasharray="4"/>
                 <line x1="592.5" y1="220" x2="500" y2="100" stroke="#2196f3" stroke-width="2" stroke-dasharray="4"/>
             </g>
             
-            <!-- Control Center -->
             <g transform="translate(250, 50)">
                 <rect x="0" y="0" width="120" height="80" rx="10" fill="#1a1a1a"/>
                 <rect x="10" y="10" width="100" height="60" rx="5" fill="#fff"/>
@@ -1072,7 +1084,6 @@
                 <rect x="20" y="52" width="40" height="8" rx="1" fill="#e0e0e0"/>
             </g>
             
-            <!-- Output Products -->
             <g transform="translate(650, 50)">
                 <rect x="0" y="0" width="40" height="40" rx="3" fill="#8BC34A"/>
                 <text x="20" y="25" font-size="20" text-anchor="middle" fill="white">🌱</text>
@@ -1160,17 +1171,24 @@
             <h2 class="fade-in">Built for Waste Innovation</h2>
             
             <div class="tech-stack fade-in">
-                <span class="tech-badge">IoT Sensors</span>
-                <span class="tech-badge">Computer Vision</span>
-                <span class="tech-badge">AI/ML</span>
-                <span class="tech-badge">Robotic Sorting</span>
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">TensorFlow</span>
-                <span class="tech-badge">Node.js</span>
-                <span class="tech-badge">React</span>
-                <span class="tech-badge">PostgreSQL</span>
-                <span class="tech-badge">AWS IoT</span>
-                <span class="tech-badge">Blockchain</span>
+                <div class="tech-carousel">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS IoT" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="tech-logo">
+                    
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS IoT" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="tech-logo">
+                </div>
             </div>
         </div>
     </section>
@@ -1244,7 +1262,6 @@
                         <div class="monitoring-panel">
                             <h3 style="margin-bottom: 15px; color: #000;">Facility Monitoring</h3>
                             <div class="sensors-grid" id="sensorsGrid">
-                                <!-- Sensors will be populated by JavaScript -->
                             </div>
                             
                             <div class="collection-panel">
@@ -1384,7 +1401,6 @@
     </footer>
 
     <script>
-        // Fade-in on scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const fadeObserver = new IntersectionObserver((entries) => {
@@ -1402,7 +1418,6 @@
             fadeObserver.observe(element);
         });
 
-        // Waste Management Demo Data
         const sections = {
             'sorting': [
                 { id: 1, name: 'Throughput Rate', type: 'efficiency', status: true, icon: '⚙️', value: '85%', info: 'Processing efficiency' },
@@ -1434,7 +1449,6 @@
             ]
         };
 
-        // Render Sensors for Selected Section
         function renderSensors(sectionId) {
             const sensorsGrid = document.getElementById('sensorsGrid');
             const sectionSensors = sections[sectionId];
@@ -1459,11 +1473,9 @@
                 </div>
             `).join('');
             
-            // Update collection progress based on section
             updateCollectionProgress(sectionId);
         }
 
-        // Toggle Sensor Status
         function toggleSensor(sensorId, sectionId) {
             const sectionSensors = sections[sectionId];
             const sensor = sectionSensors.find(s => s.id === sensorId);
@@ -1471,12 +1483,10 @@
             if (sensor) {
                 sensor.status = !sensor.status;
                 
-                // Update sensor value based on status
                 if (!sensor.status) {
                     sensor.value = '--';
                     sensor.info = 'Sensor inactive';
                 } else {
-                    // Reset to default values based on sensor type
                     if (sensor.type === 'efficiency') {
                         sensor.value = sectionId === 'sorting' ? '85%' : 
                                       sectionId === 'recycling' ? '88%' : 
@@ -1502,7 +1512,6 @@
                         sensor.value = '72%';
                     }
                     
-                    // Reset info based on sensor type and section
                     if (sectionId === 'sorting') {
                         if (sensor.name === 'Throughput Rate') sensor.info = 'Processing efficiency';
                         else if (sensor.name === 'Sorting Accuracy') sensor.info = 'AI classification accuracy';
@@ -1530,17 +1539,14 @@
             }
         }
 
-        // Show Sensor Details (placeholder)
         function showSensorDetails(sensorId) {
             alert(`Detailed analytics for sensor ${sensorId} would open here in a full implementation.`);
         }
 
-        // Update collection progress visualization
         function updateCollectionProgress(sectionId) {
             const collectionFill = document.getElementById('collectionFill');
-            let progressPercentage = 68; // Default
+            let progressPercentage = 68;
             
-            // Adjust based on selected section
             if (sectionId === 'sorting') {
                 progressPercentage = 72;
             } else if (sectionId === 'recycling') {
@@ -1555,30 +1561,24 @@
             
             collectionFill.style.width = `${progressPercentage}%`;
             
-            // Update the collection title
             document.querySelector('.collection-title span:last-child').textContent = `${progressPercentage}%`;
             const tonsCollected = (progressPercentage * 50 / 100).toFixed(0);
             document.querySelector('.collection-stats span:nth-child(2)').textContent = `${tonsCollected} Tons Collected`;
         }
 
-        // Section Selection
         document.querySelectorAll('.section-item').forEach(item => {
             item.addEventListener('click', function() {
-                // Remove active class from all sections
                 document.querySelectorAll('.section-item').forEach(section => {
                     section.classList.remove('active');
                 });
                 
-                // Add active class to clicked section
                 this.classList.add('active');
                 
-                // Render sensors for selected section
                 const sectionId = this.getAttribute('data-section');
                 renderSensors(sectionId);
             });
         });
 
-        // Toggle switch functionality
         document.getElementById('sortingToggle').addEventListener('change', function() {
             document.getElementById('sortingStatus').textContent = this.checked ? 'Enabled' : 'Disabled';
         });
@@ -1591,9 +1591,7 @@
             document.getElementById('energyStatus').textContent = this.checked ? 'Enabled' : 'Disabled';
         });
 
-        // Initialize with sorting facility sensors
         renderSensors('sorting');
     </script>
 </body>
 </html>
-
