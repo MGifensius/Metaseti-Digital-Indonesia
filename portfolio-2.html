@@ -297,25 +297,44 @@
         }
 
         .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
             margin-top: var(--spacing-md);
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
         }
 
-        .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            padding: 12px 24px;
-            background: transparent;
-            border: 1px solid var(--primary-black);
-            color: var(--primary-black);
+        .tech-carousel {
+            display: flex;
+            gap: 60px;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        .tech-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.7;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
-        .tech-badge:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
+        .tech-logo:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .tech-logo.invert {
+            filter: brightness(0) invert(1);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .demo-section {
@@ -761,7 +780,7 @@
 
             .chat-input {
                 padding: 10px 14px;
-                font-size: 16px; /* Better for mobile keyboards */
+                font-size: 16px;
             }
 
             .send-button {
@@ -840,49 +859,39 @@
 
     <div class="illustration-container fade-in">
         <svg class="illustration-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background elements -->
             <circle cx="100" cy="100" r="40" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
             <circle cx="700" cy="300" r="60" stroke="#E8E8E8" stroke-width="1.5" fill="none" opacity="0.5"/>
             
-            <!-- Main chatbot interface -->
             <rect x="150" y="60" width="500" height="300" rx="8" stroke="#1a1a1a" stroke-width="2.5" fill="white"/>
             
-            <!-- Chat header -->
             <rect x="150" y="60" width="500" height="40" fill="#1a1a1a" rx="8"/>
             <circle cx="170" cy="80" r="5" fill="#ff5f56"/>
             <circle cx="190" cy="80" r="5" fill="#ffbd2e"/>
             <circle cx="210" cy="80" r="5" fill="#27c93f"/>
             
-            <!-- Chat messages -->
             <g transform="translate(320, 120)">
-                <!-- User message -->
                 <rect x="0" y="0" width="200" height="40" rx="20" fill="#8b5cf6"/>
                 <text x="20" y="22" font-family="Arial" font-size="12" fill="white">Hello, how can you help me?</text>
                 
-                <!-- Bot message -->
                 <rect x="0" y="60" width="180" height="50" rx="20" fill="#f0f0f0"/>
                 <text x="20" y="80" font-family="Arial" font-size="12" fill="black">I'm here to assist you!</text>
                 <text x="20" y="100" font-family="Arial" font-size="12" fill="black">What do you need help with?</text>
                 
-                <!-- User message -->
                 <rect x="50" y="130" width="150" height="40" rx="20" fill="#8b5cf6"/>
                 <text x="70" y="152" font-family="Arial" font-size="12" fill="white">I need support with my order</text>
                 
-                <!-- Typing indicator -->
                 <rect x="0" y="190" width="60" height="30" rx="15" fill="#f0f0f0"/>
                 <circle cx="20" cy="205" r="4" fill="#999"/>
                 <circle cx="30" cy="205" r="4" fill="#999"/>
                 <circle cx="40" cy="205" r="4" fill="#999"/>
             </g>
             
-            <!-- AI brain visualization -->
             <g transform="translate(600, 150)">
                 <circle cx="0" cy="0" r="40" fill="#8b5cf6" opacity="0.1"/>
                 <path d="M-25 -15 C -15 -25, 15 -25, 25 -15 C 30 -5, 30 5, 25 15 C 15 25, -15 25, -25 15 C -30 5, -30 -5, -25 -15" 
                       stroke="#8b5cf6" stroke-width="2" fill="none"/>
                 <path d="M-15 -5 L0 -15 L15 -5 M-10 5 L0 0 L10 5" stroke="#8b5cf6" stroke-width="2" fill="none"/>
                 
-                <!-- Neural connections -->
                 <g opacity="0.7">
                     <line x1="-30" y1="-10" x2="-40" y2="-25" stroke="#8b5cf6" stroke-width="1.5"/>
                     <line x1="30" y1="-10" x2="40" y2="-25" stroke="#8b5cf6" stroke-width="1.5"/>
@@ -891,7 +900,6 @@
                 </g>
             </g>
             
-            <!-- Platform integrations -->
             <g transform="translate(180, 320)">
                 <circle cx="0" cy="0" r="12" fill="#10b981"/>
                 <text x="0" y="5" font-family="Arial" font-size="10" text-anchor="middle" fill="white">W</text>
@@ -905,7 +913,6 @@
                 <text x="0" y="5" font-family="Arial" font-size="10" text-anchor="middle" fill="white">𝕏</text>
             </g>
             
-            <!-- Animated elements -->
             <g opacity="0.7">
                 <circle cx="100" cy="300" r="5" fill="#8b5cf6">
                     <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
@@ -987,16 +994,26 @@
             <h2 class="fade-in">Powered by Advanced AI</h2>
             
             <div class="tech-stack fade-in">
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">TensorFlow</span>
-                <span class="tech-badge">NLTK</span>
-                <span class="tech-badge">spaCy</span>
-                <span class="tech-badge">Node.js</span>
-                <span class="tech-badge">React</span>
-                <span class="tech-badge">MongoDB</span>
-                <span class="tech-badge">Redis</span>
-                <span class="tech-badge">Docker</span>
-                <span class="tech-badge">AWS</span>
+                <div class="tech-carousel">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="Redis" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="tech-logo">
+                    
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="Redis" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="tech-logo">
+                </div>
             </div>
         </div>
     </section>
@@ -1014,7 +1031,6 @@
                     <div class="browser-dot"></div>
                 </div>
                 <div class="demo-content">
-                    <!-- Mobile header (visible only on mobile) -->
                     <div class="mobile-chat-header">
                         <div class="mobile-chat-title">Metaseti Assistant</div>
                         <div class="online-status">
@@ -1048,7 +1064,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Quick suggestion buttons (visible only on mobile) -->
                             <div class="mobile-suggestions">
                                 <button class="suggestion-button" data-suggestion="What services do you offer?">Services</button>
                                 <button class="suggestion-button" data-suggestion="Tell me about Metaseti">About</button>
@@ -1114,7 +1129,6 @@
         `;
         typingIndicator.style.display = 'none';
 
-        // Metaseti services and information
         const metasetiInfo = {
             services: [
                 "Web Development: Custom websites, e-commerce platforms, and web applications",
@@ -1129,7 +1143,6 @@
             portfolio: "We've worked on various projects including e-commerce platforms, SaaS applications, mobile apps, and corporate websites for clients across different industries."
         };
 
-        // Add message to chat
         function addMessage(text, isUser) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
@@ -1146,46 +1159,37 @@
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
-        // Generate bot response based on user input
         function generateResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
             
-            // Greetings
             if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
                 return "Hello! I'm the Metaseti Assistant. How can I help you today?";
             }
             
-            // Services
             if (lowerMessage.includes('service') || lowerMessage.includes('what do you do') || lowerMessage.includes('offer')) {
                 return `Metaseti Digital Indonesia offers the following services:\n\n${metasetiInfo.services.map(service => `• ${service}`).join('\n')}\n\nWhich service are you interested in?`;
             }
             
-            // About
             if (lowerMessage.includes('about') || lowerMessage.includes('who are you') || lowerMessage.includes('metaseti')) {
                 return metasetiInfo.about;
             }
             
-            // Contact
             if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('get in touch')) {
                 return metasetiInfo.contact;
             }
             
-            // Portfolio
             if (lowerMessage.includes('portfolio') || lowerMessage.includes('work') || lowerMessage.includes('projects')) {
                 return metasetiInfo.portfolio + " You can view our portfolio on our website to see examples of our work.";
             }
             
-            // Pricing
             if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
                 return "Our pricing varies based on project scope and requirements. For a detailed quote, please contact us with your specific needs and we'll provide a customized estimate.";
             }
             
-            // Location
             if (lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('based')) {
                 return "Metaseti Digital Indonesia is based in Jakarta, Indonesia, but we work with clients globally.";
             }
             
-            // Default responses for common questions
             if (lowerMessage.includes('thank')) {
                 return "You're welcome! Is there anything else I can help you with?";
             }
@@ -1194,7 +1198,6 @@
                 return "Thank you for chatting with me! Feel free to reach out if you have any more questions.";
             }
             
-            // Fallback responses
             const fallbackResponses = [
                 "I'm not sure I understand. Could you rephrase your question?",
                 "That's an interesting question. Could you provide more details?",
@@ -1206,14 +1209,11 @@
             return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
         }
 
-        // Simulate bot typing and response
         function botReply(userMessage) {
-            // Show typing indicator
             chatWindow.appendChild(typingIndicator);
             typingIndicator.style.display = 'flex';
             chatWindow.scrollTop = chatWindow.scrollHeight;
             
-            // Simulate thinking time
             setTimeout(() => {
                 typingIndicator.style.display = 'none';
                 
@@ -1222,7 +1222,6 @@
             }, 1000 + Math.random() * 1000);
         }
 
-        // Send message function
         function sendMessage() {
             const message = chatInput.value.trim();
             if (message) {
@@ -1232,7 +1231,6 @@
             }
         }
 
-        // Event listeners
         sendButton.addEventListener('click', sendMessage);
         
         chatInput.addEventListener('keypress', (e) => {
@@ -1241,7 +1239,6 @@
             }
         });
 
-        // Quick suggestion buttons for mobile
         document.querySelectorAll('.suggestion-button').forEach(button => {
             button.addEventListener('click', () => {
                 const suggestion = button.getAttribute('data-suggestion');
@@ -1250,12 +1247,10 @@
             });
         });
 
-        // Add welcome message after a brief delay
         setTimeout(() => {
             addMessage("Welcome! I'm the Metaseti Assistant. I can tell you about our services, portfolio, or help answer any questions you have about Metaseti Digital Indonesia.", false);
         }, 500);
 
-        // Focus the input field on mobile for better UX
         if (window.innerWidth <= 768) {
             setTimeout(() => {
                 chatInput.focus();
