@@ -296,25 +296,44 @@
         }
 
         .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
             margin-top: var(--spacing-md);
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
         }
 
-        .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            padding: 12px 24px;
-            background: transparent;
-            border: 1px solid var(--primary-black);
-            color: var(--primary-black);
+        .tech-carousel {
+            display: flex;
+            gap: 60px;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        .tech-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.7;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
-        .tech-badge:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
+        .tech-logo:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .tech-logo.invert {
+            filter: brightness(0) invert(1);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .demo-section {
@@ -1205,16 +1224,26 @@
             <h2 class="fade-in">Built with Modern Tools</h2>
             
             <div class="tech-stack fade-in">
-                <span class="tech-badge">React</span>
-                <span class="tech-badge">Next.js</span>
-                <span class="tech-badge">Node.js</span>
-                <span class="tech-badge">Express</span>
-                <span class="tech-badge">MongoDB</span>
-                <span class="tech-badge">Stripe API</span>
-                <span class="tech-badge">Redis</span>
-                <span class="tech-badge">AWS</span>
-                <span class="tech-badge">Tailwind CSS</span>
-                <span class="tech-badge">WebSocket</span>
+                <div class="tech-carousel">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg" alt="Next.js" class="tech-logo invert">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express" class="tech-logo invert">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="Redis" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="tech-logo">
+                    
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg" alt="Next.js" class="tech-logo invert">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express" class="tech-logo invert">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="Redis" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="tech-logo">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="tech-logo">
+                </div>
             </div>
         </div>
     </section>
