@@ -2564,7 +2564,7 @@
 
     // Rotating Globe Animation
     // Rotating Globe Animation
-        function initGlobe() {
+         function initGlobe() {
             const container = document.getElementById('globe-container');
             if (!container) return;
 
@@ -2661,6 +2661,9 @@
             let time = 0;
             let mouseX = 0;
             let mouseY = 0;
+            let targetRotationX = 0;
+            let targetRotationY = 0;
+            let transitionComplete = false;
 
             const handleMouseMove = (event) => {
                 mouseX = (event.clientX / window.innerWidth) * 2 - 1;
@@ -2712,11 +2715,33 @@
                 
                 particleGeometry.attributes.position.needsUpdate = true;
 
-                // Keep rotating throughout
-                particles.rotation.x += 0.001;
-                particles.rotation.y += 0.002;
-                particles.rotation.x += mouseY * 0.0005;
-                particles.rotation.y += mouseX * 0.0005;
+                // Rotation behavior changes after explosion
+                if (time < 4) {
+                    // Slow auto-rotation before explosion completes
+                    particles.rotation.x += 0.001;
+                    particles.rotation.y += 0.002;
+                } else if (time < 5) {
+                    // Smooth transition period (1 second)
+                    const transitionProgress = (time - 4);
+                    
+                    // Gradually slow down auto-rotation
+                    particles.rotation.x += 0.001 * (1 - transitionProgress);
+                    particles.rotation.y += 0.002 * (1 - transitionProgress);
+                    
+                    // Gradually introduce cursor control
+                    targetRotationY = mouseX * 0.5;
+                    targetRotationX = mouseY * 0.5;
+                    
+                    particles.rotation.y += (targetRotationY - particles.rotation.y) * 0.05 * transitionProgress;
+                    particles.rotation.x += (targetRotationX - particles.rotation.x) * 0.05 * transitionProgress;
+                } else {
+                    // Full cursor control after transition
+                    targetRotationY = mouseX * 0.5;
+                    targetRotationX = mouseY * 0.5;
+                    
+                    particles.rotation.y += (targetRotationY - particles.rotation.y) * 0.1;
+                    particles.rotation.x += (targetRotationX - particles.rotation.x) * 0.1;
+                }
 
                 // Zoom to center smoothly during explosion
                 if (time < 2) {
@@ -2744,23 +2769,6 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
         }
-
-    // Mobile menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const menuClose = document.querySelector('.menu-close');
-
-    menuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    if (menuClose) {
-        menuClose.addEventListener('click', function() {
-            menuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    }
 
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', function() {
