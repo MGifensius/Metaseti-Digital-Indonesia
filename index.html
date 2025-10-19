@@ -176,7 +176,7 @@
 
         @media (max-width: 768px) {
             .logo img {
-                height: 30px !important; /* Reduced from 40px */
+                height: 30px !important;
                 width: auto;
             }
         }
@@ -275,7 +275,7 @@
             z-index: 2;
         }
 
-        /* Hero Section - Galaxy Background */
+        /* Hero Section - Globe Background */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -292,8 +292,8 @@
             border-bottom-right-radius: 80px;
         }
 
-        /* Galaxy Background Animation - Nebula & Rotation Removed */
-        .galaxy-bg {
+        /* Globe Container */
+        #globe-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -301,193 +301,12 @@
             height: 100%;
             z-index: 1;
             overflow: hidden;
-            border-top-left-radius: 80px;
-            border-top-right-radius: 80px;
-            border-bottom-left-radius: 80px;
-            border-bottom-right-radius: 80px;
+            border-radius: 80px;
         }
 
-        .galaxy-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-            border-radius: 80px 80px 80px 80px;
-        }
-
-        .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-                radial-gradient(2px 2px at 40px 70px, #fff, transparent),
-                radial-gradient(1px 1px at 90px 40px, #ddd, transparent),
-                radial-gradient(1px 1px at 130px 80px, #fff, transparent),
-                radial-gradient(2px 2px at 160px 30px, #eee, transparent),
-                radial-gradient(1px 1px at 210px 60px, #ddd, transparent),
-                radial-gradient(2px 2px at 250px 90px, #fff, transparent),
-                radial-gradient(1px 1px at 290px 20px, #eee, transparent),
-                radial-gradient(2px 2px at 330px 70px, #ddd, transparent),
-                radial-gradient(1px 1px at 370px 50px, #fff, transparent),
-                radial-gradient(2px 2px at 410px 80px, #eee, transparent),
-                radial-gradient(1px 1px at 450px 30px, #ddd, transparent),
-                radial-gradient(2px 2px at 490px 60px, #fff, transparent);
-            background-repeat: repeat;
-            background-size: 500px 500px;
-            animation: starsMove 100s linear infinite;
-        }
-
-        .stars::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(1px 1px at 50px 120px, #fff, transparent),
-                radial-gradient(2px 2px at 90px 170px, #eee, transparent),
-                radial-gradient(1px 1px at 140px 140px, #ddd, transparent),
-                radial-gradient(2px 2px at 190px 110px, #fff, transparent),
-                radial-gradient(1px 1px at 240px 180px, #eee, transparent),
-                radial-gradient(2px 2px at 290px 150px, #ddd, transparent),
-                radial-gradient(1px 1px at 340px 120px, #fff, transparent),
-                radial-gradient(2px 2px at 390px 190px, #eee, transparent),
-                radial-gradient(1px 1px at 440px 160px, #ddd, transparent),
-                radial-gradient(2px 2px at 490px 130px, #fff, transparent);
-            background-repeat: repeat;
-            background-size: 500px 500px;
-            animation: starsMoveReverse 120s linear infinite;
-        }
-
-
-        .shooting-stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .shooting-star {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 2px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-            opacity: 0;
-            animation: shootingStar 8s linear infinite;
-        }
-
-        .shooting-star:nth-child(1) {
-            top: 20%;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .shooting-star:nth-child(2) {
-            top: 40%;
-            left: -200px;
-            animation-delay: 3s;
-        }
-
-        .shooting-star:nth-child(3) {
-            top: 60%;
-            left: -150px;
-            animation-delay: 6s;
-        }
-
-        .shooting-star:nth-child(4) {
-            top: 80%;
-            left: -250px;
-            animation-delay: 9s;
-        }
-
-        .shooting-star:nth-child(5) {
-            top: 30%;
-            left: -300px;
-            animation-delay: 12s;
-        }
-
-        .stars,
-        .stars::after,
-        .shooting-stars {
-            border-radius: 80px 80px 80px 80px;
-        }
-
-        /* Remove the galaxyRotate keyframes since we're not using rotation anymore */
-        @keyframes starsMove {
-            0% {
-                transform: translateX(0) translateY(0);
-            }
-            100% {
-                transform: translateX(-500px) translateY(-250px);
-            }
-        }
-
-        @keyframes starsMoveReverse {
-            0% {
-                transform: translateX(0) translateY(0);
-            }
-            100% {
-                transform: translateX(250px) translateY(125px);
-            }
-        }
-
-        /* Remove nebulaPulse keyframes since nebula is removed */
-        @keyframes shootingStar {
-            0% {
-                transform: translateX(0) translateY(0) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: translateX(0) translateY(0) scale(1);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100vw) translateY(100vh) scale(0);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .galaxy-bg::before {
-                border-radius: 40px 40px 40px 40px;
-            }
-            
-            .stars,
-            .stars::after,
-            .shooting-stars {
-                border-radius: 40px 40px 40px 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .galaxy-bg::before {
-                border-radius: 30px 30px 30px 30px;
-            }
-            
-            .stars,
-            .stars::after,
-            .shooting-stars {
-                border-radius: 30px 30px 30px 30px;
-            }
+        #globe-container canvas {
+            width: 100% !important;
+            height: 100% !important;
         }
 
         .hero-content {
@@ -505,24 +324,8 @@
                 border-bottom-right-radius: 40px;
             }
             
-            .galaxy-bg {
-                border-top-left-radius: 40px;
-                border-top-right-radius: 40px;
-                border-bottom-left-radius: 40px;
-                border-bottom-right-radius: 40px;
-            }
-
-            /* Reduce animation intensity on mobile */
-            .galaxy-bg::before {
-                animation-duration: 120s;
-            }
-            
-            .stars {
-                animation-duration: 200s;
-            }
-            
-            .stars::after {
-                animation-duration: 240s;
+            #globe-container {
+                border-radius: 40px;
             }
         }
 
@@ -534,16 +337,8 @@
                 border-bottom-right-radius: 30px;
             }
             
-            .galaxy-bg {
-                border-top-left-radius: 30px;
-                border-top-right-radius: 30px;
-                border-bottom-left-radius: 30px;
-                border-bottom-right-radius: 30px;
-            }
-
-            /* Further reduce animation on small screens */
-            .nebula {
-                opacity: 0.4;
+            #globe-container {
+                border-radius: 30px;
             }
         }
 
@@ -576,7 +371,7 @@
             background: transparent;
             color: var(--primary-black);
             text-decoration: none;
-            border-radius: 8px; /* Added border radius */
+            border-radius: 8px;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
             font-size: 16px;
@@ -1454,7 +1249,7 @@
         }
 
         .portfolio-image {
-            border-radius: 12px 12px 0 0; /* Only round top corners for image area */
+            border-radius: 12px 12px 0 0;
         }
 
         /* Focus Cards Radius */
@@ -1486,7 +1281,7 @@
             background: transparent;
             color: var(--primary-black);
             border: 1px solid var(--primary-black);
-            border-radius: 8px; /* Added border radius */
+            border-radius: 8px;
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             font-weight: 300;
@@ -1721,7 +1516,7 @@
             background: transparent;
             color: var(--primary-black);
             border: 1px solid var(--primary-black);
-            border-radius: 8px; /* Added border radius */
+            border-radius: 8px;
             font-family: 'Poppins', sans-serif;
             font-size: 15px;
             font-weight: 300;
@@ -1857,7 +1652,6 @@
                 padding: 15px var(--spacing-sm);
             }
 
-            /* Adjust bottom line spacing for mobile */
             nav::after {
                 left: var(--spacing-sm);
                 right: var(--spacing-sm);
@@ -1910,7 +1704,6 @@
                 padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
             }
 
-            /* Mobile service cards - no flip, show only front */
             .service-item {
                 height: auto;
                 min-height: unset;
@@ -1933,7 +1726,6 @@
                 display: none;
             }
 
-            /* Disable hover effects on mobile */
             .service-item:hover .service-card-inner {
                 transform: none !important;
             }
@@ -2258,18 +2050,8 @@
 
     <div class="content">
         <section id="home" class="hero">
-            <!-- Galaxy Background -->
-            <div class="galaxy-bg">
-                <div class="stars"></div>
-                <div class="nebula"></div>
-                <div class="shooting-stars">
-                    <div class="shooting-star"></div>
-                    <div class="shooting-star"></div>
-                    <div class="shooting-star"></div>
-                    <div class="shooting-star"></div>
-                    <div class="shooting-star"></div>
-                </div>
-            </div>
+            <!-- Globe Container -->
+            <div id="globe-container"></div>
             
             <div class="hero-content">
                 <h1 class="fade-in">Impact Engineered.<br>Advantage Secured.</h1>
@@ -2278,7 +2060,6 @@
             </div>
         </section>
 
-        <!-- Rest of the HTML content remains the same -->
         <section id="about">
             <div class="section-container">
                 <div class="about-header fade-in">
@@ -2358,7 +2139,6 @@
                     </div>
                 </div>
 
-                <!-- Vision & Mission Grid -->
                 <div class="vm-grid">
                     <div class="vm-card fade-in">
                         <div class="vm-content">
@@ -2411,7 +2191,6 @@
                     </div>
                 </div>
 
-                <!-- Team Preview - Updated -->
                 <div class="team-preview fade-in">
                     <h3>Our Founding Team</h3>
                     <p class="team-highlight">A dedicated duo with complementary expertise driving innovation forward</p>
@@ -2430,7 +2209,6 @@
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-illustration">
-                                    <!-- Web Development Illustration -->
                                     <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="50" y="50" width="300" height="200" rx="10" stroke="currentColor" stroke-width="2"/>
                                         <rect x="70" y="70" width="260" height="30" rx="5" fill="currentColor" opacity="0.2"/>
@@ -2466,7 +2244,6 @@
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-illustration">
-                                    <!-- AI & Machine Learning Illustration -->
                                     <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="200" cy="150" r="80" stroke="currentColor" stroke-width="2" fill="none"/>
                                         <path d="M120 150C120 114.8 148.8 86 184 86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -2501,7 +2278,6 @@
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-illustration">
-                                    <!-- IoT & Digital Engineering Illustration -->
                                     <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="100" y="100" width="60" height="60" rx="10" stroke="currentColor" stroke-width="2" fill="none"/>
                                         <rect x="240" y="100" width="60" height="60" rx="10" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -2536,7 +2312,6 @@
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-illustration">
-                                    <!-- Branding & Identity Illustration -->
                                     <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="200" cy="150" r="70" stroke="currentColor" stroke-width="2" fill="none"/>
                                         <path d="M130 150C130 114.8 158.8 86 194 86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -2577,7 +2352,6 @@
                 <p class="section-subtitle fade-in">Recent projects that showcase our approach and capabilities.</p>
                 
                 <div class="portfolio-grid">
-                    <!-- Project 01 - Clickable with link -->
                     <a href="portfolio-1.html" class="portfolio-card-link">
                         <div class="portfolio-card fade-in">
                             <div class="portfolio-image">
@@ -2594,7 +2368,6 @@
                         </div>
                     </a>
 
-                    <!-- Project 02 - Clickable with link -->
                     <a href="portfolio-2.html" class="portfolio-card-link">
                         <div class="portfolio-card fade-in">
                             <div class="portfolio-image">
@@ -2611,9 +2384,6 @@
                         </div>
                     </a>
 
-                    <!-- Hidden projects -->
-
-                    <!-- Project 03 - Clickable with link -->
                     <a href="portfolio-3.html" class="portfolio-card-link">
                         <div class="portfolio-card hidden fade-in">
                             <div class="portfolio-image">
@@ -2630,7 +2400,6 @@
                         </div>
                     </a>
 
-                    <!-- Project 04 - Clickable with link -->
                     <a href="portfolio-4.html" class="portfolio-card-link">
                         <div class="portfolio-card hidden fade-in">
                             <div class="portfolio-image">
@@ -2648,14 +2417,12 @@
                     </a>
                 </div>
 
-                <!-- Button Container for Centering -->
                 <div class="button-container">
                     <button class="load-more-button" id="loadMoreBtn">View More Projects</button>
                 </div>
             </div>
         </section>
         
-        <!-- Contact Section -->
         <section id="contact">
             <div class="section-container">
                 <h2 class="fade-in">Get In Touch</h2>
@@ -2748,8 +2515,8 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="budget">Phone Number</label>
-                                <input type="phone number" id="phone number" name="phone number" required>
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
                             </div>
                         </div>
                         
@@ -2766,13 +2533,13 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group full-width">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your project goals, timeline, and any specific requirements..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-button">Send Message</button>
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project goals, timeline, and any specific requirements..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -2783,114 +2550,268 @@
         </footer>
     </div>
 
-    <script>
-        // Loading screen animation
-        setTimeout(() => {
-            document.querySelector('.loading-screen').classList.add('hidden');
-            document.querySelector('.content').classList.add('visible');
-        }, 3500);
+<!-- Three.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-        // Mobile menu
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const menuClose = document.querySelector('.menu-close');
+<script>
+    // Loading screen animation
+    setTimeout(() => {
+        document.querySelector('.loading-screen').classList.add('hidden');
+        document.querySelector('.content').classList.add('visible');
+        // Initialize globe after loading screen
+        initGlobe();
+    }, 3500);
 
-        menuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+    // Rotating Globe Animation
+    function initGlobe() {
+        const container = document.getElementById('globe-container');
+        if (!container) return;
 
-        if (menuClose) {
-            menuClose.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            container.clientWidth / container.clientHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 300;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x000000, 1);
+        container.appendChild(renderer.domElement);
+
+        // Create globe with particles with gradient colors
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlePositions = [];
+        const particleColors = [];
+        const particleCount = 3000;
+
+        // Define gradient colors (blue to purple)
+        const colorStart = new THREE.Color(0x4a90e2); // Blue
+        const colorEnd = new THREE.Color(0x9b59b6);   // Purple
+
+        for (let i = 0; i < particleCount; i++) {
+            const phi = Math.acos(2 * Math.random() - 1);
+            const theta = Math.random() * Math.PI * 2;
+            const radius = 100;
+
+            const x = radius * Math.sin(phi) * Math.cos(theta);
+            const y = radius * Math.sin(phi) * Math.sin(theta);
+            const z = radius * Math.cos(phi);
+
+            particlePositions.push(x, y, z);
+
+            // Create gradient based on y position (-100 to 100)
+            const gradientPosition = (y + 100) / 200; // Normalize to 0-1
+            const color = new THREE.Color();
+            color.lerpColors(colorStart, colorEnd, gradientPosition);
+            
+            particleColors.push(color.r, color.g, color.b);
         }
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
+        particleGeometry.setAttribute(
+            'position',
+            new THREE.Float32BufferAttribute(particlePositions, 3)
+        );
+
+        particleGeometry.setAttribute(
+            'color',
+            new THREE.Float32BufferAttribute(particleColors, 3)
+        );
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 1.5,
+            transparent: true,
+            opacity: 0.8,
+            vertexColors: true, // Enable vertex colors
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
 
-        // Scroll Spy for Navigation
-        function updateActiveNavLink() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let currentSection = '';
-            const scrollPosition = window.scrollY + 100;
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
+        // Create connection lines
+        const lineGeometry = new THREE.BufferGeometry();
+        const linePositions = [];
+        const lineCount = 100;
+
+        for (let i = 0; i < lineCount; i++) {
+            const idx1 = Math.floor(Math.random() * particleCount) * 3;
+            const idx2 = Math.floor(Math.random() * particleCount) * 3;
+
+            const dx = particlePositions[idx1] - particlePositions[idx2];
+            const dy = particlePositions[idx1 + 1] - particlePositions[idx2 + 1];
+            const dz = particlePositions[idx1 + 2] - particlePositions[idx2 + 2];
+            const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+            if (distance < 50) {
+                linePositions.push(
+                    particlePositions[idx1],
+                    particlePositions[idx1 + 1],
+                    particlePositions[idx1 + 2],
+                    particlePositions[idx2],
+                    particlePositions[idx2 + 1],
+                    particlePositions[idx2 + 2]
+                );
+            }
         }
 
-        window.addEventListener('scroll', updateActiveNavLink);
-        updateActiveNavLink();
+        lineGeometry.setAttribute(
+            'position',
+            new THREE.Float32BufferAttribute(linePositions, 3)
+        );
 
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x888888,
+            transparent: true,
+            opacity: 0.3,
+        });
+
+        const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+        scene.add(lines);
+
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 3, 5);
+        scene.add(directionalLight);
+
+        // Animation
+        let animationId;
+        function animate() {
+            animationId = requestAnimationFrame(animate);
+            particles.rotation.y += 0.002;
+            lines.rotation.y += 0.002;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle resize
+        function handleResize() {
+            if (!container) return;
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            window.removeEventListener('resize', handleResize);
+            cancelAnimationFrame(animationId);
+            renderer.dispose();
+            particleGeometry.dispose();
+            particleMaterial.dispose();
+            lineGeometry.dispose();
+            lineMaterial.dispose();
+        });
+    }
+
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const menuClose = document.querySelector('.menu-close');
+
+    menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    if (menuClose) {
+        menuClose.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            alert('Thank you for your message. We will be in touch soon.');
-            this.reset();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
+    });
 
-        // Load More Portfolio
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
+    // Scroll Spy for Navigation
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
         
-        if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', function() {
-                const hiddenItems = document.querySelectorAll('.portfolio-card.hidden');
-                hiddenItems.forEach(item => {
-                    item.classList.remove('hidden');
-                });
-                this.classList.add('hidden');
-            });
-        }
-
-        // Fade-in on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 100;
         
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
+            }
         });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    }
 
-        fadeElements.forEach(element => {
-            fadeObserver.observe(element);
+    window.addEventListener('scroll', updateActiveNavLink);
+    updateActiveNavLink();
+
+    // Form submission
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message. We will be in touch soon.');
+        this.reset();
+    });
+
+    // Load More Portfolio
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            const hiddenItems = document.querySelectorAll('.portfolio-card.hidden');
+            hiddenItems.forEach(item => {
+                item.classList.remove('hidden');
+            });
+            this.classList.add('hidden');
         });
-    </script>
+    }
+
+    // Fade-in on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+    });
+</script>
 </body>
 </html>
-
