@@ -538,7 +538,7 @@
             margin-bottom: var(--spacing-lg);
         }
 
-        /* Focus Areas - Redesigned */
+        /* Focus Areas - Simplified */
         .focus-areas {
             margin-top: var(--spacing-lg);
         }
@@ -549,123 +549,51 @@
             color: var(--primary-black);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
             opacity: 0.7;
             text-align: center;
         }
 
-        .focus-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-md);
+        .focus-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: var(--spacing-sm);
         }
 
-        .focus-card {
-            background: var(--primary-white);
+        .focus-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            padding: 10px 20px;
+            background: transparent;
             border: 1px solid var(--primary-black);
-            padding: var(--spacing-md);
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 140px;
-            justify-content: center;
-        }
-
-        .focus-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-black);
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-        }
-
-        .focus-card:hover::before {
-            left: 0;
-        }
-
-        .focus-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .focus-card:hover .focus-icon,
-        .focus-card:hover .focus-name {
-            color: var(--primary-white);
-            z-index: 2;
-            position: relative;
-        }
-
-        .focus-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
+            color: var(--primary-black);
+            border-radius: 20px;
             transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .focus-icon svg {
-            width: 28px;
-            height: 28px;
-            color: var(--primary-black);
-            transition: color 0.3s ease;
-        }
-
-        .focus-name {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--primary-black);
-            transition: color 0.3s ease;
-            position: relative;
-            z-index: 2;
-            margin: 0;
+            opacity: 0.8;
         }
 
         /* Responsive Design for Focus Areas */
         @media (max-width: 768px) {
-            .focus-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: var(--spacing-xs);
+            .focus-tags {
+                gap: 10px;
             }
             
-            .focus-card {
-                padding: var(--spacing-sm);
-                height: 120px;
-            }
-            
-            .focus-name {
-                font-size: 14px;
-            }
-            
-            .focus-icon {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 8px;
-            }
-            
-            .focus-icon svg {
-                width: 24px;
-                height: 24px;
+            .focus-tag {
+                font-size: 13px;
+                padding: 8px 16px;
             }
         }
 
         @media (max-width: 480px) {
-            .focus-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .focus-tags {
+                gap: 8px;
+            }
+            
+            .focus-tag {
+                font-size: 12px;
+                padding: 7px 14px;
             }
         }
 
@@ -2125,59 +2053,12 @@
                         
                         <div class="focus-areas">
                             <div class="focus-title">Our Expertise</div>
-                            <div class="focus-grid">
-                                <div class="focus-card">
-                                    <div class="focus-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/>
-                                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/>
-                                        </svg>
-                                    </div>
-                                    <h4 class="focus-name">Digital Innovation</h4>
-                                </div>
-                                
-                                <div class="focus-card">
-                                    <div class="focus-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.5 12.5L11 14l3.5-3.5" stroke="currentColor" stroke-width="1.5"/>
-                                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
-                                        </svg>
-                                    </div>
-                                    <h4 class="focus-name">AI Solutions</h4>
-                                </div>
-                                
-                                <div class="focus-card">
-                                    <div class="focus-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="12" cy="6" r="2" stroke="currentColor" stroke-width="1.5"/>
-                                            <circle cx="6" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/>
-                                            <circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/>
-                                            <path d="M12 8v8m0 0l-5-5m5 5l5-5" stroke="currentColor" stroke-width="1.5"/>
-                                        </svg>
-                                    </div>
-                                    <h4 class="focus-name">IoT Systems</h4>
-                                </div>
-                                
-                                <div class="focus-card">
-                                    <div class="focus-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                                            <path d="M19 12h1M12 19v1M5 12H4M12 5V4" stroke="currentColor" stroke-width="1.5"/>
-                                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
-                                        </svg>
-                                    </div>
-                                    <h4 class="focus-name">Brand Strategy</h4>
-                                </div>
-                                
-                                <div class="focus-card">
-                                    <div class="focus-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/>
-                                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/>
-                                        </svg>
-                                    </div>
-                                    <h4 class="focus-name">Business Growth</h4>
-                                </div>
+                            <div class="focus-tags">
+                                <span class="focus-tag">Digital Innovation</span>
+                                <span class="focus-tag">AI Solutions</span>
+                                <span class="focus-tag">IoT Systems</span>
+                                <span class="focus-tag">Brand Strategy</span>
+                                <span class="focus-tag">Business Growth</span>
                             </div>
                         </div>
                     </div>
@@ -2947,4 +2828,3 @@
 </script>
 </body>
 </html>
-
