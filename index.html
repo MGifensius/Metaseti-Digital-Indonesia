@@ -108,6 +108,8 @@
             color: var(--primary-black);
             overflow-x: hidden;
             line-height: 1.6;
+            width: 100%;
+            max-width: 100vw;
         }
 
         nav {
@@ -154,12 +156,6 @@
         .logo img {
             height: 40px;
             width: auto;
-        }
-
-        @media (max-width: 768px) {
-            .logo img {
-                height: 30px !important;
-            }
         }
 
         .nav-links {
@@ -355,6 +351,7 @@
             padding: var(--spacing-2xl) var(--spacing-lg);
             position: relative;
             background: var(--primary-white);
+            overflow-x: hidden;
         }
 
         .section-container {
@@ -766,7 +763,6 @@
             opacity: 0.6;
         }
 
-        /* Portfolio Section - Vertical Grid */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1223,6 +1219,11 @@
             opacity: 0.7;
         }
 
+        /* ========================================
+           MOBILE RESPONSIVE IMPROVEMENTS
+           ======================================== */
+
+        /* Tablet and below */
         @media (max-width: 1024px) {
             .services-grid {
                 grid-template-columns: 1fr;
@@ -1248,21 +1249,71 @@
             }
         }
 
+        /* Mobile devices */
         @media (max-width: 768px) {
+            /* Logo size */
+            .logo img {
+                height: 30px !important;
+            }
+            
+            .logo {
+                font-size: 16px;
+            }
+
+            /* Hero section */
             .hero {
                 border-radius: 40px;
                 padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
             }
+
+            /* Contact section centering */
+            #contact {
+                padding: var(--spacing-xl) var(--spacing-sm);
+            }
+
+            #contact .section-container {
+                max-width: 100%;
+                padding: 0 10px;
+                margin: 0 auto;
+            }
+
+            #contact h2,
+            #contact .section-subtitle {
+                text-align: center;
+                padding: 0 10px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             #globe-container {
                 border-radius: 40px;
+                opacity: 0.7;
             }
+
+            /* Better hero subtitle sizing */
+            .hero-subtitle {
+                font-size: clamp(14px, 3.5vw, 18px);
+                line-height: 1.6;
+            }
+
+            /* Improved CTA button for mobile */
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 32px;
+                font-size: 15px;
+            }
+
+            /* Navigation */
             nav {
                 padding: 15px var(--spacing-sm);
             }
+
             nav::after {
                 left: var(--spacing-sm);
                 right: var(--spacing-sm);
             }
+
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -1277,81 +1328,373 @@
                 border-left: 1px solid var(--primary-black);
                 transition: right 0.3s ease;
             }
+
             .nav-links.active {
                 right: 0;
             }
+
             .nav-links.active .menu-close {
                 display: block;
             }
+
+            .nav-links a {
+                padding: 12px 0;
+                font-size: 16px;
+            }
+
             .menu-toggle {
                 display: flex;
             }
+
             .menu-toggle.active span:nth-child(1) {
                 transform: rotate(45deg) translate(7px, 7px);
             }
+
             .menu-toggle.active span:nth-child(2) {
                 opacity: 0;
             }
+
             .menu-toggle.active span:nth-child(3) {
                 transform: rotate(-45deg) translate(7px, -7px);
             }
+
+            /* Sections */
             section {
-                padding: var(--spacing-lg) var(--spacing-sm);
+                padding: var(--spacing-xl) var(--spacing-sm);
             }
+
+            #about {
+                padding: var(--spacing-xl) var(--spacing-sm);
+            }
+
+            /* Service cards */
             .service-item {
                 height: auto;
                 perspective: none;
             }
+
             .service-card-inner {
                 transform: none !important;
             }
+
             .service-card-front {
                 position: relative;
                 transform: none !important;
                 backface-visibility: visible;
                 padding: var(--spacing-sm);
             }
+
             .service-card-back {
                 display: none;
             }
+
             .service-item:hover .service-card-inner {
                 transform: none !important;
             }
+
+            .service-content {
+                padding: 0 15px 15px;
+            }
+
+            .service-illustration {
+                height: 140px;
+                padding: 15px;
+            }
+
+            /* Portfolio */
             .portfolio-image {
                 height: 280px;
             }
+
             .portfolio-content {
                 padding: var(--spacing-sm) 0 0 0;
             }
+
+            .portfolio-meta {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            /* Contact */
             .contact-grid {
                 grid-template-columns: 1fr;
+                padding: 0;
+                margin: 0 auto;
+                width: 100%;
+                max-width: 100%;
             }
+
+            .contact-info {
+                padding: 0 10px;
+            }
+
+            .contact-tagline {
+                text-align: center;
+            }
+
+            .contact-methods {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .contact-method {
+                padding: var(--spacing-xs) 0;
+            }
+
+            .contact-method-value {
+                font-size: 14px;
+            }
+
+            /* Contact form centering */
+            .contact-form {
+                gap: var(--spacing-sm);
+                padding: 0 10px;
+                max-width: 100%;
+                width: 100%;
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+
+            .form-header {
+                text-align: center;
+            }
+
+            .form-title {
+                text-align: center;
+            }
+
+            .form-subtitle {
+                text-align: center;
+            }
+
             .form-row {
                 grid-template-columns: 1fr;
             }
+
+            .form-group {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .form-group label {
+                text-align: left;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px;
+                padding: 16px var(--spacing-xs);
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+            }
+
             .submit-button {
                 width: 100%;
                 text-align: center;
+                align-self: center;
+                justify-content: center;
+            }
+
+            /* VM Cards */
+            .vm-card {
+                padding: var(--spacing-md);
+            }
+
+            /* Footer */
+            footer {
+                font-size: 11px;
+                padding: var(--spacing-md) var(--spacing-sm);
+                line-height: 1.8;
+            }
+
+            /* Focus tags */
+            .focus-tags {
+                justify-content: center;
+            }
+
+            /* Better image loading on mobile */
+            .portfolio-image img,
+            .about-image {
+                image-rendering: -webkit-optimize-contrast;
+            }
+
+            /* Loading screen */
+            .loading-text-container {
+                padding: 0 20px;
+            }
+
+            /* Message content */
+            .message-content h4 {
+                font-size: 18px;
+            }
+
+            .message-content p {
+                font-size: 13px;
+            }
+
+            .form-message {
+                margin: 0 10px var(--spacing-md);
+                max-width: calc(100% - 20px);
+                box-sizing: border-box;
+            }
+
+            /* Performance optimization */
+            * {
+                animation-duration: 0.3s !important;
+                transition-duration: 0.3s !important;
             }
         }
 
+        /* Extra small devices */
         @media (max-width: 480px) {
             .hero {
                 border-radius: 30px;
+                padding: var(--spacing-xl) var(--spacing-xs) var(--spacing-md);
             }
+
             #globe-container {
                 border-radius: 30px;
             }
+
+            nav {
+                padding: 12px var(--spacing-xs);
+            }
+
+            nav::after {
+                left: var(--spacing-xs);
+                right: var(--spacing-xs);
+            }
+
+            section {
+                padding: var(--spacing-lg) var(--spacing-xs);
+            }
+
+            #about {
+                padding: var(--spacing-xl) var(--spacing-xs);
+            }
+
+            /* Contact section extra padding */
+            #contact {
+                padding: var(--spacing-xl) 15px;
+            }
+
+            #contact .section-container {
+                padding: 0 5px;
+            }
+
+            .contact-form {
+                padding: 0 5px;
+            }
+
+            .form-header {
+                text-align: center;
+                padding: 0 5px;
+            }
+
+            .form-title {
+                text-align: center;
+                padding: 0 5px;
+            }
+
+            .form-subtitle {
+                text-align: center;
+                padding: 0 5px;
+            }
+
+            .contact-info {
+                padding: 0 5px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .contact-methods {
+                text-align: left;
+            }
+
+            #contact h2 {
+                padding: 0 5px;
+                text-align: center;
+            }
+
+            #contact .section-subtitle {
+                padding: 0 5px;
+                text-align: center;
+            }
+
+            .contact-tagline {
+                text-align: center;
+                padding: 0 5px;
+            }
+
             .focus-tags {
                 gap: 8px;
             }
+
             .focus-tag {
                 font-size: 12px;
                 padding: 7px 14px;
             }
+
             .loading-text {
                 font-size: clamp(20px, 5.5vw, 26px);
                 line-height: 1.6;
+            }
+
+            .portfolio-image {
+                height: 240px;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: 70vh;
+                padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
+            }
+
+            .nav-links {
+                width: 240px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .cta-button,
+            .submit-button,
+            .load-more-button {
+                min-height: 48px;
+            }
+
+            .portfolio-card:hover .portfolio-image-wrapper {
+                transform: none;
+            }
+
+            .portfolio-card:hover .portfolio-image {
+                box-shadow: none;
+            }
+
+            .service-item:hover .service-illustration svg {
+                transform: none;
+            }
+        }
+
+        /* Safe area for devices with notches */
+        @supports (padding: env(safe-area-inset-left)) {
+            nav {
+                padding-left: max(var(--spacing-sm), env(safe-area-inset-left));
+                padding-right: max(var(--spacing-sm), env(safe-area-inset-right));
+            }
+
+            section {
+                padding-left: max(var(--spacing-sm), env(safe-area-inset-left));
+                padding-right: max(var(--spacing-sm), env(safe-area-inset-right));
             }
         }
     </style>
@@ -1857,12 +2200,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
+    // Helper function to detect mobile devices
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+            || window.innerWidth <= 768;
+    }
+
+    // Initialize loading and globe after delay
     setTimeout(() => {
         document.querySelector('.loading-screen').classList.add('hidden');
         document.querySelector('.content').classList.add('visible');
         initGlobe();
     }, 3500);
 
+    // Optimized globe initialization
     function initGlobe() {
         const container = document.getElementById('globe-container');
         if (!container) return;
@@ -1873,8 +2224,12 @@
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 250;
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: !isMobileDevice(),
+            powerPreference: "high-performance"
+        });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
         const particleGeometry = new THREE.BufferGeometry();
@@ -1882,7 +2237,7 @@
         const particleColors = [];
         const originalPositions = [];
         const explosionDirections = [];
-        const particleCount = 7000;
+        const particleCount = isMobileDevice() ? 3500 : 7000;
 
         const colorStart = new THREE.Color(0x4a90e2);
         const colorEnd = new THREE.Color(0x9b59b6);
@@ -1924,7 +2279,7 @@
         const texture = new THREE.CanvasTexture(canvas);
 
         const particleMaterial = new THREE.PointsMaterial({
-            size: 2,
+            size: isMobileDevice() ? 1.5 : 2,
             transparent: true,
             opacity: 1.0,
             vertexColors: true,
@@ -1937,9 +2292,16 @@
         scene.add(particles);
 
         let time = 0;
+        let frameCount = 0;
 
         function animate() {
             requestAnimationFrame(animate);
+            
+            frameCount++;
+            if (isMobileDevice() && frameCount % 2 !== 0) {
+                return;
+            }
+            
             time += 0.015;
             
             let explosionFactor = 0;
@@ -1982,13 +2344,19 @@
 
         animate();
 
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            }, 250);
         });
     }
 
+    // Mobile menu functionality
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const menuClose = document.querySelector('.menu-close');
@@ -2010,6 +2378,7 @@
         });
     });
 
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -2020,6 +2389,7 @@
         });
     });
 
+    // Active nav link tracking
     function updateActiveNavLink() {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
@@ -2047,6 +2417,7 @@
     window.addEventListener('scroll', updateActiveNavLink);
     updateActiveNavLink();
 
+    // Load more portfolio items
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function() {
@@ -2058,6 +2429,7 @@
         });
     }
 
+    // Fade-in observer
     const fadeElements = document.querySelectorAll('.fade-in');
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -2074,6 +2446,7 @@
         fadeObserver.observe(element);
     });
 
+    // Contact form submission
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const formMessage = document.getElementById('formMessage');
