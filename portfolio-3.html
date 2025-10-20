@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metaseti Digital Indonesia - Smart Waste Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Standard favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Metaseti.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Metaseti.png">
-    
-    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Metaseti.png">
-    
-    <!-- For modern browsers -->
     <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/MGifensius/Metaseti-Digital-Indonesia/main/img/Metaseti.png">
     <style>
         * {
@@ -48,6 +43,8 @@
             color: var(--primary-black);
             overflow-x: hidden;
             line-height: 1.6;
+            width: 100%;
+            max-width: 100vw;
         }
 
         nav {
@@ -195,6 +192,7 @@
             padding: var(--spacing-2xl) var(--spacing-lg);
             position: relative;
             background: var(--primary-white);
+            overflow-x: hidden;
         }
 
         .section-container {
@@ -899,7 +897,11 @@
             transform: translateY(0);
         }
 
-        /* Mobile Optimizations */
+        /* ========================================
+           MOBILE RESPONSIVE IMPROVEMENTS
+           ======================================== */
+
+        /* Tablet and below */
         @media (max-width: 1024px) {
             .two-column-grid,
             .features-grid {
@@ -909,9 +911,24 @@
             .sensors-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .automation-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
+        /* Mobile devices */
         @media (max-width: 768px) {
+            /* Logo adjustments */
+            .logo img {
+                height: 30px !important;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            /* Navigation */
             nav {
                 padding: 15px var(--spacing-sm);
             }
@@ -921,14 +938,144 @@
                 right: var(--spacing-sm);
             }
 
+            .back-link {
+                font-size: 13px;
+                gap: 5px;
+            }
+
+            /* Sections */
             section {
                 padding: var(--spacing-lg) var(--spacing-sm);
             }
 
-            .project-hero {
-                padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
+            .section-container {
+                padding: 0 10px;
             }
 
+            /* Hero section */
+            .project-hero {
+                padding: var(--spacing-2xl) var(--spacing-sm) var(--spacing-lg);
+                min-height: 70vh;
+            }
+
+            .project-hero-content {
+                padding: 0 10px;
+            }
+
+            .project-category {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
+            .project-subtitle {
+                font-size: clamp(14px, 3.5vw, 18px);
+                line-height: 1.6;
+                padding: 0 5px;
+            }
+
+            .project-meta {
+                gap: var(--spacing-md);
+            }
+
+            /* Content blocks */
+            .content-block {
+                padding: 0 10px;
+            }
+
+            .content-block p {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            /* Illustration */
+            .illustration-container {
+                padding: var(--spacing-md);
+                min-height: 300px;
+            }
+
+            .illustration-svg {
+                max-width: 100%;
+            }
+
+            /* Section labels */
+            .section-label {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
+            /* Features */
+            .feature-card {
+                padding: var(--spacing-sm);
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .feature-card h3 {
+                font-size: 18px;
+            }
+
+            .feature-card p {
+                font-size: 13px;
+            }
+
+            /* Tech stack */
+            .tech-carousel {
+                gap: 40px;
+            }
+
+            .tech-logo {
+                height: 45px;
+            }
+
+            /* Demo section */
+            .demo-section {
+                padding: var(--spacing-md);
+            }
+
+            .demo-preview {
+                border: none;
+                border-radius: 0;
+                margin: var(--spacing-md) 0;
+            }
+
+            .browser-bar {
+                padding: 10px 15px;
+            }
+
+            .browser-dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            /* Waste header */
+            .waste-header {
+                padding: 12px 15px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .waste-logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                font-size: 20px;
+            }
+
+            .status-indicator {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+
+            .status-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            /* Dashboard layout - stack on mobile */
             .dashboard {
                 grid-template-columns: 1fr;
                 min-height: auto;
@@ -937,32 +1084,389 @@
             .sections-panel {
                 border-right: none;
                 border-bottom: 1px solid #e0e0e0;
-                max-height: 200px;
+                max-height: 180px;
+                padding: 15px;
+                overflow-x: auto;
+                overflow-y: hidden;
             }
 
-            .demo-section {
-                padding: var(--spacing-md);
+            .sections-panel h3 {
+                font-size: 14px;
+                margin-bottom: 10px;
             }
 
-            .demo-preview {
-                border: none;
+            .sections-list {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 8px;
             }
 
-            .demo-content {
-                height: auto;
+            .section-item {
+                min-width: 200px;
+                padding: 12px;
+            }
+
+            .section-icon {
+                font-size: 18px;
+            }
+
+            .section-name {
+                font-size: 13px;
+            }
+
+            .section-status {
+                font-size: 11px;
+            }
+
+            /* Monitoring panel */
+            .monitoring-panel {
+                padding: 15px;
+            }
+
+            .monitoring-panel h3 {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            /* Sensors grid - single column on mobile */
+            .sensors-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .sensor-card {
+                padding: 12px;
+            }
+
+            .sensor-icon {
+                font-size: 24px;
+            }
+
+            .sensor-status {
+                width: 10px;
+                height: 10px;
+            }
+
+            .sensor-name {
+                font-size: 14px;
+            }
+
+            .sensor-info {
+                font-size: 11px;
+            }
+
+            .sensor-value {
+                font-size: 20px;
+            }
+
+            .control-btn {
+                font-size: 10px;
+                padding: 7px;
+            }
+
+            /* Waste panel */
+            .waste-panel {
+                padding: 15px;
+            }
+
+            .waste-title {
+                font-size: 15px;
+                margin-bottom: 12px;
             }
 
             .waste-stats {
                 grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .waste-item {
+                padding: 12px;
+            }
+
+            .waste-name {
+                font-size: 14px;
+            }
+
+            .waste-icon {
+                font-size: 18px;
+            }
+
+            .waste-desc {
+                font-size: 11px;
+            }
+
+            .waste-stats-info {
+                font-size: 11px;
+            }
+
+            /* Collection panel */
+            .collection-panel {
+                padding: 12px;
+                margin-top: 15px;
+            }
+
+            .collection-title {
+                font-size: 14px;
+            }
+
+            .collection-stats {
+                font-size: 11px;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            /* Automation panel */
+            .automation-panel {
+                padding: 12px;
+                margin-top: 15px;
+            }
+
+            .automation-title {
+                font-size: 14px;
             }
 
             .automation-list {
                 grid-template-columns: 1fr;
+                gap: 8px;
             }
 
-            .sensors-grid {
-                grid-template-columns: 1fr;
+            .automation-item {
+                padding: 12px;
             }
+
+            .automation-name {
+                font-size: 13px;
+            }
+
+            .automation-desc {
+                font-size: 11px;
+            }
+
+            .automation-status {
+                font-size: 11px;
+            }
+
+            .toggle-switch {
+                width: 36px;
+                height: 18px;
+            }
+
+            .slider:before {
+                height: 14px;
+                width: 14px;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(18px);
+            }
+
+            /* CTA button */
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 32px;
+                font-size: 15px;
+            }
+
+            .demo-buttons {
+                padding: 0 10px;
+            }
+
+            /* Footer */
+            footer {
+                padding: var(--spacing-md) var(--spacing-sm);
+                font-size: 11px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            nav {
+                padding: 12px 15px;
+            }
+
+            nav::after {
+                left: 15px;
+                right: 15px;
+            }
+
+            section {
+                padding: var(--spacing-md) 15px;
+            }
+
+            .project-hero {
+                padding: var(--spacing-xl) 15px var(--spacing-md);
+            }
+
+            .project-meta {
+                gap: 20px;
+            }
+
+            .meta-label {
+                font-size: 10px;
+            }
+
+            .meta-value {
+                font-size: 14px;
+            }
+
+            .illustration-container {
+                padding: 20px 15px;
+                min-height: 250px;
+            }
+
+            .demo-section {
+                padding: var(--spacing-sm) 10px;
+            }
+
+            .waste-header {
+                padding: 10px 12px;
+            }
+
+            .waste-logo {
+                font-size: 13px;
+            }
+
+            .logo-icon {
+                font-size: 18px;
+            }
+
+            .status-indicator {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+
+            .sections-panel {
+                padding: 12px;
+                max-height: 160px;
+            }
+
+            .sections-panel h3 {
+                font-size: 13px;
+            }
+
+            .section-item {
+                min-width: 180px;
+                padding: 10px;
+            }
+
+            .monitoring-panel {
+                padding: 12px;
+            }
+
+            .sensor-card {
+                padding: 10px;
+            }
+
+            .sensor-icon {
+                font-size: 22px;
+            }
+
+            .sensor-value {
+                font-size: 18px;
+            }
+
+            .waste-panel {
+                padding: 12px;
+            }
+
+            .waste-item {
+                padding: 10px;
+            }
+
+            .collection-panel {
+                padding: 10px;
+            }
+
+            .automation-panel {
+                padding: 10px;
+            }
+
+            .automation-item {
+                padding: 10px;
+            }
+
+            .tech-carousel {
+                gap: 30px;
+            }
+
+            .tech-logo {
+                height: 40px;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .project-hero {
+                min-height: 100vh;
+                padding: var(--spacing-xl) var(--spacing-sm) var(--spacing-md);
+            }
+
+            .dashboard {
+                min-height: 500px;
+            }
+
+            .sections-panel {
+                max-height: 150px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .cta-button,
+            .control-btn,
+            .section-item {
+                min-height: 44px;
+            }
+
+            .toggle-switch {
+                min-width: 44px;
+                min-height: 24px;
+            }
+
+            .feature-card {
+                transition: none;
+            }
+
+            .sensor-card:hover {
+                transform: none;
+            }
+        }
+
+        /* Safe area for devices with notches */
+        @supports (padding: env(safe-area-inset-left)) {
+            nav {
+                padding-left: max(var(--spacing-sm), env(safe-area-inset-left));
+                padding-right: max(var(--spacing-sm), env(safe-area-inset-right));
+            }
+
+            section {
+                padding-left: max(var(--spacing-sm), env(safe-area-inset-left));
+                padding-right: max(var(--spacing-sm), env(safe-area-inset-right));
+            }
+        }
+
+        /* Scrollbar styling for sections panel */
+        .sections-panel::-webkit-scrollbar,
+        .monitoring-panel::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .sections-panel::-webkit-scrollbar-track,
+        .monitoring-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .sections-panel::-webkit-scrollbar-thumb,
+        .monitoring-panel::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        .sections-panel::-webkit-scrollbar-thumb:hover,
+        .monitoring-panel::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
@@ -1181,7 +1685,6 @@
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS IoT" class="tech-logo">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="tech-logo">
                     
-                    <!-- Duplicate for infinite scroll -->
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-logo">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="tech-logo">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
@@ -1210,64 +1713,64 @@
                     <div class="waste-header">
                         <div class="waste-logo">
                             <div class="logo-icon">♻️</div>
-                            WASTE-SMART DASHBOARD
+                            WASTE-SMART
                         </div>
                         <div class="status-indicator">
                             <div class="status-dot"></div>
-                            <span>All Systems Operational</span>
+                            <span>All Systems OK</span>
                         </div>
                     </div>
 
                     <div class="dashboard">
                         <div class="sections-panel">
-                            <h3 style="margin-bottom: 15px; color: #000;">Facility Sections</h3>
+                            <h3>Facility Sections</h3>
                             <div class="sections-list">
                                 <div class="section-item active" data-section="sorting">
                                     <div class="section-icon">⚙️</div>
                                     <div class="section-info">
-                                        <div class="section-name">Sorting Facility</div>
-                                        <div class="section-status">Processing: 85% Efficiency</div>
+                                        <div class="section-name">Sorting</div>
+                                        <div class="section-status">85% Efficiency</div>
                                     </div>
                                 </div>
                                 <div class="section-item" data-section="recycling">
                                     <div class="section-icon">♻️</div>
                                     <div class="section-info">
-                                        <div class="section-name">Recycling Plant</div>
-                                        <div class="section-status">Running: 92% Capacity</div>
+                                        <div class="section-name">Recycling</div>
+                                        <div class="section-status">92% Capacity</div>
                                     </div>
                                 </div>
                                 <div class="section-item" data-section="composting">
                                     <div class="section-icon">🌱</div>
                                     <div class="section-info">
-                                        <div class="section-name">Composting Unit</div>
-                                        <div class="section-status">Optimal Conditions</div>
+                                        <div class="section-name">Composting</div>
+                                        <div class="section-status">Optimal</div>
                                     </div>
                                 </div>
                                 <div class="section-item" data-section="energy">
                                     <div class="section-icon">⚡</div>
                                     <div class="section-info">
-                                        <div class="section-name">Energy Recovery</div>
-                                        <div class="section-status">Generating: 5.2 MW</div>
+                                        <div class="section-name">Energy</div>
+                                        <div class="section-status">5.2 MW</div>
                                     </div>
                                 </div>
                                 <div class="section-item" data-section="collection">
                                     <div class="section-icon">🚛</div>
                                     <div class="section-info">
-                                        <div class="section-name">Collection Network</div>
-                                        <div class="section-status">12 Vehicles Active</div>
+                                        <div class="section-name">Collection</div>
+                                        <div class="section-status">12 Active</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="monitoring-panel">
-                            <h3 style="margin-bottom: 15px; color: #000;">Facility Monitoring</h3>
+                            <h3>Facility Monitoring</h3>
                             <div class="sensors-grid" id="sensorsGrid">
                             </div>
                             
                             <div class="collection-panel">
                                 <div class="collection-title">
-                                    <span>Today's Collection Progress</span>
+                                    <span>Today's Collection</span>
                                     <span>68%</span>
                                 </div>
                                 <div class="collection-bar">
@@ -1275,17 +1778,17 @@
                                 </div>
                                 <div class="collection-stats">
                                     <span>0 Tons</span>
-                                    <span>34 Tons Collected</span>
-                                    <span>50 Tons Target</span>
+                                    <span>34 Tons</span>
+                                    <span>50 Target</span>
                                 </div>
                             </div>
 
                             <div class="automation-panel">
-                                <div class="automation-title">Automation Controls</div>
+                                <div class="automation-title">Automation</div>
                                 <div class="automation-list">
                                     <div class="automation-item">
-                                        <div class="automation-name">AI Sorting System</div>
-                                        <div class="automation-desc">Automated waste classification and separation</div>
+                                        <div class="automation-name">AI Sorting</div>
+                                        <div class="automation-desc">Automated classification</div>
                                         <div class="automation-status">
                                             <label class="toggle-switch">
                                                 <input type="checkbox" id="sortingToggle" checked>
@@ -1296,7 +1799,7 @@
                                     </div>
                                     <div class="automation-item">
                                         <div class="automation-name">Quality Control</div>
-                                        <div class="automation-desc">Real-time monitoring of output quality</div>
+                                        <div class="automation-desc">Output monitoring</div>
                                         <div class="automation-status">
                                             <label class="toggle-switch">
                                                 <input type="checkbox" id="qualityToggle" checked>
@@ -1307,7 +1810,7 @@
                                     </div>
                                     <div class="automation-item">
                                         <div class="automation-name">Energy Recovery</div>
-                                        <div class="automation-desc">Waste-to-energy conversion system</div>
+                                        <div class="automation-desc">Waste-to-energy</div>
                                         <div class="automation-status">
                                             <label class="toggle-switch">
                                                 <input type="checkbox" id="energyToggle">
@@ -1321,66 +1824,66 @@
                         </div>
 
                         <div class="waste-panel">
-                            <div class="waste-title">Waste Processing Statistics</div>
+                            <div class="waste-title">Processing Statistics</div>
                             <div class="waste-stats">
                                 <div class="waste-item">
                                     <div class="waste-name">
                                         <div class="waste-icon">🍂</div>
-                                        Organic Waste
+                                        Organic
                                     </div>
-                                    <div class="waste-desc">Compost production: 65% of input processed</div>
+                                    <div class="waste-desc">65% processed</div>
                                     <div class="waste-progress">
                                         <div class="waste-fill organic"></div>
                                     </div>
                                     <div class="waste-stats-info">
-                                        <span>0 Tons</span>
-                                        <span>32.5 Tons Processed</span>
-                                        <span>50 Tons Input</span>
+                                        <span>0 T</span>
+                                        <span>32.5 T</span>
+                                        <span>50 T</span>
                                     </div>
                                 </div>
                                 <div class="waste-item">
                                     <div class="waste-name">
                                         <div class="waste-icon">🥤</div>
-                                        Plastic Waste
+                                        Plastic
                                     </div>
-                                    <div class="waste-desc">Recycling: 42% of total collected</div>
+                                    <div class="waste-desc">42% recycled</div>
                                     <div class="waste-progress">
                                         <div class="waste-fill plastic"></div>
                                     </div>
                                     <div class="waste-stats-info">
-                                        <span>0 Tons</span>
-                                        <span>8.4 Tons Recycled</span>
-                                        <span>20 Tons Total</span>
+                                        <span>0 T</span>
+                                        <span>8.4 T</span>
+                                        <span>20 T</span>
                                     </div>
                                 </div>
                                 <div class="waste-item">
                                     <div class="waste-name">
                                         <div class="waste-icon">🍶</div>
-                                        Glass Waste
+                                        Glass
                                     </div>
-                                    <div class="waste-desc">Recycling: 28% of total collected</div>
+                                    <div class="waste-desc">28% recycled</div>
                                     <div class="waste-progress">
                                         <div class="waste-fill glass"></div>
                                     </div>
                                     <div class="waste-stats-info">
-                                        <span>0 Tons</span>
-                                        <span>5.6 Tons Recycled</span>
-                                        <span>20 Tons Total</span>
+                                        <span>0 T</span>
+                                        <span>5.6 T</span>
+                                        <span>20 T</span>
                                     </div>
                                 </div>
                                 <div class="waste-item">
                                     <div class="waste-name">
                                         <div class="waste-icon">🔩</div>
-                                        Metal Waste
+                                        Metal
                                     </div>
-                                    <div class="waste-desc">Recycling: 35% of total collected</div>
+                                    <div class="waste-desc">35% recycled</div>
                                     <div class="waste-progress">
                                         <div class="waste-fill metal"></div>
                                     </div>
                                     <div class="waste-stats-info">
-                                        <span>0 Tons</span>
-                                        <span>7 Tons Recycled</span>
-                                        <span>20 Tons Total</span>
+                                        <span>0 T</span>
+                                        <span>7 T</span>
+                                        <span>20 T</span>
                                     </div>
                                 </div>
                             </div>
@@ -1564,7 +2067,7 @@
             
             document.querySelector('.collection-title span:last-child').textContent = `${progressPercentage}%`;
             const tonsCollected = (progressPercentage * 50 / 100).toFixed(0);
-            document.querySelector('.collection-stats span:nth-child(2)').textContent = `${tonsCollected} Tons Collected`;
+            document.querySelector('.collection-stats span:nth-child(2)').textContent = `${tonsCollected} Tons`;
         }
 
         document.querySelectorAll('.section-item').forEach(item => {
