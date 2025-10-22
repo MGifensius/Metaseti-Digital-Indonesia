@@ -31,6 +31,19 @@
             --dark-gray: #DDDDDD;
         }
 
+        /* Mobile-first responsive spacing adjustments */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-xs: 15px;
+                --spacing-sm: 20px;
+                --spacing-md: 25px;
+                --spacing-lg: 30px;
+                --spacing-xl: 40px;
+                --spacing-2xl: 50px;
+                --spacing-3xl: 60px;
+            }
+        }
+
         .loading-screen {
             position: fixed;
             top: 0;
@@ -240,6 +253,77 @@
 
         .menu-close::after {
             transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        /* Mobile Navigation Responsive Styles */
+        @media (max-width: 1024px) {
+            nav {
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            nav::after {
+                left: var(--spacing-sm);
+                right: var(--spacing-sm);
+            }
+
+            .logo {
+                font-size: clamp(16px, 4vw, 20px);
+                z-index: 1001;
+            }
+
+            .logo img {
+                height: clamp(30px, 8vw, 40px);
+            }
+
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+                padding: 10px;
+                margin: -10px;
+            }
+
+            .menu-toggle span {
+                height: 2px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 400px;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: var(--spacing-md);
+                transition: right 0.4s ease;
+                padding: var(--spacing-xl);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+                opacity: 0.9;
+            }
+
+            .menu-close {
+                display: block;
+            }
+
+            .nav-links.active ~ .menu-close {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                max-width: 100%;
+            }
         }
 
         .hero {
@@ -1696,6 +1780,233 @@
                 padding-left: max(var(--spacing-sm), env(safe-area-inset-left));
                 padding-right: max(var(--spacing-sm), env(safe-area-inset-right));
             }
+        }
+
+        /* Additional Comprehensive Mobile & Tablet Responsive Styles */
+        @media (max-width: 1024px) {
+            section {
+                padding: var(--spacing-xl) var(--spacing-md);
+                min-height: auto;
+            }
+
+            .hero {
+                padding: var(--spacing-xl) var(--spacing-md);
+                min-height: 100vh;
+                border-radius: 40px;
+            }
+
+            #globe-container {
+                border-radius: 40px;
+            }
+
+            .hero h1 {
+                font-size: clamp(32px, 6vw, 56px);
+            }
+
+            .hero p {
+                font-size: clamp(16px, 2.5vw, 18px);
+            }
+
+            .services-grid,
+            .portfolio-grid,
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--spacing-sm);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            .hero {
+                padding: var(--spacing-lg) var(--spacing-sm);
+                border-radius: 30px;
+            }
+
+            #globe-container {
+                border-radius: 30px;
+            }
+
+            .hero h1 {
+                font-size: clamp(28px, 8vw, 40px);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .hero p {
+                font-size: clamp(14px, 3vw, 16px);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            h2 {
+                font-size: clamp(28px, 6vw, 40px);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            h3 {
+                font-size: clamp(20px, 4vw, 24px);
+            }
+
+            .services-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            .service-item,
+            .portfolio-card,
+            .team-member {
+                padding: var(--spacing-sm);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            .cta-button,
+            .submit-button,
+            .load-more-button {
+                padding: 14px 30px;
+                font-size: 13px;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 12px 14px;
+                font-size: clamp(13px, 2vw, 14px);
+            }
+
+            .form-group textarea {
+                min-height: 120px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .social-links a {
+                width: 36px;
+                height: 36px;
+            }
+
+            .social-links svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            footer {
+                padding: var(--spacing-sm);
+            }
+
+            .portfolio-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            }
+
+            /* Improve touch targets */
+            a, button, .menu-toggle {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                border-radius: 20px;
+            }
+
+            #globe-container {
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: clamp(24px, 9vw, 32px);
+            }
+
+            h2 {
+                font-size: clamp(24px, 7vw, 32px);
+            }
+
+            .services-grid,
+            .portfolio-grid,
+            .team-grid {
+                gap: 15px;
+            }
+
+            .cta-button,
+            .submit-button,
+            .load-more-button {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Tablet specific adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .portfolio-grid,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Remove focus outline on mouse click but keep for keyboard */
+        button:focus:not(:focus-visible),
+        a:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        /* Prevent text selection on interactive elements */
+        .menu-toggle,
+        .cta-button,
+        .submit-button,
+        .load-more-button {
+            -webkit-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
