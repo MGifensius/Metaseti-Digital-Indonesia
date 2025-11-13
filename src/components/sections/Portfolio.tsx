@@ -13,9 +13,9 @@ interface PortfolioImage {
 // 4 images per row
 const row1Images: PortfolioImage[] = [
   { id: 1, src: "/portfolio/project-1.png", alt: "Project 1" },
-  { id: 2, src: "/portfolio/project-1.png", alt: "Project 2" },
-  { id: 3, src: "/portfolio/project-1.png", alt: "Project 3" },
-  { id: 4, src: "/portfolio/project-1.png", alt: "Project 4" },
+  { id: 2, src: "/portfolio/project-2.png", alt: "Project 2" },
+  { id: 3, src: "/portfolio/project-3.png", alt: "Project 3" },
+  { id: 4, src: "/portfolio/project-4.png", alt: "Project 4" },
 ];
 
 const row2Images: PortfolioImage[] = [
@@ -83,7 +83,7 @@ export default function Portfolio() {
       </div>
 
       {/* Scrolling Rows */}
-      <div className="space-y-0">
+      <div className="space-y-6">
         {/* Row 1 - Scroll Left */}
         <ScrollingRow images={row1Images} direction="left" />
         
