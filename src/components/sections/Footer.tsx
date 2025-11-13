@@ -80,7 +80,7 @@ export default function Footer() {
                     <div>
                       <div className="text-xs text-gray-500 mb-1">Instagram</div>
                       <div className="text-sm flex items-center gap-1">
-                        @metaseti.digital
+                        @metasetidigital
                         <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </div>
