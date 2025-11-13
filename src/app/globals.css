@@ -1,5 +1,7 @@
 /* src/app/globals.css */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background-color: #000;
@@ -57,10 +59,7 @@ html {
   }
 }
 
-/*Portfolio Images*/
-
-/* app/globals.css or wherever your global styles are */
-
+/* Portfolio Images */
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
