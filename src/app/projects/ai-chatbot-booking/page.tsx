@@ -128,7 +128,6 @@ export default function AIChatbotBooking() {
             <ArrowLeft className="h-5 w-5" />
             <span>Back to Projects</span>
           </button>
-          <h1 className="text-xl font-light text-white">AI Chatbot Booking System</h1>
         </div>
       </div>
 
