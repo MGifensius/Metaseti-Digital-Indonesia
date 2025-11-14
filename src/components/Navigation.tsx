@@ -61,7 +61,7 @@ export default function Navigation() {
                 alt="Metaseti Digital"
                 width={180}
                 height={60}
-                className="h-auto w-auto max-w-[180px]"
+                className="h-auto w-auto max-w-[120px] md:max-w-[180px]"
                 priority
               />
             </Link>
