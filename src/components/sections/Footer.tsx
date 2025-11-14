@@ -101,7 +101,7 @@ export default function Footer() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none z-10" />
               <div className="relative w-full h-80 border border-white/10 group-hover:border-white/20 overflow-hidden transition-colors">
                 <iframe
-                  src="<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.92787871136196!2d106.89845356964767!3d-6.151365604002552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1763100830185!5m2!1sen!2sid"
+                  src="https:///www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.92787871136196!2d106.89845356964767!3d-6.151365604002552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1763100830185!5m2!1sen!2sid"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
