@@ -1,6 +1,5 @@
 // components/sections/Portfolio.tsx
 "use client";
-
 import Image from "next/image";
 import MotionWrapper from "../MotionWrapper";
 
@@ -26,20 +25,20 @@ const row2Images: PortfolioImage[] = [
 ];
 
 const row3Images: PortfolioImage[] = [
-  { id: 9, src: "/portfolio/project-1.png", alt: "Project 9" },
-  { id: 10, src: "/portfolio/project-1.png", alt: "Project 10" },
-  { id: 11, src: "/portfolio/project-1.png", alt: "Project 11" },
-  { id: 12, src: "/portfolio/project-1.png", alt: "Project 12" },
+  { id: 9, src: "/portfolio/project-9.png", alt: "Project 9" },
+  { id: 10, src: "/portfolio/project-10.png", alt: "Project 10" },
+  { id: 11, src: "/portfolio/project-11.png", alt: "Project 11" },
+  { id: 12, src: "/portfolio/project-12.png", alt: "Project 12" },
 ];
 
 function ScrollingRow({ images, direction }: { images: PortfolioImage[], direction: "left" | "right" }) {
-  // Duplicate images for seamless loop
-  const duplicatedImages = [...images, ...images, ...images];
-
+  // Duplicate images TWICE for seamless loop
+  const duplicatedImages = [...images, ...images];
+  
   return (
     <div className="relative overflow-hidden w-full">
       <div 
-        className={`flex ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}`}
+        className={`flex gap-6 ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}`}
         style={{ width: 'fit-content' }}
       >
         {duplicatedImages.map((image, index) => (
@@ -51,7 +50,7 @@ function ScrollingRow({ images, direction }: { images: PortfolioImage[], directi
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover"
+              className="object-cover rounded-lg"
               sizes="(max-width: 768px) 500px, 600px"
             />
           </div>
