@@ -19,10 +19,10 @@ const row1Images: PortfolioImage[] = [
 ];
 
 const row2Images: PortfolioImage[] = [
-  { id: 5, src: "/portfolio/project-1.png", alt: "Project 5" },
-  { id: 6, src: "/portfolio/project-1.png", alt: "Project 6" },
-  { id: 7, src: "/portfolio/project-1.png", alt: "Project 7" },
-  { id: 8, src: "/portfolio/project-1.png", alt: "Project 8" },
+  { id: 5, src: "/portfolio/project-5.png", alt: "Project 5" },
+  { id: 6, src: "/portfolio/project-6.png", alt: "Project 6" },
+  { id: 7, src: "/portfolio/project-7.png", alt: "Project 7" },
+  { id: 8, src: "/portfolio/project-8.png", alt: "Project 8" },
 ];
 
 const row3Images: PortfolioImage[] = [
