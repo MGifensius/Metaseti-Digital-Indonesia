@@ -114,7 +114,6 @@ export default function AIAnalyticsDashboard() {
             <ArrowLeft className="h-5 w-5" />
             <span>Back to Projects</span>
           </button>
-          <h1 className="text-xl font-light text-white">AI Analytics Dashboard</h1>
         </div>
       </div>
 
