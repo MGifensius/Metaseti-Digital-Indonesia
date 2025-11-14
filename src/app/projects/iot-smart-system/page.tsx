@@ -105,7 +105,6 @@ export default function IoTSmartSystem() {
             <ArrowLeft className="h-5 w-5" />
             <span>Back to Projects</span>
           </button>
-          <h1 className="text-xl font-light text-white">IoT Smart System</h1>
         </div>
       </div>
 
