@@ -74,76 +74,75 @@ export default function BrandTransformation() {
     <div className="min-h-screen bg-gradient-to-b from-black via-neutral-950 to-neutral-900">
       {/* Header */}
       <div className="border-b border-white/10 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
           <button 
             onClick={handleBackToProjects}
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
           >
-            <ArrowLeft className="h-5 w-5" />
-            <span>Back to Projects</span>
+            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="text-sm sm:text-base">Back to Projects</span>
           </button>
-          <h1 className="text-xl font-light text-white">Brand Transformation</h1>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12 md:py-16">
         {/* Project Overview */}
-        <div className="mb-16">
-          <p className="text-sm uppercase tracking-wider text-gray-500 mb-3">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <p className="text-xs sm:text-sm uppercase tracking-wider text-gray-500 mb-2 sm:mb-3">
             Case Study
           </p>
-          <h2 className="text-4xl font-light mb-6 text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 text-white">
             Complete Brand Transformation
           </h2>
-          <p className="text-gray-400 leading-relaxed max-w-3xl">
+          <p className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-3xl">
             A strategic rebranding project that modernized a traditional business identity, 
             resulting in a 300% increase in market visibility and significantly improved brand perception.
           </p>
         </div>
 
         {/* Project Details Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
           {projectDetails.map((detail, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-neutral-900 border border-white/10 rounded-lg p-8"
+              className="bg-neutral-900 border border-white/10 rounded-lg p-4 sm:p-6 md:p-8"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <detail.icon className="h-6 w-6 text-white" />
-                <h3 className="text-xl font-light text-white">{detail.title}</h3>
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <detail.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <h3 className="text-lg sm:text-xl font-light text-white">{detail.title}</h3>
               </div>
               
               {detail.description && (
-                <p className="text-gray-400 leading-relaxed">{detail.description}</p>
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{detail.description}</p>
               )}
               
               {detail.items && (
-                <ul className="space-y-3">
+                <ul className="space-y-2 sm:space-y-3">
                   {detail.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="h-1.5 w-1.5 rounded-full bg-white mt-2" />
-                      <span className="text-gray-300">{item}</span>
+                    <li key={i} className="flex items-start gap-2 sm:gap-3">
+                      <div className="h-1.5 w-1.5 rounded-full bg-white mt-1.5 sm:mt-2 flex-shrink-0" />
+                      <span className="text-sm sm:text-base text-gray-300">{item}</span>
                     </li>
                   ))}
                 </ul>
               )}
               
               {detail.phases && (
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {detail.phases.map((phase, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <span className="text-gray-300">{phase.phase}</span>
-                      <span className="text-gray-500 text-sm">{phase.duration}</span>
+                    <div key={i} className="flex items-center justify-between gap-2">
+                      <span className="text-sm sm:text-base text-gray-300">{phase.phase}</span>
+                      <span className="text-gray-500 text-xs sm:text-sm whitespace-nowrap">{phase.duration}</span>
                     </div>
                   ))}
-                  <div className="pt-4 border-t border-white/10">
+                  <div className="pt-3 sm:pt-4 border-t border-white/10">
                     <div className="flex items-center justify-between">
-                      <span className="text-white font-light">Total Duration</span>
-                      <span className="text-white">12 weeks</span>
+                      <span className="text-sm sm:text-base text-white font-light">Total Duration</span>
+                      <span className="text-sm sm:text-base text-white">12 weeks</span>
                     </div>
                   </div>
                 </div>
@@ -153,14 +152,14 @@ export default function BrandTransformation() {
         </div>
 
         {/* Before/After Section */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-light text-white mb-8">Brand Evolution</h3>
+        <div className="mb-8 sm:mb-12">
+          <h3 className="text-xl sm:text-2xl font-light text-white mb-4 sm:mb-6 md:mb-8">Brand Evolution</h3>
           
           {/* Before/After Toggle */}
-          <div className="flex gap-4 mb-8">
+          <div className="flex gap-2 sm:gap-4 mb-6 sm:mb-8">
             <button
               onClick={() => setActiveTab("before")}
-              className={`px-8 py-3 rounded-lg transition-colors ${
+              className={`flex-1 sm:flex-none px-4 sm:px-8 py-2 sm:py-3 rounded-lg transition-colors text-sm sm:text-base ${
                 activeTab === "before"
                   ? "bg-white text-black"
                   : "bg-neutral-900 text-white border border-white/10 hover:bg-neutral-800"
@@ -170,7 +169,7 @@ export default function BrandTransformation() {
             </button>
             <button
               onClick={() => setActiveTab("after")}
-              className={`px-8 py-3 rounded-lg transition-colors ${
+              className={`flex-1 sm:flex-none px-4 sm:px-8 py-2 sm:py-3 rounded-lg transition-colors text-sm sm:text-base ${
                 activeTab === "after"
                   ? "bg-white text-black"
                   : "bg-neutral-900 text-white border border-white/10 hover:bg-neutral-800"
@@ -185,54 +184,54 @@ export default function BrandTransformation() {
             key={activeTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-neutral-900 border border-white/10 rounded-lg p-12"
+            className="bg-neutral-900 border border-white/10 rounded-lg p-4 sm:p-8 md:p-12"
           >
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
               {/* Left: Visual Elements */}
               <div>
-                <h4 className="text-xl font-light text-white mb-8">Brand Identity</h4>
+                <h4 className="text-lg sm:text-xl font-light text-white mb-4 sm:mb-6 md:mb-8">Brand Identity</h4>
                 
                 {/* Colors */}
-                <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Palette className="h-5 w-5 text-gray-400" />
-                    <p className="text-gray-400 text-sm">Color Palette</p>
+                <div className="mb-6 sm:mb-8">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <Palette className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm">Color Palette</p>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-2 sm:gap-4">
                     {current.colors.map((color, index) => (
-                      <div key={index} className="text-center">
+                      <div key={index} className="text-center flex-1">
                         <div
-                          className="h-20 w-20 rounded-lg mb-2 border border-white/10"
+                          className="h-16 sm:h-20 w-full rounded-lg mb-2 border border-white/10"
                           style={{ backgroundColor: color }}
                         />
-                        <p className="text-xs text-gray-500">{color}</p>
+                        <p className="text-xs text-gray-500 break-all">{color}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Typography */}
-                <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Type className="h-5 w-5 text-gray-400" />
-                    <p className="text-gray-400 text-sm">Typography</p>
+                <div className="mb-6 sm:mb-8">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <Type className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm">Typography</p>
                   </div>
-                  <div className="bg-neutral-800 rounded-lg p-6">
-                    <p className="text-4xl text-white mb-2" style={{ fontFamily: current.font }}>
+                  <div className="bg-neutral-800 rounded-lg p-4 sm:p-6">
+                    <p className="text-2xl sm:text-3xl md:text-4xl text-white mb-2" style={{ fontFamily: current.font }}>
                       Aa Bb Cc
                     </p>
-                    <p className="text-sm text-gray-400">{current.font}</p>
+                    <p className="text-xs sm:text-sm text-gray-400">{current.font}</p>
                   </div>
                 </div>
 
                 {/* Logo Area */}
                 <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <ImageIcon className="h-5 w-5 text-gray-400" />
-                    <p className="text-gray-400 text-sm">Logo Concept</p>
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <ImageIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm">Logo Concept</p>
                   </div>
-                  <div className="bg-neutral-800 rounded-lg p-12 flex items-center justify-center">
-                    <p className="text-6xl font-light text-white" style={{ fontFamily: current.font }}>
+                  <div className="bg-neutral-800 rounded-lg p-8 sm:p-12 flex items-center justify-center">
+                    <p className="text-3xl sm:text-5xl md:text-6xl font-light text-white" style={{ fontFamily: current.font }}>
                       BRAND
                     </p>
                   </div>
@@ -241,16 +240,16 @@ export default function BrandTransformation() {
 
               {/* Right: Description & Applications */}
               <div>
-                <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Sparkles className="h-5 w-5 text-gray-400" />
-                    <p className="text-gray-400 text-sm">Brand Essence</p>
+                <div className="mb-6 sm:mb-8">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm">Brand Essence</p>
                   </div>
-                  <div className="bg-neutral-800 rounded-lg p-8">
-                    <p className="text-2xl font-light text-white mb-4" style={{ fontFamily: current.font }}>
+                  <div className="bg-neutral-800 rounded-lg p-4 sm:p-6 md:p-8">
+                    <p className="text-lg sm:text-xl md:text-2xl font-light text-white mb-3 sm:mb-4" style={{ fontFamily: current.font }}>
                       "{current.tagline}"
                     </p>
-                    <p className="text-gray-400 leading-relaxed">
+                    <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                       {current.description}
                     </p>
                   </div>
@@ -258,23 +257,23 @@ export default function BrandTransformation() {
 
                 {/* Application Examples */}
                 <div>
-                  <p className="text-gray-400 text-sm mb-4">Brand Applications</p>
-                  <div className="space-y-4">
-                    <div className="bg-neutral-800 rounded-lg p-6">
-                      <p className="text-white font-light mb-2">Business Card</p>
-                      <div className="h-32 rounded border border-white/10" 
+                  <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">Brand Applications</p>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="bg-neutral-800 rounded-lg p-4 sm:p-6">
+                      <p className="text-sm sm:text-base text-white font-light mb-2">Business Card</p>
+                      <div className="h-24 sm:h-32 rounded border border-white/10" 
                            style={{ 
                              background: `linear-gradient(135deg, ${current.colors[0]} 0%, ${current.colors[1]} 100%)` 
                            }}>
                       </div>
                     </div>
-                    <div className="bg-neutral-800 rounded-lg p-6">
-                      <p className="text-white font-light mb-2">Website Header</p>
-                      <div className="h-24 rounded border border-white/10 flex items-center justify-center"
+                    <div className="bg-neutral-800 rounded-lg p-4 sm:p-6">
+                      <p className="text-sm sm:text-base text-white font-light mb-2">Website Header</p>
+                      <div className="h-20 sm:h-24 rounded border border-white/10 flex items-center justify-center px-4"
                            style={{ 
                              background: `linear-gradient(90deg, ${current.colors[0]} 0%, ${current.colors[2]} 100%)` 
                            }}>
-                        <p className="text-white text-xl font-light" style={{ fontFamily: current.font }}>
+                        <p className="text-sm sm:text-lg md:text-xl text-white font-light text-center" style={{ fontFamily: current.font }}>
                           {current.tagline.split('.')[0]}
                         </p>
                       </div>
@@ -288,32 +287,32 @@ export default function BrandTransformation() {
 
         {/* Impact Metrics */}
         <div>
-          <h3 className="text-2xl font-light text-white mb-8">Transformation Impact</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h3 className="text-xl sm:text-2xl font-light text-white mb-4 sm:mb-6 md:mb-8">Transformation Impact</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {metrics.map((metric, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-neutral-900 border border-white/10 rounded-lg p-6"
+                className="bg-neutral-900 border border-white/10 rounded-lg p-4 sm:p-6"
               >
-                <p className="text-gray-400 text-sm mb-4">{metric.label}</p>
+                <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">{metric.label}</p>
                 <div className="space-y-2">
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Before</p>
-                    <p className="text-xl text-gray-600">
+                    <p className="text-lg sm:text-xl text-gray-600">
                       {metric.before.toLocaleString()}{metric.unit}
                     </p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 mb-1">After</p>
-                    <p className="text-3xl font-light text-white">
+                    <p className="text-2xl sm:text-3xl font-light text-white">
                       {metric.after.toLocaleString()}{metric.unit}
                     </p>
                   </div>
                   <div className="pt-2 border-t border-white/10">
-                    <p className="text-sm text-green-400">
+                    <p className="text-xs sm:text-sm text-green-400">
                       +{Math.round(((metric.after - metric.before) / metric.before) * 100)}% increase
                     </p>
                   </div>
