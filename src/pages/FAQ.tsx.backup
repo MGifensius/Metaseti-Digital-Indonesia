@@ -1,0 +1,505 @@
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { useLanguage } from "../context/LanguageContext";
+import { ChevronDown } from "lucide-react";
+
+interface FAQ {
+  questionEn: string;
+  questionId: string;
+  answerEn: string;
+  answerId: string;
+  category: string;
+}
+
+export default function FAQPage() {
+  const { t, language } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const categories = [
+    { id: "all", labelEn: "All Questions", labelId: "Semua Pertanyaan" },
+    { id: "getting-started", labelEn: "Getting Started", labelId: "Memulai" },
+    { id: "implementation", labelEn: "Implementation", labelId: "Implementasi" },
+    { id: "services", labelEn: "Services", labelId: "Layanan" },
+    { id: "technical", labelEn: "Technical", labelId: "Teknis" },
+  ];
+
+  const faqs: FAQ[] = [
+    {
+      questionEn: "What is the first step to start working with Metaseti?",
+      questionId: "Apa langkah pertama untuk mulai bekerja dengan Metaseti?",
+      answerEn: "The first step is to schedule a consultation where we'll discuss your business goals, challenges, and requirements. We'll assess your current digital maturity and identify opportunities for transformation. This initial consultation is free and helps us understand how we can best serve your needs.",
+      answerId: "Langkah pertama adalah menjadwalkan konsultasi di mana kami akan mendiskusikan tujuan bisnis, tantangan, dan kebutuhan Anda. Kami akan menilai kematangan digital Anda saat ini dan mengidentifikasi peluang untuk transformasi. Konsultasi awal ini gratis dan membantu kami memahami bagaimana kami dapat melayani kebutuhan Anda dengan baik.",
+      category: "getting-started"
+    },
+    {
+      questionEn: "How long does a typical project take?",
+      questionId: "Berapa lama waktu yang dibutuhkan untuk proyek biasa?",
+      answerEn: "Project timelines vary based on scope and complexity. A simple website might take 4-6 weeks, while custom applications can range from 2-6 months. AI integration projects typically span 3-4 months including planning, implementation, and training. We'll provide a detailed timeline during the planning phase.",
+      answerId: "Timeline proyek bervariasi berdasarkan lingkup dan kompleksitas. Website sederhana mungkin memerlukan 4-6 minggu, sementara aplikasi khusus dapat berkisar 2-6 bulan. Proyek integrasi AI biasanya memakan waktu 3-4 bulan termasuk perencanaan, implementasi, dan pelatihan. Kami akan memberikan timeline detail selama fase perencanaan.",
+      category: "getting-started"
+    },
+    {
+      questionEn: "What are the key steps in implementing AI solutions?",
+      questionId: "Apa langkah-langkah kunci dalam mengimplementasikan solusi AI?",
+      answerEn: "Our AI implementation process includes: 1) Needs Assessment - Understanding your specific use cases and goals, 2) Data Preparation - Collecting and cleaning relevant data, 3) Model Selection & Training - Choosing and training appropriate AI models, 4) Integration - Connecting AI systems with your existing workflows, 5) Testing & Validation - Ensuring accuracy and reliability, 6) Deployment - Rolling out the solution, and 7) Monitoring & Optimization - Continuous improvement based on real-world performance.",
+      answerId: "Proses implementasi AI kami meliputi: 1) Penilaian Kebutuhan - Memahami use case dan tujuan spesifik Anda, 2) Persiapan Data - Mengumpulkan dan membersihkan data yang relevan, 3) Pemilihan & Pelatihan Model - Memilih dan melatih model AI yang sesuai, 4) Integrasi - Menghubungkan sistem AI dengan workflow yang ada, 5) Testing & Validasi - Memastikan akurasi dan keandalan, 6) Deployment - Meluncurkan solusi, dan 7) Monitoring & Optimasi - Perbaikan berkelanjutan berdasarkan performa di dunia nyata.",
+      category: "implementation"
+    },
+    {
+      questionEn: "How do you ensure the quality of custom development projects?",
+      questionId: "Bagaimana Anda memastikan kualitas proyek pengembangan khusus?",
+      answerEn: "Quality is embedded in our entire development process: Comprehensive testing (unit, integration, and user acceptance testing), Code reviews by senior developers, Adherence to industry best practices and coding standards, Performance optimization and security audits, Regular client reviews and feedback integration, Detailed documentation and knowledge transfer, and Post-launch monitoring and support. We use modern DevOps practices including CI/CD pipelines to maintain consistent quality throughout development.",
+      answerId: "Kualitas tertanam dalam seluruh proses pengembangan kami: Pengujian komprehensif (unit, integrasi, dan user acceptance testing), Code review oleh developer senior, Kepatuhan terhadap praktik terbaik industri dan standar coding, Optimasi performa dan audit keamanan, Review klien reguler dan integrasi feedback, Dokumentasi detail dan transfer pengetahuan, dan Pemantauan dan dukungan pasca-peluncuran. Kami menggunakan praktik DevOps modern termasuk pipeline CI/CD untuk menjaga kualitas konsisten sepanjang pengembangan.",
+      category: "implementation"
+    },
+    {
+      questionEn: "What services does Metaseti Digital offer?",
+      questionId: "Layanan apa yang ditawarkan Metaseti Digital?",
+      answerEn: "We offer three main service areas: 1) Strategic AI Integration - Implementing AI-powered automation, chatbots, predictive analytics, and intelligent workflows, 2) Custom Development - Building websites, mobile apps, web applications, IoT systems, and enterprise software tailored to your needs, and 3) Branding & Marketing - Creating brand identities, UI/UX design, digital campaigns, content creation, and comprehensive marketing strategies. We can handle projects end-to-end or support specific phases of your digital transformation.",
+      answerId: "Kami menawarkan tiga area layanan utama: 1) Integrasi AI Strategis - Mengimplementasikan otomasi berbasis AI, chatbot, analitik prediktif, dan workflow cerdas, 2) Pengembangan Khusus - Membangun website, aplikasi mobile, aplikasi web, sistem IoT, dan software enterprise yang disesuaikan dengan kebutuhan Anda, dan 3) Branding & Pemasaran - Menciptakan identitas merek, desain UI/UX, kampanye digital, pembuatan konten, dan strategi pemasaran komprehensif. Kami dapat menangani proyek end-to-end atau mendukung fase spesifik transformasi digital Anda.",
+      category: "services"
+    },
+    {
+      questionEn: "Do you provide post-launch support and maintenance?",
+      questionId: "Apakah Anda menyediakan dukungan dan pemeliharaan pasca-peluncuran?",
+      answerEn: "Yes, we offer comprehensive post-launch support including: Bug fixes and troubleshooting, Performance monitoring and optimization, Security updates and patches, Feature enhancements and updates, Technical support and training, Regular system health checks, and Scalability planning as your needs grow. We offer flexible support packages tailored to your requirements, from basic maintenance to full managed services.",
+      answerId: "Ya, kami menawarkan dukungan pasca-peluncuran yang komprehensif termasuk: Perbaikan bug dan troubleshooting, Pemantauan dan optimasi performa, Pembaruan dan patch keamanan, Peningkatan dan pembaruan fitur, Dukungan teknis dan pelatihan, Pemeriksaan kesehatan sistem reguler, dan Perencanaan skalabilitas seiring kebutuhan Anda berkembang. Kami menawarkan paket dukungan fleksibel yang disesuaikan dengan kebutuhan Anda, dari pemeliharaan dasar hingga layanan terkelola penuh.",
+      category: "services"
+    },
+    {
+      questionEn: "What technologies and platforms do you work with?",
+      questionId: "Teknologi dan platform apa yang Anda gunakan?",
+      answerEn: "We work with a wide range of modern technologies including: Frontend - React, Next.js, Vue.js, Angular, Backend - Node.js, Python, Java, .NET, Mobile - React Native, Flutter, native iOS/Android, Cloud - AWS, Google Cloud, Azure, Databases - PostgreSQL, MongoDB, MySQL, Redis, AI/ML - TensorFlow, PyTorch, OpenAI, custom models, and DevOps - Docker, Kubernetes, CI/CD pipelines. We select the best technology stack based on your specific requirements, scalability needs, and budget.",
+      answerId: "Kami bekerja dengan berbagai teknologi modern termasuk: Frontend - React, Next.js, Vue.js, Angular, Backend - Node.js, Python, Java, .NET, Mobile - React Native, Flutter, native iOS/Android, Cloud - AWS, Google Cloud, Azure, Database - PostgreSQL, MongoDB, MySQL, Redis, AI/ML - TensorFlow, PyTorch, OpenAI, model khusus, dan DevOps - Docker, Kubernetes, pipeline CI/CD. Kami memilih tech stack terbaik berdasarkan kebutuhan spesifik, kebutuhan skalabilitas, dan anggaran Anda.",
+      category: "technical"
+    },
+    {
+      questionEn: "How do you handle data security and privacy?",
+      questionId: "Bagaimana Anda menangani keamanan dan privasi data?",
+      answerEn: "Data security is a top priority. We implement: Industry-standard encryption for data at rest and in transit, Secure authentication and authorization systems, Regular security audits and penetration testing, Compliance with relevant regulations (GDPR, PDPA, etc.), Secure development practices and code reviews, Access controls and monitoring, Regular backups and disaster recovery plans, and Staff training on security best practices. We can also help you achieve specific compliance certifications as needed.",
+      answerId: "Keamanan data adalah prioritas utama. Kami menerapkan: Enkripsi standar industri untuk data saat istirahat dan transit, Sistem autentikasi dan otorisasi yang aman, Audit keamanan reguler dan pengujian penetrasi, Kepatuhan terhadap regulasi yang relevan (GDPR, PDPA, dll), Praktik pengembangan aman dan code review, Kontrol akses dan pemantauan, Backup reguler dan rencana disaster recovery, dan Pelatihan staf tentang praktik terbaik keamanan. Kami juga dapat membantu Anda mencapai sertifikasi kepatuhan spesifik sesuai kebutuhan.",
+      category: "technical"
+    },
+    {
+      questionEn: "What is your pricing model?",
+      questionId: "Bagaimana model penetapan harga Anda?",
+      answerEn: "We offer flexible pricing models to suit different needs: Project-based pricing for defined scope work, Time and materials for evolving requirements, Retainer arrangements for ongoing services, and Subscription models for managed services. Pricing depends on project complexity, timeline, technology stack, and team composition. We provide detailed proposals with transparent pricing after understanding your requirements. Contact us for a free consultation and quote.",
+      answerId: "Kami menawarkan model penetapan harga fleksibel untuk berbagai kebutuhan: Harga berbasis proyek untuk pekerjaan dengan lingkup terdefinisi, Time and materials untuk kebutuhan yang berkembang, Pengaturan retainer untuk layanan berkelanjutan, dan Model berlangganan untuk layanan terkelola. Harga tergantung pada kompleksitas proyek, timeline, tech stack, dan komposisi tim. Kami memberikan proposal detail dengan harga transparan setelah memahami kebutuhan Anda. Hubungi kami untuk konsultasi dan penawaran gratis.",
+      category: "getting-started"
+    },
+    {
+      questionEn: "Can you work with our existing systems and infrastructure?",
+      questionId: "Bisakah Anda bekerja dengan sistem dan infrastruktur kami yang sudah ada?",
+      answerEn: "Absolutely. We specialize in integration and can work with your existing systems. Our approach includes: Comprehensive assessment of your current infrastructure, Identifying integration points and requirements, Building APIs and connectors as needed, Ensuring data consistency and synchronization, Minimal disruption to ongoing operations, Gradual migration strategies when needed, and Documentation and knowledge transfer. We've successfully integrated with various legacy systems, ERPs, CRMs, and custom solutions.",
+      answerId: "Tentu saja. Kami spesialis dalam integrasi dan dapat bekerja dengan sistem Anda yang ada. Pendekatan kami meliputi: Penilaian komprehensif infrastruktur Anda saat ini, Mengidentifikasi titik integrasi dan kebutuhan, Membangun API dan konektor sesuai kebutuhan, Memastikan konsistensi dan sinkronisasi data, Gangguan minimal terhadap operasi yang sedang berjalan, Strategi migrasi bertahap jika diperlukan, dan Dokumentasi dan transfer pengetahuan. Kami telah berhasil berintegrasi dengan berbagai sistem legacy, ERP, CRM, dan solusi khusus.",
+      category: "technical"
+    },
+  ];
+
+  const filteredFaqs = activeCategory === "all" 
+    ? faqs 
+    : faqs.filter(faq => faq.category === activeCategory);
+
+  return (
+    <div className="min-h-screen bg-black">
+      <Navbar />
+
+      {/* Hero Section with Background Image */}
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img 
+            src="/hero-bg.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-75"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="mb-16 text-center">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
+              {language === 'en' ? 'KNOWLEDGE BASE' : 'BASIS PENGETAHUAN'}
+            </p>
+            <h1 className="text-5xl md:text-6xl font-medium text-white mb-6">
+              {language === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan yang Sering Diajukan'}
+            </h1>
+            <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+              {language === 'en'
+                ? 'Find answers to common questions about our services, implementation process, and how we can help transform your business.'
+                : 'Temukan jawaban atas pertanyaan umum tentang layanan kami, proses implementasi, dan bagaimana kami dapat membantu mentransformasi bisnis Anda.'}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Steps Section - Black Background */}
+      <section className="py-20 px-6 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
+              {language === 'en' ? 'HOW WE WORK' : 'CARA KAMI BEKERJA'}
+            </p>
+            <h2 className="text-4xl md:text-5xl font-medium text-white mb-4">
+              {language === 'en' ? 'Our Implementation Process' : 'Proses Implementasi Kami'}
+            </h2>
+            <p className="text-gray-400 text-base max-w-2xl mx-auto">
+              {language === 'en' 
+                ? 'A proven methodology that transforms your vision into reality through six strategic phases.'
+                : 'Metodologi terbukti yang mengubah visi Anda menjadi kenyataan melalui enam fase strategis.'}
+            </p>
+          </div>
+
+          {/* Desktop: Timeline Layout */}
+          <div className="hidden lg:block">
+            <div className="relative">
+              {/* Vertical Timeline Line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white/20 via-white/10 to-white/20"></div>
+              
+              <div className="space-y-24">
+                {/* Step 1 - Left */}
+                <div className="relative flex items-center">
+                  <div className="w-1/2 pr-12 text-right">
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-8 hover:border-white/30 transition-all duration-300 hover:bg-neutral-900">
+                      <div className="inline-block px-3 py-1 bg-white/5 rounded-full mb-4">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Step 01</span>
+                      </div>
+                      <h3 className="text-2xl font-medium text-white mb-3">
+                        {language === 'en' ? 'Discovery & Consultation' : 'Penemuan & Konsultasi'}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {language === 'en'
+                          ? 'We begin with an in-depth consultation to understand your business objectives, challenges, and unique requirements. This foundation ensures we deliver solutions perfectly aligned with your goals.'
+                          : 'Kami mulai dengan konsultasi mendalam untuk memahami tujuan bisnis, tantangan, dan kebutuhan unik Anda. Fondasi ini memastikan kami memberikan solusi yang selaras dengan tujuan Anda.'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-1/2"></div>
+                </div>
+
+                {/* Step 2 - Right */}
+                <div className="relative flex items-center">
+                  <div className="w-1/2"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-8 hover:border-white/30 transition-all duration-300 hover:bg-neutral-900">
+                      <div className="inline-block px-3 py-1 bg-white/5 rounded-full mb-4">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Step 02</span>
+                      </div>
+                      <h3 className="text-2xl font-medium text-white mb-3">
+                        {language === 'en' ? 'Planning & Strategy' : 'Perencanaan & Strategi'}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {language === 'en'
+                          ? 'We craft a comprehensive project roadmap with clear timelines, milestones, and deliverables. Our strategic approach ensures efficient execution and transparent progress tracking.'
+                          : 'Kami menyusun peta jalan proyek komprehensif dengan timeline, milestone, dan deliverable yang jelas. Pendekatan strategis kami memastikan eksekusi efisien dan pelacakan kemajuan transparan.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3 - Left */}
+                <div className="relative flex items-center">
+                  <div className="w-1/2 pr-12 text-right">
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-8 hover:border-white/30 transition-all duration-300 hover:bg-neutral-900">
+                      <div className="inline-block px-3 py-1 bg-white/5 rounded-full mb-4">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Step 03</span>
+                      </div>
+                      <h3 className="text-2xl font-medium text-white mb-3">
+                        {language === 'en' ? 'Design & Development' : 'Desain & Pengembangan'}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {language === 'en'
+                          ? 'Our expert team brings your vision to life using cutting-edge technologies and industry best practices. Regular sprint reviews keep you engaged throughout the development journey.'
+                          : 'Tim ahli kami mewujudkan visi Anda menggunakan teknologi terkini dan praktik terbaik industri. Review sprint reguler membuat Anda tetap terlibat sepanjang perjalanan pengembangan.'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-1/2"></div>
+                </div>
+
+                {/* Step 4 - Right */}
+                <div className="relative flex items-center">
+                  <div className="w-1/2"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-8 hover:border-white/30 transition-all duration-300 hover:bg-neutral-900">
+                      <div className="inline-block px-3 py-1 bg-white/5 rounded-full mb-4">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Step 04</span>
+                      </div>
+                      <h3 className="text-2xl font-medium text-white mb-3">
+                        {language === 'en' ? 'Testing & Quality Assurance' : 'Testing & Quality Assurance'}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {language === 'en'
+                          ? 'Comprehensive testing protocols ensure flawless performance. We conduct rigorous unit, integration, and user acceptance testing to guarantee enterprise-grade quality.'
+                          : 'Protokol testing komprehensif memastikan performa sempurna. Kami melakukan unit, integration, dan user acceptance testing ketat untuk menjamin kualitas kelas enterprise.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 5 - Left */}
+                <div className="relative flex items-center">
+                  <div className="w-1/2 pr-12 text-right">
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-8 hover:border-white/30 transition-all duration-300 hover:bg-neutral-900">
+                      <div className="inline-block px-3 py-1 bg-white/5 rounded-full mb-4">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Step 05</span>
+                      </div>
+                      <h3 className="text-2xl font-medium text-white mb-3">
+                        {language === 'en' ? 'Deployment & Launch' : 'Deployment & Peluncuran'}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {language === 'en'
+                          ? 'Seamless deployment to production with zero-downtime strategies. Our team manages all technical aspects to ensure a smooth, successful launch of your solution.'
+                          : 'Deployment mulus ke production dengan strategi zero-downtime. Tim kami mengelola semua aspek teknis untuk memastikan peluncuran solusi Anda sukses.'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-1/2"></div>
+                </div>
+
+                {/* Step 6 - Right */}
+                <div className="relative flex items-center">
+                  <div className="w-1/2"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-8 hover:border-white/30 transition-all duration-300 hover:bg-neutral-900">
+                      <div className="inline-block px-3 py-1 bg-white/5 rounded-full mb-4">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Step 06</span>
+                      </div>
+                      <h3 className="text-2xl font-medium text-white mb-3">
+                        {language === 'en' ? 'Support & Optimization' : 'Dukungan & Optimasi'}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {language === 'en'
+                          ? 'Ongoing support and continuous optimization ensure peak performance. We monitor, maintain, and enhance your solution to deliver sustained business value.'
+                          : 'Dukungan berkelanjutan dan optimasi kontinyu memastikan performa puncak. Kami monitor, maintain, dan enhance solusi Anda untuk memberikan nilai bisnis berkelanjutan.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile & Tablet: Vertical Cards */}
+          <div className="lg:hidden space-y-6">
+            {/* Step 1 */}
+            <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-6 hover:border-white/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-medium text-white">01</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {language === 'en' ? 'Discovery & Consultation' : 'Penemuan & Konsultasi'}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {language === 'en'
+                      ? 'In-depth consultation to understand your business objectives, challenges, and requirements.'
+                      : 'Konsultasi mendalam untuk memahami tujuan bisnis, tantangan, dan kebutuhan Anda.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-6 hover:border-white/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-medium text-white">02</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {language === 'en' ? 'Planning & Strategy' : 'Perencanaan & Strategi'}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {language === 'en'
+                      ? 'Comprehensive roadmap with clear timelines, milestones, and strategic execution plan.'
+                      : 'Peta jalan komprehensif dengan timeline, milestone, dan rencana eksekusi strategis.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-6 hover:border-white/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-medium text-white">03</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {language === 'en' ? 'Design & Development' : 'Desain & Pengembangan'}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {language === 'en'
+                      ? 'Expert team builds your solution using cutting-edge technologies and best practices.'
+                      : 'Tim ahli membangun solusi Anda menggunakan teknologi terkini dan praktik terbaik.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-6 hover:border-white/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-medium text-white">04</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {language === 'en' ? 'Testing & Quality Assurance' : 'Testing & Quality Assurance'}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {language === 'en'
+                      ? 'Rigorous testing ensures flawless performance and enterprise-grade quality.'
+                      : 'Testing ketat memastikan performa sempurna dan kualitas kelas enterprise.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 5 */}
+            <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-6 hover:border-white/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-medium text-white">05</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {language === 'en' ? 'Deployment & Launch' : 'Deployment & Peluncuran'}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {language === 'en'
+                      ? 'Seamless deployment to production with zero-downtime strategies.'
+                      : 'Deployment mulus ke production dengan strategi zero-downtime.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 6 */}
+            <div className="bg-neutral-900/80 border border-white/10 rounded-lg p-6 hover:border-white/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-medium text-white">06</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {language === 'en' ? 'Support & Optimization' : 'Dukungan & Optimasi'}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {language === 'en'
+                      ? 'Ongoing support and continuous optimization for sustained business value.'
+                      : 'Dukungan berkelanjutan dan optimasi kontinyu untuk nilai bisnis berkelanjutan.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+                    {language === 'en'
+                      ? 'Post-launch, we provide ongoing support, monitoring, and optimization. We ensure your solution continues to perform at its best.'
+                      : 'Pasca-peluncuran, kami memberikan dukungan, monitoring, dan optimasi berkelanjutan. Kami memastikan solusi Anda terus berkinerja terbaik.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Q&A Section - Black Background */}
+      <section className="py-20 px-6 bg-black border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-medium text-white mb-8 text-center">
+            {language === 'en' ? 'Common Questions' : 'Pertanyaan Umum'}
+          </h2>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-5 py-2.5 text-sm font-medium transition-all duration-200 rounded-md ${
+                  activeCategory === category.id
+                    ? 'bg-white text-black'
+                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
+                }`}
+              >
+                {language === 'en' ? category.labelEn : category.labelId}
+              </button>
+            ))}
+          </div>
+
+          {/* FAQ List */}
+          <div className="space-y-4">
+            {filteredFaqs.map((faq, index) => (
+              <div
+                key={index}
+                className="border border-white/10 bg-neutral-900/50 overflow-hidden transition-all duration-300 hover:border-white/20 rounded-md"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left group"
+                >
+                  <h3 className="text-lg font-medium text-white pr-8 group-hover:text-gray-200 transition-colors">
+                    {language === 'en' ? faq.questionEn : faq.questionId}
+                  </h3>
+                  <ChevronDown
+                    className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300 ${
+                      openFaq === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaq === index ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-6 pb-6 pt-2 text-gray-400 leading-relaxed border-t border-white/5">
+                    {language === 'en' ? faq.answerEn : faq.answerId}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {filteredFaqs.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-gray-500 text-lg">
+                {language === 'en' 
+                  ? 'No questions found in this category.' 
+                  : 'Tidak ada pertanyaan di kategori ini.'}
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
